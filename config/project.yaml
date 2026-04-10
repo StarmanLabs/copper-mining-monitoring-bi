@@ -1,0 +1,137 @@
+project:
+  name: "Copper Mining Risk Model"
+  workbook_path: "Copper_mining_risk_model.xlsm"
+  currency: "PEN"
+  years: 15
+  project_start_calendar_year: 2026
+
+scenario:
+  expansion:
+    uplift_pct: 0.20
+    logistic_midpoint: 2.5
+    logistic_steepness: 2.0
+  finance:
+    annual_sustaining_capex_usd: 10000000
+    initial_capex_schedule_usd:
+      0: 280000000
+      1: 170000000
+    working_capital_ratio: 0.07
+
+simulation:
+  iterations: 10000
+  random_seed: 42
+  var_alpha: 0.05
+
+portfolio_bi:
+  deterministic_scenarios:
+    - scenario_id: "base"
+      scenario_name: "Base Case"
+      category: "Reference"
+      description: "Calibrated reference case derived from the workbook assumptions."
+      price_factor: 1.00
+      grade_factor: 1.00
+      recovery_factor: 1.00
+      throughput_factor: 1.00
+      opex_factor: 1.00
+      capex_factor: 1.00
+      wacc_shift_bps: 0
+    - scenario_id: "bull_market"
+      scenario_name: "Bull Market"
+      category: "Market"
+      description: "Higher copper prices with stable operations."
+      price_factor: 1.15
+      grade_factor: 1.00
+      recovery_factor: 1.00
+      throughput_factor: 1.02
+      opex_factor: 1.00
+      capex_factor: 1.00
+      wacc_shift_bps: -50
+    - scenario_id: "bear_market"
+      scenario_name: "Bear Market"
+      category: "Market"
+      description: "Lower copper prices and tighter financial conditions."
+      price_factor: 0.85
+      grade_factor: 1.00
+      recovery_factor: 1.00
+      throughput_factor: 0.98
+      opex_factor: 1.03
+      capex_factor: 1.00
+      wacc_shift_bps: 100
+    - scenario_id: "operational_stress"
+      scenario_name: "Operational Stress"
+      category: "Operations"
+      description: "Lower throughput, lower recovery, and higher operating costs."
+      price_factor: 1.00
+      grade_factor: 0.97
+      recovery_factor: 0.96
+      throughput_factor: 0.94
+      opex_factor: 1.08
+      capex_factor: 1.00
+      wacc_shift_bps: 0
+    - scenario_id: "capex_overrun"
+      scenario_name: "Capex Overrun"
+      category: "Investment"
+      description: "Strategic expansion with materially higher capital burden."
+      price_factor: 1.00
+      grade_factor: 1.00
+      recovery_factor: 1.00
+      throughput_factor: 1.00
+      opex_factor: 1.00
+      capex_factor: 1.20
+      wacc_shift_bps: 50
+    - scenario_id: "committee_downside"
+      scenario_name: "Investment Committee Downside"
+      category: "Stress"
+      description: "Combined market and operational downside used for decision stress testing."
+      price_factor: 0.80
+      grade_factor: 0.95
+      recovery_factor: 0.95
+      throughput_factor: 0.92
+      opex_factor: 1.10
+      capex_factor: 1.15
+      wacc_shift_bps: 150
+  tornado:
+    - driver: "price_factor"
+      label: "Copper Price"
+      shock_down: -0.10
+      shock_up: 0.10
+      base_value: 1.00
+    - driver: "grade_factor"
+      label: "Head Grade"
+      shock_down: -0.08
+      shock_up: 0.08
+      base_value: 1.00
+    - driver: "recovery_factor"
+      label: "Recovery"
+      shock_down: -0.05
+      shock_up: 0.05
+      base_value: 1.00
+    - driver: "throughput_factor"
+      label: "Throughput"
+      shock_down: -0.08
+      shock_up: 0.08
+      base_value: 1.00
+    - driver: "opex_factor"
+      label: "Unit Opex"
+      shock_down: -0.10
+      shock_up: 0.10
+      base_value: 1.00
+    - driver: "capex_factor"
+      label: "Expansion Capex"
+      shock_down: -0.15
+      shock_up: 0.15
+      base_value: 1.00
+    - driver: "wacc_shift_bps"
+      label: "Discount Rate"
+      shock_down: -100
+      shock_up: 100
+      base_value: 0
+  heatmap:
+    price_factors: [0.75, 0.85, 0.95, 1.00, 1.05, 1.15, 1.25]
+    grade_factors: [0.90, 0.95, 1.00, 1.05, 1.10]
+    recovery_factor: 1.00
+    throughput_factor: 1.00
+    opex_factor: 1.00
+    capex_factor: 1.00
+    wacc_shift_bps: 0
+  simulation_percentiles: [0.01, 0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99]

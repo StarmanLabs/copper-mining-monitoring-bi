@@ -1,0 +1,7 @@
+metric,value
+python_base_npv_usd,1627402709.6891494
+excel_benchmark_npv_pen,179410192.28525418
+python_expected_npv_usd,2258519400.91288
+python_probability_of_loss,0.3453
+python_var_usd,-7255327432.314742
+python_cvar_usd,-9354555951.379135

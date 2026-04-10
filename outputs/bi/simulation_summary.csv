@@ -1,0 +1,10 @@
+metric,value
+expected_npv_usd,2258519400.91288
+median_npv_usd,1950787506.0063019
+std_npv_usd,6023683045.495668
+min_npv_usd,-15702916274.034496
+max_npv_usd,33463180540.459145
+probability_of_loss,0.3453
+var_alpha,0.05
+var_usd,-7255327432.314742
+cvar_usd,-9354555951.379135

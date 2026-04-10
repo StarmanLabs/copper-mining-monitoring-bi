@@ -1,0 +1,1441 @@
+year,metric,value,scenario_id,scenario_name,scenario_category,category
+1,base_processed_tonnes,150000000.0,base,Base Case,Reference,Operations
+2,base_processed_tonnes,150000000.0,base,Base Case,Reference,Operations
+3,base_processed_tonnes,150000000.0,base,Base Case,Reference,Operations
+4,base_processed_tonnes,148000000.0,base,Base Case,Reference,Operations
+5,base_processed_tonnes,146000000.0,base,Base Case,Reference,Operations
+6,base_processed_tonnes,144000000.0,base,Base Case,Reference,Operations
+7,base_processed_tonnes,142000000.0,base,Base Case,Reference,Operations
+8,base_processed_tonnes,140000000.0,base,Base Case,Reference,Operations
+9,base_processed_tonnes,138000000.0,base,Base Case,Reference,Operations
+10,base_processed_tonnes,136000000.0,base,Base Case,Reference,Operations
+11,base_processed_tonnes,134000000.0,base,Base Case,Reference,Operations
+12,base_processed_tonnes,132000000.0,base,Base Case,Reference,Operations
+13,base_processed_tonnes,130000000.0,base,Base Case,Reference,Operations
+14,base_processed_tonnes,128000000.0,base,Base Case,Reference,Operations
+15,base_processed_tonnes,126000000.0,base,Base Case,Reference,Operations
+1,expanded_tonnes,151422776.195327,base,Base Case,Reference,Operations
+2,expanded_tonnes,158068242.64109984,base,Base Case,Reference,Operations
+3,expanded_tonnes,171931757.35890016,base,Base Case,Reference,Operations
+4,expanded_tonnes,176196194.15394402,base,Base Case,Reference,Operations
+5,expanded_tonnes,175004568.75301087,base,Base Case,Reference,Operations
+6,expanded_tonnes,172773761.7256013,base,Base Case,Reference,Operations
+7,expanded_tonnes,170396495.594042,base,Base Case,Reference,Operations
+8,expanded_tonnes,167999532.36018825,base,Base Case,Reference,Operations
+9,expanded_tonnes,165599937.61504936,base,Base Case,Reference,Operations
+10,expanded_tonnes,163199991.67945942,base,Base Case,Reference,Operations
+11,expanded_tonnes,160799998.89049673,base,Base Case,Reference,Operations
+12,expanded_tonnes,158399999.8520862,base,Base Case,Reference,Operations
+13,expanded_tonnes,155999999.98028535,base,Base Case,Reference,Operations
+14,expanded_tonnes,153599999.99737296,base,Base Case,Reference,Operations
+15,expanded_tonnes,151199999.99965003,base,Base Case,Reference,Operations
+1,scenario_price_usd_per_lb,3.913670175164541,base,Base Case,Reference,Market
+2,scenario_price_usd_per_lb,3.9933950659222437,base,Base Case,Reference,Market
+3,scenario_price_usd_per_lb,4.074744022562314,base,Base Case,Reference,Market
+4,scenario_price_usd_per_lb,4.157750128729839,base,Base Case,Reference,Market
+5,scenario_price_usd_per_lb,4.2424471420127405,base,Base Case,Reference,Market
+6,scenario_price_usd_per_lb,4.328869507670591,base,Base Case,Reference,Market
+7,scenario_price_usd_per_lb,4.417052372643078,base,Base Case,Reference,Market
+8,scenario_price_usd_per_lb,4.5070315998438515,base,Base Case,Reference,Market
+9,scenario_price_usd_per_lb,4.598843782745534,base,Base Case,Reference,Market
+10,scenario_price_usd_per_lb,4.6925262602618485,base,Base Case,Reference,Market
+11,scenario_price_usd_per_lb,4.788117131932914,base,Base Case,Reference,Market
+12,scenario_price_usd_per_lb,4.885655273419857,base,Base Case,Reference,Market
+13,scenario_price_usd_per_lb,4.985180352315097,base,Base Case,Reference,Market
+14,scenario_price_usd_per_lb,5.086732844274655,base,Base Case,Reference,Market
+15,scenario_price_usd_per_lb,5.1903540494791445,base,Base Case,Reference,Market
+1,scenario_grade,0.0034,base,Base Case,Reference,Geology
+2,scenario_grade,0.003349,base,Base Case,Reference,Geology
+3,scenario_grade,0.003298765,base,Base Case,Reference,Geology
+4,scenario_grade,0.003249283525,base,Base Case,Reference,Geology
+5,scenario_grade,0.003200544272125,base,Base Case,Reference,Geology
+6,scenario_grade,0.003152536108043125,base,Base Case,Reference,Geology
+7,scenario_grade,0.003105248066422478,base,Base Case,Reference,Geology
+8,scenario_grade,0.003058669345426141,base,Base Case,Reference,Geology
+9,scenario_grade,0.003012789305244749,base,Base Case,Reference,Geology
+10,scenario_grade,0.0029675974656660775,base,Base Case,Reference,Geology
+11,scenario_grade,0.0029230835036810864,base,Base Case,Reference,Geology
+12,scenario_grade,0.00287923725112587,base,Base Case,Reference,Geology
+13,scenario_grade,0.0028360486923589816,base,Base Case,Reference,Geology
+14,scenario_grade,0.002793507961973597,base,Base Case,Reference,Geology
+15,scenario_grade,0.002751605342543993,base,Base Case,Reference,Geology
+1,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+2,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+3,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+4,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+5,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+6,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+7,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+8,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+9,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+10,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+11,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+12,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+13,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+14,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+15,scenario_recovery,0.8420000000000001,base,Base Case,Reference,Metallurgy
+1,scenario_net_price_usd_per_lb,3.7041233681579593,base,Base Case,Reference,Commercial
+2,scenario_net_price_usd_per_lb,3.780659263285354,base,Base Case,Reference,Commercial
+3,scenario_net_price_usd_per_lb,3.858754261659821,base,Base Case,Reference,Commercial
+4,scenario_net_price_usd_per_lb,3.9384401235806457,base,Base Case,Reference,Commercial
+5,scenario_net_price_usd_per_lb,4.019749256332231,base,Base Case,Reference,Commercial
+6,scenario_net_price_usd_per_lb,4.102714727363767,base,Base Case,Reference,Commercial
+7,scenario_net_price_usd_per_lb,4.187370277737355,base,Base Case,Reference,Commercial
+8,scenario_net_price_usd_per_lb,4.273750335850098,base,Base Case,Reference,Commercial
+9,scenario_net_price_usd_per_lb,4.3618900314357125,base,Base Case,Reference,Commercial
+10,scenario_net_price_usd_per_lb,4.451825209851375,base,Base Case,Reference,Commercial
+11,scenario_net_price_usd_per_lb,4.543592446655597,base,Base Case,Reference,Commercial
+12,scenario_net_price_usd_per_lb,4.637229062483063,base,Base Case,Reference,Commercial
+13,scenario_net_price_usd_per_lb,4.732773138222493,base,Base Case,Reference,Commercial
+14,scenario_net_price_usd_per_lb,4.830263530503669,base,Base Case,Reference,Commercial
+15,scenario_net_price_usd_per_lb,4.929739887499979,base,Base Case,Reference,Commercial
+1,copper_fine_lb,955687610.3538177,base,Base Case,Reference,Production
+2,copper_fine_lb,982665269.4197178,base,Base Case,Reference,Production
+3,copper_fine_lb,1052818032.175776,base,Base Case,Reference,Production
+4,copper_fine_lb,1062747192.588196,base,Base Case,Reference,Production
+5,copper_fine_lb,1039726373.2060243,base,Base Case,Reference,Production
+6,copper_fine_lb,1011075747.1931154,base,Base Case,Reference,Production
+7,copper_fine_lb,982206475.9452485,base,Base Case,Reference,Production
+8,copper_fine_lb,953863955.0286274,base,Base Case,Reference,Production
+9,copper_fine_lb,926135996.2640365,base,Base Case,Reference,Production
+10,copper_fine_lb,899023322.262072,base,Base Case,Reference,Production
+11,copper_fine_lb,872515393.6503524,base,Base Case,Reference,Production
+12,copper_fine_lb,846600389.2480551,base,Base Case,Reference,Production
+13,copper_fine_lb,821266514.6268479,base,Base Case,Reference,Production
+14,copper_fine_lb,796502170.5805205,base,Base Case,Reference,Production
+15,copper_fine_lb,772295971.8141431,base,Base Case,Reference,Production
+1,revenue_usd,3539984810.1706147,base,Base Case,Reference,Economics
+2,revenue_usd,3715122553.540454,base,Base Case,Reference,Economics
+3,revenue_usd,4062566068.4105825,base,Base Case,Reference,Economics
+4,revenue_usd,4185566184.512039,base,Base Case,Reference,Economics
+5,revenue_usd,4179439315.483924,base,Base Case,Reference,Economics
+6,revenue_usd,4148155358.4895196,base,Base Case,Reference,Economics
+7,revenue_usd,4112862203.974284,base,Base Case,Reference,Economics
+8,revenue_usd,4076576398.158899,base,Base Case,Reference,Economics
+9,revenue_usd,4039703369.8578835,base,Base Case,Reference,Economics
+10,revenue_usd,4002294690.290629,base,Base Case,Reference,Economics
+11,revenue_usd,3964354352.180476,base,Base Case,Reference,Economics
+12,revenue_usd,3925879929.3305545,base,Base Case,Reference,Economics
+13,revenue_usd,3886868099.7475557,base,Base Case,Reference,Economics
+14,revenue_usd,3847315386.5221004,base,Base Case,Reference,Economics
+15,revenue_usd,3807218257.2077403,base,Base Case,Reference,Economics
+1,opex_usd,3225305132.960465,base,Base Case,Reference,Economics
+2,opex_usd,3366853568.255426,base,Base Case,Reference,Economics
+3,opex_usd,3662146431.744573,base,Base Case,Reference,Economics
+4,opex_usd,3752978935.4790072,base,Base Case,Reference,Economics
+5,opex_usd,3727597314.439131,base,Base Case,Reference,Economics
+6,opex_usd,3680081124.7553067,base,Base Case,Reference,Economics
+7,opex_usd,3629445356.1530943,base,Base Case,Reference,Economics
+8,opex_usd,3578390039.2720094,base,Base Case,Reference,Economics
+9,opex_usd,3527278671.200551,base,Base Case,Reference,Economics
+10,opex_usd,3476159822.7724853,base,Base Case,Reference,Economics
+11,opex_usd,3425039976.36758,base,Base Case,Reference,Economics
+12,opex_usd,3373919996.8494353,base,Base Case,Reference,Economics
+13,opex_usd,3322799999.5800776,base,Base Case,Reference,Economics
+14,opex_usd,3271679999.9440436,base,Base Case,Reference,Economics
+15,opex_usd,3220559999.992545,base,Base Case,Reference,Economics
+1,ebitda_usd,314679677.21014977,base,Base Case,Reference,Economics
+2,ebitda_usd,348268985.285028,base,Base Case,Reference,Economics
+3,ebitda_usd,400419636.6660094,base,Base Case,Reference,Economics
+4,ebitda_usd,432587249.03303194,base,Base Case,Reference,Economics
+5,ebitda_usd,451842001.0447931,base,Base Case,Reference,Economics
+6,ebitda_usd,468074233.7342129,base,Base Case,Reference,Economics
+7,ebitda_usd,483416847.8211899,base,Base Case,Reference,Economics
+8,ebitda_usd,498186358.88688946,base,Base Case,Reference,Economics
+9,ebitda_usd,512424698.6573324,base,Base Case,Reference,Economics
+10,ebitda_usd,526134867.51814365,base,Base Case,Reference,Economics
+11,ebitda_usd,539314375.8128963,base,Base Case,Reference,Economics
+12,ebitda_usd,551959932.4811192,base,Base Case,Reference,Economics
+13,ebitda_usd,564068100.1674781,base,Base Case,Reference,Economics
+14,ebitda_usd,575635386.5780568,base,Base Case,Reference,Economics
+15,ebitda_usd,586658257.2151952,base,Base Case,Reference,Economics
+1,taxes_usd,105417691.86540017,base,Base Case,Reference,Economics
+2,taxes_usd,116670110.07048436,base,Base Case,Reference,Economics
+3,taxes_usd,134140578.28311314,base,Base Case,Reference,Economics
+4,taxes_usd,144916728.42606568,base,Base Case,Reference,Economics
+5,taxes_usd,151367070.3500057,base,Base Case,Reference,Economics
+6,taxes_usd,156804868.3009613,base,Base Case,Reference,Economics
+7,taxes_usd,161944644.0200986,base,Base Case,Reference,Economics
+8,taxes_usd,166892430.22710794,base,Base Case,Reference,Economics
+9,taxes_usd,171662274.05020633,base,Base Case,Reference,Economics
+10,taxes_usd,176255180.6185781,base,Base Case,Reference,Economics
+11,taxes_usd,180670315.8973202,base,Base Case,Reference,Economics
+12,taxes_usd,184906577.3811749,base,Base Case,Reference,Economics
+13,taxes_usd,188962813.55610514,base,Base Case,Reference,Economics
+14,taxes_usd,192837854.50364903,base,Base Case,Reference,Economics
+15,taxes_usd,196530516.16709036,base,Base Case,Reference,Economics
+1,operating_cash_flow_usd,209261985.3447496,base,Base Case,Reference,Cash Flow
+2,operating_cash_flow_usd,231598875.21454364,base,Base Case,Reference,Cash Flow
+3,operating_cash_flow_usd,266279058.3828963,base,Base Case,Reference,Cash Flow
+4,operating_cash_flow_usd,287670520.60696626,base,Base Case,Reference,Cash Flow
+5,operating_cash_flow_usd,300474930.69478744,base,Base Case,Reference,Cash Flow
+6,operating_cash_flow_usd,311269365.4332516,base,Base Case,Reference,Cash Flow
+7,operating_cash_flow_usd,321472203.8010913,base,Base Case,Reference,Cash Flow
+8,operating_cash_flow_usd,331293928.6597815,base,Base Case,Reference,Cash Flow
+9,operating_cash_flow_usd,340762424.6071261,base,Base Case,Reference,Cash Flow
+10,operating_cash_flow_usd,349879686.8995656,base,Base Case,Reference,Cash Flow
+11,operating_cash_flow_usd,358644059.91557604,base,Base Case,Reference,Cash Flow
+12,operating_cash_flow_usd,367053355.09994423,base,Base Case,Reference,Cash Flow
+13,operating_cash_flow_usd,375105286.61137295,base,Base Case,Reference,Cash Flow
+14,operating_cash_flow_usd,382797532.0744078,base,Base Case,Reference,Cash Flow
+15,operating_cash_flow_usd,390127741.0481048,base,Base Case,Reference,Cash Flow
+1,capex_usd,290000000.0,base,Base Case,Reference,Investment
+2,capex_usd,180000000.0,base,Base Case,Reference,Investment
+3,capex_usd,10000000.0,base,Base Case,Reference,Investment
+4,capex_usd,10000000.0,base,Base Case,Reference,Investment
+5,capex_usd,10000000.0,base,Base Case,Reference,Investment
+6,capex_usd,10000000.0,base,Base Case,Reference,Investment
+7,capex_usd,10000000.0,base,Base Case,Reference,Investment
+8,capex_usd,10000000.0,base,Base Case,Reference,Investment
+9,capex_usd,10000000.0,base,Base Case,Reference,Investment
+10,capex_usd,10000000.0,base,Base Case,Reference,Investment
+11,capex_usd,10000000.0,base,Base Case,Reference,Investment
+12,capex_usd,10000000.0,base,Base Case,Reference,Investment
+13,capex_usd,10000000.0,base,Base Case,Reference,Investment
+14,capex_usd,10000000.0,base,Base Case,Reference,Investment
+15,capex_usd,10000000.0,base,Base Case,Reference,Investment
+1,working_capital_delta_usd,247798936.71194306,base,Base Case,Reference,Working Capital
+2,working_capital_delta_usd,12259642.035888731,base,Base Case,Reference,Working Capital
+3,working_capital_delta_usd,24321046.040909022,base,Base Case,Reference,Working Capital
+4,working_capital_delta_usd,8610008.127101958,base,Base Case,Reference,Working Capital
+5,working_capital_delta_usd,-428880.8319680691,base,Base Case,Reference,Working Capital
+6,working_capital_delta_usd,-2189876.989608288,base,Base Case,Reference,Working Capital
+7,working_capital_delta_usd,-2470520.8160665035,base,Base Case,Reference,Working Capital
+8,working_capital_delta_usd,-2540006.407076955,base,Base Case,Reference,Working Capital
+9,working_capital_delta_usd,-2581111.9810711145,base,Base Case,Reference,Working Capital
+10,working_capital_delta_usd,-2618607.569707811,base,Base Case,Reference,Working Capital
+11,working_capital_delta_usd,-2655823.667710662,base,Base Case,Reference,Working Capital
+12,working_capital_delta_usd,-2693209.599494517,base,Base Case,Reference,Working Capital
+13,working_capital_delta_usd,-2730828.0708099008,base,Base Case,Reference,Working Capital
+14,working_capital_delta_usd,-2768689.9257819057,base,Base Case,Reference,Working Capital
+15,working_capital_delta_usd,-266505278.00454184,base,Base Case,Reference,Working Capital
+1,free_cash_flow_usd,-328536951.36719346,base,Base Case,Reference,Cash Flow
+2,free_cash_flow_usd,39339233.17865491,base,Base Case,Reference,Cash Flow
+3,free_cash_flow_usd,231958012.34198728,base,Base Case,Reference,Cash Flow
+4,free_cash_flow_usd,269060512.4798643,base,Base Case,Reference,Cash Flow
+5,free_cash_flow_usd,290903811.5267555,base,Base Case,Reference,Cash Flow
+6,free_cash_flow_usd,303459242.4228599,base,Base Case,Reference,Cash Flow
+7,free_cash_flow_usd,313942724.6171578,base,Base Case,Reference,Cash Flow
+8,free_cash_flow_usd,323833935.0668585,base,Base Case,Reference,Cash Flow
+9,free_cash_flow_usd,333343536.58819723,base,Base Case,Reference,Cash Flow
+10,free_cash_flow_usd,342498294.4692734,base,Base Case,Reference,Cash Flow
+11,free_cash_flow_usd,351299883.5832867,base,Base Case,Reference,Cash Flow
+12,free_cash_flow_usd,359746564.69943875,base,Base Case,Reference,Cash Flow
+13,free_cash_flow_usd,367836114.68218285,base,Base Case,Reference,Cash Flow
+14,free_cash_flow_usd,375566222.0001897,base,Base Case,Reference,Cash Flow
+15,free_cash_flow_usd,646633019.0526466,base,Base Case,Reference,Cash Flow
+1,discounted_fcf_usd,-298669955.7883577,base,Base Case,Reference,Valuation
+2,discounted_fcf_usd,32511762.957566038,base,Base Case,Reference,Valuation
+3,discounted_fcf_usd,174273487.86024585,base,Base Case,Reference,Valuation
+4,discounted_fcf_usd,183771950.3311688,base,Base Case,Reference,Valuation
+5,discounted_fcf_usd,180628379.53614408,base,Base Case,Reference,Valuation
+6,discounted_fcf_usd,171294831.18157366,base,Base Case,Reference,Valuation
+7,discounted_fcf_usd,161102257.7967616,base,Base Case,Reference,Valuation
+8,discounted_fcf_usd,151070920.67104897,base,Base Case,Reference,Valuation
+9,discounted_fcf_usd,141370199.9669156,base,Base Case,Reference,Valuation
+10,discounted_fcf_usd,132047919.07368796,base,Base Case,Reference,Valuation
+11,discounted_fcf_usd,123128466.08446527,base,Base Case,Reference,Valuation
+12,discounted_fcf_usd,114626342.07867384,base,Base Case,Reference,Valuation
+13,discounted_fcf_usd,106549020.00416762,base,Base Case,Reference,Valuation
+14,discounted_fcf_usd,98898324.31430556,base,Base Case,Reference,Valuation
+15,discounted_fcf_usd,154798803.62078232,base,Base Case,Reference,Valuation
+1,base_processed_tonnes,150000000.0,bull_market,Bull Market,Market,Operations
+2,base_processed_tonnes,150000000.0,bull_market,Bull Market,Market,Operations
+3,base_processed_tonnes,150000000.0,bull_market,Bull Market,Market,Operations
+4,base_processed_tonnes,148000000.0,bull_market,Bull Market,Market,Operations
+5,base_processed_tonnes,146000000.0,bull_market,Bull Market,Market,Operations
+6,base_processed_tonnes,144000000.0,bull_market,Bull Market,Market,Operations
+7,base_processed_tonnes,142000000.0,bull_market,Bull Market,Market,Operations
+8,base_processed_tonnes,140000000.0,bull_market,Bull Market,Market,Operations
+9,base_processed_tonnes,138000000.0,bull_market,Bull Market,Market,Operations
+10,base_processed_tonnes,136000000.0,bull_market,Bull Market,Market,Operations
+11,base_processed_tonnes,134000000.0,bull_market,Bull Market,Market,Operations
+12,base_processed_tonnes,132000000.0,bull_market,Bull Market,Market,Operations
+13,base_processed_tonnes,130000000.0,bull_market,Bull Market,Market,Operations
+14,base_processed_tonnes,128000000.0,bull_market,Bull Market,Market,Operations
+15,base_processed_tonnes,126000000.0,bull_market,Bull Market,Market,Operations
+1,expanded_tonnes,154451231.71923354,bull_market,Bull Market,Market,Operations
+2,expanded_tonnes,161229607.49392185,bull_market,Bull Market,Market,Operations
+3,expanded_tonnes,175370392.50607815,bull_market,Bull Market,Market,Operations
+4,expanded_tonnes,179720118.0370229,bull_market,Bull Market,Market,Operations
+5,expanded_tonnes,178504660.1280711,bull_market,Bull Market,Market,Operations
+6,expanded_tonnes,176229236.9601133,bull_market,Bull Market,Market,Operations
+7,expanded_tonnes,173804425.50592282,bull_market,Bull Market,Market,Operations
+8,expanded_tonnes,171359523.00739202,bull_market,Bull Market,Market,Operations
+9,expanded_tonnes,168911936.36735037,bull_market,Bull Market,Market,Operations
+10,expanded_tonnes,166463991.51304862,bull_market,Bull Market,Market,Operations
+11,expanded_tonnes,164015998.86830667,bull_market,Bull Market,Market,Operations
+12,expanded_tonnes,161567999.8491279,bull_market,Bull Market,Market,Operations
+13,expanded_tonnes,159119999.97989106,bull_market,Bull Market,Market,Operations
+14,expanded_tonnes,156671999.9973204,bull_market,Bull Market,Market,Operations
+15,expanded_tonnes,154223999.99964303,bull_market,Bull Market,Market,Operations
+1,scenario_price_usd_per_lb,4.500720701439222,bull_market,Bull Market,Market,Market
+2,scenario_price_usd_per_lb,4.59240432581058,bull_market,Bull Market,Market,Market
+3,scenario_price_usd_per_lb,4.685955625946661,bull_market,Bull Market,Market,Market
+4,scenario_price_usd_per_lb,4.781412648039315,bull_market,Bull Market,Market,Market
+5,scenario_price_usd_per_lb,4.8788142133146515,bull_market,Bull Market,Market,Market
+6,scenario_price_usd_per_lb,4.9781999338211795,bull_market,Bull Market,Market,Market
+7,scenario_price_usd_per_lb,5.07961022853954,bull_market,Bull Market,Market,Market
+8,scenario_price_usd_per_lb,5.183086339820429,bull_market,Bull Market,Market,Market
+9,scenario_price_usd_per_lb,5.288670350157363,bull_market,Bull Market,Market,Market
+10,scenario_price_usd_per_lb,5.3964051993011255,bull_market,Bull Market,Market,Market
+11,scenario_price_usd_per_lb,5.506334701722851,bull_market,Bull Market,Market,Market
+12,scenario_price_usd_per_lb,5.618503564432835,bull_market,Bull Market,Market,Market
+13,scenario_price_usd_per_lb,5.732957405162361,bull_market,Bull Market,Market,Market
+14,scenario_price_usd_per_lb,5.849742770915853,bull_market,Bull Market,Market,Market
+15,scenario_price_usd_per_lb,5.9689071569010155,bull_market,Bull Market,Market,Market
+1,scenario_grade,0.0034,bull_market,Bull Market,Market,Geology
+2,scenario_grade,0.003349,bull_market,Bull Market,Market,Geology
+3,scenario_grade,0.003298765,bull_market,Bull Market,Market,Geology
+4,scenario_grade,0.003249283525,bull_market,Bull Market,Market,Geology
+5,scenario_grade,0.003200544272125,bull_market,Bull Market,Market,Geology
+6,scenario_grade,0.003152536108043125,bull_market,Bull Market,Market,Geology
+7,scenario_grade,0.003105248066422478,bull_market,Bull Market,Market,Geology
+8,scenario_grade,0.003058669345426141,bull_market,Bull Market,Market,Geology
+9,scenario_grade,0.003012789305244749,bull_market,Bull Market,Market,Geology
+10,scenario_grade,0.0029675974656660775,bull_market,Bull Market,Market,Geology
+11,scenario_grade,0.0029230835036810864,bull_market,Bull Market,Market,Geology
+12,scenario_grade,0.00287923725112587,bull_market,Bull Market,Market,Geology
+13,scenario_grade,0.0028360486923589816,bull_market,Bull Market,Market,Geology
+14,scenario_grade,0.002793507961973597,bull_market,Bull Market,Market,Geology
+15,scenario_grade,0.002751605342543993,bull_market,Bull Market,Market,Geology
+1,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+2,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+3,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+4,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+5,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+6,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+7,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+8,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+9,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+10,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+11,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+12,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+13,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+14,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+15,scenario_recovery,0.8420000000000001,bull_market,Bull Market,Market,Metallurgy
+1,scenario_net_price_usd_per_lb,4.2676918733816525,bull_market,Bull Market,Market,Commercial
+2,scenario_net_price_usd_per_lb,4.355708152778156,bull_market,Bull Market,Market,Commercial
+3,scenario_net_price_usd_per_lb,4.445517400908794,bull_market,Bull Market,Market,Commercial
+4,scenario_net_price_usd_per_lb,4.537156142117742,bull_market,Bull Market,Market,Commercial
+5,scenario_net_price_usd_per_lb,4.630661644782065,bull_market,Bull Market,Market,Commercial
+6,scenario_net_price_usd_per_lb,4.726071936468332,bull_market,Bull Market,Market,Commercial
+7,scenario_net_price_usd_per_lb,4.823425819397958,bull_market,Bull Market,Market,Commercial
+8,scenario_net_price_usd_per_lb,4.922762886227612,bull_market,Bull Market,Market,Commercial
+9,scenario_net_price_usd_per_lb,5.024123536151069,bull_market,Bull Market,Market,Commercial
+10,scenario_net_price_usd_per_lb,5.12754899132908,bull_market,Bull Market,Market,Commercial
+11,scenario_net_price_usd_per_lb,5.233081313653937,bull_market,Bull Market,Market,Commercial
+12,scenario_net_price_usd_per_lb,5.340763421855522,bull_market,Bull Market,Market,Commercial
+13,scenario_net_price_usd_per_lb,5.450639108955866,bull_market,Bull Market,Market,Commercial
+14,scenario_net_price_usd_per_lb,5.562753060079219,bull_market,Bull Market,Market,Commercial
+15,scenario_net_price_usd_per_lb,5.677150870624975,bull_market,Bull Market,Market,Commercial
+1,copper_fine_lb,974801362.560894,bull_market,Bull Market,Market,Production
+2,copper_fine_lb,1002318574.8081123,bull_market,Bull Market,Market,Production
+3,copper_fine_lb,1073874392.8192916,bull_market,Bull Market,Market,Production
+4,copper_fine_lb,1084002136.43996,bull_market,Bull Market,Market,Production
+5,copper_fine_lb,1060520900.6701448,bull_market,Bull Market,Market,Production
+6,copper_fine_lb,1031297262.1369777,bull_market,Bull Market,Market,Production
+7,copper_fine_lb,1001850605.4641533,bull_market,Bull Market,Market,Production
+8,copper_fine_lb,972941234.1292,bull_market,Bull Market,Market,Production
+9,copper_fine_lb,944658716.1893172,bull_market,Bull Market,Market,Production
+10,copper_fine_lb,917003788.7073134,bull_market,Bull Market,Market,Production
+11,copper_fine_lb,889965701.5233594,bull_market,Bull Market,Market,Production
+12,copper_fine_lb,863532397.0330161,bull_market,Bull Market,Market,Production
+13,copper_fine_lb,837691844.919385,bull_market,Bull Market,Market,Production
+14,copper_fine_lb,812432213.992131,bull_market,Bull Market,Market,Production
+15,copper_fine_lb,787741891.2504259,bull_market,Bull Market,Market,Production
+1,revenue_usd,4160151853.1624894,bull_market,Bull Market,Market,Economics
+2,revenue_usd,4365807187.972677,bull_market,Bull Market,Market,Economics
+3,revenue_usd,4773927299.668527,bull_market,Bull Market,Market,Economics
+4,revenue_usd,4918286951.417319,bull_market,Bull Market,Market,Economics
+5,revenue_usd,4910913458.22297,bull_market,Bull Market,Market,Economics
+6,revenue_usd,4873985048.742195,bull_market,Bull Market,Market,Economics
+7,revenue_usd,4832352077.5752735,bull_market,Bull Market,Market,Economics
+8,revenue_usd,4789558997.851715,bull_market,Bull Market,Market,Economics
+9,revenue_usd,4746082089.637001,bull_market,Bull Market,Market,Economics
+10,revenue_usd,4701981851.83113,bull_market,Bull Market,Market,Economics
+11,revenue_usd,4657262882.43481,bull_market,Bull Market,Market,Economics
+12,revenue_usd,4611922239.661152,bull_market,Bull Market,Market,Economics
+13,revenue_usd,4565955931.170992,bull_market,Bull Market,Market,Economics
+14,revenue_usd,4519359784.491661,bull_market,Bull Market,Market,Economics
+15,revenue_usd,4472129563.74012,bull_market,Bull Market,Market,Economics
+1,opex_usd,3289811235.619674,bull_market,Bull Market,Market,Economics
+2,opex_usd,3434190639.620535,bull_market,Bull Market,Market,Economics
+3,opex_usd,3735389360.379464,bull_market,Bull Market,Market,Economics
+4,opex_usd,3828038514.188587,bull_market,Bull Market,Market,Economics
+5,opex_usd,3802149260.727914,bull_market,Bull Market,Market,Economics
+6,opex_usd,3753682747.2504125,bull_market,Bull Market,Market,Economics
+7,opex_usd,3702034263.2761555,bull_market,Bull Market,Market,Economics
+8,opex_usd,3649957840.0574493,bull_market,Bull Market,Market,Economics
+9,opex_usd,3597824244.6245623,bull_market,Bull Market,Market,Economics
+10,opex_usd,3545683019.2279353,bull_market,Bull Market,Market,Economics
+11,opex_usd,3493540775.8949313,bull_market,Bull Market,Market,Economics
+12,opex_usd,3441398396.7864237,bull_market,Bull Market,Market,Economics
+13,opex_usd,3389255999.571679,bull_market,Bull Market,Market,Economics
+14,opex_usd,3337113599.9429245,bull_market,Bull Market,Market,Economics
+15,opex_usd,3284971199.992396,bull_market,Bull Market,Market,Economics
+1,ebitda_usd,870340617.5428152,bull_market,Bull Market,Market,Economics
+2,ebitda_usd,931616548.3521423,bull_market,Bull Market,Market,Economics
+3,ebitda_usd,1038537939.2890625,bull_market,Bull Market,Market,Economics
+4,ebitda_usd,1090248437.228732,bull_market,Bull Market,Market,Economics
+5,ebitda_usd,1108764197.4950562,bull_market,Bull Market,Market,Economics
+6,ebitda_usd,1120302301.4917827,bull_market,Bull Market,Market,Economics
+7,ebitda_usd,1130317814.299118,bull_market,Bull Market,Market,Economics
+8,ebitda_usd,1139601157.7942657,bull_market,Bull Market,Market,Economics
+9,ebitda_usd,1148257845.0124388,bull_market,Bull Market,Market,Economics
+10,ebitda_usd,1156298832.6031947,bull_market,Bull Market,Market,Economics
+11,ebitda_usd,1163722106.5398784,bull_market,Bull Market,Market,Economics
+12,ebitda_usd,1170523842.8747282,bull_market,Bull Market,Market,Economics
+13,ebitda_usd,1176699931.5993128,bull_market,Bull Market,Market,Economics
+14,ebitda_usd,1182246184.5487366,bull_market,Bull Market,Market,Economics
+15,ebitda_usd,1187158363.747724,bull_market,Bull Market,Market,Economics
+1,taxes_usd,291564106.87684304,bull_market,Bull Market,Market,Economics
+2,taxes_usd,312091543.69796765,bull_market,Bull Market,Market,Economics
+3,taxes_usd,347910209.6618359,bull_market,Bull Market,Market,Economics
+4,taxes_usd,365233226.4716252,bull_market,Bull Market,Market,Economics
+5,taxes_usd,371436006.1608438,bull_market,Bull Market,Market,Economics
+6,taxes_usd,375301270.99974716,bull_market,Bull Market,Market,Economics
+7,taxes_usd,378656467.7902045,bull_market,Bull Market,Market,Economics
+8,taxes_usd,381766387.861079,bull_market,Bull Market,Market,Economics
+9,taxes_usd,384666378.07916695,bull_market,Bull Market,Market,Economics
+10,taxes_usd,387360108.9220702,bull_market,Bull Market,Market,Economics
+11,taxes_usd,389846905.6908592,bull_market,Bull Market,Market,Economics
+12,taxes_usd,392125487.3630339,bull_market,Bull Market,Market,Economics
+13,taxes_usd,394194477.0857697,bull_market,Bull Market,Market,Economics
+14,taxes_usd,396052471.82382673,bull_market,Bull Market,Market,Economics
+15,taxes_usd,397698051.8554875,bull_market,Bull Market,Market,Economics
+1,operating_cash_flow_usd,578776510.6659722,bull_market,Bull Market,Market,Cash Flow
+2,operating_cash_flow_usd,619525004.6541747,bull_market,Bull Market,Market,Cash Flow
+3,operating_cash_flow_usd,690627729.6272266,bull_market,Bull Market,Market,Cash Flow
+4,operating_cash_flow_usd,725015210.7571069,bull_market,Bull Market,Market,Cash Flow
+5,operating_cash_flow_usd,737328191.3342123,bull_market,Bull Market,Market,Cash Flow
+6,operating_cash_flow_usd,745001030.4920355,bull_market,Bull Market,Market,Cash Flow
+7,operating_cash_flow_usd,751661346.5089135,bull_market,Bull Market,Market,Cash Flow
+8,operating_cash_flow_usd,757834769.9331868,bull_market,Bull Market,Market,Cash Flow
+9,operating_cash_flow_usd,763591466.9332719,bull_market,Bull Market,Market,Cash Flow
+10,operating_cash_flow_usd,768938723.6811244,bull_market,Bull Market,Market,Cash Flow
+11,operating_cash_flow_usd,773875200.8490192,bull_market,Bull Market,Market,Cash Flow
+12,operating_cash_flow_usd,778398355.5116943,bull_market,Bull Market,Market,Cash Flow
+13,operating_cash_flow_usd,782505454.5135431,bull_market,Bull Market,Market,Cash Flow
+14,operating_cash_flow_usd,786193712.7249098,bull_market,Bull Market,Market,Cash Flow
+15,operating_cash_flow_usd,789460311.8922365,bull_market,Bull Market,Market,Cash Flow
+1,capex_usd,290000000.0,bull_market,Bull Market,Market,Investment
+2,capex_usd,180000000.0,bull_market,Bull Market,Market,Investment
+3,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+4,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+5,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+6,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+7,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+8,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+9,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+10,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+11,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+12,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+13,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+14,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+15,capex_usd,10000000.0,bull_market,Bull Market,Market,Investment
+1,working_capital_delta_usd,291210629.7213743,bull_market,Bull Market,Market,Working Capital
+2,working_capital_delta_usd,14395873.43671316,bull_market,Bull Market,Market,Working Capital
+3,working_capital_delta_usd,28568407.818709493,bull_market,Bull Market,Market,Working Capital
+4,working_capital_delta_usd,10105175.622415483,bull_market,Bull Market,Market,Working Capital
+5,working_capital_delta_usd,-516144.5236044526,bull_market,Bull Market,Market,Working Capital
+6,working_capital_delta_usd,-2584988.663654268,bull_market,Bull Market,Market,Working Capital
+7,working_capital_delta_usd,-2914307.981684506,bull_market,Bull Market,Market,Working Capital
+8,working_capital_delta_usd,-2995515.580649078,bull_market,Bull Market,Market,Working Capital
+9,working_capital_delta_usd,-3043383.575030029,bull_market,Bull Market,Market,Working Capital
+10,working_capital_delta_usd,-3087016.646410942,bull_market,Bull Market,Market,Working Capital
+11,working_capital_delta_usd,-3130327.857742429,bull_market,Bull Market,Market,Working Capital
+12,working_capital_delta_usd,-3173844.9941560626,bull_market,Bull Market,Market,Working Capital
+13,working_capital_delta_usd,-3217641.5943111777,bull_market,Bull Market,Market,Working Capital
+14,working_capital_delta_usd,-3261730.2675531507,bull_market,Bull Market,Market,Working Capital
+15,working_capital_delta_usd,-313049069.46180844,bull_market,Bull Market,Market,Working Capital
+1,free_cash_flow_usd,-2434119.0554020405,bull_market,Bull Market,Market,Cash Flow
+2,free_cash_flow_usd,425129131.2174615,bull_market,Bull Market,Market,Cash Flow
+3,free_cash_flow_usd,652059321.8085171,bull_market,Bull Market,Market,Cash Flow
+4,free_cash_flow_usd,704910035.1346915,bull_market,Bull Market,Market,Cash Flow
+5,free_cash_flow_usd,727844335.8578167,bull_market,Bull Market,Market,Cash Flow
+6,free_cash_flow_usd,737586019.1556897,bull_market,Bull Market,Market,Cash Flow
+7,free_cash_flow_usd,744575654.490598,bull_market,Bull Market,Market,Cash Flow
+8,free_cash_flow_usd,750830285.5138359,bull_market,Bull Market,Market,Cash Flow
+9,free_cash_flow_usd,756634850.508302,bull_market,Bull Market,Market,Cash Flow
+10,free_cash_flow_usd,762025740.3275354,bull_market,Bull Market,Market,Cash Flow
+11,free_cash_flow_usd,767005528.7067616,bull_market,Bull Market,Market,Cash Flow
+12,free_cash_flow_usd,771572200.5058503,bull_market,Bull Market,Market,Cash Flow
+13,free_cash_flow_usd,775723096.1078544,bull_market,Bull Market,Market,Cash Flow
+14,free_cash_flow_usd,779455442.9924629,bull_market,Bull Market,Market,Cash Flow
+15,free_cash_flow_usd,1092509381.354045,bull_market,Bull Market,Market,Cash Flow
+1,discounted_fcf_usd,-2222939.776622868,bull_market,Bull Market,Market,Valuation
+2,discounted_fcf_usd,354562357.93036973,bull_market,Bull Market,Market,Valuation
+3,discounted_fcf_usd,496643493.7736356,bull_market,Bull Market,Market,Valuation
+4,discounted_fcf_usd,490317299.6583397,bull_market,Bull Market,Market,Valuation
+5,discounted_fcf_usd,462346858.155588,bull_market,Bull Market,Market,Valuation
+6,discounted_fcf_usd,427885885.7468595,bull_market,Bull Market,Market,Valuation
+7,discounted_fcf_usd,394466382.7924993,bull_market,Bull Market,Market,Valuation
+8,discounted_fcf_usd,363269410.0409151,bull_market,Bull Market,Market,Valuation
+9,discounted_fcf_usd,334317621.5159286,bull_market,Bull Market,Market,Valuation
+10,discounted_fcf_usd,307488196.8827886,bull_market,Bull Market,Market,Valuation
+11,discounted_fcf_usd,282646221.13312024,bull_market,Bull Market,Market,Valuation
+12,discounted_fcf_usd,259661248.9296569,bull_market,Bull Market,Market,Valuation
+13,discounted_fcf_usd,238409289.17680538,bull_market,Bull Market,Market,Valuation
+14,discounted_fcf_usd,218772951.3290349,bull_market,Bull Market,Market,Valuation
+15,discounted_fcf_usd,280035691.575366,bull_market,Bull Market,Market,Valuation
+1,base_processed_tonnes,150000000.0,bear_market,Bear Market,Market,Operations
+2,base_processed_tonnes,150000000.0,bear_market,Bear Market,Market,Operations
+3,base_processed_tonnes,150000000.0,bear_market,Bear Market,Market,Operations
+4,base_processed_tonnes,148000000.0,bear_market,Bear Market,Market,Operations
+5,base_processed_tonnes,146000000.0,bear_market,Bear Market,Market,Operations
+6,base_processed_tonnes,144000000.0,bear_market,Bear Market,Market,Operations
+7,base_processed_tonnes,142000000.0,bear_market,Bear Market,Market,Operations
+8,base_processed_tonnes,140000000.0,bear_market,Bear Market,Market,Operations
+9,base_processed_tonnes,138000000.0,bear_market,Bear Market,Market,Operations
+10,base_processed_tonnes,136000000.0,bear_market,Bear Market,Market,Operations
+11,base_processed_tonnes,134000000.0,bear_market,Bear Market,Market,Operations
+12,base_processed_tonnes,132000000.0,bear_market,Bear Market,Market,Operations
+13,base_processed_tonnes,130000000.0,bear_market,Bear Market,Market,Operations
+14,base_processed_tonnes,128000000.0,bear_market,Bear Market,Market,Operations
+15,base_processed_tonnes,126000000.0,bear_market,Bear Market,Market,Operations
+1,expanded_tonnes,148394320.67142045,bear_market,Bear Market,Market,Operations
+2,expanded_tonnes,154906877.78827783,bear_market,Bear Market,Market,Operations
+3,expanded_tonnes,168493122.21172214,bear_market,Bear Market,Market,Operations
+4,expanded_tonnes,172672270.27086514,bear_market,Bear Market,Market,Operations
+5,expanded_tonnes,171504477.37795067,bear_market,Bear Market,Market,Operations
+6,expanded_tonnes,169318286.49108925,bear_market,Bear Market,Market,Operations
+7,expanded_tonnes,166988565.68216115,bear_market,Bear Market,Market,Operations
+8,expanded_tonnes,164639541.7129845,bear_market,Bear Market,Market,Operations
+9,expanded_tonnes,162287938.86274838,bear_market,Bear Market,Market,Operations
+10,expanded_tonnes,159935991.84587023,bear_market,Bear Market,Market,Operations
+11,expanded_tonnes,157583998.9126868,bear_market,Bear Market,Market,Operations
+12,expanded_tonnes,155231999.85504445,bear_market,Bear Market,Market,Operations
+13,expanded_tonnes,152879999.98067963,bear_market,Bear Market,Market,Operations
+14,expanded_tonnes,150527999.9974255,bear_market,Bear Market,Market,Operations
+15,expanded_tonnes,148175999.99965703,bear_market,Bear Market,Market,Operations
+1,scenario_price_usd_per_lb,3.3266196488898596,bear_market,Bear Market,Market,Market
+2,scenario_price_usd_per_lb,3.394385806033907,bear_market,Bear Market,Market,Market
+3,scenario_price_usd_per_lb,3.4635324191779664,bear_market,Bear Market,Market,Market
+4,scenario_price_usd_per_lb,3.5340876094203635,bear_market,Bear Market,Market,Market
+5,scenario_price_usd_per_lb,3.606080070710829,bear_market,Bear Market,Market,Market
+6,scenario_price_usd_per_lb,3.6795390815200024,bear_market,Bear Market,Market,Market
+7,scenario_price_usd_per_lb,3.7544945167466164,bear_market,Bear Market,Market,Market
+8,scenario_price_usd_per_lb,3.8309768598672735,bear_market,Bear Market,Market,Market
+9,scenario_price_usd_per_lb,3.9090172153337037,bear_market,Bear Market,Market,Market
+10,scenario_price_usd_per_lb,3.988647321222571,bear_market,Bear Market,Market,Market
+11,scenario_price_usd_per_lb,4.069899562142977,bear_market,Bear Market,Market,Market
+12,scenario_price_usd_per_lb,4.1528069824068785,bear_market,Bear Market,Market,Market
+13,scenario_price_usd_per_lb,4.237403299467832,bear_market,Bear Market,Market,Market
+14,scenario_price_usd_per_lb,4.323722917633456,bear_market,Bear Market,Market,Market
+15,scenario_price_usd_per_lb,4.411800942057273,bear_market,Bear Market,Market,Market
+1,scenario_grade,0.0034,bear_market,Bear Market,Market,Geology
+2,scenario_grade,0.003349,bear_market,Bear Market,Market,Geology
+3,scenario_grade,0.003298765,bear_market,Bear Market,Market,Geology
+4,scenario_grade,0.003249283525,bear_market,Bear Market,Market,Geology
+5,scenario_grade,0.003200544272125,bear_market,Bear Market,Market,Geology
+6,scenario_grade,0.003152536108043125,bear_market,Bear Market,Market,Geology
+7,scenario_grade,0.003105248066422478,bear_market,Bear Market,Market,Geology
+8,scenario_grade,0.003058669345426141,bear_market,Bear Market,Market,Geology
+9,scenario_grade,0.003012789305244749,bear_market,Bear Market,Market,Geology
+10,scenario_grade,0.0029675974656660775,bear_market,Bear Market,Market,Geology
+11,scenario_grade,0.0029230835036810864,bear_market,Bear Market,Market,Geology
+12,scenario_grade,0.00287923725112587,bear_market,Bear Market,Market,Geology
+13,scenario_grade,0.0028360486923589816,bear_market,Bear Market,Market,Geology
+14,scenario_grade,0.002793507961973597,bear_market,Bear Market,Market,Geology
+15,scenario_grade,0.002751605342543993,bear_market,Bear Market,Market,Geology
+1,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+2,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+3,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+4,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+5,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+6,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+7,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+8,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+9,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+10,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+11,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+12,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+13,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+14,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+15,scenario_recovery,0.8420000000000001,bear_market,Bear Market,Market,Metallurgy
+1,scenario_net_price_usd_per_lb,3.1405548629342652,bear_market,Bear Market,Market,Commercial
+2,scenario_net_price_usd_per_lb,3.2056103737925508,bear_market,Bear Market,Market,Commercial
+3,scenario_net_price_usd_per_lb,3.2719911224108476,bear_market,Bear Market,Market,Commercial
+4,scenario_net_price_usd_per_lb,3.339724105043549,bear_market,Bear Market,Market,Commercial
+5,scenario_net_price_usd_per_lb,3.4088368678823957,bear_market,Bear Market,Market,Commercial
+6,scenario_net_price_usd_per_lb,3.4793575182592025,bear_market,Bear Market,Market,Commercial
+7,scenario_net_price_usd_per_lb,3.5513147360767516,bear_market,Bear Market,Market,Commercial
+8,scenario_net_price_usd_per_lb,3.6247377854725826,bear_market,Bear Market,Market,Commercial
+9,scenario_net_price_usd_per_lb,3.6996565267203554,bear_market,Bear Market,Market,Commercial
+10,scenario_net_price_usd_per_lb,3.7761014283736682,bear_market,Bear Market,Market,Commercial
+11,scenario_net_price_usd_per_lb,3.854103579657258,bear_market,Bear Market,Market,Commercial
+12,scenario_net_price_usd_per_lb,3.933694703110603,bear_market,Bear Market,Market,Commercial
+13,scenario_net_price_usd_per_lb,4.014907167489119,bear_market,Bear Market,Market,Commercial
+14,scenario_net_price_usd_per_lb,4.097774000928118,bear_market,Bear Market,Market,Commercial
+15,scenario_net_price_usd_per_lb,4.182328904374981,bear_market,Bear Market,Market,Commercial
+1,copper_fine_lb,936573858.1467412,bear_market,Bear Market,Market,Production
+2,copper_fine_lb,963011964.0313233,bear_market,Bear Market,Market,Production
+3,copper_fine_lb,1031761671.5322604,bear_market,Bear Market,Market,Production
+4,copper_fine_lb,1041492248.7364323,bear_market,Bear Market,Market,Production
+5,copper_fine_lb,1018931845.7419038,bear_market,Bear Market,Market,Production
+6,copper_fine_lb,990854232.249253,bear_market,Bear Market,Market,Production
+7,copper_fine_lb,962562346.4263434,bear_market,Bear Market,Market,Production
+8,copper_fine_lb,934786675.9280549,bear_market,Bear Market,Market,Production
+9,copper_fine_lb,907613276.3387557,bear_market,Bear Market,Market,Production
+10,copper_fine_lb,881042855.8168304,bear_market,Bear Market,Market,Production
+11,copper_fine_lb,855065085.7773453,bear_market,Bear Market,Market,Production
+12,copper_fine_lb,829668381.463094,bear_market,Bear Market,Market,Production
+13,copper_fine_lb,804841184.3343109,bear_market,Bear Market,Market,Production
+14,copper_fine_lb,780572127.1689101,bear_market,Bear Market,Market,Production
+15,copper_fine_lb,756850052.3778603,bear_market,Bear Market,Market,Production
+1,revenue_usd,2941361584.699855,bear_market,Bear Market,Market,Economics
+2,revenue_usd,3087041141.985149,bear_market,Bear Market,Market,Economics
+3,revenue_usd,3375915029.697333,bear_market,Bear Market,Market,Economics
+4,revenue_usd,3478296768.3210745,bear_market,Bear Market,Market,Economics
+5,revenue_usd,3473372441.6244597,bear_market,Bear Market,Market,Economics
+6,revenue_usd,3447536122.4753885,bear_market,Bear Market,Market,Economics
+7,revenue_usd,3418361845.256489,bear_market,Bear Market,Market,Economics
+8,revenue_usd,3388356585.592735,bear_market,Bear Market,Market,Economics
+9,revenue_usd,3357857381.544723,bear_market,Bear Market,Market,Economics
+10,revenue_usd,3326907186.308349,bear_market,Bear Market,Market,Economics
+11,revenue_usd,3295509407.9344068,bear_market,Bear Market,Market,Economics
+12,revenue_usd,3263662117.49972,bear_market,Bear Market,Market,Economics
+13,revenue_usd,3231362639.674256,bear_market,Bear Market,Market,Economics
+14,revenue_usd,3198608168.561917,bear_market,Bear Market,Market,Economics
+15,revenue_usd,3165395850.3376436,bear_market,Bear Market,Market,Economics
+1,opex_usd,3255623001.210293,bear_market,Bear Market,Market,Economics
+2,opex_usd,3398501991.797027,bear_market,Bear Market,Market,Economics
+3,opex_usd,3696570608.2029715,bear_market,Bear Market,Market,Economics
+4,opex_usd,3788256937.47251,bear_market,Bear Market,Market,Economics
+5,opex_usd,3762636729.194859,bear_market,Bear Market,Market,Economics
+6,opex_usd,3714673887.3280067,bear_market,Bear Market,Market,Economics
+7,opex_usd,3663562142.500933,bear_market,Bear Market,Market,Economics
+8,opex_usd,3612026905.6411667,bear_market,Bear Market,Market,Economics
+9,opex_usd,3560435090.7098365,bear_market,Bear Market,Market,Economics
+10,opex_usd,3508835725.1065464,bear_market,Bear Market,Market,Economics
+11,opex_usd,3457235352.145435,bear_market,Bear Market,Market,Economics
+12,opex_usd,3405634844.81982,bear_market,Bear Market,Market,Economics
+13,opex_usd,3354034319.57613,bear_market,Bear Market,Market,Economics
+14,opex_usd,3302433791.9435177,bear_market,Bear Market,Market,Economics
+15,opex_usd,3250833263.9924755,bear_market,Bear Market,Market,Economics
+1,ebitda_usd,-314261416.51043797,bear_market,Bear Market,Market,Economics
+2,ebitda_usd,-311460849.8118782,bear_market,Bear Market,Market,Economics
+3,ebitda_usd,-320655578.5056386,bear_market,Bear Market,Market,Economics
+4,ebitda_usd,-309960169.1514354,bear_market,Bear Market,Market,Economics
+5,ebitda_usd,-289264287.5703993,bear_market,Bear Market,Market,Economics
+6,ebitda_usd,-267137764.85261822,bear_market,Bear Market,Market,Economics
+7,ebitda_usd,-245200297.24444437,bear_market,Bear Market,Market,Economics
+8,ebitda_usd,-223670320.04843187,bear_market,Bear Market,Market,Economics
+9,ebitda_usd,-202577709.16511345,bear_market,Bear Market,Market,Economics
+10,ebitda_usd,-181928538.79819727,bear_market,Bear Market,Market,Economics
+11,ebitda_usd,-161725944.2110281,bear_market,Bear Market,Market,Economics
+12,ebitda_usd,-141972727.32009983,bear_market,Bear Market,Market,Economics
+13,ebitda_usd,-122671679.90187407,bear_market,Bear Market,Market,Economics
+14,ebitda_usd,-103825623.38160086,bear_market,Bear Market,Market,Economics
+15,ebitda_usd,-85437413.65483189,bear_market,Bear Market,Market,Economics
+1,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+2,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+3,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+4,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+5,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+6,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+7,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+8,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+9,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+10,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+11,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+12,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+13,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+14,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+15,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+1,operating_cash_flow_usd,-314261416.51043797,bear_market,Bear Market,Market,Cash Flow
+2,operating_cash_flow_usd,-311460849.8118782,bear_market,Bear Market,Market,Cash Flow
+3,operating_cash_flow_usd,-320655578.5056386,bear_market,Bear Market,Market,Cash Flow
+4,operating_cash_flow_usd,-309960169.1514354,bear_market,Bear Market,Market,Cash Flow
+5,operating_cash_flow_usd,-289264287.5703993,bear_market,Bear Market,Market,Cash Flow
+6,operating_cash_flow_usd,-267137764.85261822,bear_market,Bear Market,Market,Cash Flow
+7,operating_cash_flow_usd,-245200297.24444437,bear_market,Bear Market,Market,Cash Flow
+8,operating_cash_flow_usd,-223670320.04843187,bear_market,Bear Market,Market,Cash Flow
+9,operating_cash_flow_usd,-202577709.16511345,bear_market,Bear Market,Market,Cash Flow
+10,operating_cash_flow_usd,-181928538.79819727,bear_market,Bear Market,Market,Cash Flow
+11,operating_cash_flow_usd,-161725944.2110281,bear_market,Bear Market,Market,Cash Flow
+12,operating_cash_flow_usd,-141972727.32009983,bear_market,Bear Market,Market,Cash Flow
+13,operating_cash_flow_usd,-122671679.90187407,bear_market,Bear Market,Market,Cash Flow
+14,operating_cash_flow_usd,-103825623.38160086,bear_market,Bear Market,Market,Cash Flow
+15,operating_cash_flow_usd,-85437413.65483189,bear_market,Bear Market,Market,Cash Flow
+1,capex_usd,290000000.0,bear_market,Bear Market,Market,Investment
+2,capex_usd,180000000.0,bear_market,Bear Market,Market,Investment
+3,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+4,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+5,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+6,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+7,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+8,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+9,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+10,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+11,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+12,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+13,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+14,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+15,capex_usd,10000000.0,bear_market,Bear Market,Market,Investment
+1,working_capital_delta_usd,205895310.92898986,bear_market,Bear Market,Market,Working Capital
+2,working_capital_delta_usd,10197569.009970576,bear_market,Bear Market,Market,Working Capital
+3,working_capital_delta_usd,20221172.13985288,bear_market,Bear Market,Market,Working Capital
+4,working_capital_delta_usd,7166721.703661919,bear_market,Bear Market,Market,Working Capital
+5,working_capital_delta_usd,-344702.8687630296,bear_market,Bear Market,Market,Working Capital
+6,working_capital_delta_usd,-1808542.3404349983,bear_market,Bear Market,Market,Working Capital
+7,working_capital_delta_usd,-2042199.405322969,bear_market,Bear Market,Market,Working Capital
+8,working_capital_delta_usd,-2100368.1764627695,bear_market,Bear Market,Market,Working Capital
+9,working_capital_delta_usd,-2134944.283360839,bear_market,Bear Market,Market,Working Capital
+10,working_capital_delta_usd,-2166513.666546166,bear_market,Bear Market,Market,Working Capital
+11,working_capital_delta_usd,-2197844.4861759543,bear_market,Bear Market,Market,Working Capital
+12,working_capital_delta_usd,-2229310.3304280937,bear_market,Bear Market,Market,Working Capital
+13,working_capital_delta_usd,-2260963.4477824867,bear_market,Bear Market,Market,Working Capital
+14,working_capital_delta_usd,-2292812.977863729,bear_market,Bear Market,Market,Working Capital
+15,working_capital_delta_usd,-221577709.5236351,bear_market,Bear Market,Market,Working Capital
+1,free_cash_flow_usd,-810156727.4394279,bear_market,Bear Market,Market,Cash Flow
+2,free_cash_flow_usd,-501658418.82184875,bear_market,Bear Market,Market,Cash Flow
+3,free_cash_flow_usd,-350876750.6454915,bear_market,Bear Market,Market,Cash Flow
+4,free_cash_flow_usd,-327126890.8550973,bear_market,Bear Market,Market,Cash Flow
+5,free_cash_flow_usd,-298919584.70163625,bear_market,Bear Market,Market,Cash Flow
+6,free_cash_flow_usd,-275329222.5121832,bear_market,Bear Market,Market,Cash Flow
+7,free_cash_flow_usd,-253158097.8391214,bear_market,Bear Market,Market,Cash Flow
+8,free_cash_flow_usd,-231569951.8719691,bear_market,Bear Market,Market,Cash Flow
+9,free_cash_flow_usd,-210442764.8817526,bear_market,Bear Market,Market,Cash Flow
+10,free_cash_flow_usd,-189762025.1316511,bear_market,Bear Market,Market,Cash Flow
+11,free_cash_flow_usd,-169528099.72485214,bear_market,Bear Market,Market,Cash Flow
+12,free_cash_flow_usd,-149743416.98967174,bear_market,Bear Market,Market,Cash Flow
+13,free_cash_flow_usd,-130410716.45409158,bear_market,Bear Market,Market,Cash Flow
+14,free_cash_flow_usd,-111532810.40373713,bear_market,Bear Market,Market,Cash Flow
+15,free_cash_flow_usd,126140295.8688032,bear_market,Bear Market,Market,Cash Flow
+1,discounted_fcf_usd,-729870925.6211061,bear_market,Bear Market,Market,Valuation
+2,discounted_fcf_usd,-407157226.541554,bear_market,Bear Market,Market,Valuation
+3,discounted_fcf_usd,-256558055.97086596,bear_market,Bear Market,Market,Valuation
+4,discounted_fcf_usd,-215488615.4820034,bear_market,Bear Market,Market,Valuation
+5,discounted_fcf_usd,-177394224.52389884,bear_market,Bear Market,Market,Valuation
+6,discounted_fcf_usd,-147202245.72359052,bear_market,Bear Market,Market,Valuation
+7,discounted_fcf_usd,-121935727.10932966,bear_market,Bear Market,Market,Valuation
+8,discounted_fcf_usd,-100484337.86370485,bear_market,Bear Market,Market,Valuation
+9,discounted_fcf_usd,-82267289.7625289,bear_market,Bear Market,Market,Valuation
+10,discounted_fcf_usd,-66831239.91217783,bear_market,Bear Market,Market,Valuation
+11,discounted_fcf_usd,-53788437.332633235,bear_market,Bear Market,Market,Valuation
+12,discounted_fcf_usd,-42802781.64306078,bear_market,Bear Market,Market,Valuation
+13,discounted_fcf_usd,-33582618.55792171,bear_market,Bear Market,Market,Valuation
+14,discounted_fcf_usd,-25875034.807042703,bear_market,Bear Market,Market,Valuation
+15,discounted_fcf_usd,26363870.124337096,bear_market,Bear Market,Market,Valuation
+1,base_processed_tonnes,150000000.0,operational_stress,Operational Stress,Operations,Operations
+2,base_processed_tonnes,150000000.0,operational_stress,Operational Stress,Operations,Operations
+3,base_processed_tonnes,150000000.0,operational_stress,Operational Stress,Operations,Operations
+4,base_processed_tonnes,148000000.0,operational_stress,Operational Stress,Operations,Operations
+5,base_processed_tonnes,146000000.0,operational_stress,Operational Stress,Operations,Operations
+6,base_processed_tonnes,144000000.0,operational_stress,Operational Stress,Operations,Operations
+7,base_processed_tonnes,142000000.0,operational_stress,Operational Stress,Operations,Operations
+8,base_processed_tonnes,140000000.0,operational_stress,Operational Stress,Operations,Operations
+9,base_processed_tonnes,138000000.0,operational_stress,Operational Stress,Operations,Operations
+10,base_processed_tonnes,136000000.0,operational_stress,Operational Stress,Operations,Operations
+11,base_processed_tonnes,134000000.0,operational_stress,Operational Stress,Operations,Operations
+12,base_processed_tonnes,132000000.0,operational_stress,Operational Stress,Operations,Operations
+13,base_processed_tonnes,130000000.0,operational_stress,Operational Stress,Operations,Operations
+14,base_processed_tonnes,128000000.0,operational_stress,Operational Stress,Operations,Operations
+15,base_processed_tonnes,126000000.0,operational_stress,Operational Stress,Operations,Operations
+1,expanded_tonnes,142337409.6236074,operational_stress,Operational Stress,Operations,Operations
+2,expanded_tonnes,148584148.08263385,operational_stress,Operational Stress,Operations,Operations
+3,expanded_tonnes,161615851.91736615,operational_stress,Operational Stress,Operations,Operations
+4,expanded_tonnes,165624422.50470737,operational_stress,Operational Stress,Operations,Operations
+5,expanded_tonnes,164504294.62783024,operational_stress,Operational Stress,Operations,Operations
+6,expanded_tonnes,162407336.0220652,operational_stress,Operational Stress,Operations,Operations
+7,expanded_tonnes,160172705.85839945,operational_stress,Operational Stress,Operations,Operations
+8,expanded_tonnes,157919560.41857696,operational_stress,Operational Stress,Operations,Operations
+9,expanded_tonnes,155663941.3581464,operational_stress,Operational Stress,Operations,Operations
+10,expanded_tonnes,153407992.17869186,operational_stress,Operational Stress,Operations,Operations
+11,expanded_tonnes,151151998.95706695,operational_stress,Operational Stress,Operations,Operations
+12,expanded_tonnes,148895999.86096102,operational_stress,Operational Stress,Operations,Operations
+13,expanded_tonnes,146639999.98146823,operational_stress,Operational Stress,Operations,Operations
+14,expanded_tonnes,144383999.99753058,operational_stress,Operational Stress,Operations,Operations
+15,expanded_tonnes,142127999.999671,operational_stress,Operational Stress,Operations,Operations
+1,scenario_price_usd_per_lb,3.913670175164541,operational_stress,Operational Stress,Operations,Market
+2,scenario_price_usd_per_lb,3.9933950659222437,operational_stress,Operational Stress,Operations,Market
+3,scenario_price_usd_per_lb,4.074744022562314,operational_stress,Operational Stress,Operations,Market
+4,scenario_price_usd_per_lb,4.157750128729839,operational_stress,Operational Stress,Operations,Market
+5,scenario_price_usd_per_lb,4.2424471420127405,operational_stress,Operational Stress,Operations,Market
+6,scenario_price_usd_per_lb,4.328869507670591,operational_stress,Operational Stress,Operations,Market
+7,scenario_price_usd_per_lb,4.417052372643078,operational_stress,Operational Stress,Operations,Market
+8,scenario_price_usd_per_lb,4.5070315998438515,operational_stress,Operational Stress,Operations,Market
+9,scenario_price_usd_per_lb,4.598843782745534,operational_stress,Operational Stress,Operations,Market
+10,scenario_price_usd_per_lb,4.6925262602618485,operational_stress,Operational Stress,Operations,Market
+11,scenario_price_usd_per_lb,4.788117131932914,operational_stress,Operational Stress,Operations,Market
+12,scenario_price_usd_per_lb,4.885655273419857,operational_stress,Operational Stress,Operations,Market
+13,scenario_price_usd_per_lb,4.985180352315097,operational_stress,Operational Stress,Operations,Market
+14,scenario_price_usd_per_lb,5.086732844274655,operational_stress,Operational Stress,Operations,Market
+15,scenario_price_usd_per_lb,5.1903540494791445,operational_stress,Operational Stress,Operations,Market
+1,scenario_grade,0.0032979999999999997,operational_stress,Operational Stress,Operations,Geology
+2,scenario_grade,0.00324853,operational_stress,Operational Stress,Operations,Geology
+3,scenario_grade,0.0031998020499999997,operational_stress,Operational Stress,Operations,Geology
+4,scenario_grade,0.0031518050192499997,operational_stress,Operational Stress,Operations,Geology
+5,scenario_grade,0.00310452794396125,operational_stress,Operational Stress,Operations,Geology
+6,scenario_grade,0.003057960024801831,operational_stress,Operational Stress,Operations,Geology
+7,scenario_grade,0.0030120906244298033,operational_stress,Operational Stress,Operations,Geology
+8,scenario_grade,0.0029669092650633565,operational_stress,Operational Stress,Operations,Geology
+9,scenario_grade,0.002922405626087406,operational_stress,Operational Stress,Operations,Geology
+10,scenario_grade,0.002878569541696095,operational_stress,Operational Stress,Operations,Geology
+11,scenario_grade,0.002835390998570654,operational_stress,Operational Stress,Operations,Geology
+12,scenario_grade,0.002792860133592094,operational_stress,Operational Stress,Operations,Geology
+13,scenario_grade,0.002750967231588212,operational_stress,Operational Stress,Operations,Geology
+14,scenario_grade,0.0027097027231143887,operational_stress,Operational Stress,Operations,Geology
+15,scenario_grade,0.002669057182267673,operational_stress,Operational Stress,Operations,Geology
+1,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+2,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+3,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+4,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+5,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+6,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+7,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+8,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+9,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+10,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+11,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+12,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+13,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+14,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+15,scenario_recovery,0.80832,operational_stress,Operational Stress,Operations,Metallurgy
+1,scenario_net_price_usd_per_lb,3.7041233681579593,operational_stress,Operational Stress,Operations,Commercial
+2,scenario_net_price_usd_per_lb,3.780659263285354,operational_stress,Operational Stress,Operations,Commercial
+3,scenario_net_price_usd_per_lb,3.858754261659821,operational_stress,Operational Stress,Operations,Commercial
+4,scenario_net_price_usd_per_lb,3.9384401235806457,operational_stress,Operational Stress,Operations,Commercial
+5,scenario_net_price_usd_per_lb,4.019749256332231,operational_stress,Operational Stress,Operations,Commercial
+6,scenario_net_price_usd_per_lb,4.102714727363767,operational_stress,Operational Stress,Operations,Commercial
+7,scenario_net_price_usd_per_lb,4.187370277737355,operational_stress,Operational Stress,Operations,Commercial
+8,scenario_net_price_usd_per_lb,4.273750335850098,operational_stress,Operational Stress,Operations,Commercial
+9,scenario_net_price_usd_per_lb,4.3618900314357125,operational_stress,Operational Stress,Operations,Commercial
+10,scenario_net_price_usd_per_lb,4.451825209851375,operational_stress,Operational Stress,Operations,Commercial
+11,scenario_net_price_usd_per_lb,4.543592446655597,operational_stress,Operational Stress,Operations,Commercial
+12,scenario_net_price_usd_per_lb,4.637229062483063,operational_stress,Operational Stress,Operations,Commercial
+13,scenario_net_price_usd_per_lb,4.732773138222493,operational_stress,Operational Stress,Operations,Commercial
+14,scenario_net_price_usd_per_lb,4.830263530503669,operational_stress,Operational Stress,Operations,Commercial
+15,scenario_net_price_usd_per_lb,4.929739887499979,operational_stress,Operational Stress,Operations,Commercial
+1,copper_fine_lb,836540124.5957866,operational_stress,Operational Stress,Operations,Production
+2,copper_fine_lb,860154424.9506227,operational_stress,Operational Stress,Operations,Production
+3,copper_fine_lb,921561102.4683577,operational_stress,Operational Stress,Operations,Production
+4,copper_fine_lb,930252374.5938404,operational_stress,Operational Stress,Operations,Production
+5,copper_fine_lb,910101606.8056829,operational_stress,Operational Stress,Operations,Production
+6,copper_fine_lb,885022911.6390551,operational_stress,Operational Stress,Operations,Production
+7,copper_fine_lb,859752830.1762022,operational_stress,Operational Stress,Operations,Production
+8,copper_fine_lb,834943828.0272983,operational_stress,Operational Stress,Operations,Production
+9,copper_fine_lb,810672769.3378065,operational_stress,Operational Stress,Operations,Production
+10,copper_fine_lb,786940286.6290148,operational_stress,Operational Stress,Operations,Production
+11,copper_fine_lb,763737154.4931759,operational_stress,Operational Stress,Operations,Production
+12,copper_fine_lb,741053025.5197216,operational_stress,Operational Stress,Operations,Production
+13,copper_fine_lb,718877575.7152895,operational_stress,Operational Stress,Operations,Production
+14,copper_fine_lb,697200651.9699059,operational_stress,Operational Stress,Operations,Production
+15,copper_fine_lb,676012288.4161301,operational_stress,Operational Stress,Operations,Production
+1,revenue_usd,3098647823.9170237,operational_stress,Operational Stress,Operations,Economics
+2,revenue_usd,3251950794.5454583,operational_stress,Operational Stress,Operations,Economics
+3,revenue_usd,3556077831.5296984,operational_stress,Operational Stress,Operations,Economics
+4,revenue_usd,3663743277.1565537,operational_stress,Operational Stress,Operations,Economics
+5,revenue_usd,3658380257.1439123,operational_stress,Operational Stress,Operations,Economics
+6,revenue_usd,3630996533.6359134,operational_stress,Operational Stress,Operations,Economics
+7,revenue_usd,3600103447.280401,operational_stress,Operational Stress,Operations,Economics
+8,revenue_usd,3568341465.4476323,operational_stress,Operational Stress,Operations,Economics
+9,revenue_usd,3536065471.3309608,operational_stress,Operational Stress,Operations,Economics
+10,revenue_usd,3503320606.662715,operational_stress,Operational Stress,Operations,Economics
+11,revenue_usd,3470110366.3854327,operational_stress,Operational Stress,Operations,Economics
+12,revenue_usd,3436432626.781056,operational_stress,Operational Stress,Operations,Economics
+13,revenue_usd,3402284480.015828,operational_stress,Operational Stress,Operations,Economics
+14,revenue_usd,3367662882.6536174,operational_stress,Operational Stress,Operations,Economics
+15,revenue_usd,3332564742.6451364,operational_stress,Operational Stress,Operations,Economics
+1,opex_usd,3274329770.9814644,operational_stress,Operational Stress,Operations,Economics
+2,opex_usd,3418029742.492909,operational_stress,Operational Stress,Operations,Economics
+3,opex_usd,3717811057.5070906,operational_stress,Operational Stress,Operations,Economics
+4,opex_usd,3810024215.298288,operational_stress,Operational Stress,Operations,Economics
+5,opex_usd,3784256793.6186066,operational_stress,Operational Stress,Operations,Economics
+6,opex_usd,3736018357.8515873,operational_stress,Operational Stress,Operations,Economics
+7,opex_usd,3684612925.566621,operational_stress,Operational Stress,Operations,Economics
+8,opex_usd,3632781567.8689437,operational_stress,Operational Stress,Operations,Economics
+9,opex_usd,3580893307.0027995,operational_stress,Operational Stress,Operations,Economics
+10,opex_usd,3528997452.078627,operational_stress,Operational Stress,Operations,Economics
+11,opex_usd,3477100584.008368,operational_stress,Operational Stress,Operations,Economics
+12,opex_usd,3425203580.801547,operational_stress,Operational Stress,Operations,Economics
+13,opex_usd,3373306559.5736947,operational_stress,Operational Stress,Operations,Economics
+14,opex_usd,3321409535.9431934,operational_stress,Operational Stress,Operations,Economics
+15,opex_usd,3269512511.9924316,operational_stress,Operational Stress,Operations,Economics
+1,ebitda_usd,-175681947.06444073,operational_stress,Operational Stress,Operations,Economics
+2,ebitda_usd,-166078947.94745064,operational_stress,Operational Stress,Operations,Economics
+3,ebitda_usd,-161733225.9773922,operational_stress,Operational Stress,Operations,Economics
+4,ebitda_usd,-146280938.14173412,operational_stress,Operational Stress,Operations,Economics
+5,ebitda_usd,-125876536.47469425,operational_stress,Operational Stress,Operations,Economics
+6,ebitda_usd,-105021824.21567392,operational_stress,Operational Stress,Operations,Economics
+7,ebitda_usd,-84509478.2862196,operational_stress,Operational Stress,Operations,Economics
+8,ebitda_usd,-64440102.42131138,operational_stress,Operational Stress,Operations,Economics
+9,ebitda_usd,-44827835.67183876,operational_stress,Operational Stress,Operations,Economics
+10,ebitda_usd,-25676845.41591215,operational_stress,Operational Stress,Operations,Economics
+11,ebitda_usd,-6990217.622935295,operational_stress,Operational Stress,Operations,Economics
+12,ebitda_usd,11229045.979508877,operational_stress,Operational Stress,Operations,Economics
+13,ebitda_usd,28977920.442133427,operational_stress,Operational Stress,Operations,Economics
+14,ebitda_usd,46253346.71042395,operational_stress,Operational Stress,Operations,Economics
+15,ebitda_usd,63052230.652704716,operational_stress,Operational Stress,Operations,Economics
+1,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+2,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+3,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+4,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+5,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+6,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+7,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+8,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+9,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+10,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+11,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+12,taxes_usd,3761730.4031354734,operational_stress,Operational Stress,Operations,Economics
+13,taxes_usd,9707603.348114697,operational_stress,Operational Stress,Operations,Economics
+14,taxes_usd,15494871.14799202,operational_stress,Operational Stress,Operations,Economics
+15,taxes_usd,21122497.26865608,operational_stress,Operational Stress,Operations,Economics
+1,operating_cash_flow_usd,-175681947.06444073,operational_stress,Operational Stress,Operations,Cash Flow
+2,operating_cash_flow_usd,-166078947.94745064,operational_stress,Operational Stress,Operations,Cash Flow
+3,operating_cash_flow_usd,-161733225.9773922,operational_stress,Operational Stress,Operations,Cash Flow
+4,operating_cash_flow_usd,-146280938.14173412,operational_stress,Operational Stress,Operations,Cash Flow
+5,operating_cash_flow_usd,-125876536.47469425,operational_stress,Operational Stress,Operations,Cash Flow
+6,operating_cash_flow_usd,-105021824.21567392,operational_stress,Operational Stress,Operations,Cash Flow
+7,operating_cash_flow_usd,-84509478.2862196,operational_stress,Operational Stress,Operations,Cash Flow
+8,operating_cash_flow_usd,-64440102.42131138,operational_stress,Operational Stress,Operations,Cash Flow
+9,operating_cash_flow_usd,-44827835.67183876,operational_stress,Operational Stress,Operations,Cash Flow
+10,operating_cash_flow_usd,-25676845.41591215,operational_stress,Operational Stress,Operations,Cash Flow
+11,operating_cash_flow_usd,-6990217.622935295,operational_stress,Operational Stress,Operations,Cash Flow
+12,operating_cash_flow_usd,7467315.576373404,operational_stress,Operational Stress,Operations,Cash Flow
+13,operating_cash_flow_usd,19270317.094018728,operational_stress,Operational Stress,Operations,Cash Flow
+14,operating_cash_flow_usd,30758475.562431924,operational_stress,Operational Stress,Operations,Cash Flow
+15,operating_cash_flow_usd,41929733.38404864,operational_stress,Operational Stress,Operations,Cash Flow
+1,capex_usd,290000000.0,operational_stress,Operational Stress,Operations,Investment
+2,capex_usd,180000000.0,operational_stress,Operational Stress,Operations,Investment
+3,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+4,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+5,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+6,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+7,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+8,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+9,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+10,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+11,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+12,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+13,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+14,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+15,capex_usd,10000000.0,operational_stress,Operational Stress,Operations,Investment
+1,working_capital_delta_usd,216905347.67419168,operational_stress,Operational Stress,Operations,Working Capital
+2,working_capital_delta_usd,10731207.94399041,operational_stress,Operational Stress,Operations,Working Capital
+3,working_capital_delta_usd,21288892.58889681,operational_stress,Operational Stress,Operations,Working Capital
+4,working_capital_delta_usd,7536581.193879873,operational_stress,Operational Stress,Operations,Working Capital
+5,working_capital_delta_usd,-375411.4008848965,operational_stress,Operational Stress,Operations,Working Capital
+6,working_capital_delta_usd,-1916860.645559907,operational_stress,Operational Stress,Operations,Working Capital
+7,working_capital_delta_usd,-2162516.044885874,operational_stress,Operational Stress,Operations,Working Capital
+8,working_capital_delta_usd,-2223338.7282938063,operational_stress,Operational Stress,Operations,Working Capital
+9,working_capital_delta_usd,-2259319.5881670117,operational_stress,Operational Stress,Operations,Working Capital
+10,working_capital_delta_usd,-2292140.526777208,operational_stress,Operational Stress,Operations,Working Capital
+11,working_capital_delta_usd,-2324716.819409758,operational_stress,Operational Stress,Operations,Working Capital
+12,working_capital_delta_usd,-2357441.7723063827,operational_stress,Operational Stress,Operations,Working Capital
+13,working_capital_delta_usd,-2390370.273565948,operational_stress,Operational Stress,Operations,Working Capital
+14,working_capital_delta_usd,-2423511.8153547347,operational_stress,Operational Stress,Operations,Working Capital
+15,working_capital_delta_usd,-233279531.98515958,operational_stress,Operational Stress,Operations,Working Capital
+1,free_cash_flow_usd,-682587294.7386324,operational_stress,Operational Stress,Operations,Cash Flow
+2,free_cash_flow_usd,-356810155.89144105,operational_stress,Operational Stress,Operations,Cash Flow
+3,free_cash_flow_usd,-193022118.566289,operational_stress,Operational Stress,Operations,Cash Flow
+4,free_cash_flow_usd,-163817519.335614,operational_stress,Operational Stress,Operations,Cash Flow
+5,free_cash_flow_usd,-135501125.07380936,operational_stress,Operational Stress,Operations,Cash Flow
+6,free_cash_flow_usd,-113104963.57011402,operational_stress,Operational Stress,Operations,Cash Flow
+7,free_cash_flow_usd,-92346962.24133372,operational_stress,Operational Stress,Operations,Cash Flow
+8,free_cash_flow_usd,-72216763.69301757,operational_stress,Operational Stress,Operations,Cash Flow
+9,free_cash_flow_usd,-52568516.08367175,operational_stress,Operational Stress,Operations,Cash Flow
+10,free_cash_flow_usd,-33384704.889134943,operational_stress,Operational Stress,Operations,Cash Flow
+11,free_cash_flow_usd,-14665500.803525537,operational_stress,Operational Stress,Operations,Cash Flow
+12,free_cash_flow_usd,-175242.65132021345,operational_stress,Operational Stress,Operations,Cash Flow
+13,free_cash_flow_usd,11660687.367584676,operational_stress,Operational Stress,Operations,Cash Flow
+14,free_cash_flow_usd,23181987.37778666,operational_stress,Operational Stress,Operations,Cash Flow
+15,free_cash_flow_usd,265209265.36920822,operational_stress,Operational Stress,Operations,Cash Flow
+1,discounted_fcf_usd,-620533904.3078476,operational_stress,Operational Stress,Operations,Valuation
+2,discounted_fcf_usd,-294884426.3565628,operational_stress,Operational Stress,Operations,Valuation
+3,discounted_fcf_usd,-145020374.5802321,operational_stress,Operational Stress,Operations,Valuation
+4,discounted_fcf_usd,-111889569.93075196,operational_stress,Operational Stress,Operations,Valuation
+5,discounted_fcf_usd,-84135537.85683374,operational_stress,Operational Stress,Operations,Valuation
+6,discounted_fcf_usd,-63844803.29501156,operational_stress,Operational Stress,Operations,Valuation
+7,discounted_fcf_usd,-47388593.368084915,operational_stress,Operational Stress,Operations,Valuation
+8,discounted_fcf_usd,-33689653.237655,operational_stress,Operational Stress,Operations,Valuation
+9,discounted_fcf_usd,-22294182.472460836,operational_stress,Operational Stress,Operations,Valuation
+10,discounted_fcf_usd,-12871248.939591246,operational_stress,Operational Stress,Operations,Valuation
+11,discounted_fcf_usd,-5140168.564475156,operational_stress,Operational Stress,Operations,Valuation
+12,discounted_fcf_usd,-55837.709287890495,operational_stress,Operational Stress,Operations,Valuation
+13,discounted_fcf_usd,3377685.7736348445,operational_stress,Operational Stress,Operations,Valuation
+14,discounted_fcf_usd,6104541.813500269,operational_stress,Operational Stress,Operations,Valuation
+15,discounted_fcf_usd,63488989.54842503,operational_stress,Operational Stress,Operations,Valuation
+1,base_processed_tonnes,150000000.0,capex_overrun,Capex Overrun,Investment,Operations
+2,base_processed_tonnes,150000000.0,capex_overrun,Capex Overrun,Investment,Operations
+3,base_processed_tonnes,150000000.0,capex_overrun,Capex Overrun,Investment,Operations
+4,base_processed_tonnes,148000000.0,capex_overrun,Capex Overrun,Investment,Operations
+5,base_processed_tonnes,146000000.0,capex_overrun,Capex Overrun,Investment,Operations
+6,base_processed_tonnes,144000000.0,capex_overrun,Capex Overrun,Investment,Operations
+7,base_processed_tonnes,142000000.0,capex_overrun,Capex Overrun,Investment,Operations
+8,base_processed_tonnes,140000000.0,capex_overrun,Capex Overrun,Investment,Operations
+9,base_processed_tonnes,138000000.0,capex_overrun,Capex Overrun,Investment,Operations
+10,base_processed_tonnes,136000000.0,capex_overrun,Capex Overrun,Investment,Operations
+11,base_processed_tonnes,134000000.0,capex_overrun,Capex Overrun,Investment,Operations
+12,base_processed_tonnes,132000000.0,capex_overrun,Capex Overrun,Investment,Operations
+13,base_processed_tonnes,130000000.0,capex_overrun,Capex Overrun,Investment,Operations
+14,base_processed_tonnes,128000000.0,capex_overrun,Capex Overrun,Investment,Operations
+15,base_processed_tonnes,126000000.0,capex_overrun,Capex Overrun,Investment,Operations
+1,expanded_tonnes,151422776.195327,capex_overrun,Capex Overrun,Investment,Operations
+2,expanded_tonnes,158068242.64109984,capex_overrun,Capex Overrun,Investment,Operations
+3,expanded_tonnes,171931757.35890016,capex_overrun,Capex Overrun,Investment,Operations
+4,expanded_tonnes,176196194.15394402,capex_overrun,Capex Overrun,Investment,Operations
+5,expanded_tonnes,175004568.75301087,capex_overrun,Capex Overrun,Investment,Operations
+6,expanded_tonnes,172773761.7256013,capex_overrun,Capex Overrun,Investment,Operations
+7,expanded_tonnes,170396495.594042,capex_overrun,Capex Overrun,Investment,Operations
+8,expanded_tonnes,167999532.36018825,capex_overrun,Capex Overrun,Investment,Operations
+9,expanded_tonnes,165599937.61504936,capex_overrun,Capex Overrun,Investment,Operations
+10,expanded_tonnes,163199991.67945942,capex_overrun,Capex Overrun,Investment,Operations
+11,expanded_tonnes,160799998.89049673,capex_overrun,Capex Overrun,Investment,Operations
+12,expanded_tonnes,158399999.8520862,capex_overrun,Capex Overrun,Investment,Operations
+13,expanded_tonnes,155999999.98028535,capex_overrun,Capex Overrun,Investment,Operations
+14,expanded_tonnes,153599999.99737296,capex_overrun,Capex Overrun,Investment,Operations
+15,expanded_tonnes,151199999.99965003,capex_overrun,Capex Overrun,Investment,Operations
+1,scenario_price_usd_per_lb,3.913670175164541,capex_overrun,Capex Overrun,Investment,Market
+2,scenario_price_usd_per_lb,3.9933950659222437,capex_overrun,Capex Overrun,Investment,Market
+3,scenario_price_usd_per_lb,4.074744022562314,capex_overrun,Capex Overrun,Investment,Market
+4,scenario_price_usd_per_lb,4.157750128729839,capex_overrun,Capex Overrun,Investment,Market
+5,scenario_price_usd_per_lb,4.2424471420127405,capex_overrun,Capex Overrun,Investment,Market
+6,scenario_price_usd_per_lb,4.328869507670591,capex_overrun,Capex Overrun,Investment,Market
+7,scenario_price_usd_per_lb,4.417052372643078,capex_overrun,Capex Overrun,Investment,Market
+8,scenario_price_usd_per_lb,4.5070315998438515,capex_overrun,Capex Overrun,Investment,Market
+9,scenario_price_usd_per_lb,4.598843782745534,capex_overrun,Capex Overrun,Investment,Market
+10,scenario_price_usd_per_lb,4.6925262602618485,capex_overrun,Capex Overrun,Investment,Market
+11,scenario_price_usd_per_lb,4.788117131932914,capex_overrun,Capex Overrun,Investment,Market
+12,scenario_price_usd_per_lb,4.885655273419857,capex_overrun,Capex Overrun,Investment,Market
+13,scenario_price_usd_per_lb,4.985180352315097,capex_overrun,Capex Overrun,Investment,Market
+14,scenario_price_usd_per_lb,5.086732844274655,capex_overrun,Capex Overrun,Investment,Market
+15,scenario_price_usd_per_lb,5.1903540494791445,capex_overrun,Capex Overrun,Investment,Market
+1,scenario_grade,0.0034,capex_overrun,Capex Overrun,Investment,Geology
+2,scenario_grade,0.003349,capex_overrun,Capex Overrun,Investment,Geology
+3,scenario_grade,0.003298765,capex_overrun,Capex Overrun,Investment,Geology
+4,scenario_grade,0.003249283525,capex_overrun,Capex Overrun,Investment,Geology
+5,scenario_grade,0.003200544272125,capex_overrun,Capex Overrun,Investment,Geology
+6,scenario_grade,0.003152536108043125,capex_overrun,Capex Overrun,Investment,Geology
+7,scenario_grade,0.003105248066422478,capex_overrun,Capex Overrun,Investment,Geology
+8,scenario_grade,0.003058669345426141,capex_overrun,Capex Overrun,Investment,Geology
+9,scenario_grade,0.003012789305244749,capex_overrun,Capex Overrun,Investment,Geology
+10,scenario_grade,0.0029675974656660775,capex_overrun,Capex Overrun,Investment,Geology
+11,scenario_grade,0.0029230835036810864,capex_overrun,Capex Overrun,Investment,Geology
+12,scenario_grade,0.00287923725112587,capex_overrun,Capex Overrun,Investment,Geology
+13,scenario_grade,0.0028360486923589816,capex_overrun,Capex Overrun,Investment,Geology
+14,scenario_grade,0.002793507961973597,capex_overrun,Capex Overrun,Investment,Geology
+15,scenario_grade,0.002751605342543993,capex_overrun,Capex Overrun,Investment,Geology
+1,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+2,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+3,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+4,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+5,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+6,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+7,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+8,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+9,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+10,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+11,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+12,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+13,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+14,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+15,scenario_recovery,0.8420000000000001,capex_overrun,Capex Overrun,Investment,Metallurgy
+1,scenario_net_price_usd_per_lb,3.7041233681579593,capex_overrun,Capex Overrun,Investment,Commercial
+2,scenario_net_price_usd_per_lb,3.780659263285354,capex_overrun,Capex Overrun,Investment,Commercial
+3,scenario_net_price_usd_per_lb,3.858754261659821,capex_overrun,Capex Overrun,Investment,Commercial
+4,scenario_net_price_usd_per_lb,3.9384401235806457,capex_overrun,Capex Overrun,Investment,Commercial
+5,scenario_net_price_usd_per_lb,4.019749256332231,capex_overrun,Capex Overrun,Investment,Commercial
+6,scenario_net_price_usd_per_lb,4.102714727363767,capex_overrun,Capex Overrun,Investment,Commercial
+7,scenario_net_price_usd_per_lb,4.187370277737355,capex_overrun,Capex Overrun,Investment,Commercial
+8,scenario_net_price_usd_per_lb,4.273750335850098,capex_overrun,Capex Overrun,Investment,Commercial
+9,scenario_net_price_usd_per_lb,4.3618900314357125,capex_overrun,Capex Overrun,Investment,Commercial
+10,scenario_net_price_usd_per_lb,4.451825209851375,capex_overrun,Capex Overrun,Investment,Commercial
+11,scenario_net_price_usd_per_lb,4.543592446655597,capex_overrun,Capex Overrun,Investment,Commercial
+12,scenario_net_price_usd_per_lb,4.637229062483063,capex_overrun,Capex Overrun,Investment,Commercial
+13,scenario_net_price_usd_per_lb,4.732773138222493,capex_overrun,Capex Overrun,Investment,Commercial
+14,scenario_net_price_usd_per_lb,4.830263530503669,capex_overrun,Capex Overrun,Investment,Commercial
+15,scenario_net_price_usd_per_lb,4.929739887499979,capex_overrun,Capex Overrun,Investment,Commercial
+1,copper_fine_lb,955687610.3538177,capex_overrun,Capex Overrun,Investment,Production
+2,copper_fine_lb,982665269.4197178,capex_overrun,Capex Overrun,Investment,Production
+3,copper_fine_lb,1052818032.175776,capex_overrun,Capex Overrun,Investment,Production
+4,copper_fine_lb,1062747192.588196,capex_overrun,Capex Overrun,Investment,Production
+5,copper_fine_lb,1039726373.2060243,capex_overrun,Capex Overrun,Investment,Production
+6,copper_fine_lb,1011075747.1931154,capex_overrun,Capex Overrun,Investment,Production
+7,copper_fine_lb,982206475.9452485,capex_overrun,Capex Overrun,Investment,Production
+8,copper_fine_lb,953863955.0286274,capex_overrun,Capex Overrun,Investment,Production
+9,copper_fine_lb,926135996.2640365,capex_overrun,Capex Overrun,Investment,Production
+10,copper_fine_lb,899023322.262072,capex_overrun,Capex Overrun,Investment,Production
+11,copper_fine_lb,872515393.6503524,capex_overrun,Capex Overrun,Investment,Production
+12,copper_fine_lb,846600389.2480551,capex_overrun,Capex Overrun,Investment,Production
+13,copper_fine_lb,821266514.6268479,capex_overrun,Capex Overrun,Investment,Production
+14,copper_fine_lb,796502170.5805205,capex_overrun,Capex Overrun,Investment,Production
+15,copper_fine_lb,772295971.8141431,capex_overrun,Capex Overrun,Investment,Production
+1,revenue_usd,3539984810.1706147,capex_overrun,Capex Overrun,Investment,Economics
+2,revenue_usd,3715122553.540454,capex_overrun,Capex Overrun,Investment,Economics
+3,revenue_usd,4062566068.4105825,capex_overrun,Capex Overrun,Investment,Economics
+4,revenue_usd,4185566184.512039,capex_overrun,Capex Overrun,Investment,Economics
+5,revenue_usd,4179439315.483924,capex_overrun,Capex Overrun,Investment,Economics
+6,revenue_usd,4148155358.4895196,capex_overrun,Capex Overrun,Investment,Economics
+7,revenue_usd,4112862203.974284,capex_overrun,Capex Overrun,Investment,Economics
+8,revenue_usd,4076576398.158899,capex_overrun,Capex Overrun,Investment,Economics
+9,revenue_usd,4039703369.8578835,capex_overrun,Capex Overrun,Investment,Economics
+10,revenue_usd,4002294690.290629,capex_overrun,Capex Overrun,Investment,Economics
+11,revenue_usd,3964354352.180476,capex_overrun,Capex Overrun,Investment,Economics
+12,revenue_usd,3925879929.3305545,capex_overrun,Capex Overrun,Investment,Economics
+13,revenue_usd,3886868099.7475557,capex_overrun,Capex Overrun,Investment,Economics
+14,revenue_usd,3847315386.5221004,capex_overrun,Capex Overrun,Investment,Economics
+15,revenue_usd,3807218257.2077403,capex_overrun,Capex Overrun,Investment,Economics
+1,opex_usd,3225305132.960465,capex_overrun,Capex Overrun,Investment,Economics
+2,opex_usd,3366853568.255426,capex_overrun,Capex Overrun,Investment,Economics
+3,opex_usd,3662146431.744573,capex_overrun,Capex Overrun,Investment,Economics
+4,opex_usd,3752978935.4790072,capex_overrun,Capex Overrun,Investment,Economics
+5,opex_usd,3727597314.439131,capex_overrun,Capex Overrun,Investment,Economics
+6,opex_usd,3680081124.7553067,capex_overrun,Capex Overrun,Investment,Economics
+7,opex_usd,3629445356.1530943,capex_overrun,Capex Overrun,Investment,Economics
+8,opex_usd,3578390039.2720094,capex_overrun,Capex Overrun,Investment,Economics
+9,opex_usd,3527278671.200551,capex_overrun,Capex Overrun,Investment,Economics
+10,opex_usd,3476159822.7724853,capex_overrun,Capex Overrun,Investment,Economics
+11,opex_usd,3425039976.36758,capex_overrun,Capex Overrun,Investment,Economics
+12,opex_usd,3373919996.8494353,capex_overrun,Capex Overrun,Investment,Economics
+13,opex_usd,3322799999.5800776,capex_overrun,Capex Overrun,Investment,Economics
+14,opex_usd,3271679999.9440436,capex_overrun,Capex Overrun,Investment,Economics
+15,opex_usd,3220559999.992545,capex_overrun,Capex Overrun,Investment,Economics
+1,ebitda_usd,314679677.21014977,capex_overrun,Capex Overrun,Investment,Economics
+2,ebitda_usd,348268985.285028,capex_overrun,Capex Overrun,Investment,Economics
+3,ebitda_usd,400419636.6660094,capex_overrun,Capex Overrun,Investment,Economics
+4,ebitda_usd,432587249.03303194,capex_overrun,Capex Overrun,Investment,Economics
+5,ebitda_usd,451842001.0447931,capex_overrun,Capex Overrun,Investment,Economics
+6,ebitda_usd,468074233.7342129,capex_overrun,Capex Overrun,Investment,Economics
+7,ebitda_usd,483416847.8211899,capex_overrun,Capex Overrun,Investment,Economics
+8,ebitda_usd,498186358.88688946,capex_overrun,Capex Overrun,Investment,Economics
+9,ebitda_usd,512424698.6573324,capex_overrun,Capex Overrun,Investment,Economics
+10,ebitda_usd,526134867.51814365,capex_overrun,Capex Overrun,Investment,Economics
+11,ebitda_usd,539314375.8128963,capex_overrun,Capex Overrun,Investment,Economics
+12,ebitda_usd,551959932.4811192,capex_overrun,Capex Overrun,Investment,Economics
+13,ebitda_usd,564068100.1674781,capex_overrun,Capex Overrun,Investment,Economics
+14,ebitda_usd,575635386.5780568,capex_overrun,Capex Overrun,Investment,Economics
+15,ebitda_usd,586658257.2151952,capex_overrun,Capex Overrun,Investment,Economics
+1,taxes_usd,105417691.86540017,capex_overrun,Capex Overrun,Investment,Economics
+2,taxes_usd,116670110.07048436,capex_overrun,Capex Overrun,Investment,Economics
+3,taxes_usd,134140578.28311314,capex_overrun,Capex Overrun,Investment,Economics
+4,taxes_usd,144916728.42606568,capex_overrun,Capex Overrun,Investment,Economics
+5,taxes_usd,151367070.3500057,capex_overrun,Capex Overrun,Investment,Economics
+6,taxes_usd,156804868.3009613,capex_overrun,Capex Overrun,Investment,Economics
+7,taxes_usd,161944644.0200986,capex_overrun,Capex Overrun,Investment,Economics
+8,taxes_usd,166892430.22710794,capex_overrun,Capex Overrun,Investment,Economics
+9,taxes_usd,171662274.05020633,capex_overrun,Capex Overrun,Investment,Economics
+10,taxes_usd,176255180.6185781,capex_overrun,Capex Overrun,Investment,Economics
+11,taxes_usd,180670315.8973202,capex_overrun,Capex Overrun,Investment,Economics
+12,taxes_usd,184906577.3811749,capex_overrun,Capex Overrun,Investment,Economics
+13,taxes_usd,188962813.55610514,capex_overrun,Capex Overrun,Investment,Economics
+14,taxes_usd,192837854.50364903,capex_overrun,Capex Overrun,Investment,Economics
+15,taxes_usd,196530516.16709036,capex_overrun,Capex Overrun,Investment,Economics
+1,operating_cash_flow_usd,209261985.3447496,capex_overrun,Capex Overrun,Investment,Cash Flow
+2,operating_cash_flow_usd,231598875.21454364,capex_overrun,Capex Overrun,Investment,Cash Flow
+3,operating_cash_flow_usd,266279058.3828963,capex_overrun,Capex Overrun,Investment,Cash Flow
+4,operating_cash_flow_usd,287670520.60696626,capex_overrun,Capex Overrun,Investment,Cash Flow
+5,operating_cash_flow_usd,300474930.69478744,capex_overrun,Capex Overrun,Investment,Cash Flow
+6,operating_cash_flow_usd,311269365.4332516,capex_overrun,Capex Overrun,Investment,Cash Flow
+7,operating_cash_flow_usd,321472203.8010913,capex_overrun,Capex Overrun,Investment,Cash Flow
+8,operating_cash_flow_usd,331293928.6597815,capex_overrun,Capex Overrun,Investment,Cash Flow
+9,operating_cash_flow_usd,340762424.6071261,capex_overrun,Capex Overrun,Investment,Cash Flow
+10,operating_cash_flow_usd,349879686.8995656,capex_overrun,Capex Overrun,Investment,Cash Flow
+11,operating_cash_flow_usd,358644059.91557604,capex_overrun,Capex Overrun,Investment,Cash Flow
+12,operating_cash_flow_usd,367053355.09994423,capex_overrun,Capex Overrun,Investment,Cash Flow
+13,operating_cash_flow_usd,375105286.61137295,capex_overrun,Capex Overrun,Investment,Cash Flow
+14,operating_cash_flow_usd,382797532.0744078,capex_overrun,Capex Overrun,Investment,Cash Flow
+15,operating_cash_flow_usd,390127741.0481048,capex_overrun,Capex Overrun,Investment,Cash Flow
+1,capex_usd,348000000.0,capex_overrun,Capex Overrun,Investment,Investment
+2,capex_usd,216000000.0,capex_overrun,Capex Overrun,Investment,Investment
+3,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+4,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+5,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+6,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+7,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+8,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+9,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+10,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+11,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+12,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+13,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+14,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+15,capex_usd,12000000.0,capex_overrun,Capex Overrun,Investment,Investment
+1,working_capital_delta_usd,247798936.71194306,capex_overrun,Capex Overrun,Investment,Working Capital
+2,working_capital_delta_usd,12259642.035888731,capex_overrun,Capex Overrun,Investment,Working Capital
+3,working_capital_delta_usd,24321046.040909022,capex_overrun,Capex Overrun,Investment,Working Capital
+4,working_capital_delta_usd,8610008.127101958,capex_overrun,Capex Overrun,Investment,Working Capital
+5,working_capital_delta_usd,-428880.8319680691,capex_overrun,Capex Overrun,Investment,Working Capital
+6,working_capital_delta_usd,-2189876.989608288,capex_overrun,Capex Overrun,Investment,Working Capital
+7,working_capital_delta_usd,-2470520.8160665035,capex_overrun,Capex Overrun,Investment,Working Capital
+8,working_capital_delta_usd,-2540006.407076955,capex_overrun,Capex Overrun,Investment,Working Capital
+9,working_capital_delta_usd,-2581111.9810711145,capex_overrun,Capex Overrun,Investment,Working Capital
+10,working_capital_delta_usd,-2618607.569707811,capex_overrun,Capex Overrun,Investment,Working Capital
+11,working_capital_delta_usd,-2655823.667710662,capex_overrun,Capex Overrun,Investment,Working Capital
+12,working_capital_delta_usd,-2693209.599494517,capex_overrun,Capex Overrun,Investment,Working Capital
+13,working_capital_delta_usd,-2730828.0708099008,capex_overrun,Capex Overrun,Investment,Working Capital
+14,working_capital_delta_usd,-2768689.9257819057,capex_overrun,Capex Overrun,Investment,Working Capital
+15,working_capital_delta_usd,-266505278.00454184,capex_overrun,Capex Overrun,Investment,Working Capital
+1,free_cash_flow_usd,-386536951.36719346,capex_overrun,Capex Overrun,Investment,Cash Flow
+2,free_cash_flow_usd,3339233.178654909,capex_overrun,Capex Overrun,Investment,Cash Flow
+3,free_cash_flow_usd,229958012.34198728,capex_overrun,Capex Overrun,Investment,Cash Flow
+4,free_cash_flow_usd,267060512.4798643,capex_overrun,Capex Overrun,Investment,Cash Flow
+5,free_cash_flow_usd,288903811.5267555,capex_overrun,Capex Overrun,Investment,Cash Flow
+6,free_cash_flow_usd,301459242.4228599,capex_overrun,Capex Overrun,Investment,Cash Flow
+7,free_cash_flow_usd,311942724.6171578,capex_overrun,Capex Overrun,Investment,Cash Flow
+8,free_cash_flow_usd,321833935.0668585,capex_overrun,Capex Overrun,Investment,Cash Flow
+9,free_cash_flow_usd,331343536.58819723,capex_overrun,Capex Overrun,Investment,Cash Flow
+10,free_cash_flow_usd,340498294.4692734,capex_overrun,Capex Overrun,Investment,Cash Flow
+11,free_cash_flow_usd,349299883.5832867,capex_overrun,Capex Overrun,Investment,Cash Flow
+12,free_cash_flow_usd,357746564.69943875,capex_overrun,Capex Overrun,Investment,Cash Flow
+13,free_cash_flow_usd,365836114.68218285,capex_overrun,Capex Overrun,Investment,Cash Flow
+14,free_cash_flow_usd,373566222.0001897,capex_overrun,Capex Overrun,Investment,Cash Flow
+15,free_cash_flow_usd,644633019.0526466,capex_overrun,Capex Overrun,Investment,Cash Flow
+1,discounted_fcf_usd,-349807195.8074149,capex_overrun,Capex Overrun,Investment,Valuation
+2,discounted_fcf_usd,2734778.7135029254,capex_overrun,Capex Overrun,Investment,Valuation
+3,discounted_fcf_usd,170436148.72712353,capex_overrun,Capex Overrun,Investment,Valuation
+4,discounted_fcf_usd,179126799.354733,capex_overrun,Capex Overrun,Investment,Valuation
+5,discounted_fcf_usd,175364580.8165481,capex_overrun,Capex Overrun,Investment,Valuation
+6,discounted_fcf_usd,165597942.03248292,capex_overrun,Capex Overrun,Investment,Valuation
+7,discounted_fcf_usd,155073973.46355253,capex_overrun,Capex Overrun,Investment,Valuation
+8,discounted_fcf_usd,144788347.42749116,capex_overrun,Capex Overrun,Investment,Valuation
+9,discounted_fcf_usd,134901879.7238538,capex_overrun,Capex Overrun,Investment,Valuation
+10,discounted_fcf_usd,125456209.19686042,capex_overrun,Capex Overrun,Investment,Valuation
+11,discounted_fcf_usd,116469814.2008613,capex_overrun,Capex Overrun,Investment,Valuation
+12,discounted_fcf_usd,107951364.41844024,capex_overrun,Capex Overrun,Investment,Valuation
+13,discounted_fcf_usd,99902639.26972592,capex_overrun,Capex Overrun,Investment,Valuation
+14,discounted_fcf_usd,92319981.32610156,capex_overrun,Capex Overrun,Investment,Valuation
+15,discounted_fcf_usd,144171154.6328064,capex_overrun,Capex Overrun,Investment,Valuation
+1,base_processed_tonnes,150000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+2,base_processed_tonnes,150000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+3,base_processed_tonnes,150000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+4,base_processed_tonnes,148000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+5,base_processed_tonnes,146000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+6,base_processed_tonnes,144000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+7,base_processed_tonnes,142000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+8,base_processed_tonnes,140000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+9,base_processed_tonnes,138000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+10,base_processed_tonnes,136000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+11,base_processed_tonnes,134000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+12,base_processed_tonnes,132000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+13,base_processed_tonnes,130000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+14,base_processed_tonnes,128000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+15,base_processed_tonnes,126000000.0,committee_downside,Investment Committee Downside,Stress,Operations
+1,expanded_tonnes,139308954.09970084,committee_downside,Investment Committee Downside,Stress,Operations
+2,expanded_tonnes,145422783.22981185,committee_downside,Investment Committee Downside,Stress,Operations
+3,expanded_tonnes,158177216.77018815,committee_downside,Investment Committee Downside,Stress,Operations
+4,expanded_tonnes,162100498.6216285,committee_downside,Investment Committee Downside,Stress,Operations
+5,expanded_tonnes,161004203.25277,committee_downside,Investment Committee Downside,Stress,Operations
+6,expanded_tonnes,158951860.78755316,committee_downside,Investment Committee Downside,Stress,Operations
+7,expanded_tonnes,156764775.94651863,committee_downside,Investment Committee Downside,Stress,Operations
+8,expanded_tonnes,154559569.77137318,committee_downside,Investment Committee Downside,Stress,Operations
+9,expanded_tonnes,152351942.60584542,committee_downside,Investment Committee Downside,Stress,Operations
+10,expanded_tonnes,150143992.34510267,committee_downside,Investment Committee Downside,Stress,Operations
+11,expanded_tonnes,147935998.97925702,committee_downside,Investment Committee Downside,Stress,Operations
+12,expanded_tonnes,145727999.8639193,committee_downside,Investment Committee Downside,Stress,Operations
+13,expanded_tonnes,143519999.98186252,committee_downside,Investment Committee Downside,Stress,Operations
+14,expanded_tonnes,141311999.99758312,committee_downside,Investment Committee Downside,Stress,Operations
+15,expanded_tonnes,139103999.99967802,committee_downside,Investment Committee Downside,Stress,Operations
+1,scenario_price_usd_per_lb,3.1309361401316327,committee_downside,Investment Committee Downside,Stress,Market
+2,scenario_price_usd_per_lb,3.194716052737795,committee_downside,Investment Committee Downside,Stress,Market
+3,scenario_price_usd_per_lb,3.259795218049851,committee_downside,Investment Committee Downside,Stress,Market
+4,scenario_price_usd_per_lb,3.3262001029838717,committee_downside,Investment Committee Downside,Stress,Market
+5,scenario_price_usd_per_lb,3.3939577136101926,committee_downside,Investment Committee Downside,Stress,Market
+6,scenario_price_usd_per_lb,3.463095606136473,committee_downside,Investment Committee Downside,Stress,Market
+7,scenario_price_usd_per_lb,3.5336418981144626,committee_downside,Investment Committee Downside,Stress,Market
+8,scenario_price_usd_per_lb,3.605625279875081,committee_downside,Investment Committee Downside,Stress,Market
+9,scenario_price_usd_per_lb,3.6790750261964273,committee_downside,Investment Committee Downside,Stress,Market
+10,scenario_price_usd_per_lb,3.754021008209479,committee_downside,Investment Committee Downside,Stress,Market
+11,scenario_price_usd_per_lb,3.8304937055463313,committee_downside,Investment Committee Downside,Stress,Market
+12,scenario_price_usd_per_lb,3.908524218735886,committee_downside,Investment Committee Downside,Stress,Market
+13,scenario_price_usd_per_lb,3.988144281852078,committee_downside,Investment Committee Downside,Stress,Market
+14,scenario_price_usd_per_lb,4.069386275419724,committee_downside,Investment Committee Downside,Stress,Market
+15,scenario_price_usd_per_lb,4.152283239583316,committee_downside,Investment Committee Downside,Stress,Market
+1,scenario_grade,0.00323,committee_downside,Investment Committee Downside,Stress,Geology
+2,scenario_grade,0.00318155,committee_downside,Investment Committee Downside,Stress,Geology
+3,scenario_grade,0.0031338267499999998,committee_downside,Investment Committee Downside,Stress,Geology
+4,scenario_grade,0.00308681934875,committee_downside,Investment Committee Downside,Stress,Geology
+5,scenario_grade,0.00304051705851875,committee_downside,Investment Committee Downside,Stress,Geology
+6,scenario_grade,0.0029949093026409683,committee_downside,Investment Committee Downside,Stress,Geology
+7,scenario_grade,0.002949985663101354,committee_downside,Investment Committee Downside,Stress,Geology
+8,scenario_grade,0.0029057358781548336,committee_downside,Investment Committee Downside,Stress,Geology
+9,scenario_grade,0.002862149839982511,committee_downside,Investment Committee Downside,Stress,Geology
+10,scenario_grade,0.0028192175923827736,committee_downside,Investment Committee Downside,Stress,Geology
+11,scenario_grade,0.002776929328497032,committee_downside,Investment Committee Downside,Stress,Geology
+12,scenario_grade,0.0027352753885695764,committee_downside,Investment Committee Downside,Stress,Geology
+13,scenario_grade,0.0026942462577410325,committee_downside,Investment Committee Downside,Stress,Geology
+14,scenario_grade,0.002653832563874917,committee_downside,Investment Committee Downside,Stress,Geology
+15,scenario_grade,0.0026140250754167933,committee_downside,Investment Committee Downside,Stress,Geology
+1,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+2,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+3,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+4,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+5,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+6,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+7,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+8,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+9,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+10,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+11,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+12,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+13,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+14,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+15,scenario_recovery,0.7999,committee_downside,Investment Committee Downside,Stress,Metallurgy
+1,scenario_net_price_usd_per_lb,2.9526986945263674,committee_downside,Investment Committee Downside,Stress,Commercial
+2,scenario_net_price_usd_per_lb,3.013927410628283,committee_downside,Investment Committee Downside,Stress,Commercial
+3,scenario_net_price_usd_per_lb,3.076403409327857,committee_downside,Investment Committee Downside,Stress,Commercial
+4,scenario_net_price_usd_per_lb,3.1401520988645166,committee_downside,Investment Committee Downside,Stress,Commercial
+5,scenario_net_price_usd_per_lb,3.205199405065785,committee_downside,Investment Committee Downside,Stress,Commercial
+6,scenario_net_price_usd_per_lb,3.271571781891014,committee_downside,Investment Committee Downside,Stress,Commercial
+7,scenario_net_price_usd_per_lb,3.339296222189884,committee_downside,Investment Committee Downside,Stress,Commercial
+8,scenario_net_price_usd_per_lb,3.408400268680078,committee_downside,Investment Committee Downside,Stress,Commercial
+9,scenario_net_price_usd_per_lb,3.47891202514857,committee_downside,Investment Committee Downside,Stress,Commercial
+10,scenario_net_price_usd_per_lb,3.5508601678811,committee_downside,Investment Committee Downside,Stress,Commercial
+11,scenario_net_price_usd_per_lb,3.624273957324478,committee_downside,Investment Committee Downside,Stress,Commercial
+12,scenario_net_price_usd_per_lb,3.6991832499864508,committee_downside,Investment Committee Downside,Stress,Commercial
+13,scenario_net_price_usd_per_lb,3.7756185105779947,committee_downside,Investment Committee Downside,Stress,Commercial
+14,scenario_net_price_usd_per_lb,3.853610824402935,committee_downside,Investment Committee Downside,Stress,Commercial
+15,scenario_net_price_usd_per_lb,3.933191909999983,committee_downside,Investment Committee Downside,Stress,Commercial
+1,copper_fine_lb,793507422.8767747,committee_downside,Investment Committee Downside,Stress,Production
+2,copper_fine_lb,815906973.1991917,committee_downside,Investment Committee Downside,Stress,Production
+3,copper_fine_lb,874154812.1155467,committee_downside,Investment Committee Downside,Stress,Production
+4,copper_fine_lb,882398994.0059792,committee_downside,Investment Committee Downside,Stress,Production
+5,copper_fine_lb,863284807.672962,committee_downside,Investment Committee Downside,Stress,Production
+6,copper_fine_lb,839496192.8944435,committee_downside,Investment Committee Downside,Stress,Production
+7,copper_fine_lb,815526036.9773397,committee_downside,Investment Committee Downside,Stress,Production
+8,copper_fine_lb,791993241.8602692,committee_downside,Investment Committee Downside,Stress,Production
+9,copper_fine_lb,768970717.6980294,committee_downside,Investment Committee Downside,Stress,Production
+10,copper_fine_lb,746459064.4741982,committee_downside,Investment Committee Downside,Stress,Production
+11,copper_fine_lb,724449531.3478878,committee_downside,Investment Committee Downside,Stress,Production
+12,copper_fine_lb,702932303.1926601,committee_downside,Investment Committee Downside,Stress,Production
+13,copper_fine_lb,681897587.0946717,committee_downside,Investment Committee Downside,Stress,Production
+14,copper_fine_lb,661335752.2330061,committee_downside,Investment Committee Downside,Stress,Production
+15,copper_fine_lb,641237345.397283,committee_downside,Investment Committee Downside,Stress,Production
+1,revenue_usd,2342988331.6252346,committee_downside,Investment Committee Downside,Stress,Economics
+2,revenue_usd,2459084391.0478,committee_downside,Investment Committee Downside,Stress,Economics
+3,revenue_usd,2689252844.27262,committee_downside,Investment Committee Downside,Stress,Economics
+4,revenue_usd,2770867053.0638137,committee_downside,Investment Committee Downside,Stress,Economics
+5,revenue_usd,2766999951.955708,committee_downside,Investment Committee Downside,Stress,Economics
+6,revenue_usd,2746472055.6783967,committee_downside,Investment Committee Downside,Stress,Economics
+7,revenue_usd,2723283014.375918,committee_downside,Investment Committee Downside,Stress,Economics
+8,revenue_usd,2699429978.3493476,committee_downside,Investment Committee Downside,Stress,Economics
+9,revenue_usd,2675181476.786801,committee_downside,Investment Committee Downside,Stress,Economics
+10,revenue_usd,2650571758.99522,committee_downside,Investment Committee Downside,Stress,Economics
+11,revenue_usd,2625603569.8600726,committee_downside,Investment Committee Downside,Stress,Economics
+12,revenue_usd,2600275401.8446856,committee_downside,Investment Committee Downside,Stress,Economics
+13,revenue_usd,2574585152.153113,committee_downside,Investment Committee Downside,Stress,Economics
+14,revenue_usd,2548530613.36977,committee_downside,Investment Committee Downside,Stress,Economics
+15,revenue_usd,2522109539.306458,committee_downside,Investment Committee Downside,Stress,Economics
+1,opex_usd,3264008794.5559907,committee_downside,Investment Committee Downside,Stress,Economics
+2,opex_usd,3407255811.0744915,committee_downside,Investment Committee Downside,Stress,Economics
+3,opex_usd,3706092188.925508,committee_downside,Investment Committee Downside,Stress,Economics
+4,opex_usd,3798014682.7047553,committee_downside,Investment Committee Downside,Stress,Economics
+5,opex_usd,3772328482.2124014,committee_downside,Investment Committee Downside,Stress,Economics
+6,opex_usd,3724242098.2523704,committee_downside,Investment Committee Downside,Stress,Economics
+7,opex_usd,3672998700.4269314,committee_downside,Investment Committee Downside,Stress,Economics
+8,opex_usd,3621330719.7432737,committee_downside,Investment Committee Downside,Stress,Economics
+9,opex_usd,3569606015.254958,committee_downside,Investment Committee Downside,Stress,Economics
+10,opex_usd,3517873740.6457553,committee_downside,Investment Committee Downside,Stress,Economics
+11,opex_usd,3466140456.0839915,committee_downside,Investment Committee Downside,Stress,Economics
+12,opex_usd,3414407036.811629,committee_downside,Investment Committee Downside,Stress,Economics
+13,opex_usd,3362673599.575039,committee_downside,Investment Committee Downside,Stress,Economics
+14,opex_usd,3310940159.9433722,committee_downside,Investment Committee Downside,Stress,Economics
+15,opex_usd,3259206719.9924555,committee_downside,Investment Committee Downside,Stress,Economics
+1,ebitda_usd,-921020462.9307561,committee_downside,Investment Committee Downside,Stress,Economics
+2,ebitda_usd,-948171420.0266914,committee_downside,Investment Committee Downside,Stress,Economics
+3,ebitda_usd,-1016839344.6528878,committee_downside,Investment Committee Downside,Stress,Economics
+4,ebitda_usd,-1027147629.6409416,committee_downside,Investment Committee Downside,Stress,Economics
+5,ebitda_usd,-1005328530.2566934,committee_downside,Investment Committee Downside,Stress,Economics
+6,ebitda_usd,-977770042.5739737,committee_downside,Investment Committee Downside,Stress,Economics
+7,ebitda_usd,-949715686.0510135,committee_downside,Investment Committee Downside,Stress,Economics
+8,ebitda_usd,-921900741.3939261,committee_downside,Investment Committee Downside,Stress,Economics
+9,ebitda_usd,-894424538.4681573,committee_downside,Investment Committee Downside,Stress,Economics
+10,ebitda_usd,-867301981.6505351,committee_downside,Investment Committee Downside,Stress,Economics
+11,ebitda_usd,-840536886.2239189,committee_downside,Investment Committee Downside,Stress,Economics
+12,ebitda_usd,-814131634.9669433,committee_downside,Investment Committee Downside,Stress,Economics
+13,ebitda_usd,-788088447.421926,committee_downside,Investment Committee Downside,Stress,Economics
+14,ebitda_usd,-762409546.5736022,committee_downside,Investment Committee Downside,Stress,Economics
+15,ebitda_usd,-737097180.6859975,committee_downside,Investment Committee Downside,Stress,Economics
+1,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+2,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+3,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+4,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+5,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+6,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+7,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+8,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+9,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+10,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+11,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+12,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+13,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+14,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+15,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+1,operating_cash_flow_usd,-921020462.9307561,committee_downside,Investment Committee Downside,Stress,Cash Flow
+2,operating_cash_flow_usd,-948171420.0266914,committee_downside,Investment Committee Downside,Stress,Cash Flow
+3,operating_cash_flow_usd,-1016839344.6528878,committee_downside,Investment Committee Downside,Stress,Cash Flow
+4,operating_cash_flow_usd,-1027147629.6409416,committee_downside,Investment Committee Downside,Stress,Cash Flow
+5,operating_cash_flow_usd,-1005328530.2566934,committee_downside,Investment Committee Downside,Stress,Cash Flow
+6,operating_cash_flow_usd,-977770042.5739737,committee_downside,Investment Committee Downside,Stress,Cash Flow
+7,operating_cash_flow_usd,-949715686.0510135,committee_downside,Investment Committee Downside,Stress,Cash Flow
+8,operating_cash_flow_usd,-921900741.3939261,committee_downside,Investment Committee Downside,Stress,Cash Flow
+9,operating_cash_flow_usd,-894424538.4681573,committee_downside,Investment Committee Downside,Stress,Cash Flow
+10,operating_cash_flow_usd,-867301981.6505351,committee_downside,Investment Committee Downside,Stress,Cash Flow
+11,operating_cash_flow_usd,-840536886.2239189,committee_downside,Investment Committee Downside,Stress,Cash Flow
+12,operating_cash_flow_usd,-814131634.9669433,committee_downside,Investment Committee Downside,Stress,Cash Flow
+13,operating_cash_flow_usd,-788088447.421926,committee_downside,Investment Committee Downside,Stress,Cash Flow
+14,operating_cash_flow_usd,-762409546.5736022,committee_downside,Investment Committee Downside,Stress,Cash Flow
+15,operating_cash_flow_usd,-737097180.6859975,committee_downside,Investment Committee Downside,Stress,Cash Flow
+1,capex_usd,333500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+2,capex_usd,206999999.99999997,committee_downside,Investment Committee Downside,Stress,Investment
+3,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+4,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+5,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+6,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+7,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+8,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+9,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+10,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+11,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+12,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+13,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+14,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+15,capex_usd,11500000.0,committee_downside,Investment Committee Downside,Stress,Investment
+1,working_capital_delta_usd,164009183.21376643,committee_downside,Investment Committee Downside,Stress,Working Capital
+2,working_capital_delta_usd,8126724.159579605,committee_downside,Investment Committee Downside,Stress,Working Capital
+3,working_capital_delta_usd,16111791.725737393,committee_downside,Investment Committee Downside,Stress,Working Capital
+4,working_capital_delta_usd,5712994.615383565,committee_downside,Investment Committee Downside,Stress,Working Capital
+5,working_capital_delta_usd,-270697.07756739855,committee_downside,Investment Committee Downside,Stress,Working Capital
+6,working_capital_delta_usd,-1436952.739411801,committee_downside,Investment Committee Downside,Stress,Working Capital
+7,working_capital_delta_usd,-1623232.8911735117,committee_downside,Investment Committee Downside,Stress,Working Capital
+8,working_capital_delta_usd,-1669712.521859914,committee_downside,Investment Committee Downside,Stress,Working Capital
+9,working_capital_delta_usd,-1697395.1093782783,committee_downside,Investment Committee Downside,Stress,Working Capital
+10,working_capital_delta_usd,-1722680.245410651,committee_downside,Investment Committee Downside,Stress,Working Capital
+11,working_capital_delta_usd,-1747773.2394603193,committee_downside,Investment Committee Downside,Stress,Working Capital
+12,working_capital_delta_usd,-1772971.761077106,committee_downside,Investment Committee Downside,Stress,Working Capital
+13,working_capital_delta_usd,-1798317.478410095,committee_downside,Investment Committee Downside,Stress,Working Capital
+14,working_capital_delta_usd,-1823817.7148340046,committee_downside,Investment Committee Downside,Stress,Working Capital
+15,working_capital_delta_usd,-176547667.7514521,committee_downside,Investment Committee Downside,Stress,Working Capital
+1,free_cash_flow_usd,-1418529646.1445224,committee_downside,Investment Committee Downside,Stress,Cash Flow
+2,free_cash_flow_usd,-1163298144.186271,committee_downside,Investment Committee Downside,Stress,Cash Flow
+3,free_cash_flow_usd,-1044451136.3786252,committee_downside,Investment Committee Downside,Stress,Cash Flow
+4,free_cash_flow_usd,-1044360624.2563252,committee_downside,Investment Committee Downside,Stress,Cash Flow
+5,free_cash_flow_usd,-1016557833.179126,committee_downside,Investment Committee Downside,Stress,Cash Flow
+6,free_cash_flow_usd,-987833089.8345618,committee_downside,Investment Committee Downside,Stress,Cash Flow
+7,free_cash_flow_usd,-959592453.15984,committee_downside,Investment Committee Downside,Stress,Cash Flow
+8,free_cash_flow_usd,-931731028.8720663,committee_downside,Investment Committee Downside,Stress,Cash Flow
+9,free_cash_flow_usd,-904227143.358779,committee_downside,Investment Committee Downside,Stress,Cash Flow
+10,free_cash_flow_usd,-877079301.4051244,committee_downside,Investment Committee Downside,Stress,Cash Flow
+11,free_cash_flow_usd,-850289112.9844586,committee_downside,Investment Committee Downside,Stress,Cash Flow
+12,free_cash_flow_usd,-823858663.2058661,committee_downside,Investment Committee Downside,Stress,Cash Flow
+13,free_cash_flow_usd,-797790129.9435159,committee_downside,Investment Committee Downside,Stress,Cash Flow
+14,free_cash_flow_usd,-772085728.8587682,committee_downside,Investment Committee Downside,Stress,Cash Flow
+15,free_cash_flow_usd,-572049512.9345454,committee_downside,Investment Committee Downside,Stress,Cash Flow
+1,discounted_fcf_usd,-1272223897.887464,committee_downside,Investment Committee Downside,Stress,Valuation
+2,discounted_fcf_usd,-935710063.8953295,committee_downside,Investment Committee Downside,Stress,Valuation
+3,discounted_fcf_usd,-753465765.7083457,committee_downside,Investment Committee Downside,Stress,Valuation
+4,discounted_fcf_usd,-675695489.1251986,committee_downside,Investment Committee Downside,Stress,Valuation
+5,discounted_fcf_usd,-589871962.8972825,committee_downside,Investment Committee Downside,Stress,Valuation
+6,discounted_fcf_usd,-514084329.1999745,committee_downside,Investment Committee Downside,Stress,Valuation
+7,discounted_fcf_usd,-447881116.38228965,committee_downside,Investment Committee Downside,Stress,Valuation
+8,discounted_fcf_usd,-390024258.35765976,committee_downside,Investment Committee Downside,Stress,Valuation
+9,discounted_fcf_usd,-339471823.4842402,committee_downside,Investment Committee Downside,Stress,Valuation
+10,discounted_fcf_usd,-295318183.3349951,committee_downside,Investment Committee Downside,Stress,Valuation
+11,discounted_fcf_usd,-256769288.22957405,committee_downside,Investment Committee Downside,Stress,Valuation
+12,discounted_fcf_usd,-223128118.97078472,committee_downside,Investment Committee Downside,Stress,Valuation
+13,discounted_fcf_usd,-193782869.70701462,committee_downside,Investment Committee Downside,Stress,Valuation
+14,discounted_fcf_usd,-168196665.51783204,committee_downside,Investment Committee Downside,Stress,Valuation
+15,discounted_fcf_usd,-111766231.92006709,committee_downside,Investment Committee Downside,Stress,Valuation

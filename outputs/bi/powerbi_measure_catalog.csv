@@ -1,0 +1,7 @@
+measure_name,table_name,dax_template,format_hint
+Base NPV,dashboard_kpis,"Base NPV = CALCULATE(MAX(dashboard_kpis[value]), dashboard_kpis[metric] = ""python_base_npv_usd"")",Currency
+Expected NPV,dashboard_kpis,"Expected NPV = CALCULATE(MAX(dashboard_kpis[value]), dashboard_kpis[metric] = ""python_expected_npv_usd"")",Currency
+Probability of Loss,dashboard_kpis,"Probability of Loss = CALCULATE(MAX(dashboard_kpis[value]), dashboard_kpis[metric] = ""python_probability_of_loss"")",Percentage
+Scenario NPV,fact_scenario_kpis,"Scenario NPV = CALCULATE(SUM(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = ""base_npv_usd"")",Currency
+Scenario Revenue,fact_scenario_kpis,"Scenario Revenue = CALCULATE(SUM(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = ""total_revenue_usd"")",Currency
+Tornado Impact,fact_tornado_sensitivity,Tornado Impact = MAX(fact_tornado_sensitivity[impact_vs_base_usd]),Currency

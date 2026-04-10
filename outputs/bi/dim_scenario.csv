@@ -1,0 +1,7 @@
+scenario_id,scenario_name,scenario_category,description,sort_order,price_factor,grade_factor,recovery_factor,throughput_factor,opex_factor,capex_factor,wacc_shift_bps
+base,Base Case,Reference,Calibrated reference case derived from the workbook assumptions.,1,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+bull_market,Bull Market,Market,Higher copper prices with stable operations.,2,1.15,1.0,1.0,1.02,1.0,1.0,-50.0
+bear_market,Bear Market,Market,Lower copper prices and tighter financial conditions.,3,0.85,1.0,1.0,0.98,1.03,1.0,100.0
+operational_stress,Operational Stress,Operations,"Lower throughput, lower recovery, and higher operating costs.",4,1.0,0.97,0.96,0.94,1.08,1.0,0.0
+capex_overrun,Capex Overrun,Investment,Strategic expansion with materially higher capital burden.,5,1.0,1.0,1.0,1.0,1.0,1.2,50.0
+committee_downside,Investment Committee Downside,Stress,Combined market and operational downside used for decision stress testing.,6,0.8,0.95,0.95,0.92,1.1,1.15,150.0
