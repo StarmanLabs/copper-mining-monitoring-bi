@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copper Mining Risk Command Center</title>
+  <style>
+    :root {
+      --bg: #171412;
+      --bg-soft: #221c19;
+      --panel: rgba(31, 25, 22, 0.88);
+      --panel-strong: rgba(43, 34, 30, 0.96);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f5ede2;
+      --muted: #c9b8a5;
+      --accent: #e07a3f;
+      --accent-soft: #d4a373;
+      --teal: #4f7c82;
+      --olive: #7a9e46;
+      --danger: #c75746;
+      --surface: #2b221e;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(224, 122, 63, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(79, 124, 130, 0.18), transparent 25%),
+        linear-gradient(180deg, #171412 0%, #120f0d 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1520px;
+      margin: 0 auto;
+      padding: 28px 24px 40px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .hero-card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-copy {
+      padding: 28px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 20%, rgba(224, 122, 63, 0.18), transparent 35%),
+        radial-gradient(circle at 90% 18%, rgba(79, 124, 130, 0.18), transparent 25%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 0.96;
+      max-width: 10ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy p {
+      margin: 18px 0 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 24px;
+    }
+
+    .hero-metric {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+    }
+
+    .hero-metric .label,
+    .kpi-card .label,
+    .chart-meta,
+    .mini-stat .label,
+    .insight-card .label,
+    .benchmark-table th {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-metric .value,
+    .kpi-card .value,
+    .mini-stat .value {
+      margin-top: 10px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-metric .subtext,
+    .kpi-card .subtext,
+    .insight-card .body {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 44ch;
+      line-height: 1.6;
+    }
+
+    .selector-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .selector {
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 140ms ease;
+    }
+
+    .selector:hover {
+      border-color: rgba(224, 122, 63, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .selector.active {
+      background: linear-gradient(135deg, rgba(224, 122, 63, 0.18), rgba(224, 122, 63, 0.1));
+      border-color: rgba(224, 122, 63, 0.5);
+      color: #fff3e8;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-card,
+    .mini-stat,
+    .insight-card {
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .kpi-card .trend {
+      margin-top: 10px;
+      color: var(--accent-soft);
+      font-size: 12px;
+    }
+
+    .mini-stat-grid,
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chart-wrap {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .insight-card .title {
+      margin-top: 10px;
+      font-size: 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: -0.03em;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .benchmark-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    .benchmark-table th,
+    .benchmark-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .benchmark-table td {
+      color: var(--text);
+    }
+
+    .heatmap-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 6px;
+      margin-top: 8px;
+    }
+
+    .heatmap-table th,
+    .heatmap-table td {
+      text-align: center;
+      padding: 10px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .heatmap-table th {
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      font-weight: 500;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1200px) {
+      .hero,
+      .content-grid,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .kpi-grid,
+      .mini-stat-grid,
+      .insight-grid,
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 18px 14px 30px;
+      }
+
+      .panel-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-card hero-copy">
+        <div class="eyebrow">Portfolio Demonstration</div>
+        <h1>Copper Mining Risk Command Center</h1>
+        <p>
+          A spreadsheet-based mining valuation has been rebuilt into a reproducible Python risk engine,
+          then translated into a decision dashboard for scenario comparison, downside analysis, and BI delivery.
+        </p>
+        <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:10px;">
+          <div class="pill">Monte Carlo downside analysis</div>
+          <div class="pill">Deterministic scenario comparison</div>
+          <div class="pill">Power BI and Tableau ready outputs</div>
+        </div>
+      </div>
+      <div class="hero-card hero-metrics" id="hero-metrics"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="eyebrow">Scenario Layer</div>
+          <h2 class="panel-title">Executive Scenario View</h2>
+        </div>
+        <div class="panel-subtitle">
+          Switch scenarios to see how value creation, pricing, margins, and payback change under market and operating stress.
+        </div>
+      </div>
+      <div class="selector-row" id="scenario-selector"></div>
+      <div class="kpi-grid" id="scenario-kpis"></div>
+      <div class="mini-stat-grid" id="scenario-mini-stats"></div>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Selected Scenario</div>
+              <h2 class="panel-title">Cash Flow Trajectory</h2>
+            </div>
+            <div class="panel-subtitle" id="scenario-caption"></div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-legend" id="cashflow-legend"></div>
+            <div id="cashflow-chart"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Scenario Comparison</div>
+              <h2 class="panel-title">NPV Across Deterministic Cases</h2>
+            </div>
+            <div class="panel-subtitle">
+              The spread between upside and committee-downside cases is the core signal for investment fragility.
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <div id="scenario-comparison-chart"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Operating Drivers</div>
+              <h2 class="panel-title">Market and Metallurgy Profile</h2>
+            </div>
+            <div class="panel-subtitle">
+              Net price, head grade, and recovery are displayed as indexed trajectories so the dashboard compares direction and slippage rather than mixing incompatible units on one axis.
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-legend" id="driver-legend"></div>
+            <div id="driver-chart"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Reconciliation</div>
+              <h2 class="panel-title">Excel vs Python Benchmark</h2>
+            </div>
+            <div class="panel-subtitle">
+              The portfolio story is stronger when the migration is transparent about what has already been replicated, what still needs reconciliation, and where currency normalization is not finished yet.
+            </div>
+          </div>
+          <table class="benchmark-table" id="benchmark-table"></table>
+        </section>
+      </div>
+    </section>
+
+    <section class="two-column">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="eyebrow">Monte Carlo Risk</div>
+            <h2 class="panel-title">Distribution and Tail Risk</h2>
+          </div>
+          <div class="panel-subtitle">
+            The central message is not just expected value. It is the shape of the left tail and the cost of being wrong.
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div id="distribution-chart"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="eyebrow">Sensitivity</div>
+            <h2 class="panel-title">Tornado Ranking</h2>
+          </div>
+          <div class="panel-subtitle">
+            The tornado chart isolates which levers do the most damage or create the most upside relative to the base case.
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div id="tornado-chart"></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="two-column">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="eyebrow">Stress Grid</div>
+            <h2 class="panel-title">Price vs Grade Heatmap</h2>
+          </div>
+          <div class="panel-subtitle">
+            A portfolio reviewer should be able to see immediately where the project moves from value creation to value destruction.
+          </div>
+        </div>
+        <div id="heatmap-table"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="eyebrow">Narrative Layer</div>
+            <h2 class="panel-title">Investment Messages</h2>
+          </div>
+          <div class="panel-subtitle">
+            These are the signals this dashboard is designed to communicate to an investment committee, strategy team, or hiring reviewer.
+          </div>
+        </div>
+        <div class="insight-grid" id="insight-grid"></div>
+      </section>
+    </section>
+
+    <div class="footer-note" id="footer-note"></div>
+  </div>
+
+  <script>
+    const dashboardData = {"generated_at":"2026-04-14 23:05 UTC","default_scenario_id":"base","scenario_order":["base","bull_market","bear_market","operational_stress","capex_overrun","committee_downside"],"kpi_specs":[{"key":"base_npv_usd","label":"Base NPV","format":"currency"},{"key":"total_revenue_usd","label":"Total Revenue","format":"currency"},{"key":"total_ebitda_usd","label":"Total EBITDA","format":"currency"},{"key":"total_free_cash_flow_usd","label":"Total Free Cash Flow","format":"currency"},{"key":"average_net_price_usd_per_lb","label":"Avg Net Price","format":"usd_per_lb"},{"key":"payback_year","label":"Payback","format":"year"}],"hero_metrics":[{"label":"Expected NPV","value":2258519400.91288,"format":"currency","subtext":"Monte Carlo expected value from the Python engine."},{"label":"Probability of Loss","value":34.53,"format":"percent","subtext":"Share of simulated outcomes with negative NPV."},{"label":"5% VaR","value":-7255327432.314742,"format":"currency","subtext":"The left-tail loss threshold at the 5th percentile."},{"label":"Committee Downside","value":-7167390064.618053,"format":"currency","subtext":"Deterministic downside case aligned with a tougher investment committee lens."}],"scenarios":{"base":{"id":"base","name":"Base Case","short_name":"Base","category":"Reference","kpis":{"average_head_grade":0.0030651943893074,"average_net_price_usd_per_lb":4.290191661374608,"average_recovery":0.8420000000000003,"base_npv_usd":1627402709.6891494,"payback_year":4.0,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":600000000.0,"total_ebitda_usd":7253670608.1115265,"total_free_cash_flow_usd":4220884155.34216,"total_revenue_usd":59493906977.87726,"average_head_grade_pct":0.30651943893074,"average_recovery_pct":84.20000000000003},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":3539984810.1706147},{"year":2,"value":3715122553.540454},{"year":3,"value":4062566068.410583},{"year":4,"value":4185566184.512039},{"year":5,"value":4179439315.483924},{"year":6,"value":4148155358.48952},{"year":7,"value":4112862203.974284},{"year":8,"value":4076576398.158899},{"year":9,"value":4039703369.857884},{"year":10,"value":4002294690.290629},{"year":11,"value":3964354352.180476},{"year":12,"value":3925879929.3305545},{"year":13,"value":3886868099.747556},{"year":14,"value":3847315386.522101},{"year":15,"value":3807218257.20774}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":314679677.21014977},{"year":2,"value":348268985.285028},{"year":3,"value":400419636.6660094},{"year":4,"value":432587249.033032},{"year":5,"value":451842001.0447931},{"year":6,"value":468074233.7342129},{"year":7,"value":483416847.8211899},{"year":8,"value":498186358.8868895},{"year":9,"value":512424698.6573324},{"year":10,"value":526134867.51814365},{"year":11,"value":539314375.8128963},{"year":12,"value":551959932.4811192},{"year":13,"value":564068100.1674781},{"year":14,"value":575635386.5780568},{"year":15,"value":586658257.2151952}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-328536951.36719346},{"year":2,"value":39339233.17865491},{"year":3,"value":231958012.34198728},{"year":4,"value":269060512.4798643},{"year":5,"value":290903811.5267555},{"year":6,"value":303459242.4228599},{"year":7,"value":313942724.6171578},{"year":8,"value":323833935.0668585},{"year":9,"value":333343536.58819723},{"year":10,"value":342498294.4692734},{"year":11,"value":351299883.5832867},{"year":12,"value":359746564.69943875},{"year":13,"value":367836114.6821829},{"year":14,"value":375566222.0001897},{"year":15,"value":646633019.0526466}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.03708762336754},{"year":3,"value":104.11567250658777},{"year":4,"value":106.23659998520536},{"year":5,"value":108.40073261499042},{"year":6,"value":110.6089505227301},{"year":7,"value":112.8621517641653},{"year":8,"value":115.1612526892194},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439167},{"year":11,"value":122.34339935739753},{"year":12,"value":124.83564160371412},{"year":13,"value":127.37865300837485},{"year":14,"value":129.97346778362066},{"year":15,"value":132.62114120950235}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.5},{"year":3,"value":97.02250000000001},{"year":4,"value":95.56716250000001},{"year":5,"value":94.13365506250001},{"year":6,"value":92.72165023656179},{"year":7,"value":91.33082548301176},{"year":8,"value":89.96086310076765},{"year":9,"value":88.61145015425588},{"year":10,"value":87.28227840194118},{"year":11,"value":85.97304422591176},{"year":12,"value":84.68344856252355},{"year":13,"value":83.4131968340853},{"year":14,"value":82.16199888157355},{"year":15,"value":80.92956889835001}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.30651943893074,"format":"percent"},{"label":"Average Recovery","value":84.20000000000003,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]},"bull_market":{"id":"bull_market","name":"Bull Market","short_name":"Bull Mkt","category":"Market","kpis":{"average_head_grade":0.0030651943893074,"average_net_price_usd_per_lb":4.941670410580798,"average_recovery":0.8420000000000003,"base_npv_usd":4908599968.8642845,"payback_year":2.0,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":600000000.0,"total_ebitda_usd":16614636120.41899,"total_free_cash_flow_usd":10445426904.62602,"total_revenue_usd":69899677217.58002,"average_head_grade_pct":0.30651943893074,"average_recovery_pct":84.20000000000003},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":4160151853.1624894},{"year":2,"value":4365807187.972677},{"year":3,"value":4773927299.668527},{"year":4,"value":4918286951.417319},{"year":5,"value":4910913458.22297},{"year":6,"value":4873985048.742195},{"year":7,"value":4832352077.5752735},{"year":8,"value":4789558997.851715},{"year":9,"value":4746082089.637001},{"year":10,"value":4701981851.83113},{"year":11,"value":4657262882.43481},{"year":12,"value":4611922239.661152},{"year":13,"value":4565955931.170992},{"year":14,"value":4519359784.491661},{"year":15,"value":4472129563.74012}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":870340617.5428152},{"year":2,"value":931616548.3521425},{"year":3,"value":1038537939.2890624},{"year":4,"value":1090248437.228732},{"year":5,"value":1108764197.4950562},{"year":6,"value":1120302301.491783},{"year":7,"value":1130317814.299118},{"year":8,"value":1139601157.7942655},{"year":9,"value":1148257845.0124388},{"year":10,"value":1156298832.6031947},{"year":11,"value":1163722106.5398784},{"year":12,"value":1170523842.8747282},{"year":13,"value":1176699931.5993128},{"year":14,"value":1182246184.5487366},{"year":15,"value":1187158363.747724}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-2434119.0554020405},{"year":2,"value":425129131.2174615},{"year":3,"value":652059321.8085171},{"year":4,"value":704910035.1346915},{"year":5,"value":727844335.8578167},{"year":6,"value":737586019.1556897},{"year":7,"value":744575654.490598},{"year":8,"value":750830285.5138359},{"year":9,"value":756634850.508302},{"year":10,"value":762025740.3275354},{"year":11,"value":767005528.7067616},{"year":12,"value":771572200.5058503},{"year":13,"value":775723096.1078544},{"year":14,"value":779455442.9924629},{"year":15,"value":1092509381.354045}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.03708762336751},{"year":3,"value":104.11567250658777},{"year":4,"value":106.23659998520536},{"year":5,"value":108.40073261499043},{"year":6,"value":110.60895052273013},{"year":7,"value":112.86215176416532},{"year":8,"value":115.16125268921937},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439167},{"year":11,"value":122.34339935739756},{"year":12,"value":124.83564160371412},{"year":13,"value":127.37865300837485},{"year":14,"value":129.97346778362066},{"year":15,"value":132.62114120950238}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.5},{"year":3,"value":97.02250000000001},{"year":4,"value":95.56716250000001},{"year":5,"value":94.13365506250001},{"year":6,"value":92.72165023656179},{"year":7,"value":91.33082548301176},{"year":8,"value":89.96086310076765},{"year":9,"value":88.61145015425588},{"year":10,"value":87.28227840194118},{"year":11,"value":85.97304422591176},{"year":12,"value":84.68344856252355},{"year":13,"value":83.4131968340853},{"year":14,"value":82.16199888157355},{"year":15,"value":80.92956889835001}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.30651943893074,"format":"percent"},{"label":"Average Recovery","value":84.20000000000003,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]},"bear_market":{"id":"bear_market","name":"Bear Market","short_name":"Bear Mkt","category":"Market","kpis":{"average_head_grade":0.0030651943893074,"average_net_price_usd_per_lb":3.6387129121684167,"average_recovery":0.8420000000000003,"base_npv_usd":-2434874890.7270813,"payback_year":null,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":600000000.0,"total_ebitda_usd":-3281750320.1280293,"total_free_cash_flow_usd":-3884075182.403729,"total_revenue_usd":49449544271.513504,"average_head_grade_pct":0.30651943893074,"average_recovery_pct":84.20000000000003},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":2941361584.699855},{"year":2,"value":3087041141.985149},{"year":3,"value":3375915029.697333},{"year":4,"value":3478296768.3210745},{"year":5,"value":3473372441.62446},{"year":6,"value":3447536122.4753885},{"year":7,"value":3418361845.256489},{"year":8,"value":3388356585.592735},{"year":9,"value":3357857381.544723},{"year":10,"value":3326907186.308349},{"year":11,"value":3295509407.9344068},{"year":12,"value":3263662117.49972},{"year":13,"value":3231362639.674256},{"year":14,"value":3198608168.561917},{"year":15,"value":3165395850.337644}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":-314261416.510438},{"year":2,"value":-311460849.8118782},{"year":3,"value":-320655578.5056386},{"year":4,"value":-309960169.1514354},{"year":5,"value":-289264287.5703993},{"year":6,"value":-267137764.85261825},{"year":7,"value":-245200297.2444444},{"year":8,"value":-223670320.04843187},{"year":9,"value":-202577709.16511345},{"year":10,"value":-181928538.79819727},{"year":11,"value":-161725944.2110281},{"year":12,"value":-141972727.32009983},{"year":13,"value":-122671679.90187408},{"year":14,"value":-103825623.38160086},{"year":15,"value":-85437413.65483189}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-810156727.4394279},{"year":2,"value":-501658418.8218488},{"year":3,"value":-350876750.6454915},{"year":4,"value":-327126890.8550973},{"year":5,"value":-298919584.70163625},{"year":6,"value":-275329222.5121832},{"year":7,"value":-253158097.8391214},{"year":8,"value":-231569951.8719691},{"year":9,"value":-210442764.8817526},{"year":10,"value":-189762025.1316511},{"year":11,"value":-169528099.72485214},{"year":12,"value":-149743416.98967174},{"year":13,"value":-130410716.45409158},{"year":14,"value":-111532810.40373711},{"year":15,"value":126140295.8688032}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.0370876233675},{"year":3,"value":104.11567250658776},{"year":4,"value":106.23659998520536},{"year":5,"value":108.40073261499039},{"year":6,"value":110.60895052273005},{"year":7,"value":112.86215176416528},{"year":8,"value":115.16125268921935},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439164},{"year":11,"value":122.34339935739753},{"year":12,"value":124.83564160371414},{"year":13,"value":127.37865300837483},{"year":14,"value":129.97346778362063},{"year":15,"value":132.62114120950235}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.5},{"year":3,"value":97.02250000000001},{"year":4,"value":95.56716250000001},{"year":5,"value":94.13365506250001},{"year":6,"value":92.72165023656179},{"year":7,"value":91.33082548301176},{"year":8,"value":89.96086310076765},{"year":9,"value":88.61145015425588},{"year":10,"value":87.28227840194118},{"year":11,"value":85.97304422591176},{"year":12,"value":84.68344856252355},{"year":13,"value":83.4131968340853},{"year":14,"value":82.16199888157355},{"year":15,"value":80.92956889835001}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.30651943893074,"format":"percent"},{"label":"Average Recovery","value":84.20000000000003,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]},"operational_stress":{"id":"operational_stress","name":"Operational Stress","short_name":"Op Stress","category":"Operations","kpis":{"average_head_grade":0.0029732385576281,"average_net_price_usd_per_lb":4.290191661374608,"average_recovery":0.80832,"base_npv_usd":-1368777083.4832346,"payback_year":null,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":600000000.0,"total_ebitda_usd":-957605355.454832,"total_free_cash_flow_usd":-1610148927.423324,"total_revenue_usd":52076682607.13134,"average_head_grade_pct":0.29732385576281,"average_recovery_pct":80.83200000000001},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":3098647823.917024},{"year":2,"value":3251950794.5454583},{"year":3,"value":3556077831.5296984},{"year":4,"value":3663743277.1565537},{"year":5,"value":3658380257.143912},{"year":6,"value":3630996533.6359134},{"year":7,"value":3600103447.280401},{"year":8,"value":3568341465.4476323},{"year":9,"value":3536065471.3309608},{"year":10,"value":3503320606.662715},{"year":11,"value":3470110366.3854327},{"year":12,"value":3436432626.781056},{"year":13,"value":3402284480.015828},{"year":14,"value":3367662882.6536174},{"year":15,"value":3332564742.6451364}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":-175681947.06444073},{"year":2,"value":-166078947.94745064},{"year":3,"value":-161733225.9773922},{"year":4,"value":-146280938.14173412},{"year":5,"value":-125876536.47469424},{"year":6,"value":-105021824.21567392},{"year":7,"value":-84509478.2862196},{"year":8,"value":-64440102.42131138},{"year":9,"value":-44827835.67183876},{"year":10,"value":-25676845.41591215},{"year":11,"value":-6990217.622935295},{"year":12,"value":11229045.979508877},{"year":13,"value":28977920.442133427},{"year":14,"value":46253346.71042395},{"year":15,"value":63052230.65270472}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-682587294.7386324},{"year":2,"value":-356810155.89144105},{"year":3,"value":-193022118.566289},{"year":4,"value":-163817519.335614},{"year":5,"value":-135501125.07380936},{"year":6,"value":-113104963.57011402},{"year":7,"value":-92346962.24133372},{"year":8,"value":-72216763.69301757},{"year":9,"value":-52568516.08367175},{"year":10,"value":-33384704.889134943},{"year":11,"value":-14665500.803525535},{"year":12,"value":-175242.65132021345},{"year":13,"value":11660687.367584676},{"year":14,"value":23181987.37778666},{"year":15,"value":265209265.36920825}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.03708762336754},{"year":3,"value":104.11567250658777},{"year":4,"value":106.23659998520536},{"year":5,"value":108.40073261499042},{"year":6,"value":110.6089505227301},{"year":7,"value":112.8621517641653},{"year":8,"value":115.1612526892194},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439167},{"year":11,"value":122.34339935739753},{"year":12,"value":124.83564160371412},{"year":13,"value":127.37865300837485},{"year":14,"value":129.97346778362066},{"year":15,"value":132.62114120950235}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.50000000000298},{"year":3,"value":97.0224999999999},{"year":4,"value":95.56716249999985},{"year":5,"value":94.13365506250135},{"year":6,"value":92.72165023656437},{"year":7,"value":91.33082548301671},{"year":8,"value":89.96086310076986},{"year":9,"value":88.61145015425981},{"year":10,"value":87.28227840194322},{"year":11,"value":85.97304422591529},{"year":12,"value":84.68344856252531},{"year":13,"value":83.41319683408986},{"year":14,"value":82.16199888157618},{"year":15,"value":80.92956889835298}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.29732385576281,"format":"percent"},{"label":"Average Recovery","value":80.83200000000001,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]},"capex_overrun":{"id":"capex_overrun","name":"Capex Overrun","short_name":"Capex","category":"Investment","kpis":{"average_head_grade":0.0030651943893074,"average_net_price_usd_per_lb":4.290191661374608,"average_recovery":0.8420000000000003,"base_npv_usd":1464488417.496669,"payback_year":4.0,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":720000000.0,"total_ebitda_usd":7253670608.1115265,"total_free_cash_flow_usd":4100884155.34216,"total_revenue_usd":59493906977.87726,"average_head_grade_pct":0.30651943893074,"average_recovery_pct":84.20000000000003},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":3539984810.1706147},{"year":2,"value":3715122553.540454},{"year":3,"value":4062566068.410583},{"year":4,"value":4185566184.512039},{"year":5,"value":4179439315.483924},{"year":6,"value":4148155358.48952},{"year":7,"value":4112862203.974284},{"year":8,"value":4076576398.158899},{"year":9,"value":4039703369.857884},{"year":10,"value":4002294690.290629},{"year":11,"value":3964354352.180476},{"year":12,"value":3925879929.3305545},{"year":13,"value":3886868099.747556},{"year":14,"value":3847315386.522101},{"year":15,"value":3807218257.20774}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":314679677.21014977},{"year":2,"value":348268985.285028},{"year":3,"value":400419636.6660094},{"year":4,"value":432587249.033032},{"year":5,"value":451842001.0447931},{"year":6,"value":468074233.7342129},{"year":7,"value":483416847.8211899},{"year":8,"value":498186358.8868895},{"year":9,"value":512424698.6573324},{"year":10,"value":526134867.51814365},{"year":11,"value":539314375.8128963},{"year":12,"value":551959932.4811192},{"year":13,"value":564068100.1674781},{"year":14,"value":575635386.5780568},{"year":15,"value":586658257.2151952}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-386536951.3671935},{"year":2,"value":3339233.178654909},{"year":3,"value":229958012.34198728},{"year":4,"value":267060512.4798643},{"year":5,"value":288903811.5267555},{"year":6,"value":301459242.4228599},{"year":7,"value":311942724.6171578},{"year":8,"value":321833935.0668585},{"year":9,"value":331343536.58819723},{"year":10,"value":340498294.4692734},{"year":11,"value":349299883.5832867},{"year":12,"value":357746564.69943875},{"year":13,"value":365836114.6821829},{"year":14,"value":373566222.0001897},{"year":15,"value":644633019.0526466}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.03708762336754},{"year":3,"value":104.11567250658777},{"year":4,"value":106.23659998520536},{"year":5,"value":108.40073261499042},{"year":6,"value":110.6089505227301},{"year":7,"value":112.8621517641653},{"year":8,"value":115.1612526892194},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439167},{"year":11,"value":122.34339935739753},{"year":12,"value":124.83564160371412},{"year":13,"value":127.37865300837485},{"year":14,"value":129.97346778362066},{"year":15,"value":132.62114120950235}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.5},{"year":3,"value":97.02250000000001},{"year":4,"value":95.56716250000001},{"year":5,"value":94.13365506250001},{"year":6,"value":92.72165023656179},{"year":7,"value":91.33082548301176},{"year":8,"value":89.96086310076765},{"year":9,"value":88.61145015425588},{"year":10,"value":87.28227840194118},{"year":11,"value":85.97304422591176},{"year":12,"value":84.68344856252355},{"year":13,"value":83.4131968340853},{"year":14,"value":82.16199888157355},{"year":15,"value":80.92956889835001}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.30651943893074,"format":"percent"},{"label":"Average Recovery","value":84.20000000000003,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]},"committee_downside":{"id":"committee_downside","name":"Investment Committee Downside","short_name":"Committee DS","category":"Stress","kpis":{"average_head_grade":0.002911934669842,"average_net_price_usd_per_lb":3.421553329099686,"average_recovery":0.7999000000000003,"base_npv_usd":-7167390064.618053,"payback_year":null,"peak_fcf_year":15.0,"peak_revenue_year":4.0,"total_capex_usd":690000000.0,"total_ebitda_usd":-13471884073.517963,"total_free_cash_flow_usd":-14163733548.702396,"total_revenue_usd":39395235132.68496,"average_head_grade_pct":0.2911934669842,"average_recovery_pct":79.99000000000002},"cash_flow_series":[{"metric":"revenue_usd","label":"Revenue","color":"#E07A3F","format":"currency","points":[{"year":1,"value":2342988331.6252346},{"year":2,"value":2459084391.0478},{"year":3,"value":2689252844.27262},{"year":4,"value":2770867053.0638137},{"year":5,"value":2766999951.955708},{"year":6,"value":2746472055.6783967},{"year":7,"value":2723283014.375918},{"year":8,"value":2699429978.349348},{"year":9,"value":2675181476.786801},{"year":10,"value":2650571758.99522},{"year":11,"value":2625603569.8600726},{"year":12,"value":2600275401.8446856},{"year":13,"value":2574585152.153113},{"year":14,"value":2548530613.36977},{"year":15,"value":2522109539.306458}]},{"metric":"ebitda_usd","label":"EBITDA","color":"#4F7C82","format":"currency","points":[{"year":1,"value":-921020462.930756},{"year":2,"value":-948171420.0266914},{"year":3,"value":-1016839344.6528878},{"year":4,"value":-1027147629.6409416},{"year":5,"value":-1005328530.2566934},{"year":6,"value":-977770042.5739737},{"year":7,"value":-949715686.0510136},{"year":8,"value":-921900741.393926},{"year":9,"value":-894424538.4681573},{"year":10,"value":-867301981.6505351},{"year":11,"value":-840536886.2239189},{"year":12,"value":-814131634.9669433},{"year":13,"value":-788088447.421926},{"year":14,"value":-762409546.5736022},{"year":15,"value":-737097180.6859975}]},{"metric":"free_cash_flow_usd","label":"Free Cash Flow","color":"#7A9E46","format":"currency","points":[{"year":1,"value":-1418529646.1445224},{"year":2,"value":-1163298144.186271},{"year":3,"value":-1044451136.3786252},{"year":4,"value":-1044360624.2563252},{"year":5,"value":-1016557833.179126},{"year":6,"value":-987833089.8345618},{"year":7,"value":-959592453.15984},{"year":8,"value":-931731028.8720664},{"year":9,"value":-904227143.358779},{"year":10,"value":-877079301.4051244},{"year":11,"value":-850289112.9844586},{"year":12,"value":-823858663.2058661},{"year":13,"value":-797790129.9435159},{"year":14,"value":-772085728.8587682},{"year":15,"value":-572049512.9345454}]}],"driver_series":[{"metric":"scenario_price_usd_per_lb","label":"Net Copper Price","color":"#E07A3F","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":102.03708762336751},{"year":3,"value":104.11567250658777},{"year":4,"value":106.23659998520539},{"year":5,"value":108.40073261499042},{"year":6,"value":110.6089505227301},{"year":7,"value":112.8621517641653},{"year":8,"value":115.16125268921937},{"year":9,"value":117.50718831466646},{"year":10,"value":119.90091270439167},{"year":11,"value":122.34339935739753},{"year":12,"value":124.83564160371414},{"year":13,"value":127.37865300837487},{"year":14,"value":129.97346778362066},{"year":15,"value":132.62114120950235}]},{"metric":"scenario_grade","label":"Head Grade","color":"#D4A373","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":98.50000000000001},{"year":3,"value":97.02249999999692},{"year":4,"value":95.56716250000001},{"year":5,"value":94.13365506249846},{"year":6,"value":92.7216502365604},{"year":7,"value":91.33082548301239},{"year":8,"value":89.96086310076782},{"year":9,"value":88.61145015425697},{"year":10,"value":87.2822784019412},{"year":11,"value":85.97304422591333},{"year":12,"value":84.68344856252324},{"year":13,"value":83.41319683408669},{"year":14,"value":82.16199888157585},{"year":15,"value":80.92956889834986}]},{"metric":"scenario_recovery","label":"Recovery","color":"#4F7C82","format":"number","points":[{"year":1,"value":100.0},{"year":2,"value":100.0},{"year":3,"value":100.0},{"year":4,"value":100.0},{"year":5,"value":100.0},{"year":6,"value":100.0},{"year":7,"value":100.0},{"year":8,"value":100.0},{"year":9,"value":100.0},{"year":10,"value":100.0},{"year":11,"value":100.0},{"year":12,"value":100.0},{"year":13,"value":100.0},{"year":14,"value":100.0},{"year":15,"value":100.0}]}],"mini_stats":[{"label":"Average Head Grade","value":0.2911934669842,"format":"percent"},{"label":"Average Recovery","value":79.99000000000002,"format":"percent"},{"label":"Peak Revenue Year","value":4.0,"format":"year"}]}},"scenario_comparison":[{"scenario_id":"base","name":"Base Case","short_name":"Base","category":"Reference","base_npv_usd":1627402709.6891494,"npv_vs_base_usd":0.0},{"scenario_id":"bull_market","name":"Bull Market","short_name":"Bull Mkt","category":"Market","base_npv_usd":4908599968.8642845,"npv_vs_base_usd":3281197259.175135},{"scenario_id":"bear_market","name":"Bear Market","short_name":"Bear Mkt","category":"Market","base_npv_usd":-2434874890.7270813,"npv_vs_base_usd":-4062277600.4162307},{"scenario_id":"operational_stress","name":"Operational Stress","short_name":"Op Stress","category":"Operations","base_npv_usd":-1368777083.4832346,"npv_vs_base_usd":-2996179793.1723843},{"scenario_id":"capex_overrun","name":"Capex Overrun","short_name":"Capex","category":"Investment","base_npv_usd":1464488417.496669,"npv_vs_base_usd":-162914292.19248033},{"scenario_id":"committee_downside","name":"Investment Committee Downside","short_name":"Committee DS","category":"Stress","base_npv_usd":-7167390064.618053,"npv_vs_base_usd":-8794792774.307203}],"simulation":{"summary":{"expected_npv_usd":2258519400.91288,"median_npv_usd":1950787506.0063016,"std_npv_usd":6023683045.495668,"min_npv_usd":-15702916274.034496,"max_npv_usd":33463180540.459145,"probability_of_loss":0.3453,"var_alpha":0.05,"var_usd":-7255327432.314742,"cvar_usd":-9354555951.379135},"histogram":[{"bin_start":-15702916274.034496,"bin_end":-14337191362.520784,"midpoint":-15020053818.277641,"count":6},{"bin_start":-14337191362.520784,"bin_end":-12971466451.007072,"midpoint":-13654328906.763927,"count":12},{"bin_start":-12971466451.007072,"bin_end":-11605741539.493359,"midpoint":-12288603995.250216,"count":42},{"bin_start":-11605741539.493359,"bin_end":-10240016627.979649,"midpoint":-10922879083.736504,"count":80},{"bin_start":-10240016627.979649,"bin_end":-8874291716.465935,"midpoint":-9557154172.222792,"count":115},{"bin_start":-8874291716.465935,"bin_end":-7508566804.952223,"midpoint":-8191429260.709079,"count":205},{"bin_start":-7508566804.952223,"bin_end":-6142841893.438511,"midpoint":-6825704349.195367,"count":276},{"bin_start":-6142841893.438511,"bin_end":-4777116981.924799,"midpoint":-5459979437.681655,"count":420},{"bin_start":-4777116981.924799,"bin_end":-3411392070.411087,"midpoint":-4094254526.167943,"count":528},{"bin_start":-3411392070.411087,"bin_end":-2045667158.897375,"midpoint":-2728529614.654231,"count":606},{"bin_start":-2045667158.897375,"bin_end":-679942247.3836632,"midpoint":-1362804703.1405191,"count":688},{"bin_start":-679942247.3836632,"bin_end":685782664.1300507,"midpoint":2920208.373193741,"count":1031},{"bin_start":685782664.1300507,"bin_end":2051507575.6437607,"midpoint":1368645119.8869057,"count":1066},{"bin_start":2051507575.6437607,"bin_end":3417232487.1574745,"midpoint":2734370031.4006176,"count":1000},{"bin_start":3417232487.1574745,"bin_end":4782957398.671185,"midpoint":4100094942.9143295,"count":859},{"bin_start":4782957398.671185,"bin_end":6148682310.184898,"midpoint":5465819854.428041,"count":747},{"bin_start":6148682310.184898,"bin_end":7514407221.698612,"midpoint":6831544765.941755,"count":608},{"bin_start":7514407221.698612,"bin_end":8880132133.212322,"midpoint":8197269677.455467,"count":460},{"bin_start":8880132133.212322,"bin_end":10245857044.726036,"midpoint":9562994588.96918,"count":330},{"bin_start":10245857044.726036,"bin_end":11611581956.239746,"midpoint":10928719500.482891,"count":253},{"bin_start":11611581956.239746,"bin_end":12977306867.75346,"midpoint":12294444411.996603,"count":205},{"bin_start":12977306867.75346,"bin_end":14343031779.26717,"midpoint":13660169323.510315,"count":146},{"bin_start":14343031779.26717,"bin_end":15708756690.780884,"midpoint":15025894235.024027,"count":83},{"bin_start":15708756690.780884,"bin_end":17074481602.294598,"midpoint":16391619146.53774,"count":73},{"bin_start":17074481602.294598,"bin_end":18440206513.808308,"midpoint":17757344058.051453,"count":55},{"bin_start":18440206513.808308,"bin_end":19805931425.322018,"midpoint":19123068969.565163,"count":34},{"bin_start":19805931425.322018,"bin_end":21171656336.835735,"midpoint":20488793881.078876,"count":24},{"bin_start":21171656336.835735,"bin_end":22537381248.349445,"midpoint":21854518792.59259,"count":19},{"bin_start":22537381248.349445,"bin_end":23903106159.863155,"midpoint":23220243704.1063,"count":10},{"bin_start":23903106159.863155,"bin_end":25268831071.376865,"midpoint":24585968615.62001,"count":3},{"bin_start":25268831071.376865,"bin_end":26634555982.890583,"midpoint":25951693527.133724,"count":6},{"bin_start":26634555982.890583,"bin_end":28000280894.404293,"midpoint":27317418438.647438,"count":4},{"bin_start":28000280894.404293,"bin_end":29366005805.918003,"midpoint":28683143350.161148,"count":2},{"bin_start":29366005805.918003,"bin_end":30731730717.43172,"midpoint":30048868261.674862,"count":2},{"bin_start":30731730717.43172,"bin_end":32097455628.94543,"midpoint":31414593173.188576,"count":1},{"bin_start":32097455628.94543,"bin_end":33463180540.459145,"midpoint":32780318084.702286,"count":1}],"percentiles":[{"percentile":0.05,"npv_usd":-7255327432.314742},{"percentile":0.5,"npv_usd":1950787506.0063019},{"percentile":0.95,"npv_usd":12698830540.387056}]},"tornado":[{"driver_label":"Copper Price","down_impact_usd":-2032510267.4879515,"up_impact_usd":2008242772.1995096,"rank":2032510267.4879515},{"driver_label":"Unit Opex","down_impact_usd":1772868605.3206491,"up_impact_usd":-1775259541.7649927,"rank":1775259541.7649927},{"driver_label":"Head Grade","down_impact_usd":-1586175270.4218228,"up_impact_usd":1586175270.421823,"rank":1586175270.421823},{"driver_label":"Recovery","down_impact_usd":-991359544.0136402,"up_impact_usd":991359544.0136384,"rank":991359544.0136402},{"driver_label":"Throughput","down_impact_usd":-167880386.16530275,"up_impact_usd":167880386.1653018,"rank":167880386.16530275},{"driver_label":"Discount Rate","down_impact_usd":150381546.0323503,"up_impact_usd":-135768663.39175224,"rank":150381546.0323503},{"driver_label":"Expansion Capex","down_impact_usd":70665317.60657048,"up_impact_usd":-70665317.60656977,"rank":70665317.60657048}],"heatmap":{"price_factors":[0.75,0.85,0.95,1.0,1.05,1.15,1.25],"grade_factors":[0.9,0.95,1.0,1.05,1.1],"values":[[-7028689997.350347,-5911907197.598944,-4795124397.847538,-3678341598.0961337,-2561558798.344728],[-4302206919.812266,-3033952837.9754148,-1766455469.9767792,-601756602.5787076,296521223.5872378],[-1579752279.2203326,-332432631.9215766,623281323.5893928,1564434798.2980452,2505588273.006698],[-375194971.23986006,636043165.6755096,1627402709.6891494,2618762253.702789,3610121797.7164288],[548392869.1516527,1589958482.4702773,2631524095.7889047,3673089709.107532,4714655322.426161],[2355811364.1312075,3497789116.059808,4639766867.98841,5781744619.917014,6923722371.845616],[4163229859.1107664,5405619749.649343,6648009640.187922,7890399530.7265,9132789421.26508]]},"benchmark":[{"metric":"base_npv","label":"Base NPV","python_value":1627402709.6891494,"excel_value":179410192.28525418,"note":"Directional only. Workbook benchmark is still in PEN while the rebuild is reported in USD."},{"metric":"expected_npv","label":"Expected NPV","python_value":2258519400.91288,"excel_value":351269556.270483,"note":"Directional only. Workbook benchmark is still in PEN while the rebuild is reported in USD."},{"metric":"var_5pct","label":"VaR 5%","python_value":-7255327432.314742,"excel_value":-1311282054.4859998,"note":"Directional only. Workbook benchmark is still in PEN while the rebuild is reported in USD."},{"metric":"cvar_5pct","label":"CVaR 5%","python_value":-9354555951.379135,"excel_value":-1599912510.4894392,"note":"Directional only. Workbook benchmark is still in PEN while the rebuild is reported in USD."}],"insights":[{"label":"Value Creation","title":"The base case is positive, but not bulletproof.","body":"Base NPV is 1.63B USD and the project pays back in year 4. That is enough to justify attention, but not enough to skip downside framing."},{"label":"Tail Risk","title":"The left tail is the real portfolio story.","body":"Loss probability is 34.5%. The 5% VaR is -7.26B USD and the CVaR is -9.35B USD, which means adverse combinations are economically severe."},{"label":"Decision Signal","title":"Scenario spread reveals investment fragility.","body":"The strongest deterministic case is Bull Market at 4.91B USD, while Investment Committee Downside falls to -7.17B USD. The committee-downside case alone reaches -7.17B USD."}]};
+    const scenarioOrder = dashboardData.scenario_order;
+    let activeScenarioId = dashboardData.default_scenario_id;
+
+    const formatters = {
+      currency(value) {
+        if (value === null || value === undefined) return "n/a";
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          notation: "compact",
+          maximumFractionDigits: 1
+        }).format(value);
+      },
+      currencyLong(value) {
+        if (value === null || value === undefined) return "n/a";
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(value);
+      },
+      currencyPen(value) {
+        if (value === null || value === undefined) return "n/a";
+        return new Intl.NumberFormat("es-PE", {
+          style: "currency",
+          currency: "PEN",
+          notation: "compact",
+          maximumFractionDigits: 1
+        }).format(value);
+      },
+      percent(value) {
+        if (value === null || value === undefined) return "n/a";
+        return `${value.toFixed(2)}%`;
+      },
+      number(value) {
+        if (value === null || value === undefined) return "n/a";
+        return new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(value);
+      },
+      usdPerLb(value) {
+        if (value === null || value === undefined) return "n/a";
+        return `${value.toFixed(2)} $/lb`;
+      },
+      year(value) {
+        if (value === null || value === undefined) return "No payback";
+        return `Year ${Math.round(value)}`;
+      },
+      gap(value) {
+        if (value === null || value === undefined) return "n/a";
+        const sign = value >= 0 ? "+" : "";
+        return `${sign}${formatters.currency(value)}`;
+      }
+    };
+
+    function interpolateColor(value, min, max) {
+      const safeMax = max === min ? min + 1 : max;
+      const t = Math.max(0, Math.min(1, (value - min) / (safeMax - min)));
+      const r = Math.round(199 + (79 - 199) * t);
+      const g = Math.round(87 + (158 - 87) * t);
+      const b = Math.round(70 + (70 - 70) * t);
+      return `rgba(${r}, ${g}, ${b}, 0.72)`;
+    }
+
+    function linePath(points, xScale, yScale) {
+      return points
+        .map((point, index) => `${index === 0 ? "M" : "L"} ${xScale(point.x).toFixed(2)} ${yScale(point.y).toFixed(2)}`)
+        .join(" ");
+    }
+
+    function formatMetric(value, format) {
+      if (format === "currency") return formatters.currency(value);
+      if (format === "percent") return formatters.percent(value);
+      if (format === "usd_per_lb") return formatters.usdPerLb(value);
+      if (format === "year") return formatters.year(value);
+      return formatters.number(value);
+    }
+
+    function formatAxisValue(value, format) {
+      if (format === "currency") return formatters.currency(value);
+      if (format === "percent") return `${value.toFixed(1)}%`;
+      if (format === "usd_per_lb") return `${value.toFixed(2)}`;
+      return formatters.number(value);
+    }
+
+    function renderHeroMetrics() {
+      const metrics = dashboardData.hero_metrics.map((metric) => `
+        <div class="hero-metric">
+          <div class="label">${metric.label}</div>
+          <div class="value">${formatMetric(metric.value, metric.format)}</div>
+          <div class="subtext">${metric.subtext}</div>
+        </div>
+      `).join("");
+      document.getElementById("hero-metrics").innerHTML = metrics;
+    }
+
+    function renderScenarioSelector() {
+      const html = scenarioOrder.map((scenarioId) => {
+        const scenario = dashboardData.scenarios[scenarioId];
+        const active = scenarioId === activeScenarioId ? "active" : "";
+        return `<button class="selector ${active}" data-scenario="${scenarioId}">${scenario.name}</button>`;
+      }).join("");
+      document.getElementById("scenario-selector").innerHTML = html;
+      document.querySelectorAll(".selector").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeScenarioId = button.dataset.scenario;
+          renderAll();
+        });
+      });
+    }
+
+    function renderScenarioKpis() {
+      const scenario = dashboardData.scenarios[activeScenarioId];
+      const kpiHtml = dashboardData.kpi_specs.map((spec) => {
+        const value = scenario.kpis[spec.key];
+        const baseValue = dashboardData.scenarios[dashboardData.default_scenario_id].kpis[spec.key];
+        const delta = typeof value === "number" && typeof baseValue === "number" ? value - baseValue : null;
+        const deltaText = activeScenarioId === dashboardData.default_scenario_id || delta === null
+          ? "Selected reference scenario"
+          : `${delta >= 0 ? "Above" : "Below"} base by ${spec.format === "currency" ? formatters.currency(Math.abs(delta)) : formatMetric(Math.abs(delta), spec.format)}`;
+        return `
+          <div class="kpi-card">
+            <div class="label">${spec.label}</div>
+            <div class="value">${formatMetric(value, spec.format)}</div>
+            <div class="trend">${deltaText}</div>
+          </div>
+        `;
+      }).join("");
+      document.getElementById("scenario-kpis").innerHTML = kpiHtml;
+
+      const miniStats = scenario.mini_stats.map((item) => `
+        <div class="mini-stat">
+          <div class="label">${item.label}</div>
+          <div class="value">${formatMetric(item.value, item.format)}</div>
+        </div>
+      `).join("");
+      document.getElementById("scenario-mini-stats").innerHTML = miniStats;
+      document.getElementById("scenario-caption").textContent = `${scenario.name} | ${scenario.category}`;
+    }
+
+    function renderLegend(targetId, items) {
+      document.getElementById(targetId).innerHTML = items.map((item) => `
+        <span class="legend-item">
+          <span class="legend-dot" style="background:${item.color}"></span>
+          ${item.label}
+        </span>
+      `).join("");
+    }
+
+    function renderLineChart(targetId, seriesCollection, options = {}) {
+      const width = 780;
+      const height = options.height || 300;
+      const margin = { top: 14, right: 18, bottom: 34, left: 78 };
+      const allValues = seriesCollection.flatMap((series) => series.points.map((point) => point.value));
+      const allYears = seriesCollection.flatMap((series) => series.points.map((point) => point.year));
+      const yMinBase = Math.min(...allValues);
+      const yMaxBase = Math.max(...allValues);
+      const yMin = options.includeZero ? Math.min(0, yMinBase) : yMinBase;
+      const yMax = options.includeZero ? Math.max(0, yMaxBase) : yMaxBase;
+      const safeSpan = yMax === yMin ? Math.abs(yMax || 1) : yMax - yMin;
+      const minYear = Math.min(...allYears);
+      const maxYear = Math.max(...allYears);
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+      const xScale = (year) => margin.left + ((year - minYear) / Math.max(1, maxYear - minYear)) * plotWidth;
+      const yScale = (value) => margin.top + (1 - ((value - yMin) / safeSpan)) * plotHeight;
+      const ticks = 5;
+      const yTicks = Array.from({ length: ticks }, (_, index) => yMin + (safeSpan / (ticks - 1)) * index);
+      const xTicks = Array.from({ length: maxYear - minYear + 1 }, (_, index) => minYear + index);
+
+      const gridLines = yTicks.map((tick) => `
+        <g>
+          <line x1="${margin.left}" x2="${width - margin.right}" y1="${yScale(tick)}" y2="${yScale(tick)}" stroke="rgba(255,255,255,0.08)" stroke-dasharray="4 6"></line>
+          <text x="${margin.left - 12}" y="${yScale(tick) + 4}" fill="rgba(201,184,165,0.9)" font-size="11" text-anchor="end">${formatAxisValue(tick, options.axisFormat)}</text>
+        </g>
+      `).join("");
+
+      const xLabels = xTicks.map((tick) => `
+        <text x="${xScale(tick)}" y="${height - 8}" fill="rgba(201,184,165,0.9)" font-size="11" text-anchor="middle">Y${tick}</text>
+      `).join("");
+
+      const paths = seriesCollection.map((series) => {
+        const points = series.points.map((point) => ({ x: point.year, y: point.value }));
+        const path = linePath(points, xScale, yScale);
+        return `
+          <path d="${path}" fill="none" stroke="${series.color}" stroke-width="3" stroke-linecap="round"></path>
+          ${points.map((point) => `
+            <circle cx="${xScale(point.x)}" cy="${yScale(point.y)}" r="3.4" fill="${series.color}">
+              <title>${series.label}: ${formatMetric(point.y, series.format)}</title>
+            </circle>
+          `).join("")}
+        `;
+      }).join("");
+
+      const zeroLine = yMin < 0 && yMax > 0
+        ? `<line x1="${margin.left}" x2="${width - margin.right}" y1="${yScale(0)}" y2="${yScale(0)}" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"></line>`
+        : "";
+
+      document.getElementById(targetId).innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${options.title || 'Line chart'}">
+          ${gridLines}
+          ${zeroLine}
+          ${paths}
+          ${xLabels}
+        </svg>
+      `;
+    }
+
+    function renderScenarioComparison() {
+      const data = dashboardData.scenario_comparison;
+      const width = 720;
+      const height = 310;
+      const margin = { top: 16, right: 10, bottom: 74, left: 84 };
+      const values = data.map((item) => item.base_npv_usd);
+      const yMin = Math.min(0, ...values);
+      const yMax = Math.max(0, ...values);
+      const span = yMax === yMin ? 1 : yMax - yMin;
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+      const barWidth = plotWidth / data.length;
+      const yScale = (value) => margin.top + (1 - ((value - yMin) / span)) * plotHeight;
+      const zero = yScale(0);
+
+      const bars = data.map((item, index) => {
+        const x = margin.left + index * barWidth + 12;
+        const barHeight = Math.abs(yScale(item.base_npv_usd) - zero);
+        const y = item.base_npv_usd >= 0 ? yScale(item.base_npv_usd) : zero;
+        const color = item.scenario_id === activeScenarioId ? "#E07A3F" : item.base_npv_usd >= 0 ? "#4F7C82" : "#C75746";
+        const opacity = item.scenario_id === activeScenarioId ? 1 : 0.74;
+        return `
+          <g>
+            <rect x="${x}" y="${y}" width="${barWidth - 24}" height="${Math.max(4, barHeight)}" rx="10" fill="${color}" opacity="${opacity}"></rect>
+            <text x="${x + (barWidth - 24) / 2}" y="${item.base_npv_usd >= 0 ? y - 10 : y + barHeight + 18}" text-anchor="middle" fill="rgba(245,237,226,0.92)" font-size="11">${formatters.currency(item.base_npv_usd)}</text>
+            <text x="${x + (barWidth - 24) / 2}" y="${height - 38}" text-anchor="middle" fill="rgba(201,184,165,0.92)" font-size="11">${item.short_name}</text>
+          </g>
+        `;
+      }).join("");
+
+      document.getElementById("scenario-comparison-chart").innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Scenario comparison chart">
+          <line x1="${margin.left}" x2="${width - margin.right}" y1="${zero}" y2="${zero}" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"></line>
+          ${bars}
+        </svg>
+      `;
+    }
+
+    function renderDistributionChart() {
+      const histogram = dashboardData.simulation.histogram;
+      const percentiles = dashboardData.simulation.percentiles;
+      const width = 720;
+      const height = 320;
+      const margin = { top: 18, right: 18, bottom: 34, left: 64 };
+      const maxCount = Math.max(...histogram.map((bin) => bin.count));
+      const minX = histogram[0].bin_start;
+      const maxX = histogram[histogram.length - 1].bin_end;
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+      const xScale = (value) => margin.left + ((value - minX) / (maxX - minX)) * plotWidth;
+      const yScale = (value) => margin.top + (1 - value / maxCount) * plotHeight;
+      const bars = histogram.map((bin) => {
+        const x = xScale(bin.bin_start);
+        const y = yScale(bin.count);
+        const barWidth = Math.max(2, xScale(bin.bin_end) - x - 2);
+        const fill = bin.midpoint < 0 ? "rgba(199,87,70,0.72)" : "rgba(79,124,130,0.76)";
+        return `<rect x="${x}" y="${y}" width="${barWidth}" height="${height - margin.bottom - y}" rx="4" fill="${fill}"></rect>`;
+      }).join("");
+      const markers = percentiles.map((item) => `
+        <g>
+          <line x1="${xScale(item.npv_usd)}" x2="${xScale(item.npv_usd)}" y1="${margin.top}" y2="${height - margin.bottom}" stroke="rgba(224,122,63,0.95)" stroke-dasharray="6 6"></line>
+          <text x="${xScale(item.npv_usd)}" y="${margin.top - 4}" text-anchor="middle" fill="rgba(245,237,226,0.92)" font-size="10">P${Math.round(item.percentile * 100)}</text>
+        </g>
+      `).join("");
+
+      document.getElementById("distribution-chart").innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Monte Carlo NPV distribution">
+          <line x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}" stroke="rgba(255,255,255,0.25)"></line>
+          ${bars}
+          ${markers}
+          <text x="${margin.left}" y="${height - 8}" fill="rgba(201,184,165,0.92)" font-size="11">${formatters.currency(minX)}</text>
+          <text x="${width - margin.right}" y="${height - 8}" text-anchor="end" fill="rgba(201,184,165,0.92)" font-size="11">${formatters.currency(maxX)}</text>
+        </svg>
+      `;
+    }
+
+    function renderTornadoChart() {
+      const data = dashboardData.tornado;
+      const width = 720;
+      const height = 330;
+      const margin = { top: 20, right: 18, bottom: 22, left: 158 };
+      const plotWidth = width - margin.left - margin.right;
+      const rowHeight = (height - margin.top - margin.bottom) / data.length;
+      const maxAbs = Math.max(...data.flatMap((row) => [Math.abs(row.down_impact_usd), Math.abs(row.up_impact_usd)]));
+      const xScale = (value) => margin.left + ((value + maxAbs) / (maxAbs * 2)) * plotWidth;
+      const zero = xScale(0);
+
+      const rows = data.map((row, index) => {
+        const y = margin.top + index * rowHeight + 4;
+        const downX = xScale(row.down_impact_usd);
+        const upX = xScale(0);
+        return `
+          <g>
+            <text x="${margin.left - 14}" y="${y + rowHeight / 2 + 4}" text-anchor="end" fill="rgba(245,237,226,0.92)" font-size="12">${row.driver_label}</text>
+            <rect x="${downX}" y="${y}" width="${zero - downX}" height="${rowHeight - 10}" rx="8" fill="rgba(199,87,70,0.82)"></rect>
+            <rect x="${upX}" y="${y}" width="${xScale(row.up_impact_usd) - zero}" height="${rowHeight - 10}" rx="8" fill="rgba(79,124,130,0.88)"></rect>
+          </g>
+        `;
+      }).join("");
+
+      document.getElementById("tornado-chart").innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Tornado sensitivity chart">
+          <line x1="${zero}" x2="${zero}" y1="${margin.top - 6}" y2="${height - margin.bottom}" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"></line>
+          ${rows}
+          <text x="${margin.left}" y="${height - 4}" fill="rgba(201,184,165,0.92)" font-size="11">${formatters.currency(-maxAbs)}</text>
+          <text x="${zero}" y="${height - 4}" text-anchor="middle" fill="rgba(201,184,165,0.92)" font-size="11">Base</text>
+          <text x="${width - margin.right}" y="${height - 4}" text-anchor="end" fill="rgba(201,184,165,0.92)" font-size="11">${formatters.currency(maxAbs)}</text>
+        </svg>
+      `;
+    }
+
+    function renderHeatmap() {
+      const heatmap = dashboardData.heatmap;
+      const values = heatmap.values.flat();
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const table = `
+        <table class="heatmap-table">
+          <thead>
+            <tr>
+              <th>Price / Grade</th>
+              ${heatmap.grade_factors.map((value) => `<th>${(value * 100).toFixed(0)}%</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${heatmap.price_factors.map((priceFactor, rowIndex) => `
+              <tr>
+                <th>${(priceFactor * 100).toFixed(0)}%</th>
+                ${heatmap.values[rowIndex].map((cellValue) => `
+                  <td style="background:${interpolateColor(cellValue, min, max)}" title="${formatters.currencyLong(cellValue)}">
+                    ${formatters.currency(cellValue)}
+                  </td>
+                `).join("")}
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+      document.getElementById("heatmap-table").innerHTML = table;
+    }
+
+    function renderBenchmarkTable() {
+      const rows = dashboardData.benchmark.map((row) => `
+        <tr>
+          <th>${row.label}</th>
+          <td>${formatters.currencyPen(row.excel_value)}</td>
+          <td>${formatters.currency(row.python_value)}</td>
+          <td>${row.note}</td>
+        </tr>
+      `).join("");
+      document.getElementById("benchmark-table").innerHTML = `
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Workbook (PEN)</th>
+            <th>Python (USD)</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      `;
+    }
+
+    function renderInsights() {
+      document.getElementById("insight-grid").innerHTML = dashboardData.insights.map((insight) => `
+        <div class="insight-card">
+          <div class="label">${insight.label}</div>
+          <div class="title">${insight.title}</div>
+          <div class="body">${insight.body}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderScenarioCharts() {
+      const scenario = dashboardData.scenarios[activeScenarioId];
+      renderLegend("cashflow-legend", scenario.cash_flow_series.map((item) => ({ label: item.label, color: item.color })));
+      renderLegend("driver-legend", scenario.driver_series.map((item) => ({ label: item.label, color: item.color })));
+      renderLineChart("cashflow-chart", scenario.cash_flow_series, { includeZero: true, axisFormat: "currency", title: "Cash flow trajectory" });
+      renderLineChart("driver-chart", scenario.driver_series, { includeZero: false, axisFormat: "number", title: "Operating drivers" });
+    }
+
+    function renderFooter() {
+      document.getElementById("footer-note").textContent =
+        `Generated from Python exports on ${dashboardData.generated_at}. This dashboard is a portfolio showcase layer built from BI-ready facts, dimensions, scenario tables, and Monte Carlo outputs.`;
+    }
+
+    function renderAll() {
+      renderScenarioSelector();
+      renderScenarioKpis();
+      renderScenarioCharts();
+      renderScenarioComparison();
+      renderDistributionChart();
+      renderTornadoChart();
+      renderHeatmap();
+      renderBenchmarkTable();
+      renderInsights();
+      renderFooter();
+    }
+
+    renderHeroMetrics();
+    renderAll();
+  </script>
+</body>
+</html>

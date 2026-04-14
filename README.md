@@ -70,22 +70,28 @@ copper_minning_risk_model/
     project.yaml
   docs/
     README_PORTFOLIO.md
+    DASHBOARD_FINAL.md
     GITHUB_CASE_STUDY.md
     GITHUB_PORTFOLIO_COPY.md
     LINKEDIN_PORTFOLIO_COPY.md
     GITHUB_SETUP_CHECKLIST.md
   outputs/
     bi/
+    dashboard/
   scripts/
     build_bi_dataset.py
+    build_portfolio_dashboard.py
   src/
     copper_risk_model/
+      dashboard_builder.py
       excel_loader.py
       model.py
       simulation.py
       scenario_analysis.py
       bi_semantic.py
       bi_export.py
+  powerbi/
+    copper_risk_theme.json
   tests/
     test_pipeline_smoke.py
   .github/
@@ -127,6 +133,21 @@ Running the pipeline generates BI-ready exports in `outputs/bi/`, including:
 
 This is no longer just a model output folder. It is the beginning of a semantic layer for dashboarding.
 
+## Dashboard Experience
+
+The repository now also generates a self-contained HTML showcase in `outputs/dashboard/index.html`.
+
+That dashboard is built directly from the exported facts and dimensions, so the portfolio story is no longer abstract:
+
+- executive scenario switching
+- deterministic NPV comparison
+- annual cash flow profile
+- operating driver trajectories
+- Monte Carlo distribution view
+- tornado sensitivity
+- price-grade heatmap
+- Excel vs Python benchmark reconciliation
+
 ## Validation
 
 The repository includes a smoke test that verifies the end-to-end BI build pipeline.
@@ -151,11 +172,18 @@ Generate BI outputs:
 python scripts/build_bi_dataset.py
 ```
 
+Generate the full portfolio dashboard package:
+
+```bash
+python scripts/build_portfolio_dashboard.py
+```
+
 ## Documentation
 
 Portfolio and GitHub-facing documentation:
 
 - `docs/README_PORTFOLIO.md`
+- `docs/DASHBOARD_FINAL.md`
 - `docs/GITHUB_CASE_STUDY.md`
 - `docs/GITHUB_PORTFOLIO_COPY.md`
 - `docs/LINKEDIN_PORTFOLIO_COPY.md`
@@ -165,6 +193,7 @@ Portfolio and GitHub-facing documentation:
 - `DASHBOARD_BUILD_GUIDE.md`
 - `BI_SEMANTIC_MODEL.md`
 - `POWERBI_MEASURES.md`
+- `powerbi/copper_risk_theme.json`
 
 ## Portfolio Value
 
