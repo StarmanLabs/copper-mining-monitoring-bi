@@ -1,0 +1,56 @@
+# Project Structure
+
+## Folder guide
+
+- `config/`
+  Project configuration, scenario assumptions, and the path to the source workbook.
+- `data/raw/`
+  Raw input files. This is the original workbook used by the Python pipeline.
+- `src/copper_risk_model/`
+  Core Python package.
+  This is the analytical engine.
+- `scripts/`
+  Entry points to build outputs.
+- `outputs/bi/`
+  Final CSVs for Power BI and Tableau.
+- `outputs/dashboard/`
+  HTML showcase built from the BI exports.
+- `powerbi/`
+  Theme and Power BI-specific assets.
+- `tests/`
+  Smoke tests to verify the pipeline still runs.
+- `.github/workflows/`
+  CI pipeline for GitHub Actions.
+
+## Python package files
+
+- `excel_loader.py`
+  Reads the workbook and extracts structured assumptions and benchmarks.
+- `model.py`
+  Deterministic operating and cash flow model.
+- `simulation.py`
+  Monte Carlo engine.
+- `scenario_analysis.py`
+  Deterministic scenarios, tornado table, and heatmap generation.
+- `bi_semantic.py`
+  Semantic helpers for metrics and Power BI measure guidance.
+- `bi_export.py`
+  Builds the BI-ready CSV layer.
+- `dashboard_builder.py`
+  Builds the self-contained HTML dashboard showcase.
+- `__main__.py`
+  Package entrypoint.
+
+## Build scripts
+
+- `build_bi_dataset.py`
+  Generates the BI-ready CSVs.
+- `build_portfolio_dashboard.py`
+  Generates the BI-ready CSVs and the dashboard showcase.
+
+## Files to leave alone
+
+- `data/raw/Copper_mining_risk_model.xlsm`
+  This is the raw workbook input.
+- `config/project.yaml`
+  If you move the workbook or rename outputs, update this file carefully.

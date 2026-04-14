@@ -9,8 +9,6 @@ import yaml
 
 from .bi_semantic import (
     METRIC_CATEGORY_MAP,
-    build_dashboard_pages,
-    build_kpi_catalog,
     build_metric_catalog,
     build_powerbi_measure_catalog,
 )
@@ -28,19 +26,6 @@ from .simulation import SimulationConfig, run_monte_carlo
 def _load_yaml(path: str | Path) -> dict:
     with Path(path).open("r", encoding="utf-8") as handle:
         return yaml.safe_load(handle)
-
-
-def _build_dashboard_kpis(base_profile: pd.DataFrame, assumptions: pd.Series, simulation_summary: pd.DataFrame) -> pd.DataFrame:
-    return pd.DataFrame(
-        [
-            {"metric": "python_base_npv_usd", "value": float(base_profile["discounted_fcf_usd"].sum())},
-            {"metric": "excel_benchmark_npv_pen", "value": float(assumptions["benchmark_npv_excel"])},
-            {"metric": "python_expected_npv_usd", "value": float(simulation_summary.loc[simulation_summary["metric"] == "expected_npv_usd", "value"].iloc[0])},
-            {"metric": "python_probability_of_loss", "value": float(simulation_summary.loc[simulation_summary["metric"] == "probability_of_loss", "value"].iloc[0])},
-            {"metric": "python_var_usd", "value": float(simulation_summary.loc[simulation_summary["metric"] == "var_usd", "value"].iloc[0])},
-            {"metric": "python_cvar_usd", "value": float(simulation_summary.loc[simulation_summary["metric"] == "cvar_usd", "value"].iloc[0])},
-        ]
-    )
 
 
 def _build_benchmark_comparison(base_profile: pd.DataFrame, simulation_summary: pd.DataFrame, workbook_data, assumptions: pd.Series) -> pd.DataFrame:
@@ -121,7 +106,6 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     )
     fact_annual_metrics["category"] = fact_annual_metrics["metric"].map(METRIC_CATEGORY_MAP)
 
-    dashboard_kpis = _build_dashboard_kpis(base_profile, assumptions, simulation_summary)
     benchmark_comparison = _build_benchmark_comparison(base_profile, simulation_summary, workbook_data, assumptions)
     fact_tornado_sensitivity = build_tornado_table(
         annual_inputs=workbook_data.annual_inputs,
@@ -141,8 +125,6 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     )
 
     metric_catalog = build_metric_catalog()
-    kpi_catalog = build_kpi_catalog()
-    dashboard_pages = build_dashboard_pages()
     powerbi_measure_catalog = build_powerbi_measure_catalog()
     dim_year = build_year_dimension(
         project_years=workbook_data.annual_inputs["year"].tolist(),
@@ -150,31 +132,14 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     )
     simulation_percentiles = _build_simulation_percentiles(simulation_distribution, config["portfolio_bi"]["simulation_percentiles"])
 
-    cdf = simulation_distribution[["scenario_id", "scenario_name", "npv_usd"]].sort_values("npv_usd").reset_index(drop=True)
-    cdf["cumulative_probability"] = (cdf.index + 1) / len(cdf)
-
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     outputs = {
-        "annual_inputs": output_dir / "annual_inputs.csv",
-        "assumptions": output_dir / "assumptions.csv",
-        "historical_prices": output_dir / "historical_prices.csv",
-        "operational_history": output_dir / "operational_history.csv",
-        "annual_profile_wide": output_dir / "annual_profile_wide.csv",
-        "annual_profile_long": output_dir / "annual_profile_long.csv",
-        "metric_catalog": output_dir / "metric_catalog.csv",
-        "kpi_catalog": output_dir / "kpi_catalog.csv",
-        "dashboard_pages": output_dir / "dashboard_pages.csv",
         "powerbi_measure_catalog": output_dir / "powerbi_measure_catalog.csv",
-        "simulation_distribution": output_dir / "simulation_distribution.csv",
         "simulation_summary": output_dir / "simulation_summary.csv",
         "simulation_percentiles": output_dir / "simulation_percentiles.csv",
-        "dashboard_kpis": output_dir / "dashboard_kpis.csv",
         "benchmark_comparison": output_dir / "benchmark_comparison.csv",
-        "excel_benchmark_metrics": output_dir / "excel_benchmark_metrics.csv",
-        "excel_benchmark_distribution": output_dir / "excel_benchmark_distribution.csv",
-        "simulation_cdf": output_dir / "simulation_cdf.csv",
         "dim_year": output_dir / "dim_year.csv",
         "dim_metric": output_dir / "dim_metric.csv",
         "dim_scenario": output_dir / "dim_scenario.csv",
@@ -185,24 +150,10 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
         "fact_heatmap_price_grade": output_dir / "fact_heatmap_price_grade.csv",
     }
 
-    workbook_data.annual_inputs.to_csv(outputs["annual_inputs"], index=False)
-    workbook_data.assumptions.to_csv(outputs["assumptions"], index=False)
-    workbook_data.historical_prices.to_csv(outputs["historical_prices"], index=False)
-    workbook_data.operational_history.to_csv(outputs["operational_history"], index=False)
-    base_profile.to_csv(outputs["annual_profile_wide"], index=False)
-    fact_annual_metrics.to_csv(outputs["annual_profile_long"], index=False)
-    metric_catalog.to_csv(outputs["metric_catalog"], index=False)
-    kpi_catalog.to_csv(outputs["kpi_catalog"], index=False)
-    dashboard_pages.to_csv(outputs["dashboard_pages"], index=False)
     powerbi_measure_catalog.to_csv(outputs["powerbi_measure_catalog"], index=False)
-    simulation_distribution.to_csv(outputs["simulation_distribution"], index=False)
     simulation_summary.to_csv(outputs["simulation_summary"], index=False)
     simulation_percentiles.to_csv(outputs["simulation_percentiles"], index=False)
-    dashboard_kpis.to_csv(outputs["dashboard_kpis"], index=False)
     benchmark_comparison.to_csv(outputs["benchmark_comparison"], index=False)
-    workbook_data.benchmark_metrics.to_csv(outputs["excel_benchmark_metrics"], index=False)
-    workbook_data.benchmark_distribution.to_csv(outputs["excel_benchmark_distribution"], index=False)
-    cdf.to_csv(outputs["simulation_cdf"], index=False)
     dim_year.to_csv(outputs["dim_year"], index=False)
     metric_catalog.to_csv(outputs["dim_metric"], index=False)
     scenario_dim.to_csv(outputs["dim_scenario"], index=False)

@@ -1,6 +1,6 @@
 project:
   name: "Copper Mining Risk Model"
-  workbook_path: "Copper_mining_risk_model.xlsm"
+  workbook_path: "data/raw/Copper_mining_risk_model.xlsm"
   currency: "PEN"
   years: 15
   project_start_calendar_year: 2026

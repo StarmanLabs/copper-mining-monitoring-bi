@@ -9,9 +9,9 @@ def test_build_bi_outputs_smoke(tmp_path):
     dashboard_dir = tmp_path / "dashboard"
 
     outputs = build_bi_outputs(output_dir=bi_dir)
-    assert outputs["dashboard_kpis"].exists()
-    assert outputs["simulation_distribution"].exists()
-    assert outputs["metric_catalog"].exists()
+    assert outputs["fact_simulation_distribution"].exists()
+    assert outputs["dim_metric"].exists()
+    assert outputs["simulation_summary"].exists()
     assert outputs["benchmark_comparison"].exists()
     assert outputs["dim_scenario"].exists()
     assert outputs["fact_tornado_sensitivity"].exists()

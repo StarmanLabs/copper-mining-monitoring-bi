@@ -2,122 +2,21 @@
 
 Rebuilding a copper mining valuation workbook into a reproducible Python risk engine with BI-ready outputs for Power BI and Tableau.
 
-## Overview
+## What this repo is
 
-This project started as an Excel and VBA financial model for a hypothetical copper mining expansion. The original workbook already contained a strong economic structure: production assumptions, price paths, operating costs, expansion capex, and Monte Carlo simulation.
+This project takes a spreadsheet-based copper mining valuation and turns it into a cleaner analytical product with:
 
-The limitation was not the idea. The limitation was the medium.
-
-In spreadsheet form, the model was hard to audit, hard to extend, and difficult to connect to modern reporting workflows. The goal of this repository is to turn that static workbook into a portfolio-grade analytical product with four qualities:
-
-- reproducible economics
-- transparent assumptions
-- scalable simulation
-- dashboard-ready data architecture
-
-## What This Project Does
-
-The repository now supports:
-
-- structured extraction of assumptions and benchmark outputs from the Excel workbook
 - deterministic project valuation in Python
-- Monte Carlo simulation for downside risk analysis
-- deterministic scenario comparison across market, operational, and investment stress cases
-- tornado sensitivity and price-grade stress heatmaps
-- semantic BI exports with dimensions, fact tables, KPI catalogs, and Power BI measure templates
+- Monte Carlo simulation for downside risk
+- deterministic stress scenarios
+- BI-ready facts and dimensions
+- a self-contained HTML dashboard showcase
 
-## The Transformation Story
+## Which files to use in Power BI or Tableau
 
-### Stage 1: Excel Prototype
+Use the files in `outputs/bi/`.
 
-The project began as a workbook built around:
-
-- copper price assumptions
-- ore grade decline
-- metallurgical recovery
-- throughput expansion
-- capex scheduling
-- project cash flow valuation
-- Monte Carlo simulation
-
-### Stage 2: Python Rebuild
-
-The core model was translated into modular Python components:
-
-- workbook extraction
-- valuation engine
-- stochastic simulation
-- scenario analysis
-- BI export layer
-
-### Stage 3: BI Product Layer
-
-The project was then elevated from a modeling exercise to a reporting product:
-
-- star-schema style outputs
-- scenario dimension
-- annual fact tables
-- KPI fact tables
-- sensitivity fact tables
-- simulation distribution tables
-- semantic documentation for dashboard development
-
-## Repository Structure
-
-```text
-copper_minning_risk_model/
-  config/
-    project.yaml
-  docs/
-    README_PORTFOLIO.md
-    DASHBOARD_FINAL.md
-    GITHUB_CASE_STUDY.md
-    GITHUB_PORTFOLIO_COPY.md
-    LINKEDIN_PORTFOLIO_COPY.md
-    GITHUB_SETUP_CHECKLIST.md
-  outputs/
-    bi/
-    dashboard/
-  scripts/
-    build_bi_dataset.py
-    build_portfolio_dashboard.py
-  src/
-    copper_risk_model/
-      dashboard_builder.py
-      excel_loader.py
-      model.py
-      simulation.py
-      scenario_analysis.py
-      bi_semantic.py
-      bi_export.py
-  powerbi/
-    copper_risk_theme.json
-  tests/
-    test_pipeline_smoke.py
-  .github/
-    workflows/
-      ci.yml
-  BI_SEMANTIC_MODEL.md
-  DASHBOARD_BUILD_GUIDE.md
-  PORTAFOLIO_BI_BLUEPRINT.md
-  PORTFOLIO_OVERVIEW.md
-  POWERBI_MEASURES.md
-  Copper_mining_risk_model.xlsm
-  technical_paper.pdf
-  README.md
-```
-
-## Core Data Sources
-
-The model uses:
-
-- World Bank copper price history
-- Cerro Verde operating data for ore grade and recovery calibration
-- project-level assumptions embedded in the original workbook for costs, fiscal structure, WACC, and capex
-
-## Output Layer
-
-Running the pipeline generates BI-ready exports in `outputs/bi/`, including:
+### Core star-schema tables
 
 - `dim_year.csv`
 - `dim_metric.csv`
@@ -127,38 +26,57 @@ Running the pipeline generates BI-ready exports in `outputs/bi/`, including:
 - `fact_simulation_distribution.csv`
 - `fact_tornado_sensitivity.csv`
 - `fact_heatmap_price_grade.csv`
-- `dashboard_kpis.csv`
+
+### Support tables
+
+- `simulation_summary.csv`
+- `simulation_percentiles.csv`
 - `benchmark_comparison.csv`
 - `powerbi_measure_catalog.csv`
 
-This is no longer just a model output folder. It is the beginning of a semantic layer for dashboarding.
+### Recommended usage
 
-## Dashboard Experience
+For **Power BI**, use the three `dim_*` tables plus the `fact_*` tables and keep each fact table connected only to the dimensions it actually uses.
 
-The repository now also generates a self-contained HTML showcase in `outputs/dashboard/index.html`.
+For **Tableau**, it is usually better to use:
 
-That dashboard is built directly from the exported facts and dimensions, so the portfolio story is no longer abstract:
+- `fact_annual_metrics.csv` as the main source for annual trend pages
+- `fact_scenario_kpis.csv` for KPI comparison pages
+- `fact_simulation_distribution.csv` for Monte Carlo visuals
+- `fact_tornado_sensitivity.csv` for tornado charts
+- `fact_heatmap_price_grade.csv` for stress heatmaps
 
-- executive scenario switching
-- deterministic NPV comparison
-- annual cash flow profile
-- operating driver trajectories
-- Monte Carlo distribution view
-- tornado sensitivity
-- price-grade heatmap
-- Excel vs Python benchmark reconciliation
+That avoids row explosion from forcing unrelated facts into one single model.
 
-## Validation
+## Minimal structure
 
-The repository includes a smoke test that verifies the end-to-end BI build pipeline.
-
-Run:
-
-```bash
-python -m pytest -q
+```text
+copper_minning_risk_model/
+  config/
+    project.yaml
+  data/
+    raw/
+      Copper_mining_risk_model.xlsm
+  docs/
+    BI_USAGE.md
+    PROJECT_STRUCTURE.md
+  outputs/
+    bi/
+    dashboard/
+  powerbi/
+    copper_risk_theme.json
+  scripts/
+    build_bi_dataset.py
+    build_portfolio_dashboard.py
+  src/
+    copper_risk_model/
+  tests/
+  README.md
+  pyproject.toml
+  pytest.ini
 ```
 
-## How to Run
+## How to run
 
 Install dependencies:
 
@@ -166,50 +84,29 @@ Install dependencies:
 python -m pip install -e .[dev]
 ```
 
-Generate BI outputs:
+Generate BI tables:
 
 ```bash
 python scripts/build_bi_dataset.py
 ```
 
-Generate the full portfolio dashboard package:
+Generate BI tables plus the HTML dashboard showcase:
 
 ```bash
 python scripts/build_portfolio_dashboard.py
 ```
 
-## Documentation
+Run tests:
 
-Portfolio and GitHub-facing documentation:
+```bash
+python -m pytest -q
+```
 
-- `docs/README_PORTFOLIO.md`
-- `docs/DASHBOARD_FINAL.md`
-- `docs/GITHUB_CASE_STUDY.md`
-- `docs/GITHUB_PORTFOLIO_COPY.md`
-- `docs/LINKEDIN_PORTFOLIO_COPY.md`
-- `docs/GITHUB_SETUP_CHECKLIST.md`
-- `PORTFOLIO_OVERVIEW.md`
-- `PORTAFOLIO_BI_BLUEPRINT.md`
-- `DASHBOARD_BUILD_GUIDE.md`
-- `BI_SEMANTIC_MODEL.md`
-- `POWERBI_MEASURES.md`
-- `powerbi/copper_risk_theme.json`
+## Important limitation
 
-## Portfolio Value
+The Python rebuild is still a reconstruction, not a perfect formula-by-formula replication of the Excel workbook.
 
-This project demonstrates the ability to:
-
-- translate an opaque Excel model into a reproducible Python system
-- preserve economic logic while improving analytical transparency
-- move from one-off spreadsheet analysis to scalable reporting architecture
-- structure outputs for Power BI or Tableau instead of leaving them trapped in a workbook
-- present limitations honestly through benchmark comparison rather than hiding model divergence
-
-## Important Limitation
-
-The current Python engine is a strong analytical product prototype, but it is not yet a perfect financial reconciliation of the original workbook. Benchmark comparison files explicitly show where Python and Excel still diverge.
-
-That limitation is kept visible on purpose. For a serious portfolio project, methodological honesty is more valuable than pretending false precision.
+The benchmark comparison is therefore informative, but still not a final currency-harmonized reconciliation between workbook outputs and Python outputs.
 
 ## Disclaimer
 

@@ -1,8 +1,0 @@
-page_name,goal,primary_dataset
-Executive View,Show value creation and headline downside risk.,dashboard_kpis.csv
-Scenario Comparison,"Compare base, upside, downside, and stress scenarios.",fact_scenario_kpis.csv
-Value Creation,"Track revenue, EBITDA, capex, and free cash flow by year.",fact_annual_metrics.csv
-Risk Distribution,"Show histogram, CDF, and tail metrics of NPV.",fact_simulation_distribution.csv
-Drivers,"Explain how price, grade, recovery, and throughput evolve.",annual_inputs.csv
-Sensitivity,Show tornado and price-grade stress matrix.,fact_tornado_sensitivity.csv
-Benchmark,Compare Python outputs against the Excel workbook.,benchmark_comparison.csv

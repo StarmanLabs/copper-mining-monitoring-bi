@@ -1095,7 +1095,7 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
     fact_tornado = pd.read_csv(data_dir / "fact_tornado_sensitivity.csv")
     fact_heatmap = pd.read_csv(data_dir / "fact_heatmap_price_grade.csv")
     simulation_summary = pd.read_csv(data_dir / "simulation_summary.csv")
-    simulation_distribution = pd.read_csv(data_dir / "simulation_distribution.csv")
+    simulation_distribution = pd.read_csv(data_dir / "fact_simulation_distribution.csv")
     benchmark = pd.read_csv(data_dir / "benchmark_comparison.csv")
 
     scenario_order = dim_scenario["scenario_id"].tolist()
