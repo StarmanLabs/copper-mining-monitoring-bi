@@ -65,6 +65,9 @@ copper_minning_risk_model/
     dashboard/
   powerbi/
     copper_risk_theme.json
+    DAX_MEASURES.md
+    DASHBOARD_BLUEPRINT.md
+    dashboard_visual_map.csv
   scripts/
     build_bi_dataset.py
     build_portfolio_dashboard.py
@@ -95,6 +98,15 @@ Generate BI tables plus the HTML dashboard showcase:
 ```bash
 python scripts/build_portfolio_dashboard.py
 ```
+
+## Power BI implementation assets
+
+The `powerbi/` folder now contains:
+
+- the theme file
+- a copy-ready DAX measure set
+- a page-by-page dashboard blueprint
+- a structured visual inventory
 
 Run tests:
 
