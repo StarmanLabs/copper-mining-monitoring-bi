@@ -1,64 +1,70 @@
 scenario_id,scenario_name,scenario_category,metric,value
-base,Base Case,Reference,base_npv_usd,1627402709.6891494
-base,Base Case,Reference,total_revenue_usd,59493906977.87726
-base,Base Case,Reference,total_ebitda_usd,7253670608.1115265
-base,Base Case,Reference,total_capex_usd,600000000.0
-base,Base Case,Reference,total_free_cash_flow_usd,4220884155.3421597
+base,Base Case,Reference,base_npv_usd,1735098665.2674618
+base,Base Case,Reference,base_irr,0.4518466901568161
+base,Base Case,Reference,total_revenue_usd,59493906977.87725
+base,Base Case,Reference,total_ebitda_usd,7253670608.111523
+base,Base Case,Reference,total_capex_usd,590000000.0
+base,Base Case,Reference,total_free_cash_flow_usd,4803837778.718622
 base,Base Case,Reference,average_net_price_usd_per_lb,4.290191661374608
 base,Base Case,Reference,average_head_grade,0.0030651943893074064
 base,Base Case,Reference,average_recovery,0.8420000000000003
 base,Base Case,Reference,peak_revenue_year,4.0
 base,Base Case,Reference,peak_fcf_year,15.0
 base,Base Case,Reference,payback_year,4.0
-bull_market,Bull Market,Market,base_npv_usd,4908599968.8642845
+bull_market,Bull Market,Market,base_npv_usd,5217620272.908168
+bull_market,Bull Market,Market,base_irr,1.3368436216570116
 bull_market,Bull Market,Market,total_revenue_usd,69899677217.58002
-bull_market,Bull Market,Market,total_ebitda_usd,16614636120.41899
-bull_market,Bull Market,Market,total_capex_usd,600000000.0
-bull_market,Bull Market,Market,total_free_cash_flow_usd,10445426904.626019
+bull_market,Bull Market,Market,total_ebitda_usd,16614636120.418983
+bull_market,Bull Market,Market,total_capex_usd,590000000.0
+bull_market,Bull Market,Market,total_free_cash_flow_usd,11403318464.895386
 bull_market,Bull Market,Market,average_net_price_usd_per_lb,4.941670410580798
 bull_market,Bull Market,Market,average_head_grade,0.0030651943893074064
 bull_market,Bull Market,Market,average_recovery,0.8420000000000003
 bull_market,Bull Market,Market,peak_revenue_year,4.0
 bull_market,Bull Market,Market,peak_fcf_year,15.0
 bull_market,Bull Market,Market,payback_year,2.0
-bear_market,Bear Market,Market,base_npv_usd,-2434874890.7270813
+bear_market,Bear Market,Market,base_npv_usd,-2468305062.6464996
+bear_market,Bear Market,Market,base_irr,-0.504023747841817
 bear_market,Bear Market,Market,total_revenue_usd,49449544271.513504
-bear_market,Bear Market,Market,total_ebitda_usd,-3281750320.1280293
-bear_market,Bear Market,Market,total_capex_usd,600000000.0
-bear_market,Bear Market,Market,total_free_cash_flow_usd,-3884075182.4037285
+bear_market,Bear Market,Market,total_ebitda_usd,-3281750320.128028
+bear_market,Bear Market,Market,total_capex_usd,590000000.0
+bear_market,Bear Market,Market,total_free_cash_flow_usd,-3591750320.128028
 bear_market,Bear Market,Market,average_net_price_usd_per_lb,3.6387129121684167
 bear_market,Bear Market,Market,average_head_grade,0.0030651943893074064
 bear_market,Bear Market,Market,average_recovery,0.8420000000000003
 bear_market,Bear Market,Market,peak_revenue_year,4.0
 bear_market,Bear Market,Market,peak_fcf_year,15.0
 bear_market,Bear Market,Market,payback_year,
-operational_stress,Operational Stress,Operations,base_npv_usd,-1368777083.4832346
+operational_stress,Operational Stress,Operations,base_npv_usd,-1397032313.6882606
+operational_stress,Operational Stress,Operations,base_irr,-0.15062819361736904
 operational_stress,Operational Stress,Operations,total_revenue_usd,52076682607.13134
-operational_stress,Operational Stress,Operations,total_ebitda_usd,-957605355.4548321
-operational_stress,Operational Stress,Operations,total_capex_usd,600000000.0
-operational_stress,Operational Stress,Operations,total_free_cash_flow_usd,-1610148927.423324
+operational_stress,Operational Stress,Operations,total_ebitda_usd,-957605355.4548349
+operational_stress,Operational Stress,Operations,total_capex_usd,590000000.0
+operational_stress,Operational Stress,Operations,total_free_cash_flow_usd,-1311711555.8713417
 operational_stress,Operational Stress,Operations,average_net_price_usd_per_lb,4.290191661374608
 operational_stress,Operational Stress,Operations,average_head_grade,0.002973238557628185
 operational_stress,Operational Stress,Operations,average_recovery,0.80832
 operational_stress,Operational Stress,Operations,peak_revenue_year,4.0
 operational_stress,Operational Stress,Operations,peak_fcf_year,15.0
 operational_stress,Operational Stress,Operations,payback_year,
-capex_overrun,Capex Overrun,Investment,base_npv_usd,1464488417.496669
-capex_overrun,Capex Overrun,Investment,total_revenue_usd,59493906977.87726
-capex_overrun,Capex Overrun,Investment,total_ebitda_usd,7253670608.1115265
-capex_overrun,Capex Overrun,Investment,total_capex_usd,720000000.0
-capex_overrun,Capex Overrun,Investment,total_free_cash_flow_usd,4100884155.3421597
+capex_overrun,Capex Overrun,Investment,base_npv_usd,1559670856.6151035
+capex_overrun,Capex Overrun,Investment,base_irr,0.3929561372565332
+capex_overrun,Capex Overrun,Investment,total_revenue_usd,59493906977.87725
+capex_overrun,Capex Overrun,Investment,total_ebitda_usd,7253670608.111523
+capex_overrun,Capex Overrun,Investment,total_capex_usd,708000000.0
+capex_overrun,Capex Overrun,Investment,total_free_cash_flow_usd,4741837778.718622
 capex_overrun,Capex Overrun,Investment,average_net_price_usd_per_lb,4.290191661374608
 capex_overrun,Capex Overrun,Investment,average_head_grade,0.0030651943893074064
 capex_overrun,Capex Overrun,Investment,average_recovery,0.8420000000000003
 capex_overrun,Capex Overrun,Investment,peak_revenue_year,4.0
 capex_overrun,Capex Overrun,Investment,peak_fcf_year,15.0
 capex_overrun,Capex Overrun,Investment,payback_year,4.0
-committee_downside,Investment Committee Downside,Stress,base_npv_usd,-7167390064.618053
+committee_downside,Investment Committee Downside,Stress,base_npv_usd,-7208009593.098987
+committee_downside,Investment Committee Downside,Stress,base_irr,
 committee_downside,Investment Committee Downside,Stress,total_revenue_usd,39395235132.68496
-committee_downside,Investment Committee Downside,Stress,total_ebitda_usd,-13471884073.517965
-committee_downside,Investment Committee Downside,Stress,total_capex_usd,690000000.0
-committee_downside,Investment Committee Downside,Stress,total_free_cash_flow_usd,-14163733548.702396
+committee_downside,Investment Committee Downside,Stress,total_ebitda_usd,-13471884073.517967
+committee_downside,Investment Committee Downside,Stress,total_capex_usd,678500000.0
+committee_downside,Investment Committee Downside,Stress,total_free_cash_flow_usd,-13828384073.517965
 committee_downside,Investment Committee Downside,Stress,average_net_price_usd_per_lb,3.421553329099686
 committee_downside,Investment Committee Downside,Stress,average_head_grade,0.0029119346698420357
 committee_downside,Investment Committee Downside,Stress,average_recovery,0.7999000000000003

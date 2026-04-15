@@ -514,7 +514,7 @@ HTML_TEMPLATE = """<!doctype html>
               <h2 class="panel-title">Excel vs Python Benchmark</h2>
             </div>
             <div class="panel-subtitle">
-              The portfolio story is stronger when the migration is transparent about what has already been replicated, what still needs reconciliation, and where currency normalization is not finished yet.
+              The portfolio story is stronger when the migration is explicit about what is directly comparable, what is only reference material, and where the Python engine intentionally departs from the workbook.
             </div>
           </div>
           <table class="benchmark-table" id="benchmark-table"></table>
@@ -668,6 +668,22 @@ HTML_TEMPLATE = """<!doctype html>
       if (format === "percent") return `${value.toFixed(1)}%`;
       if (format === "usd_per_lb") return `${value.toFixed(2)}`;
       return formatters.number(value);
+    }
+
+    function formatBenchmarkValue(value, unit, currency) {
+      if (value === null || value === undefined) return "n/a";
+      if (unit === "decimal") return `${(value * 100).toFixed(1)}%`;
+      if (unit === "USD" || currency === "USD") return formatters.currency(value);
+      return formatters.number(value);
+    }
+
+    function formatBenchmarkGap(row) {
+      if (!row.comparable_flag || row.gap === null || row.gap === undefined) return "n/a";
+      if (row.python_unit === "decimal") {
+        const sign = row.gap >= 0 ? "+" : "";
+        return `${sign}${(row.gap * 100).toFixed(1)} pp`;
+      }
+      return formatters.gap(row.gap);
     }
 
     function renderHeroMetrics() {
@@ -938,17 +954,21 @@ HTML_TEMPLATE = """<!doctype html>
       const rows = dashboardData.benchmark.map((row) => `
         <tr>
           <th>${row.label}</th>
-          <td>${formatters.currencyPen(row.excel_value)}</td>
-          <td>${formatters.currency(row.python_value)}</td>
-          <td>${row.note}</td>
+          <td>${formatBenchmarkValue(row.benchmark_value, row.benchmark_unit, row.benchmark_currency)}</td>
+          <td>${formatBenchmarkValue(row.python_value, row.python_unit, row.python_currency)}</td>
+          <td>${row.comparable_flag ? "Comparable" : "Reference only"}</td>
+          <td>${formatBenchmarkGap(row)}</td>
+          <td>${row.reconciliation_note}</td>
         </tr>
       `).join("");
       document.getElementById("benchmark-table").innerHTML = `
         <thead>
           <tr>
             <th>Metric</th>
-            <th>Workbook (PEN)</th>
-            <th>Python (USD)</th>
+            <th>Workbook</th>
+            <th>Python</th>
+            <th>Status</th>
+            <th>Gap</th>
             <th>Interpretation</th>
           </tr>
         </thead>
@@ -1194,7 +1214,8 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
     percentile_markers = _build_percentile_markers(simulation_distribution["npv_usd"], [0.05, 0.5, 0.95])
 
     benchmark_labels = {
-        "base_npv": "Base NPV",
+        "incremental_npv": "Incremental NPV",
+        "incremental_irr": "Incremental IRR",
         "expected_npv": "Expected NPV",
         "var_5pct": "VaR 5%",
         "cvar_5pct": "CVaR 5%",
@@ -1249,8 +1270,16 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
                 "metric": row.metric,
                 "label": benchmark_labels.get(row.metric, row.metric),
                 "python_value": float(row.python_value),
-                "excel_value": float(row.excel_value),
-                "note": "Directional only. Workbook benchmark is still in PEN while the rebuild is reported in USD.",
+                "python_unit": row.python_unit,
+                "python_currency": _clean_value(row.python_currency),
+                "benchmark_value": _clean_value(row.benchmark_value),
+                "benchmark_unit": _clean_value(row.benchmark_unit),
+                "benchmark_currency": _clean_value(row.benchmark_currency),
+                "comparable_flag": bool(row.comparable_flag),
+                "reconciliation_status": row.reconciliation_status,
+                "gap": _clean_value(row.gap),
+                "pct_gap": _clean_value(row.pct_gap),
+                "reconciliation_note": row.reconciliation_note,
             }
             for row in benchmark.itertuples(index=False)
         ],

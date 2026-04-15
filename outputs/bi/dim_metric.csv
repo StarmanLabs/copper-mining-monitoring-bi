@@ -6,12 +6,20 @@ scenario_grade,Head Grade,decimal,Geology,Drivers
 scenario_recovery,Recovery,decimal,Metallurgy,Drivers
 scenario_net_price_usd_per_lb,Net Realized Price,USD/lb,Commercial,Drivers
 copper_fine_lb,Copper Fine Production,lb,Production,Operating Profile
+gross_revenue_usd,Gross Revenue,USD,Economics,Value Creation
+payable_revenue_usd,Payable Revenue,USD,Economics,Value Creation
+tcrc_usd,Treatment and Refining Charges,USD,Commercial,Value Creation
 revenue_usd,Revenue,USD,Economics,Value Creation
+unit_opex_usd_per_tonne,Unit Opex,USD/t,Economics,Value Creation
 opex_usd,Operating Cost,USD,Economics,Value Creation
 ebitda_usd,EBITDA,USD,Economics,Value Creation
 taxes_usd,Taxes,USD,Economics,Value Creation
 operating_cash_flow_usd,Operating Cash Flow,USD,Cash Flow,Value Creation
+initial_capex_usd,Initial Capex,USD,Investment,Value Creation
+sustaining_capex_usd,Sustaining Capex,USD,Investment,Value Creation
 capex_usd,Capex,USD,Investment,Value Creation
+working_capital_investment_usd,Working Capital Investment,USD,Working Capital,Value Creation
+working_capital_release_usd,Working Capital Release,USD,Working Capital,Value Creation
 working_capital_delta_usd,Working Capital Delta,USD,Working Capital,Value Creation
 free_cash_flow_usd,Free Cash Flow,USD,Cash Flow,Value Creation
 discounted_fcf_usd,Discounted FCF,USD,Valuation,Executive View
