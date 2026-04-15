@@ -1,22 +1,94 @@
 # Copper Mining Risk Model
 
-Rebuilding a copper mining valuation workbook into a reproducible Python risk engine with BI-ready outputs for Power BI and Tableau.
+Rebuilding a spreadsheet-based copper mining valuation into a reproducible Python analytics engine with deterministic scenario analysis, structured benchmark reconciliation, upgraded stochastic risk modeling, and BI-ready outputs for Power BI or Tableau.
 
-## What this repo is
+## Project objective
 
-This project takes a spreadsheet-based copper mining valuation and turns it into a cleaner analytical product with:
+This repository converts an Excel mining valuation workflow into a Python-first analytical pipeline that is easier to audit, test, extend, and present as a portfolio-grade decision-support project.
 
-- deterministic project valuation in Python
-- Monte Carlo simulation for downside risk
-- deterministic stress scenarios
-- BI-ready facts and dimensions
-- a self-contained HTML dashboard showcase
+The goal is not spreadsheet replacement for its own sake. The goal is to make the model:
 
-## Which files to use in Power BI or Tableau
+- more reproducible
+- clearer about what is economically being valued
+- more explicit about what is and is not comparable to the workbook benchmark
+- stronger for downstream BI dashboards and portfolio presentation
+
+## What the engine does
+
+The project currently produces four analytical layers:
+
+1. Deterministic expanded-project valuation in Python
+2. Incremental-expansion benchmark reconciliation against the workbook
+3. Stochastic downside analysis with annual price shocks and bounded operating uncertainty
+4. BI-ready fact and dimension tables plus a self-contained HTML dashboard showcase
+
+## Analytical design
+
+### Deterministic model
+
+The deterministic engine values the expanded operating case in USD using:
+
+- annual copper price deck from the workbook
+- annual base throughput, grade, and recovery inputs from the workbook
+- explicit payable and treatment/refining adjustments
+- explicit cash operating costs
+- simplified tax proxy aligned to the workbook cash-flow chain
+- explicit year 0 and year 1 capex timing
+- explicit working-capital treatment
+- explicit discounted free cash flow, NPV, and IRR
+
+The deterministic scenario layer then stresses price, grade, recovery, throughput, opex, capex, and discount rate for BI comparison and dashboard storytelling.
+
+### Benchmark reconciliation
+
+The workbook benchmark is not treated as a generic "Excel truth table".
+
+Instead, the repo now distinguishes between:
+
+- `total_project_expanded_operation`: the main Python valuation used for scenarios and dashboard KPIs
+- `incremental_expansion`: the workbook-style benchmark basis used for deterministic reconciliation
+
+The benchmark comparison table in `outputs/bi/benchmark_comparison.csv` explicitly flags:
+
+- units
+- currency
+- valuation basis
+- timing basis
+- comparability status
+- explanatory notes
+
+`gap` and `pct_gap` are only computed when direct comparison is defensible.
+
+### Stochastic model
+
+The Monte Carlo layer keeps the deterministic model as the base case and upgrades the stochastic structure by:
+
+- simulating annual copper price variation around the workbook price deck
+- treating grade uncertainty as a project-level multiplier
+- treating recovery uncertainty as bounded yearly variation
+- preserving seed reproducibility
+- exporting a BI-friendly simulation distribution table
+
+This is intentionally a practical project-risk engine, not a full commodity-process research model.
+
+## Data flow
+
+```text
+Excel workbook
+  -> structured loader with sheet/cell validation
+  -> deterministic model
+  -> scenario analysis
+  -> Monte Carlo simulation
+  -> benchmark reconciliation
+  -> BI exports
+  -> HTML dashboard showcase
+```
+
+## Files to use in Power BI or Tableau
 
 Use the files in `outputs/bi/`.
 
-### Core star-schema tables
+### Core model tables
 
 - `dim_year.csv`
 - `dim_metric.csv`
@@ -34,49 +106,23 @@ Use the files in `outputs/bi/`.
 - `benchmark_comparison.csv`
 - `powerbi_measure_catalog.csv`
 
-### Recommended usage
+For Power BI, keep each fact table attached only to the dimensions it actually uses.
 
-For **Power BI**, use the three `dim_*` tables plus the `fact_*` tables and keep each fact table connected only to the dimensions it actually uses.
+For Tableau, it is usually cleaner to work with separate subject-area sources rather than forcing all facts into one denormalized extract.
 
-For **Tableau**, it is usually better to use:
-
-- `fact_annual_metrics.csv` as the main source for annual trend pages
-- `fact_scenario_kpis.csv` for KPI comparison pages
-- `fact_simulation_distribution.csv` for Monte Carlo visuals
-- `fact_tornado_sensitivity.csv` for tornado charts
-- `fact_heatmap_price_grade.csv` for stress heatmaps
-
-That avoids row explosion from forcing unrelated facts into one single model.
-
-## Minimal structure
+## Repository structure
 
 ```text
 copper_minning_risk_model/
-  config/
-    project.yaml
-  data/
-    raw/
-      Copper_mining_risk_model.xlsm
-  docs/
-    BI_USAGE.md
-    PROJECT_STRUCTURE.md
-  outputs/
-    bi/
-    dashboard/
-  powerbi/
-    copper_risk_theme.json
-    DAX_MEASURES.md
-    DASHBOARD_BLUEPRINT.md
-    dashboard_visual_map.csv
-  scripts/
-    build_bi_dataset.py
-    build_portfolio_dashboard.py
-  src/
-    copper_risk_model/
-  tests/
-  README.md
-  pyproject.toml
-  pytest.ini
+  config/                     Project configuration
+  data/raw/                   Source Excel workbook
+  docs/                       Technical notes and usage guidance
+  outputs/bi/                 BI-ready CSV exports
+  outputs/dashboard/          Self-contained HTML dashboard output
+  powerbi/                    Theme, DAX, and dashboard blueprint assets
+  scripts/                    Build entrypoints
+  src/copper_risk_model/      Loader, model, simulation, BI export, dashboard code
+  tests/                      Analytical and smoke tests
 ```
 
 ## How to run
@@ -87,26 +133,17 @@ Install dependencies:
 python -m pip install -e .[dev]
 ```
 
-Generate BI tables:
+Build BI tables:
 
 ```bash
 python scripts/build_bi_dataset.py
 ```
 
-Generate BI tables plus the HTML dashboard showcase:
+Build BI tables plus the HTML dashboard:
 
 ```bash
 python scripts/build_portfolio_dashboard.py
 ```
-
-## Power BI implementation assets
-
-The `powerbi/` folder now contains:
-
-- the theme file
-- a copy-ready DAX measure set
-- a page-by-page dashboard blueprint
-- a structured visual inventory
 
 Run tests:
 
@@ -114,15 +151,30 @@ Run tests:
 python -m pytest -q
 ```
 
-## Important limitation
+## Technical notes
 
-The Python rebuild is still a reconstruction, not a perfect formula-by-formula replication of the Excel workbook.
+- Model scope and conventions: `docs/MODEL_NOTES.md`
+- BI usage guidance: `docs/BI_USAGE.md`
+- Folder guide: `docs/PROJECT_STRUCTURE.md`
 
-The benchmark comparison is therefore informative, but still not a final currency-harmonized reconciliation between workbook outputs and Python outputs.
+## Main limitations
+
+This repository is a serious analytical rebuild, but it is still deliberately simplified.
+
+It does not claim:
+
+- full formula-by-formula Excel parity
+- a complete mining fiscal regime
+- engineering-grade mine planning realism
+- a structural commodity-price forecasting model
+
+What it does claim honestly is:
+
+> This project rebuilds a spreadsheet-based copper mining valuation into a reproducible Python analytical engine with improved scenario design, stronger stochastic risk modeling, explicit benchmark reconciliation, and BI-ready outputs for decision support.
 
 ## Disclaimer
 
-This is an analytical and educational project based on a hypothetical mining expansion case. It is not an investment recommendation and should not replace technical, geological, fiscal, or financial due diligence.
+This is an analytical portfolio project based on a hypothetical mining expansion case. It is not investment advice and should not substitute for geological, metallurgical, fiscal, financial, or operational due diligence.
 
 <!-- Legacy workbook-oriented summary retained below for archive.
 

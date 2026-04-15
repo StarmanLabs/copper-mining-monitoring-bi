@@ -24,6 +24,7 @@ The BI-ready layer lives in `outputs/bi/`.
 - `fact_simulation_distribution.csv`
   Monte Carlo NPV distribution.
   Use this for histograms, CDFs, percentile markers, and downside analysis.
+  The table now also carries path summary fields such as average price, terminal price, price-path dispersion, grade factor, and recovery variation.
 - `fact_tornado_sensitivity.csv`
   Tornado sensitivity impacts versus the base case.
   Use this for ranked driver charts.
@@ -38,7 +39,7 @@ The BI-ready layer lives in `outputs/bi/`.
 - `simulation_percentiles.csv`
   Percentile cutoffs for the NPV distribution.
 - `benchmark_comparison.csv`
-  Directional Excel vs Python comparison.
+  Audit-style benchmark reconciliation table with explicit comparability flags, basis metadata, and notes.
 - `powerbi_measure_catalog.csv`
   Suggested measure definitions for Power BI.
 

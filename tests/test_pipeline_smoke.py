@@ -1,12 +1,14 @@
+from pathlib import Path
+
 import pandas as pd
 
 from copper_risk_model.bi_export import build_bi_outputs
 from copper_risk_model.dashboard_builder import build_portfolio_dashboard
 
 
-def test_build_bi_outputs_smoke(tmp_path):
-    bi_dir = tmp_path / "bi"
-    dashboard_dir = tmp_path / "dashboard"
+def test_build_bi_outputs_smoke():
+    bi_dir = Path("outputs") / "test-smoke-bi"
+    dashboard_dir = Path("outputs") / "test-smoke-dashboard"
 
     outputs = build_bi_outputs(output_dir=bi_dir)
     assert outputs["fact_simulation_distribution"].exists()
@@ -18,6 +20,12 @@ def test_build_bi_outputs_smoke(tmp_path):
 
     dim_scenario = pd.read_csv(outputs["dim_scenario"])
     assert {"base", "committee_downside"}.issubset(set(dim_scenario["scenario_id"]))
+
+    benchmark = pd.read_csv(outputs["benchmark_comparison"])
+    assert {"metric", "comparable_flag", "reconciliation_status", "reconciliation_note", "gap", "pct_gap"}.issubset(
+        benchmark.columns
+    )
+    assert {"incremental_npv", "incremental_irr", "expected_npv"}.issubset(set(benchmark["metric"]))
 
     fact_heatmap = pd.read_csv(outputs["fact_heatmap_price_grade"])
     assert len(fact_heatmap) == 35

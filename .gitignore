@@ -4,8 +4,10 @@ __pycache__/
 *.pyd
 
 .pytest_cache/
+.pytest_tmp/
 tmp/
 pytest-cache-files-*/
+pytest-smoke-*/
 
 .venv/
 venv/
@@ -16,6 +18,8 @@ build/
 *.egg-info/
 
 outputs/bi_smoke/
+outputs/test-*/
+outputs/pytest-smoke-*/
 
 .DS_Store
 Thumbs.db

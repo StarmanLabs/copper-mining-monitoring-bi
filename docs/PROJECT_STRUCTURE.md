@@ -18,7 +18,7 @@
 - `powerbi/`
   Theme and Power BI-specific assets.
 - `tests/`
-  Smoke tests to verify the pipeline still runs.
+  Analytical and smoke tests for model logic, simulation, reconciliation, and export integrity.
 - `.github/workflows/`
   CI pipeline for GitHub Actions.
 
@@ -40,6 +40,13 @@
   Builds the self-contained HTML dashboard showcase.
 - `__main__.py`
   Package entrypoint.
+
+## Documentation
+
+- `MODEL_NOTES.md`
+  Technical note on valuation basis, benchmark scope, stochastic design, and remaining limits.
+- `BI_USAGE.md`
+  Which exports to use in Power BI or Tableau and how to connect them.
 
 ## Build scripts
 
