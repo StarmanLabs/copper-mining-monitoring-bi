@@ -13,7 +13,13 @@ from .bi_semantic import (
     build_powerbi_measure_catalog,
 )
 from .excel_loader import load_workbook_data
-from .model import ScenarioParameters, build_expansion_profile
+from .model import (
+    ScenarioParameters,
+    build_expansion_profile,
+    build_incremental_expansion_profile,
+    irr_from_profile,
+    npv_from_profile,
+)
 from .scenario_analysis import (
     build_multi_scenario_outputs,
     build_price_grade_heatmap,
@@ -28,34 +34,172 @@ def _load_yaml(path: str | Path) -> dict:
         return yaml.safe_load(handle)
 
 
-def _build_benchmark_comparison(base_profile: pd.DataFrame, simulation_summary: pd.DataFrame, workbook_data, assumptions: pd.Series) -> pd.DataFrame:
-    comparison = pd.DataFrame(
-        [
-            {
-                "metric": "base_npv",
-                "python_value": float(base_profile["discounted_fcf_usd"].sum()),
-                "excel_value": float(assumptions["benchmark_npv_excel"]),
-            },
-            {
-                "metric": "expected_npv",
-                "python_value": float(simulation_summary.loc[simulation_summary["metric"] == "expected_npv_usd", "value"].iloc[0]),
-                "excel_value": float(workbook_data.benchmark_metrics.loc[workbook_data.benchmark_metrics["metric"] == "expected_npv", "value"].iloc[0]),
-            },
-            {
-                "metric": "var_5pct",
-                "python_value": float(simulation_summary.loc[simulation_summary["metric"] == "var_usd", "value"].iloc[0]),
-                "excel_value": float(workbook_data.benchmark_metrics.loc[workbook_data.benchmark_metrics["metric"] == "var_5pct", "value"].iloc[0]),
-            },
-            {
-                "metric": "cvar_5pct",
-                "python_value": float(simulation_summary.loc[simulation_summary["metric"] == "cvar_usd", "value"].iloc[0]),
-                "excel_value": float(workbook_data.benchmark_metrics.loc[workbook_data.benchmark_metrics["metric"] == "cvar_5pct", "value"].iloc[0]),
-            },
-        ]
-    )
-    comparison["gap"] = comparison["python_value"] - comparison["excel_value"]
-    comparison["pct_gap_vs_excel"] = comparison["gap"] / comparison["excel_value"].replace(0, pd.NA)
-    return comparison
+def _summary_value(summary: pd.DataFrame, metric: str) -> float:
+    return float(summary.loc[summary["metric"] == metric, "value"].iloc[0])
+
+
+def _assumption_row(workbook_data, parameter: str) -> pd.Series:
+    return workbook_data.assumptions.loc[workbook_data.assumptions["parameter"] == parameter].iloc[0]
+
+
+def _benchmark_row(workbook_data, metric: str) -> pd.Series:
+    return workbook_data.benchmark_metrics.loc[workbook_data.benchmark_metrics["metric"] == metric].iloc[0]
+
+
+def _reconciliation_row(
+    metric: str,
+    python_value: float,
+    python_unit: str,
+    python_currency: str | None,
+    python_basis: str,
+    python_timing: str,
+    benchmark_value: float | None,
+    benchmark_unit: str | None,
+    benchmark_currency: str | None,
+    benchmark_basis: str | None,
+    benchmark_timing: str | None,
+    benchmark_note: str,
+    issues: list[str] | None = None,
+) -> dict[str, object]:
+    issues = [] if issues is None else [issue for issue in issues if issue]
+    if benchmark_value is None:
+        issues.append("missing_benchmark_value")
+    if benchmark_unit is not None and python_unit != benchmark_unit:
+        issues.append("unit_mismatch")
+    if python_currency != benchmark_currency:
+        issues.append("currency_mismatch")
+    if benchmark_basis is not None and python_basis != benchmark_basis:
+        issues.append("basis_mismatch")
+    if benchmark_timing is not None and python_timing != benchmark_timing:
+        issues.append("timing_mismatch")
+
+    comparable = len(issues) == 0
+    gap = python_value - benchmark_value if comparable and benchmark_value is not None else pd.NA
+    pct_gap = gap / benchmark_value if comparable and benchmark_value not in (None, 0) else pd.NA
+
+    note_parts = []
+    if benchmark_note:
+        note_parts.append(benchmark_note)
+    if issues:
+        note_parts.append("Comparison blocked by: " + ", ".join(issues) + ".")
+
+    return {
+        "metric": metric,
+        "python_value": python_value,
+        "python_unit": python_unit,
+        "python_currency": python_currency,
+        "python_basis": python_basis,
+        "python_timing_basis": python_timing,
+        "benchmark_value": benchmark_value,
+        "benchmark_unit": benchmark_unit,
+        "benchmark_currency": benchmark_currency,
+        "benchmark_basis": benchmark_basis,
+        "benchmark_timing_basis": benchmark_timing,
+        "comparable_flag": comparable,
+        "reconciliation_status": "comparable" if comparable else "reference_only",
+        "reconciliation_note": " ".join(note_parts).strip(),
+        "gap": gap,
+        "pct_gap": pct_gap,
+    }
+
+
+def _build_benchmark_comparison(
+    incremental_profile: pd.DataFrame,
+    simulation_summary: pd.DataFrame,
+    workbook_data,
+    project_currency: str,
+) -> pd.DataFrame:
+    benchmark_npv = _assumption_row(workbook_data, "benchmark_npv_excel")
+    benchmark_irr = _assumption_row(workbook_data, "benchmark_irr_excel")
+    expected_npv_row = _benchmark_row(workbook_data, "expected_npv")
+    var_row = _benchmark_row(workbook_data, "var_5pct")
+    cvar_row = _benchmark_row(workbook_data, "cvar_5pct")
+    deterministic_issues: list[str] = []
+    if abs(float(incremental_profile.attrs.get("initial_capex_year0_usd", 0.0)) - float(_assumption_row(workbook_data, "initial_capex_year0_usd")["value"])) > 1e-6:
+        deterministic_issues.append("year0_capex_mismatch")
+    if abs(float(incremental_profile.loc[incremental_profile["year"] == 1, "initial_capex_usd"].iloc[0]) - float(_assumption_row(workbook_data, "initial_capex_year1_usd")["value"])) > 1e-6:
+        deterministic_issues.append("year1_capex_mismatch")
+    if abs(float(incremental_profile.loc[incremental_profile["year"] == 2, "sustaining_capex_usd"].iloc[0]) - float(_assumption_row(workbook_data, "sustaining_capex_usd")["value"])) > 1e-6:
+        deterministic_issues.append("sustaining_capex_mismatch")
+
+    rows = [
+        _reconciliation_row(
+            metric="incremental_npv",
+            python_value=npv_from_profile(incremental_profile),
+            python_unit="USD",
+            python_currency=project_currency,
+            python_basis="incremental_expansion",
+            python_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_value=float(benchmark_npv["value"]),
+            benchmark_unit=str(benchmark_npv["unit"]),
+            benchmark_currency="USD",
+            benchmark_basis="incremental_expansion",
+            benchmark_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_note=str(benchmark_npv["note"] or ""),
+            issues=deterministic_issues.copy(),
+        ),
+        _reconciliation_row(
+            metric="incremental_irr",
+            python_value=irr_from_profile(incremental_profile),
+            python_unit="decimal",
+            python_currency=None,
+            python_basis="incremental_expansion",
+            python_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_value=float(benchmark_irr["value"]),
+            benchmark_unit=str(benchmark_irr["unit"]),
+            benchmark_currency=None,
+            benchmark_basis="incremental_expansion",
+            benchmark_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_note=str(benchmark_irr["note"] or ""),
+            issues=deterministic_issues.copy(),
+        ),
+        _reconciliation_row(
+            metric="expected_npv",
+            python_value=_summary_value(simulation_summary, "expected_npv_usd"),
+            python_unit="USD",
+            python_currency=project_currency,
+            python_basis="total_project_expanded_operation",
+            python_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_value=float(expected_npv_row["value"]),
+            benchmark_unit=str(expected_npv_row["unit"]),
+            benchmark_currency=expected_npv_row["currency"],
+            benchmark_basis=str(expected_npv_row["valuation_basis"]),
+            benchmark_timing=str(expected_npv_row["timing_basis"]),
+            benchmark_note=str(expected_npv_row["note"]),
+            issues=["stochastic_design_mismatch"],
+        ),
+        _reconciliation_row(
+            metric="var_5pct",
+            python_value=_summary_value(simulation_summary, "var_usd"),
+            python_unit="USD",
+            python_currency=project_currency,
+            python_basis="total_project_expanded_operation",
+            python_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_value=float(var_row["value"]),
+            benchmark_unit=str(var_row["unit"]),
+            benchmark_currency=var_row["currency"],
+            benchmark_basis=str(var_row["valuation_basis"]),
+            benchmark_timing=str(var_row["timing_basis"]),
+            benchmark_note=str(var_row["note"]),
+            issues=["stochastic_design_mismatch"],
+        ),
+        _reconciliation_row(
+            metric="cvar_5pct",
+            python_value=_summary_value(simulation_summary, "cvar_usd"),
+            python_unit="USD",
+            python_currency=project_currency,
+            python_basis="total_project_expanded_operation",
+            python_timing="year0_initial_outlay_plus_discounted_year1_to_year15",
+            benchmark_value=float(cvar_row["value"]),
+            benchmark_unit=str(cvar_row["unit"]),
+            benchmark_currency=cvar_row["currency"],
+            benchmark_basis=str(cvar_row["valuation_basis"]),
+            benchmark_timing=str(cvar_row["timing_basis"]),
+            benchmark_note=str(cvar_row["note"]),
+            issues=["stochastic_design_mismatch"],
+        ),
+    ]
+    return pd.DataFrame(rows)
 
 
 def _build_simulation_percentiles(distribution: pd.DataFrame, percentiles: list[float]) -> pd.DataFrame:
@@ -72,8 +216,14 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     params = ScenarioParameters(
         payable_rate=float(assumptions["payable_rate"]),
         tc_rc_usd_per_lb=float(assumptions["tc_rc_usd_per_lb"]),
+        mine_cost_usd_per_tonne=float(assumptions["mine_cost_usd_per_tonne"]),
+        plant_cost_usd_per_tonne=float(assumptions["plant_cost_usd_per_tonne"]),
+        g_and_a_cost_usd_per_tonne=float(assumptions["g_and_a_cost_usd_per_tonne"]),
+        base_unit_cost_usd_per_tonne=float(assumptions["base_unit_cost_usd_per_tonne"]),
         expansion_unit_cost_usd_per_tonne=float(assumptions["expansion_unit_cost_usd_per_tonne"]),
-        tax_rate_total=float(assumptions["income_tax_rate"] + assumptions["royalty_rate"] + assumptions["special_levy_rate"]),
+        income_tax_rate=float(assumptions["income_tax_rate"]),
+        royalty_rate=float(assumptions["royalty_rate"]),
+        special_levy_rate=float(assumptions["special_levy_rate"]),
         wacc=float(assumptions["wacc"]),
         annual_sustaining_capex_usd=float(config["scenario"]["finance"]["annual_sustaining_capex_usd"]),
         initial_capex_schedule_usd={int(k): float(v) for k, v in config["scenario"]["finance"]["initial_capex_schedule_usd"].items()},
@@ -93,11 +243,13 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     )
 
     base_profile = build_expansion_profile(workbook_data.annual_inputs, params)
+    incremental_profile = build_incremental_expansion_profile(workbook_data.annual_inputs, params)
     distribution, simulation_summary = run_monte_carlo(workbook_data.annual_inputs, params, sim_config)
 
     simulation_distribution = distribution.copy()
     simulation_distribution["scenario_id"] = "mc_base"
     simulation_distribution["scenario_name"] = "Monte Carlo Base"
+    simulation_distribution["valuation_basis"] = "total_project_expanded_operation"
 
     scenario_dim, fact_annual_metrics, fact_scenario_kpis = build_multi_scenario_outputs(
         annual_inputs=workbook_data.annual_inputs,
@@ -106,7 +258,12 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
     )
     fact_annual_metrics["category"] = fact_annual_metrics["metric"].map(METRIC_CATEGORY_MAP)
 
-    benchmark_comparison = _build_benchmark_comparison(base_profile, simulation_summary, workbook_data, assumptions)
+    benchmark_comparison = _build_benchmark_comparison(
+        incremental_profile=incremental_profile,
+        simulation_summary=simulation_summary,
+        workbook_data=workbook_data,
+        project_currency=str(config["project"]["currency"]),
+    )
     fact_tornado_sensitivity = build_tornado_table(
         annual_inputs=workbook_data.annual_inputs,
         params=params,

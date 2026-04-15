@@ -6,7 +6,13 @@ from typing import Iterable
 
 import pandas as pd
 
-from .model import ScenarioParameters, build_expansion_profile
+from .model import (
+    ScenarioParameters,
+    build_expansion_profile,
+    cash_flows_from_profile,
+    irr_from_profile,
+    npv_from_profile,
+)
 
 
 DEFAULT_SCENARIO_VALUES = {
@@ -29,12 +35,20 @@ def profile_to_long(profile: pd.DataFrame, scenario_id: str, scenario_name: str,
         "scenario_recovery",
         "scenario_net_price_usd_per_lb",
         "copper_fine_lb",
+        "gross_revenue_usd",
+        "payable_revenue_usd",
+        "tcrc_usd",
         "revenue_usd",
+        "unit_opex_usd_per_tonne",
         "opex_usd",
         "ebitda_usd",
         "taxes_usd",
         "operating_cash_flow_usd",
+        "initial_capex_usd",
+        "sustaining_capex_usd",
         "capex_usd",
+        "working_capital_investment_usd",
+        "working_capital_release_usd",
         "working_capital_delta_usd",
         "free_cash_flow_usd",
         "discounted_fcf_usd",
@@ -47,16 +61,17 @@ def profile_to_long(profile: pd.DataFrame, scenario_id: str, scenario_name: str,
 
 
 def summarize_profile(profile: pd.DataFrame, scenario_id: str, scenario_name: str, scenario_category: str) -> pd.DataFrame:
-    cumulative_fcf = profile["free_cash_flow_usd"].cumsum()
-    payback_years = profile.loc[cumulative_fcf >= 0, "year"]
+    cumulative_fcf = cash_flows_from_profile(profile).cumsum()
+    payback_years = profile.loc[cumulative_fcf[1:] >= 0, "year"]
     payback_year = int(payback_years.iloc[0]) if not payback_years.empty else None
     peak_revenue_year = int(profile.loc[profile["revenue_usd"].idxmax(), "year"])
     peak_fcf_year = int(profile.loc[profile["free_cash_flow_usd"].idxmax(), "year"])
     kpis = [
-        ("base_npv_usd", float(profile["discounted_fcf_usd"].sum())),
+        ("base_npv_usd", npv_from_profile(profile)),
+        ("base_irr", irr_from_profile(profile)),
         ("total_revenue_usd", float(profile["revenue_usd"].sum())),
         ("total_ebitda_usd", float(profile["ebitda_usd"].sum())),
-        ("total_capex_usd", float(profile["capex_usd"].sum())),
+        ("total_capex_usd", float(profile.attrs.get("initial_capex_year0_usd", 0.0) + profile["capex_usd"].sum())),
         ("total_free_cash_flow_usd", float(profile["free_cash_flow_usd"].sum())),
         ("average_net_price_usd_per_lb", float(profile["scenario_net_price_usd_per_lb"].mean())),
         ("average_head_grade", float(profile["scenario_grade"].mean())),
@@ -136,7 +151,7 @@ def build_tornado_table(
     tornado_specs: Iterable[dict],
 ) -> pd.DataFrame:
     base_profile = build_expansion_profile(annual_inputs=annual_inputs, params=params)
-    base_npv = float(base_profile["discounted_fcf_usd"].sum())
+    base_npv = npv_from_profile(base_profile)
     records = []
 
     for spec in tornado_specs:
@@ -158,7 +173,7 @@ def build_tornado_table(
                 capex_factor=values["capex_factor"],
                 wacc_override=wacc_override,
             )
-            npv_value = float(profile["discounted_fcf_usd"].sum())
+            npv_value = npv_from_profile(profile)
             records.append(
                 {
                     "driver": driver,
@@ -205,7 +220,7 @@ def build_price_grade_heatmap(
                 capex_factor=float(capex_factor),
                 wacc_override=wacc_override,
             )
-            npv_value = float(profile["discounted_fcf_usd"].sum())
+            npv_value = npv_from_profile(profile)
             records.append(
                 {
                     "price_factor": float(price_factor),
