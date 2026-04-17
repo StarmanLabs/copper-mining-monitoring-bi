@@ -11,11 +11,11 @@ import numpy as np
 import pandas as pd
 
 KPI_SPECS = [
-    ("scenario_npv_usd", "Scenario NPV", "currency"),
-    ("total_revenue_usd", "Total Revenue", "currency"),
+    ("total_revenue_usd", "Revenue Exposure", "currency"),
     ("total_ebitda_usd", "Total EBITDA", "currency"),
-    ("total_free_cash_flow_usd", "Total Free Cash Flow", "currency"),
-    ("average_net_price_usd_per_lb", "Avg Net Price", "usd_per_lb"),
+    ("average_processed_tonnes", "Avg Throughput", "number"),
+    ("average_unit_opex_usd_per_tonne", "Avg Unit Opex", "usd_per_tonne"),
+    ("scenario_npv_usd", "Scenario NPV", "currency"),
     ("payback_year", "Payback", "year"),
 ]
 
@@ -45,7 +45,7 @@ HTML_TEMPLATE = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Copper Mining Risk Command Center</title>
+  <title>Copper Mining Planning and Performance Command Center</title>
   <style>
     :root {
       --bg: #171412;
@@ -428,16 +428,17 @@ HTML_TEMPLATE = """<!doctype html>
   <div class="page">
     <section class="hero">
       <div class="hero-card hero-copy">
-        <div class="eyebrow">Portfolio Demonstration</div>
-        <h1>Copper Mining Risk Command Center</h1>
+        <div class="eyebrow">Mining Analytics Portfolio</div>
+        <h1>Copper Mining Planning and Performance Command Center</h1>
         <p>
-          A spreadsheet-based mining valuation has been rebuilt into a reproducible Python risk engine,
-          then translated into a decision dashboard for scenario comparison, downside analysis, and BI delivery.
+          Workbook-seeded mining inputs are translated into reproducible KPI marts for planning,
+          performance monitoring, cost review, scenario planning, and BI delivery, with valuation
+          and downside analytics preserved as an advanced secondary layer.
         </p>
         <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:10px;">
-          <div class="pill">Monte Carlo downside analysis</div>
-          <div class="pill">Deterministic scenario comparison</div>
-          <div class="pill">Power BI and Tableau ready outputs</div>
+          <div class="pill">Operational KPI layer</div>
+          <div class="pill">Scenario planning and price exposure</div>
+          <div class="pill">Power BI and Tableau ready marts</div>
         </div>
       </div>
       <div class="hero-card hero-metrics" id="hero-metrics"></div>
@@ -446,11 +447,11 @@ HTML_TEMPLATE = """<!doctype html>
     <section class="panel">
       <div class="panel-header">
         <div>
-          <div class="eyebrow">Scenario Layer</div>
-          <h2 class="panel-title">Executive Scenario View</h2>
+          <div class="eyebrow">Planning Layer</div>
+          <h2 class="panel-title">Executive Planning and Performance View</h2>
         </div>
         <div class="panel-subtitle">
-          Switch scenarios to see how value creation, pricing, margins, and payback change under market and operating stress.
+          Switch scenarios to see how throughput, pricing, operating margin, cost pressure, and advanced valuation outputs move across market and operating cases.
         </div>
       </div>
       <div class="selector-row" id="scenario-selector"></div>
@@ -464,7 +465,7 @@ HTML_TEMPLATE = """<!doctype html>
           <div class="panel-header">
             <div>
               <div class="eyebrow">Selected Scenario</div>
-              <h2 class="panel-title">Cash Flow Trajectory</h2>
+              <h2 class="panel-title">Revenue and Cash Generation Profile</h2>
             </div>
             <div class="panel-subtitle" id="scenario-caption"></div>
           </div>
@@ -477,11 +478,11 @@ HTML_TEMPLATE = """<!doctype html>
         <section class="panel">
           <div class="panel-header">
             <div>
-              <div class="eyebrow">Scenario Comparison</div>
-              <h2 class="panel-title">NPV Across Deterministic Cases</h2>
+              <div class="eyebrow">Scenario Planning</div>
+              <h2 class="panel-title">Value Spread Across Deterministic Cases</h2>
             </div>
             <div class="panel-subtitle">
-              The spread between upside and committee-downside cases is the core signal for investment fragility.
+              The spread between upside and downside cases shows how exposed the planning case is to commodity prices, operating execution, and capital discipline.
             </div>
           </div>
           <div class="chart-wrap">
@@ -494,11 +495,11 @@ HTML_TEMPLATE = """<!doctype html>
         <section class="panel">
           <div class="panel-header">
             <div>
-              <div class="eyebrow">Operating Drivers</div>
-              <h2 class="panel-title">Market and Metallurgy Profile</h2>
+              <div class="eyebrow">Operational Drivers</div>
+              <h2 class="panel-title">Price, Grade, and Recovery Profile</h2>
             </div>
             <div class="panel-subtitle">
-              Net price, head grade, and recovery are displayed as indexed trajectories so the dashboard compares direction and slippage rather than mixing incompatible units on one axis.
+              Net price, head grade, and recovery are shown as indexed trajectories so the dashboard highlights direction and slippage rather than mixing incompatible units on one axis.
             </div>
           </div>
           <div class="chart-wrap">
@@ -510,11 +511,11 @@ HTML_TEMPLATE = """<!doctype html>
         <section class="panel">
           <div class="panel-header">
             <div>
-              <div class="eyebrow">Reconciliation</div>
-              <h2 class="panel-title">Excel vs Python Benchmark</h2>
+              <div class="eyebrow">Method Transparency</div>
+              <h2 class="panel-title">Workbook Benchmark Reconciliation</h2>
             </div>
             <div class="panel-subtitle">
-              The portfolio story is stronger when the migration is explicit about what is directly comparable, what is only reference material, and where the Python engine intentionally departs from the workbook.
+              The portfolio is stronger when it is explicit about what is directly comparable, what is reference-only, and where the planning platform intentionally departs from the original workbook logic.
             </div>
           </div>
           <table class="benchmark-table" id="benchmark-table"></table>
@@ -526,11 +527,11 @@ HTML_TEMPLATE = """<!doctype html>
       <section class="panel">
         <div class="panel-header">
           <div>
-            <div class="eyebrow">Monte Carlo Risk</div>
-            <h2 class="panel-title">Distribution and Tail Risk</h2>
+            <div class="eyebrow">Advanced Module</div>
+            <h2 class="panel-title">Valuation Distribution and Tail Risk</h2>
           </div>
           <div class="panel-subtitle">
-            The central message is not just expected value. It is the shape of the left tail and the cost of being wrong.
+            This is the advanced layer of the platform: use it to frame downside exposure and capital fragility, not as the sole identity of the project.
           </div>
         </div>
         <div class="chart-wrap">
@@ -541,11 +542,11 @@ HTML_TEMPLATE = """<!doctype html>
       <section class="panel">
         <div class="panel-header">
           <div>
-            <div class="eyebrow">Sensitivity</div>
+            <div class="eyebrow">Decision Drivers</div>
             <h2 class="panel-title">Tornado Ranking</h2>
           </div>
           <div class="panel-subtitle">
-            The tornado chart isolates which levers do the most damage or create the most upside relative to the base case.
+            The tornado chart isolates which levers matter most for planning resilience and capital outcomes relative to the base case.
           </div>
         </div>
         <div class="chart-wrap">
@@ -562,7 +563,7 @@ HTML_TEMPLATE = """<!doctype html>
             <h2 class="panel-title">Price vs Grade Heatmap</h2>
           </div>
           <div class="panel-subtitle">
-            A portfolio reviewer should be able to see immediately where the project moves from value creation to value destruction.
+            A reviewer should be able to see immediately where the planning case moves from value creation to value destruction.
           </div>
         </div>
         <div id="heatmap-table"></div>
@@ -571,11 +572,11 @@ HTML_TEMPLATE = """<!doctype html>
       <section class="panel">
         <div class="panel-header">
           <div>
-            <div class="eyebrow">Narrative Layer</div>
-            <h2 class="panel-title">Investment Messages</h2>
+            <div class="eyebrow">Management Layer</div>
+            <h2 class="panel-title">Portfolio Messages</h2>
           </div>
           <div class="panel-subtitle">
-            These are the signals this dashboard is designed to communicate to an investment committee, strategy team, or hiring reviewer.
+            These are the signals the dashboard is designed to communicate to planning, management control, business analysis, or investment-review audiences.
           </div>
         </div>
         <div class="insight-grid" id="insight-grid"></div>
@@ -616,14 +617,18 @@ HTML_TEMPLATE = """<!doctype html>
         if (value === null || value === undefined) return "n/a";
         return new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(value);
       },
-      usdPerLb(value) {
-        if (value === null || value === undefined) return "n/a";
-        return `${value.toFixed(2)} $/lb`;
-      },
-      year(value) {
-        if (value === null || value === undefined) return "No payback";
-        return `Year ${Math.round(value)}`;
-      },
+        usdPerLb(value) {
+          if (value === null || value === undefined) return "n/a";
+          return `${value.toFixed(2)} $/lb`;
+        },
+        usdPerTonne(value) {
+          if (value === null || value === undefined) return "n/a";
+          return `${value.toFixed(2)} $/t`;
+        },
+        year(value) {
+          if (value === null || value === undefined) return "No payback";
+          return `Year ${Math.round(value)}`;
+        },
       gap(value) {
         if (value === null || value === undefined) return "n/a";
         const sign = value >= 0 ? "+" : "";
@@ -646,20 +651,22 @@ HTML_TEMPLATE = """<!doctype html>
         .join(" ");
     }
 
-    function formatMetric(value, format) {
-      if (format === "currency") return formatters.currency(value);
-      if (format === "percent") return formatters.percent(value);
-      if (format === "usd_per_lb") return formatters.usdPerLb(value);
-      if (format === "year") return formatters.year(value);
-      return formatters.number(value);
-    }
+      function formatMetric(value, format) {
+        if (format === "currency") return formatters.currency(value);
+        if (format === "percent") return formatters.percent(value);
+        if (format === "usd_per_lb") return formatters.usdPerLb(value);
+        if (format === "usd_per_tonne") return formatters.usdPerTonne(value);
+        if (format === "year") return formatters.year(value);
+        return formatters.number(value);
+      }
 
-    function formatAxisValue(value, format) {
-      if (format === "currency") return formatters.currency(value);
-      if (format === "percent") return `${value.toFixed(1)}%`;
-      if (format === "usd_per_lb") return `${value.toFixed(2)}`;
-      return formatters.number(value);
-    }
+      function formatAxisValue(value, format) {
+        if (format === "currency") return formatters.currency(value);
+        if (format === "percent") return `${value.toFixed(1)}%`;
+        if (format === "usd_per_lb") return `${value.toFixed(2)}`;
+        if (format === "usd_per_tonne") return `${value.toFixed(2)}`;
+        return formatters.number(value);
+      }
 
     function formatBenchmarkValue(value, unit, currency) {
       if (value === null || value === undefined) return "n/a";
@@ -993,7 +1000,7 @@ HTML_TEMPLATE = """<!doctype html>
 
     function renderFooter() {
       document.getElementById("footer-note").textContent =
-        `Generated from Python exports on ${dashboardData.generated_at}. This dashboard is a portfolio showcase layer built from BI-ready facts, dimensions, scenario tables, and Monte Carlo outputs.`;
+        `Generated from Python exports on ${dashboardData.generated_at}. This dashboard is a portfolio showcase built from BI-ready mining KPI marts, scenario tables, benchmark transparency outputs, and advanced risk tables.`;
     }
 
     function renderAll() {
@@ -1072,33 +1079,36 @@ def _build_insights(snapshot: dict[str, Any]) -> list[dict[str, str]]:
     cvar_usd = snapshot["simulation"]["summary"]["cvar_usd"]
     best_case = max(snapshot["scenario_comparison"], key=lambda row: row["scenario_npv_usd"])
     worst_case = min(snapshot["scenario_comparison"], key=lambda row: row["scenario_npv_usd"])
-
-    payback_text = "does not pay back" if base["payback_year"] is None else f"pays back in year {int(base['payback_year'])}"
+    throughput_mt = base["average_processed_tonnes"] / 1e6
+    recovery_pct = base["average_recovery_pct"]
+    unit_opex = base["average_unit_opex_usd_per_tonne"]
+    margin_pct = base["ebitda_margin_proxy_pct"]
 
     return [
         {
-            "label": "Value Creation",
-            "title": "The base case is positive, but not bulletproof.",
+            "label": "Planning Baseline",
+            "title": "The reference case already reads like a mining planning dashboard.",
             "body": (
-                f"Scenario NPV is {base['scenario_npv_usd'] / 1e9:.2f}B USD and the project {payback_text}. "
-                "That is enough to justify attention, but not enough to skip downside framing."
+                f"The base case averages {throughput_mt:.2f} Mt of processed material per year, "
+                f"{recovery_pct:.1f}% recovery, and {unit_opex:.2f} USD/t of unit opex. "
+                "That combination is easier to discuss in planning, management control, and business analysis contexts than valuation alone."
             ),
         },
         {
-            "label": "Tail Risk",
-            "title": "The left tail is the real portfolio story.",
+            "label": "Business Signal",
+            "title": "Scenario spread connects operations, market exposure, and margin pressure.",
             "body": (
-                f"Loss probability is {probability_of_loss:.1%}. The 5% VaR is {var_usd / 1e9:.2f}B USD and "
-                f"the CVaR is {cvar_usd / 1e9:.2f}B USD, which means adverse combinations are economically severe."
+                f"The strongest deterministic case is {best_case['name']} while {worst_case['name']} is the weakest. "
+                f"The base-case EBITDA margin proxy is {margin_pct:.1f}%, which makes price, throughput, recovery, and unit cost natural executive dashboard drivers."
             ),
         },
         {
-            "label": "Decision Signal",
-            "title": "Scenario spread reveals investment fragility.",
+            "label": "Advanced Layer",
+            "title": "Valuation and tail risk remain useful, but secondary.",
             "body": (
-                f"The strongest deterministic case is {best_case['name']} at {best_case['scenario_npv_usd'] / 1e9:.2f}B USD, "
-                f"while {worst_case['name']} falls to {worst_case['scenario_npv_usd'] / 1e9:.2f}B USD. "
-                f"The committee-downside case alone reaches {committee['scenario_npv_usd'] / 1e9:.2f}B USD."
+                f"Loss probability is {probability_of_loss:.1%}, 5% VaR is {var_usd / 1e9:.2f}B USD, and "
+                f"the committee-downside case reaches {committee['scenario_npv_usd'] / 1e9:.2f}B USD. "
+                "Those outputs strengthen the portfolio, but they now sit behind the planning and KPI story instead of replacing it."
             ),
         },
     ]
@@ -1125,6 +1135,7 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
         kpis = {metric: _clean_value(kpi_matrix.loc[scenario_id, metric]) for metric in kpi_matrix.columns}
         kpis["average_head_grade_pct"] = None if kpis["average_head_grade"] is None else kpis["average_head_grade"] * 100
         kpis["average_recovery_pct"] = None if kpis["average_recovery"] is None else kpis["average_recovery"] * 100
+        kpis["ebitda_margin_proxy_pct"] = None if kpis["ebitda_margin_proxy"] is None else kpis["ebitda_margin_proxy"] * 100
 
         cash_flow_series = [
             {
@@ -1161,7 +1172,7 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
             "mini_stats": [
                 {"label": "Average Head Grade", "value": kpis["average_head_grade_pct"], "format": "percent"},
                 {"label": "Average Recovery", "value": kpis["average_recovery_pct"], "format": "percent"},
-                {"label": "Peak Revenue Year", "value": kpis["peak_revenue_year"], "format": "year"},
+                {"label": "EBITDA Margin Proxy", "value": kpis["ebitda_margin_proxy_pct"], "format": "percent"},
             ],
         }
 
@@ -1225,28 +1236,28 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
         "kpi_specs": [{"key": key, "label": label, "format": format_name} for key, label, format_name in KPI_SPECS],
         "hero_metrics": [
             {
-                "label": "Expected NPV",
-                "value": sim_summary["expected_npv_usd"],
-                "format": "currency",
-                "subtext": "Monte Carlo expected value from the Python engine.",
+                "label": "Reference Avg Throughput",
+                "value": scenarios["base"]["kpis"]["average_processed_tonnes"],
+                "format": "number",
+                "subtext": "Planning baseline throughput from the reference case.",
+            },
+            {
+                "label": "Reference Recovery",
+                "value": scenarios["base"]["kpis"]["average_recovery_pct"],
+                "format": "percent",
+                "subtext": "Average metallurgical recovery in the reference case.",
+            },
+            {
+                "label": "Reference Unit Opex",
+                "value": scenarios["base"]["kpis"]["average_unit_opex_usd_per_tonne"],
+                "format": "usd_per_tonne",
+                "subtext": "Average unit operating cost in the reference case.",
             },
             {
                 "label": "Probability of Loss",
                 "value": sim_summary["probability_of_loss"] * 100,
                 "format": "percent",
-                "subtext": "Share of simulated outcomes with negative NPV.",
-            },
-            {
-                "label": "5% VaR",
-                "value": sim_summary["var_usd"],
-                "format": "currency",
-                "subtext": "The left-tail loss threshold at the 5th percentile.",
-            },
-            {
-                "label": "Committee Downside",
-                "value": scenarios["committee_downside"]["kpis"]["scenario_npv_usd"],
-                "format": "currency",
-                "subtext": "Deterministic downside case aligned with a tougher investment committee lens.",
+                "subtext": "Advanced downside signal from the stochastic module.",
             },
         ],
         "scenarios": scenarios,

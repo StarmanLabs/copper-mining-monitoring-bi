@@ -4,9 +4,27 @@
 
 The BI-ready layer lives in `outputs/bi/`.
 
-## If you are building the dashboard now
+This repository is now best read as a mining planning and performance analytics project, so the first BI pages should emphasize KPI monitoring and scenario planning. Valuation and Monte Carlo should appear later as advanced modules.
 
-### Power BI import order
+## Current interpretation rule
+
+The current exports are workbook-seeded planning outputs.
+
+That means:
+
+- they are valid for planning-style dashboards, scenario comparison, and KPI storytelling
+- they are **not** live operating actuals
+- they should **not** be labeled as true `actual vs plan` until actual operating data is added
+
+Use labels such as:
+
+- reference case
+- planning case
+- operating stress case
+- market case
+- downside case
+
+## Power BI import order
 
 1. `dim_year.csv`
 2. `dim_metric.csv`
@@ -27,50 +45,52 @@ Then use these repository assets:
 - `powerbi/DASHBOARD_BLUEPRINT.md`
 - `powerbi/dashboard_visual_map.csv`
 
-### Tableau source split
+## Tableau source split
 
 Use separate Tableau sources instead of one merged extract:
 
-- Executive and scenario comparison:
+- Executive planning source:
   `fact_scenario_kpis.csv` + `dim_scenario.csv`
-- Annual operating profile:
+- Annual KPI source:
   `fact_annual_metrics.csv` + `dim_year.csv` + `dim_metric.csv` + `dim_scenario.csv`
-- Monte Carlo risk:
+- Advanced downside source:
   `fact_simulation_distribution.csv` + `simulation_summary.csv` + `simulation_percentiles.csv`
-- Sensitivity:
+- Sensitivity source:
   `fact_tornado_sensitivity.csv`
-- Heatmap:
+- Heatmap source:
   `fact_heatmap_price_grade.csv`
-- Benchmark page:
+- Benchmark source:
   `benchmark_comparison.csv`
+
+## What each table is for
 
 ### Dimensions
 
 - `dim_year.csv`
-  Project year dimension.
+  Project year dimension with calendar year and project phase.
 - `dim_metric.csv`
-  Metric dictionary used by the annual fact table.
+  Metric dictionary used by the annual KPI mart.
 - `dim_scenario.csv`
-  Scenario dictionary with names and categories.
+  Scenario dictionary with names, categories, and stress multipliers.
 
-### Fact tables
+### Main marts
 
 - `fact_annual_metrics.csv`
-  Main annual table by `year`, `scenario_id`, and `metric`.
-  Use this for line charts, area charts, and yearly monitoring.
+  Main annual mining KPI mart by `year`, `scenario_id`, and `metric`.
+  Use it for throughput, production, grade, recovery, unit cost, revenue, EBITDA, operating cash flow, capex, and free cash flow trends.
 - `fact_scenario_kpis.csv`
-  Scenario-level KPI table.
-  Use this for KPI cards, bar comparisons, and executive summaries.
+  Executive scenario mart.
+  Use it for KPI cards and comparison views covering revenue, EBITDA, opex, operating cash flow, free cash flow, throughput, copper production, unit opex, margin proxy, and selected valuation outputs.
+
+### Advanced analytical marts
+
 - `fact_simulation_distribution.csv`
-  Monte Carlo NPV distribution.
-  Use this for histograms, CDFs, percentile markers, and downside analysis.
-  The table now also carries path summary fields such as average price, terminal price, price-path dispersion, grade factor, and recovery variation.
+  Monte Carlo NPV distribution with path summary fields.
+  Use it only on advanced valuation and downside pages.
 - `fact_tornado_sensitivity.csv`
   Tornado sensitivity impacts versus the base case.
-  Use this for ranked driver charts.
 - `fact_heatmap_price_grade.csv`
   Price-grade stress grid.
-  Use this for a matrix or heatmap.
 
 ### Support tables
 
@@ -79,22 +99,26 @@ Use separate Tableau sources instead of one merged extract:
 - `simulation_percentiles.csv`
   Percentile cutoffs for the NPV distribution.
 - `benchmark_comparison.csv`
-  Audit-style benchmark reconciliation table with explicit comparability flags, basis metadata, notes, and status labels such as `reference_only`, `close_match`, or `material_gap`.
+  Audit-style benchmark table with explicit comparability flags, basis metadata, and reconciliation notes.
 - `powerbi_measure_catalog.csv`
-  Suggested measure definitions for Power BI.
+  Suggested Power BI measure inventory generated from the Python semantic layer.
 
-## Power BI assets in the repository
+## Recommended dashboard sequence
 
-Use the files in `powerbi/` together with the CSV layer:
-
-- `powerbi/copper_risk_theme.json`
-  Visual theme.
-- `powerbi/DAX_MEASURES.md`
-  Copy-ready measure set.
-- `powerbi/DASHBOARD_BLUEPRINT.md`
-  Page-by-page report design.
-- `powerbi/dashboard_visual_map.csv`
-  Structured visual inventory.
+1. Executive Planning Overview
+   Use `fact_scenario_kpis.csv` and `dim_scenario.csv`.
+2. Throughput and Production
+   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
+3. Grade and Recovery
+   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
+4. Cost, Revenue and Cash Generation
+   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
+5. Scenario Planning and Price Exposure
+   Use `fact_scenario_kpis.csv`, `dim_scenario.csv`, and selected annual pricing metrics.
+6. Advanced Valuation and Downside Risk
+   Use `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`, `fact_tornado_sensitivity.csv`, and `fact_heatmap_price_grade.csv`.
+7. Benchmark and Method Transparency
+   Use `benchmark_comparison.csv`.
 
 ## Power BI recommendation
 
@@ -105,29 +129,29 @@ Use a star-style model:
 - `dim_scenario` -> `fact_annual_metrics`
 - `dim_scenario` -> `fact_scenario_kpis`
 
-Leave the simulation, tornado, and heatmap tables as separate facts connected only where needed. Do not force everything into one denormalized table.
+Keep the simulation, tornado, heatmap, and benchmark tables disconnected unless you have a specific modeling reason to connect them. Do not force everything into one denormalized table.
 
 ## Tableau recommendation
 
 Use separate data sources by page or visual family:
 
-- Trends: `fact_annual_metrics.csv`
-- Scenario comparison: `fact_scenario_kpis.csv`
-- Simulation pages: `fact_simulation_distribution.csv`
+- Planning and KPI trends: `fact_annual_metrics.csv`
+- Executive scenario comparison: `fact_scenario_kpis.csv`
+- Advanced downside pages: `fact_simulation_distribution.csv`
 - Sensitivity pages: `fact_tornado_sensitivity.csv`
 - Heatmap pages: `fact_heatmap_price_grade.csv`
+- Benchmark page: `benchmark_comparison.csv`
 
 This is simpler and safer than trying to stitch all facts together into one giant source.
 
-## First dashboard pages
+## Next extension for a fuller mining BI platform
 
-1. Executive overview
-   Use `fact_scenario_kpis.csv` and `dim_scenario.csv`.
-2. Annual operating and cash flow profile
-   Use `fact_annual_metrics.csv`.
-3. Monte Carlo downside
-   Use `fact_simulation_distribution.csv`, `simulation_summary.csv`, and `simulation_percentiles.csv`.
-4. Sensitivity and stress
-   Use `fact_tornado_sensitivity.csv` and `fact_heatmap_price_grade.csv`.
+If you later add true operating actuals, the clean next step is:
+
+- keep the current planning/scenario marts intact
+- add actual period tables separately
+- build explicit variance views on top of plan and actuals
+
+Do not overwrite the current reference-case outputs and call them actuals.
 
 For the detailed Power BI build sequence, use `powerbi/DASHBOARD_BLUEPRINT.md`.

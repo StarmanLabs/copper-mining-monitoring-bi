@@ -2,33 +2,51 @@
 
 ## Purpose
 
-This note documents what the Python model is doing, what the workbook benchmark represents, and where the analytical engine is intentionally simplified.
+This note documents what the Python platform is doing, what the workbook benchmark represents, and where the repository is intentionally simplified.
 
-## 1. Model scope
+The repository should now be read primarily as a mining planning and performance analytics project with advanced valuation and risk modules, not as a valuation-only rebuild.
 
-The repository contains two related but distinct valuation views:
+## 1. Platform scope
 
-### Expanded project view
+The current repository supports two different analytical layers.
 
-This is the main Python valuation used for:
+### Primary layer: planning and performance analytics
 
-- deterministic scenario comparison
-- BI KPI tables
-- tornado sensitivity
-- price-grade heatmaps
-- dashboard storytelling
+This is the main portfolio layer used for:
 
-It represents the expanded operating case as a project-level valuation in USD.
+- annual KPI exports
+- scenario comparison
+- throughput, production, grade, recovery, price, and unit-cost views
+- revenue, EBITDA, operating cash flow, and free cash flow proxies
+- Power BI and Tableau dashboards
 
-### Incremental expansion view
+This is the strongest fit for mining planning, BI, management control, and business-analysis roles.
 
-This is used only for benchmark reconciliation against the workbook.
+### Secondary layer: advanced valuation and downside analysis
 
-It represents the incremental free cash flow created by the expansion relative to the pre-expansion operating case.
+This layer contains:
 
-This distinction matters. The workbook benchmark is not a direct benchmark for the project-level Python NPV used in the dashboard.
+- project-level NPV and IRR
+- deterministic stress scenarios
+- Monte Carlo downside outputs
+- benchmark reconciliation
 
-## 2. Currency and units
+These modules deepen the project technically, but they are not the only reason the repository exists.
+
+## 2. Current data reality
+
+The implementation is workbook-seeded.
+
+That means:
+
+- the current source system is an Excel workbook
+- the ingestion logic is still workbook-specific
+- the downstream analytics are structured as mining KPI marts rather than spreadsheet tables
+- the current repo is planning-ready and BI-ready, but not yet a live operating-actuals platform
+
+So the appropriate claim is not "real-time mine monitoring." The appropriate claim is "reproducible mining KPI and scenario analytics built from a workbook seed."
+
+## 3. Currency and units
 
 The active Python engine reports monetary outputs in USD.
 
@@ -40,11 +58,11 @@ The workbook benchmark values used in reconciliation are also treated as USD bec
 
 The reconciliation table still carries explicit unit and currency columns so that future workbook changes cannot silently create false comparability.
 
-## 3. Workbook extraction logic
+## 4. Workbook extraction logic
 
 The Excel loader is intentionally not a generic ingestion framework.
 
-Instead it now uses an explicit extraction map with:
+Instead it uses an explicit extraction map with:
 
 - required sheet validation
 - required cell validation
@@ -57,9 +75,9 @@ Notable extraction choices:
 - active benchmark capex values are read from `Sensitivity`
 - sustaining capex is read from the expansion cash-flow block because that is where it is actually applied
 
-This prevents a common failure mode in spreadsheet migration projects: comparing Python outputs against workbook values that are not actually the workbook values driving the reported benchmark.
+This is important because the portfolio claim is not just "Python can read Excel." The stronger claim is that the migration is auditable and explicit about what data is actually driving the outputs.
 
-## 4. Deterministic cash-flow design
+## 5. Deterministic cash-flow design
 
 The deterministic engine uses:
 
@@ -77,9 +95,48 @@ The model uses a simplified tax proxy aligned to the workbook cash-flow chain.
 
 The workbook input sheet lists royalty and levy parameters, but the benchmark cash-flow chain that drives the reported VAN/TIR only applies the income tax rate inside the operating-flow construction. The Python rebuild therefore keeps those rates visible as extracted assumptions, but does not pretend to implement a fuller fiscal regime without a defensible workbook basis.
 
-## 5. Working-capital treatment
+## 6. KPI interpretation
 
-The repository now uses two different working-capital treatments on purpose:
+The annual and scenario marts are the core business-facing outputs.
+
+### Annual KPI mart
+
+`fact_annual_metrics.csv` is the main monitoring-style export. It contains:
+
+- throughput
+- copper production
+- price and net price
+- head grade
+- recovery
+- unit opex
+- revenue
+- EBITDA
+- operating cash flow
+- capex
+- working capital
+- free cash flow
+
+### Executive scenario mart
+
+`fact_scenario_kpis.csv` is the management summary layer. It contains:
+
+- total revenue
+- total EBITDA
+- total opex
+- total operating cash flow
+- total free cash flow
+- average throughput
+- average copper production
+- average unit opex
+- average price, grade, and recovery
+- EBITDA margin proxy
+- NPV, IRR, and payback
+
+This is the most useful table for business-facing dashboards.
+
+## 7. Working-capital treatment
+
+The repository uses two different working-capital treatments on purpose.
 
 ### Expanded project valuation
 
@@ -87,44 +144,40 @@ The project-level valuation uses a standard balance-delta approach with terminal
 
 ### Incremental benchmark reconciliation
 
-The benchmark-aligned incremental profile follows the workbook convention instead of forcing a cleaner finance textbook convention onto the reconciliation layer.
+The benchmark-aligned incremental profile follows the workbook convention instead of forcing a cleaner finance-textbook convention onto the reconciliation layer.
 
 That choice is intentional. Reconciliation should match the benchmark's economic mechanics before claiming parity.
 
-## 6. Stochastic model
+## 8. Stochastic model
 
 The Monte Carlo engine has been upgraded relative to the earlier one-factor implementation.
 
 ### Price
 
-Annual price realizations are now simulated year by year around the workbook price deck using autocorrelated deck-centered lognormal shocks.
+Annual price realizations are simulated year by year around the workbook price deck using autocorrelated deck-centered lognormal shocks.
 
-This is a deliberate modeling choice:
+This choice is deliberate:
 
 - the workbook already provides a year-by-year base price deck
 - historical volatility is informative for dispersion
-- historical drift is not treated as a reliable 15-year structural forecast
+- historical drift is not treated as a reliable long-horizon structural forecast
 - a modest AR(1)-style dependence is used so adjacent years are not unrealistically independent
-
-That keeps the simulation dynamic without embedding an unjustified long-run bull case.
 
 ### Grade
 
 Grade uncertainty is modeled as a project-level multiplier rather than fully independent annual shocks.
 
-This is more defensible with the available data because the workbook and empirical inputs support level uncertainty and long-run depletion logic more clearly than year-specific geological noise.
-
 ### Recovery
 
 Recovery uncertainty is modeled as bounded yearly variation around the base recovery path.
 
-This is reasonable because plant performance can vary from year to year even when the broader project remains the same.
+This keeps the stochastic layer useful for downside framing without pretending to be an engineering-grade process model.
 
-## 7. Benchmark interpretation
+## 9. Benchmark interpretation
 
 `outputs/bi/benchmark_comparison.csv` should be read as an audit table, not as a marketing table.
 
-It now distinguishes:
+It distinguishes:
 
 - directly comparable metrics
 - reference-only metrics
@@ -135,14 +188,15 @@ At the current stage:
 - deterministic incremental NPV and IRR are treated as directly comparable, but still flagged when the residual gap remains material
 - Monte Carlo expected NPV, VaR, and CVaR are reference-only because the upgraded stochastic engine is not formula-identical to the workbook Monte Carlo and the valuation basis also differs
 
-## 8. Remaining limitations
+## 10. Remaining limitations
 
-The model remains simplified in several important ways:
+The platform remains simplified in several important ways:
 
-- it is not a mine-plan model
+- it is not a mine-plan optimization model
+- it is not a live actual-vs-plan system
 - it is not a full fiscal model
 - it does not estimate a structural commodity-price process
-- it does not claim workbook formula parity outside the explicitly reconciled benchmark scope
+- it does not claim workbook parity outside the explicitly reconciled benchmark scope
 - scenario definitions remain stylized managerial stresses, not estimated probability-weighted forecasts
 - the deterministic benchmark still shows a material residual gap, which indicates workbook logic not yet fully replicated
 

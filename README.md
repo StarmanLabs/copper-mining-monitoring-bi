@@ -1,152 +1,127 @@
-# Copper Mining Risk Model
+# Copper Mining Planning and Performance Analytics
 
-Rebuilding a spreadsheet-based copper mining valuation into a reproducible Python analytics engine with deterministic scenario analysis, structured benchmark reconciliation, upgraded stochastic risk modeling, and BI-ready outputs for Power BI or Tableau.
+Workbook-seeded mining inputs are transformed into reproducible KPI marts for planning, performance monitoring, scenario comparison, dashboarding, and decision support. Valuation, scenario analysis, and Monte Carlo remain in the repository, but they now sit as advanced analytical modules behind a broader mining BI and management-control story.
 
 ## Portfolio snapshot
 
-- Domain: mining economics, project valuation, and downside risk analysis
-- Starting point: spreadsheet-based copper expansion model
-- Rebuild target: auditable Python valuation and risk engine
-- Delivery layer: BI-ready CSV tables plus a self-contained HTML dashboard
-- Main value: scenario comparison, benchmark transparency, and dashboard-ready decision support
+- Domain: mining planning support, performance analytics, cost review, and BI
+- Starting point: a spreadsheet-based copper expansion case
+- Current implementation: workbook-seeded, Python-first analytical pipeline
+- Delivery layer: BI-ready CSV marts plus a self-contained HTML dashboard showcase
+- Advanced module set: scenario valuation, benchmark reconciliation, and Monte Carlo downside analysis
+- Best fit: economics + data roles in planning, management control, business analysis, and mining BI
 
-## Project objective
+## Project positioning
 
-This repository converts an Excel mining valuation workflow into a Python-first analytical pipeline that is easier to audit, test, extend, and present as a portfolio-grade decision-support project.
+This repository should be read first as a mining analytics platform for business-facing functions, not as a pure valuation rebuild.
 
-The goal is not spreadsheet replacement for its own sake. The goal is to make the model:
+The core story is:
 
-- more reproducible
-- clearer about what is economically being valued
-- more explicit about what is and is not comparable to the workbook benchmark
-- stronger for downstream BI dashboards and portfolio presentation
+- convert mining inputs into canonical KPI layers
+- monitor throughput, grade, recovery, cost, and cash-generation proxies
+- compare planning cases and commodity-price exposure
+- feed Power BI or Tableau with reusable subject-area marts
+- preserve valuation and risk analysis as advanced decision-support modules
 
-## What the engine does
+The workbook origin still matters, but it is no longer the portfolio identity. The repo is organized around mining KPIs and downstream BI consumption rather than around spreadsheet tabs.
 
-The project currently produces four analytical layers:
+## Primary use cases
 
-1. Deterministic expanded-project valuation in Python
-2. Incremental-expansion benchmark reconciliation against the workbook
-3. Stochastic downside analysis with annual price shocks and bounded operating uncertainty
-4. BI-ready fact and dimension tables plus a self-contained HTML dashboard showcase
+The platform is most relevant for mining teams working in:
+
+- planning support
+- management control
+- business intelligence
+- performance monitoring
+- cost and margin review
+- finance or business analysis support
+
+It is intentionally credible for an economics graduate with mining domain adaptation. It does not pretend to be a mine-engineering or geology system.
+
+## What the platform currently does
+
+The repository currently produces four practical analytical layers:
+
+1. Planning and performance KPI marts
+   Throughput, production, price, grade, recovery, unit opex, revenue, EBITDA, operating cash flow, capex, working capital, and free cash flow are exported in BI-friendly structures.
+2. Scenario planning and decision-support views
+   Deterministic scenario tables compare reference, market, operating, capital, and downside cases for management discussion.
+3. Advanced valuation and risk modules
+   NPV, IRR, Monte Carlo downside, tornado sensitivity, and price-grade stress remain available as secondary analytical layers.
+4. Benchmark and transparency layer
+   Workbook reconciliation is kept as an audit-oriented module so comparability is explicit rather than implied.
+
+## Data reality and scope
+
+This is a source-extensible portfolio project, but the current implementation is still workbook-seeded.
+
+That distinction matters:
+
+- the current source is `data/raw/Copper_mining_risk_model.xlsm`
+- the downstream analytics layer is organized around mining business entities and KPI marts, not around workbook sheets
+- the current exports are suitable for planning-style dashboards and scenario monitoring
+- the current repo does **not** yet contain true plant actuals, dispatch data, lab assay feeds, or ERP cost actuals
+
+So the honest interpretation is:
+
+- planning and monitoring-ready architecture: yes
+- live actual-vs-plan operational monitoring: not yet
+- advanced valuation and risk decision support: yes
 
 ## What To Open First
 
 If you are reviewing the repository on GitHub, start here:
 
 1. `README.md`
-   High-level project framing, scope, outputs, and limitations.
-2. `docs/MODEL_NOTES.md`
-   Technical note on valuation basis, benchmark logic, and model limits.
+   Public-facing framing, use cases, outputs, and limitations.
+2. `docs/PORTFOLIO_POSITIONING.md`
+   Positioning note that explains why the repo fits mining planning, control, BI, and economics-facing roles.
 3. `outputs/dashboard/index.html`
-   Portfolio-facing dashboard showcase generated from the BI exports.
-4. `outputs/bi/benchmark_comparison.csv`
-   Audit-style reconciliation table showing what is directly comparable and what is not.
-5. `powerbi/DASHBOARD_BLUEPRINT.md`
-   Page-by-page guide to rebuild the dashboard in Power BI.
+   Portfolio dashboard showcase built from the BI exports.
+4. `outputs/bi/fact_annual_metrics.csv`
+   The main annual mining KPI mart used for Power BI or Tableau.
+5. `outputs/bi/fact_scenario_kpis.csv`
+   Executive scenario mart with revenue, EBITDA, throughput, unit-cost, margin-proxy, and valuation summary fields.
+6. `powerbi/DASHBOARD_BLUEPRINT.md`
+   Page-by-page guide to rebuild the project as a professional BI dashboard.
 
-## Analytical design
+## Canonical BI marts
 
-### Deterministic model
+The repository is most useful when read through the output marts in `outputs/bi/`.
 
-The deterministic engine values the expanded operating case in USD using:
+### Core business-facing marts
 
-- annual copper price deck from the workbook
-- annual base throughput, grade, and recovery inputs from the workbook
-- explicit payable and treatment/refining adjustments
-- explicit cash operating costs
-- simplified tax proxy aligned to the workbook cash-flow chain
-- explicit year 0 and year 1 capex timing
-- explicit working-capital treatment
-- explicit discounted free cash flow, NPV, and IRR
+- `fact_annual_metrics.csv`
+  Main annual KPI mart for throughput, production, grade, recovery, pricing, unit cost, revenue, EBITDA, operating cash flow, capex, and free cash flow.
+- `fact_scenario_kpis.csv`
+  Executive scenario mart with total revenue, EBITDA, opex, operating cash flow, free cash flow, average throughput, average copper production, average unit opex, margin proxy, and selected valuation KPIs.
+- `dim_year.csv`
+  Calendar and project-phase dimension.
+- `dim_metric.csv`
+  Metric dictionary with category, unit, and suggested dashboard page.
+- `dim_scenario.csv`
+  Scenario catalog for deterministic planning cases.
 
-The deterministic scenario layer then stresses price, grade, recovery, throughput, opex, capex, and discount rate for BI comparison and dashboard storytelling.
+### Advanced analytical marts
 
-### Benchmark reconciliation
-
-The workbook benchmark is not treated as a generic "Excel truth table".
-
-Instead, the repo now distinguishes between:
-
-- `total_project_expanded_operation`: the main Python valuation used for scenarios and dashboard KPIs
-- `incremental_expansion`: the workbook-style benchmark basis used for deterministic reconciliation
-
-The benchmark comparison table in `outputs/bi/benchmark_comparison.csv` explicitly flags:
-
-- units
-- currency
-- valuation basis
-- timing basis
-- comparability status
-- explanatory notes
-
-`gap` and `pct_gap` are only computed when direct comparison is defensible, and directly comparable rows are still flagged when the remaining residual gap is material.
-
-### Stochastic model
-
-The Monte Carlo layer keeps the deterministic model as the base case and upgrades the stochastic structure by:
-
-- simulating annual copper price variation around the workbook price deck with autocorrelated lognormal shocks
-- treating grade uncertainty as a project-level multiplier
-- treating recovery uncertainty as bounded yearly variation
-- preserving seed reproducibility
-- exporting a BI-friendly simulation distribution table
-
-This is intentionally a practical project-risk engine, not a full commodity-process research model.
-
-## Data flow
-
-```text
-Excel workbook
-  -> structured loader with sheet/cell validation
-  -> deterministic model
-  -> scenario analysis
-  -> Monte Carlo simulation
-  -> benchmark reconciliation
-  -> BI exports
-  -> HTML dashboard showcase
-```
+- `fact_simulation_distribution.csv`
+  Monte Carlo distribution table for advanced downside analysis.
+- `simulation_summary.csv`
+  Monte Carlo summary statistics.
+- `simulation_percentiles.csv`
+  Percentile table for tail-risk readouts.
+- `fact_tornado_sensitivity.csv`
+  Driver ranking for advanced sensitivity analysis.
+- `fact_heatmap_price_grade.csv`
+  Price-grade stress grid.
+- `benchmark_comparison.csv`
+  Audit-style reconciliation table with explicit comparability fields.
 
 ## Files to use in Power BI or Tableau
 
 Use the files in `outputs/bi/`.
 
-### Minimum file set by dashboard page
-
-- Executive scenario dashboard:
-  `fact_scenario_kpis.csv`, `dim_scenario.csv`
-- Annual operating and cash flow trends:
-  `fact_annual_metrics.csv`, `dim_year.csv`, `dim_metric.csv`, `dim_scenario.csv`
-- Monte Carlo risk page:
-  `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`
-- Sensitivity and stress page:
-  `fact_tornado_sensitivity.csv`, `fact_heatmap_price_grade.csv`
-- Benchmark credibility page:
-  `benchmark_comparison.csv`
-
-### Core model tables
-
-- `dim_year.csv`
-- `dim_metric.csv`
-- `dim_scenario.csv`
-- `fact_annual_metrics.csv`
-- `fact_scenario_kpis.csv`
-- `fact_simulation_distribution.csv`
-- `fact_tornado_sensitivity.csv`
-- `fact_heatmap_price_grade.csv`
-
-### Support tables
-
-- `simulation_summary.csv`
-- `simulation_percentiles.csv`
-- `benchmark_comparison.csv`
-- `powerbi_measure_catalog.csv`
-
-For Power BI, keep each fact table attached only to the dimensions it actually uses.
-
-For Tableau, it is usually cleaner to work with separate subject-area sources rather than forcing all facts into one denormalized extract.
-
-### Exact recommendation for Power BI
+### Recommended Power BI import order
 
 Import these first:
 
@@ -169,15 +144,15 @@ Then use:
 - `powerbi/dashboard_visual_map.csv`
 - `powerbi/copper_risk_theme.json`
 
-### Exact recommendation for Tableau
+### Recommended Tableau source split
 
-Use separate data sources instead of one big model:
+Do not force everything into one giant model. Use separate subject-area sources:
 
-- Scenario source:
+- Executive planning source:
   `fact_scenario_kpis.csv`, `dim_scenario.csv`
-- Annual profile source:
+- Annual KPI source:
   `fact_annual_metrics.csv`, `dim_year.csv`, `dim_metric.csv`, `dim_scenario.csv`
-- Monte Carlo source:
+- Advanced downside source:
   `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`
 - Sensitivity source:
   `fact_tornado_sensitivity.csv`
@@ -186,20 +161,35 @@ Use separate data sources instead of one big model:
 - Benchmark source:
   `benchmark_comparison.csv`
 
+## Data flow
+
+```text
+Workbook input
+  -> validated extraction layer
+  -> annual mining KPI profile
+  -> scenario planning outputs
+  -> advanced valuation and risk modules
+  -> benchmark transparency layer
+  -> BI-ready marts
+  -> HTML dashboard showcase
+```
+
 ## Repository structure
 
 ```text
 copper_minning_risk_model/
   config/                     Project configuration
-  data/raw/                   Source Excel workbook
-  docs/                       Technical notes and usage guidance
-  outputs/bi/                 BI-ready CSV exports
+  data/raw/                   Source workbook input
+  docs/                       Positioning, model notes, and BI guidance
+  outputs/bi/                 BI-ready KPI marts and support tables
   outputs/dashboard/          Self-contained HTML dashboard output
   powerbi/                    Theme, DAX, and dashboard blueprint assets
   scripts/                    Build entrypoints
-  src/copper_risk_model/      Loader, model, simulation, BI export, dashboard code
+  src/copper_risk_model/      Loader, KPI logic, scenarios, simulation, BI export, dashboard code
   tests/                      Analytical and smoke tests
 ```
+
+The Python package namespace remains `copper_risk_model` for continuity, but the public framing is intentionally broader than valuation alone.
 
 ## How to run
 
@@ -229,7 +219,8 @@ python -m pytest -q
 
 ## Technical notes
 
-- Model scope and conventions: `docs/MODEL_NOTES.md`
+- Portfolio positioning: `docs/PORTFOLIO_POSITIONING.md`
+- Platform scope and advanced module notes: `docs/MODEL_NOTES.md`
 - BI usage guidance: `docs/BI_USAGE.md`
 - Folder guide: `docs/PROJECT_STRUCTURE.md`
 - Power BI page design: `powerbi/DASHBOARD_BLUEPRINT.md`
@@ -237,21 +228,22 @@ python -m pytest -q
 
 ## Main limitations
 
-This repository is a serious analytical rebuild, but it is still deliberately simplified.
+This repository is stronger as a planning and BI portfolio project than as an engineering model, and it should be presented that way.
 
 It does not claim:
 
-- full formula-by-formula Excel parity
-- a complete mining fiscal regime
+- live operational actual-vs-plan monitoring from plant or ERP systems
 - engineering-grade mine planning realism
-- a structural commodity-price forecasting model
-- tight deterministic reconciliation to every workbook line item
+- a full fiscal or corporate-finance model
+- full formula-by-formula workbook parity
+- structural commodity-price forecasting
+- a mining-operations control room system fed by production telemetry
 
 What it does claim honestly is:
 
-> This project rebuilds a spreadsheet-based copper mining valuation into a reproducible Python analytical engine with improved scenario design, stronger stochastic risk modeling, explicit benchmark reconciliation, and BI-ready outputs for decision support.
+> This project turns a workbook-seeded copper expansion case into a reproducible mining planning and performance analytics platform with KPI marts, scenario planning, benchmark transparency, advanced valuation and downside modules, and BI-ready outputs for decision support.
 
 ## Disclaimer
 
-This is an analytical portfolio project based on a hypothetical mining expansion case. It is not investment advice and should not substitute for geological, metallurgical, fiscal, financial, or operational due diligence.
+This is an analytical portfolio project based on a hypothetical copper mining expansion case. It is not investment advice and should not substitute for geological, metallurgical, engineering, fiscal, financial, or operating due diligence.
 

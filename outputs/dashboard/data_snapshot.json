@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17 02:45 UTC",
+  "generated_at": "2026-04-17 06:25 UTC",
   "default_scenario_id": "base",
   "scenario_order": [
     "base",
@@ -11,13 +11,8 @@
   ],
   "kpi_specs": [
     {
-      "key": "scenario_npv_usd",
-      "label": "Scenario NPV",
-      "format": "currency"
-    },
-    {
       "key": "total_revenue_usd",
-      "label": "Total Revenue",
+      "label": "Revenue Exposure",
       "format": "currency"
     },
     {
@@ -26,14 +21,19 @@
       "format": "currency"
     },
     {
-      "key": "total_free_cash_flow_usd",
-      "label": "Total Free Cash Flow",
-      "format": "currency"
+      "key": "average_processed_tonnes",
+      "label": "Avg Throughput",
+      "format": "number"
     },
     {
-      "key": "average_net_price_usd_per_lb",
-      "label": "Avg Net Price",
-      "format": "usd_per_lb"
+      "key": "average_unit_opex_usd_per_tonne",
+      "label": "Avg Unit Opex",
+      "format": "usd_per_tonne"
+    },
+    {
+      "key": "scenario_npv_usd",
+      "label": "Scenario NPV",
+      "format": "currency"
     },
     {
       "key": "payback_year",
@@ -43,28 +43,28 @@
   ],
   "hero_metrics": [
     {
-      "label": "Expected NPV",
-      "value": 1347994175.2568357,
-      "format": "currency",
-      "subtext": "Monte Carlo expected value from the Python engine."
+      "label": "Reference Avg Throughput",
+      "value": 163506217.11976758,
+      "format": "number",
+      "subtext": "Planning baseline throughput from the reference case."
+    },
+    {
+      "label": "Reference Recovery",
+      "value": 84.20000000000003,
+      "format": "percent",
+      "subtext": "Average metallurgical recovery in the reference case."
+    },
+    {
+      "label": "Reference Unit Opex",
+      "value": 21.300000000000004,
+      "format": "usd_per_tonne",
+      "subtext": "Average unit operating cost in the reference case."
     },
     {
       "label": "Probability of Loss",
       "value": 33.910000000000004,
       "format": "percent",
-      "subtext": "Share of simulated outcomes with negative NPV."
-    },
-    {
-      "label": "5% VaR",
-      "value": -3678101309.413418,
-      "format": "currency",
-      "subtext": "The left-tail loss threshold at the 5th percentile."
-    },
-    {
-      "label": "Committee Downside",
-      "value": -7208009593.098987,
-      "format": "currency",
-      "subtext": "Deterministic downside case aligned with a tougher investment committee lens."
+      "subtext": "Advanced downside signal from the stochastic module."
     }
   ],
   "scenarios": {
@@ -74,9 +74,13 @@
       "short_name": "Base",
       "category": "Reference",
       "kpis": {
+        "average_copper_fine_lb": 931675360.9571033,
         "average_head_grade": 0.0030651943893074,
         "average_net_price_usd_per_lb": 4.290191661374608,
+        "average_processed_tonnes": 163506217.11976758,
         "average_recovery": 0.8420000000000003,
+        "average_unit_opex_usd_per_tonne": 21.300000000000004,
+        "ebitda_margin_proxy": 0.1219229157501589,
         "payback_year": 4.0,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -85,9 +89,12 @@
         "total_capex_usd": 590000000.0,
         "total_ebitda_usd": 7253670608.111523,
         "total_free_cash_flow_usd": 4803837778.718622,
+        "total_operating_cash_flow_usd": 5113837778.718622,
+        "total_opex_usd": 52240236369.76573,
         "total_revenue_usd": 59493906977.87725,
         "average_head_grade_pct": 0.30651943893074,
-        "average_recovery_pct": 84.20000000000003
+        "average_recovery_pct": 84.20000000000003,
+        "ebitda_margin_proxy_pct": 12.19229157501589
       },
       "cash_flow_series": [
         {
@@ -513,9 +520,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": 12.19229157501589,
+          "format": "percent"
         }
       ]
     },
@@ -525,9 +532,13 @@
       "short_name": "Bull Mkt",
       "category": "Market",
       "kpis": {
+        "average_copper_fine_lb": 950308868.1762452,
         "average_head_grade": 0.0030651943893074,
         "average_net_price_usd_per_lb": 4.941670410580798,
+        "average_processed_tonnes": 166776341.46216288,
         "average_recovery": 0.8420000000000003,
+        "average_unit_opex_usd_per_tonne": 21.300000000000004,
+        "ebitda_margin_proxy": 0.2376926014794292,
         "payback_year": 2.0,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -536,9 +547,12 @@
         "total_capex_usd": 590000000.0,
         "total_ebitda_usd": 16614636120.418983,
         "total_free_cash_flow_usd": 11403318464.895386,
+        "total_operating_cash_flow_usd": 11713318464.895386,
+        "total_opex_usd": 53285041097.16103,
         "total_revenue_usd": 69899677217.58002,
         "average_head_grade_pct": 0.30651943893074,
-        "average_recovery_pct": 84.20000000000003
+        "average_recovery_pct": 84.20000000000003,
+        "ebitda_margin_proxy_pct": 23.76926014794292
       },
       "cash_flow_series": [
         {
@@ -964,9 +978,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": 23.76926014794292,
+          "format": "percent"
         }
       ]
     },
@@ -976,9 +990,13 @@
       "short_name": "Bear Mkt",
       "category": "Market",
       "kpis": {
+        "average_copper_fine_lb": 913041853.7379614,
         "average_head_grade": 0.0030651943893074,
         "average_net_price_usd_per_lb": 3.6387129121684167,
+        "average_processed_tonnes": 160236092.7773722,
         "average_recovery": 0.8420000000000003,
+        "average_unit_opex_usd_per_tonne": 21.939000000000004,
+        "ebitda_margin_proxy": -0.0663656332626416,
         "payback_year": null,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -987,9 +1005,12 @@
         "total_capex_usd": 590000000.0,
         "total_ebitda_usd": -3281750320.128028,
         "total_free_cash_flow_usd": -3591750320.128028,
+        "total_operating_cash_flow_usd": -3281750320.128028,
+        "total_opex_usd": 52731294591.64152,
         "total_revenue_usd": 49449544271.513504,
         "average_head_grade_pct": 0.30651943893074,
-        "average_recovery_pct": 84.20000000000003
+        "average_recovery_pct": 84.20000000000003,
+        "ebitda_margin_proxy_pct": -6.6365633262641595
       },
       "cash_flow_series": [
         {
@@ -1415,9 +1436,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": -6.6365633262641595,
+          "format": "percent"
         }
       ]
     },
@@ -1427,9 +1448,13 @@
       "short_name": "Op Stress",
       "category": "Operations",
       "kpis": {
+        "average_copper_fine_lb": 815521530.3558594,
         "average_head_grade": 0.0029732385576281,
         "average_net_price_usd_per_lb": 4.290191661374608,
+        "average_processed_tonnes": 153695844.09258148,
         "average_recovery": 0.80832,
+        "average_unit_opex_usd_per_tonne": 23.004,
+        "ebitda_margin_proxy": -0.0183883709083209,
         "payback_year": null,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -1438,9 +1463,12 @@
         "total_capex_usd": 590000000.0,
         "total_ebitda_usd": -957605355.4548348,
         "total_free_cash_flow_usd": -1311711555.8713417,
+        "total_operating_cash_flow_usd": -1001711555.8713422,
+        "total_opex_usd": 53034287962.58617,
         "total_revenue_usd": 52076682607.13134,
         "average_head_grade_pct": 0.29732385576281,
-        "average_recovery_pct": 80.83200000000001
+        "average_recovery_pct": 80.83200000000001,
+        "ebitda_margin_proxy_pct": -1.83883709083209
       },
       "cash_flow_series": [
         {
@@ -1866,9 +1894,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": -1.83883709083209,
+          "format": "percent"
         }
       ]
     },
@@ -1878,9 +1906,13 @@
       "short_name": "Capex",
       "category": "Investment",
       "kpis": {
+        "average_copper_fine_lb": 931675360.9571033,
         "average_head_grade": 0.0030651943893074,
         "average_net_price_usd_per_lb": 4.290191661374608,
+        "average_processed_tonnes": 163506217.11976758,
         "average_recovery": 0.8420000000000003,
+        "average_unit_opex_usd_per_tonne": 21.300000000000004,
+        "ebitda_margin_proxy": 0.1219229157501589,
         "payback_year": 4.0,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -1889,9 +1921,12 @@
         "total_capex_usd": 708000000.0,
         "total_ebitda_usd": 7253670608.111523,
         "total_free_cash_flow_usd": 4741837778.718622,
+        "total_operating_cash_flow_usd": 5113837778.718622,
+        "total_opex_usd": 52240236369.76573,
         "total_revenue_usd": 59493906977.87725,
         "average_head_grade_pct": 0.30651943893074,
-        "average_recovery_pct": 84.20000000000003
+        "average_recovery_pct": 84.20000000000003,
+        "ebitda_margin_proxy_pct": 12.19229157501589
       },
       "cash_flow_series": [
         {
@@ -2317,9 +2352,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": 12.19229157501589,
+          "format": "percent"
         }
       ]
     },
@@ -2329,9 +2364,13 @@
       "short_name": "Committee DS",
       "category": "Stress",
       "kpis": {
+        "average_copper_fine_lb": 773570052.2026827,
         "average_head_grade": 0.002911934669842,
         "average_net_price_usd_per_lb": 3.421553329099686,
+        "average_processed_tonnes": 150425719.75018615,
         "average_recovery": 0.7999000000000003,
+        "average_unit_opex_usd_per_tonne": 23.430000000000003,
+        "ebitda_margin_proxy": -0.3419673477806146,
         "payback_year": null,
         "peak_fcf_year": 15.0,
         "peak_revenue_year": 4.0,
@@ -2340,9 +2379,12 @@
         "total_capex_usd": 678500000.0,
         "total_ebitda_usd": -13471884073.517967,
         "total_free_cash_flow_usd": -13828384073.517963,
+        "total_operating_cash_flow_usd": -13471884073.517967,
+        "total_opex_usd": 52867119206.20292,
         "total_revenue_usd": 39395235132.68496,
         "average_head_grade_pct": 0.2911934669842,
-        "average_recovery_pct": 79.99000000000002
+        "average_recovery_pct": 79.99000000000002,
+        "ebitda_margin_proxy_pct": -34.19673477806146
       },
       "cash_flow_series": [
         {
@@ -2768,9 +2810,9 @@
           "format": "percent"
         },
         {
-          "label": "Peak Revenue Year",
-          "value": 4.0,
-          "format": "year"
+          "label": "EBITDA Margin Proxy",
+          "value": -34.19673477806146,
+          "format": "percent"
         }
       ]
     }
@@ -3262,19 +3304,19 @@
   ],
   "insights": [
     {
-      "label": "Value Creation",
-      "title": "The base case is positive, but not bulletproof.",
-      "body": "Scenario NPV is 1.74B USD and the project pays back in year 4. That is enough to justify attention, but not enough to skip downside framing."
+      "label": "Planning Baseline",
+      "title": "The reference case already reads like a mining planning dashboard.",
+      "body": "The base case averages 163.51 Mt of processed material per year, 84.2% recovery, and 21.30 USD/t of unit opex. That combination is easier to discuss in planning, management control, and business analysis contexts than valuation alone."
     },
     {
-      "label": "Tail Risk",
-      "title": "The left tail is the real portfolio story.",
-      "body": "Loss probability is 33.9%. The 5% VaR is -3.68B USD and the CVaR is -4.82B USD, which means adverse combinations are economically severe."
+      "label": "Business Signal",
+      "title": "Scenario spread connects operations, market exposure, and margin pressure.",
+      "body": "The strongest deterministic case is Bull Market while Investment Committee Downside is the weakest. The base-case EBITDA margin proxy is 12.2%, which makes price, throughput, recovery, and unit cost natural executive dashboard drivers."
     },
     {
-      "label": "Decision Signal",
-      "title": "Scenario spread reveals investment fragility.",
-      "body": "The strongest deterministic case is Bull Market at 5.22B USD, while Investment Committee Downside falls to -7.21B USD. The committee-downside case alone reaches -7.21B USD."
+      "label": "Advanced Layer",
+      "title": "Valuation and tail risk remain useful, but secondary.",
+      "body": "Loss probability is 33.9%, 5% VaR is -3.68B USD, and the committee-downside case reaches -7.21B USD. Those outputs strengthen the portfolio, but they now sit behind the planning and KPI story instead of replacing it."
     }
   ]
 }

@@ -1,5 +1,5 @@
 project:
-  name: "Copper Mining Risk Model"
+  name: "Copper Mining Planning and Performance Analytics"
   workbook_path: "data/raw/Copper_mining_risk_model.xlsm"
   currency: "USD"
   years: 15
@@ -28,7 +28,7 @@ portfolio_bi:
     - scenario_id: "base"
       scenario_name: "Base Case"
       category: "Reference"
-      description: "Calibrated reference case derived from the workbook assumptions."
+      description: "Reference planning case derived from the workbook assumptions."
       price_factor: 1.00
       grade_factor: 1.00
       recovery_factor: 1.00
@@ -39,7 +39,7 @@ portfolio_bi:
     - scenario_id: "bull_market"
       scenario_name: "Bull Market"
       category: "Market"
-      description: "Higher copper prices with stable operations."
+      description: "Planning case with stronger copper prices and stable operations."
       price_factor: 1.15
       grade_factor: 1.00
       recovery_factor: 1.00
@@ -50,7 +50,7 @@ portfolio_bi:
     - scenario_id: "bear_market"
       scenario_name: "Bear Market"
       category: "Market"
-      description: "Lower copper prices and tighter financial conditions."
+      description: "Planning case with lower copper prices and tighter financial conditions."
       price_factor: 0.85
       grade_factor: 1.00
       recovery_factor: 1.00
@@ -61,7 +61,7 @@ portfolio_bi:
     - scenario_id: "operational_stress"
       scenario_name: "Operational Stress"
       category: "Operations"
-      description: "Lower throughput, lower recovery, and higher operating costs."
+      description: "Planning case with lower throughput, lower recovery, and higher operating costs."
       price_factor: 1.00
       grade_factor: 0.97
       recovery_factor: 0.96
@@ -72,7 +72,7 @@ portfolio_bi:
     - scenario_id: "capex_overrun"
       scenario_name: "Capex Overrun"
       category: "Investment"
-      description: "Strategic expansion with materially higher capital burden."
+      description: "Planning case with materially higher capital burden."
       price_factor: 1.00
       grade_factor: 1.00
       recovery_factor: 1.00
@@ -83,7 +83,7 @@ portfolio_bi:
     - scenario_id: "committee_downside"
       scenario_name: "Investment Committee Downside"
       category: "Stress"
-      description: "Combined market and operational downside used for decision stress testing."
+      description: "Combined market and operational downside used for management and investment stress testing."
       price_factor: 0.80
       grade_factor: 0.95
       recovery_factor: 0.95

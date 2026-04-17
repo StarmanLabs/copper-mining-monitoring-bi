@@ -66,16 +66,24 @@ def summarize_profile(profile: pd.DataFrame, scenario_id: str, scenario_name: st
     payback_year = int(payback_years.iloc[0]) if not payback_years.empty else None
     peak_revenue_year = int(profile.loc[profile["revenue_usd"].idxmax(), "year"])
     peak_fcf_year = int(profile.loc[profile["free_cash_flow_usd"].idxmax(), "year"])
+    total_revenue = float(profile["revenue_usd"].sum())
+    total_ebitda = float(profile["ebitda_usd"].sum())
     kpis = [
-        ("scenario_npv_usd", npv_from_profile(profile)),
-        ("scenario_irr", irr_from_profile(profile)),
-        ("total_revenue_usd", float(profile["revenue_usd"].sum())),
-        ("total_ebitda_usd", float(profile["ebitda_usd"].sum())),
+        ("total_revenue_usd", total_revenue),
+        ("total_ebitda_usd", total_ebitda),
+        ("total_opex_usd", float(profile["opex_usd"].sum())),
+        ("total_operating_cash_flow_usd", float(profile["operating_cash_flow_usd"].sum())),
         ("total_capex_usd", float(profile.attrs.get("initial_capex_year0_usd", 0.0) + profile["capex_usd"].sum())),
         ("total_free_cash_flow_usd", float(profile["free_cash_flow_usd"].sum())),
+        ("average_processed_tonnes", float(profile["expanded_tonnes"].mean())),
+        ("average_copper_fine_lb", float(profile["copper_fine_lb"].mean())),
         ("average_net_price_usd_per_lb", float(profile["scenario_net_price_usd_per_lb"].mean())),
         ("average_head_grade", float(profile["scenario_grade"].mean())),
         ("average_recovery", float(profile["scenario_recovery"].mean())),
+        ("average_unit_opex_usd_per_tonne", float(profile["unit_opex_usd_per_tonne"].mean())),
+        ("ebitda_margin_proxy", float(total_ebitda / total_revenue) if total_revenue else 0.0),
+        ("scenario_npv_usd", npv_from_profile(profile)),
+        ("scenario_irr", irr_from_profile(profile)),
         ("peak_revenue_year", peak_revenue_year),
         ("peak_fcf_year", peak_fcf_year),
         ("payback_year", payback_year),

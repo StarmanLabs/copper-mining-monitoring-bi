@@ -1,25 +1,25 @@
 metric,display_name,unit,category,dashboard_page
-base_processed_tonnes,Base Processed Tonnes,tonnes,Operations,Operating Profile
-expanded_tonnes,Expanded Processed Tonnes,tonnes,Operations,Operating Profile
-scenario_price_usd_per_lb,Copper Price,USD/lb,Market,Drivers
-scenario_grade,Head Grade,decimal,Geology,Drivers
-scenario_recovery,Recovery,decimal,Metallurgy,Drivers
-scenario_net_price_usd_per_lb,Net Realized Price,USD/lb,Commercial,Drivers
-copper_fine_lb,Copper Fine Production,lb,Production,Operating Profile
-gross_revenue_usd,Gross Revenue,USD,Economics,Value Creation
-payable_revenue_usd,Payable Revenue,USD,Economics,Value Creation
-tcrc_usd,Treatment and Refining Charges,USD,Commercial,Value Creation
-revenue_usd,Revenue,USD,Economics,Value Creation
-unit_opex_usd_per_tonne,Unit Opex,USD/t,Economics,Value Creation
-opex_usd,Operating Cost,USD,Economics,Value Creation
-ebitda_usd,EBITDA,USD,Economics,Value Creation
-cash_tax_proxy_usd,Cash Tax Proxy,USD,Economics,Value Creation
-operating_cash_flow_usd,Operating Cash Flow,USD,Cash Flow,Value Creation
-initial_capex_usd,Initial Capex,USD,Investment,Value Creation
-sustaining_capex_usd,Sustaining Capex,USD,Investment,Value Creation
-capex_usd,Capex,USD,Investment,Value Creation
-working_capital_investment_usd,Working Capital Investment,USD,Working Capital,Value Creation
-working_capital_release_usd,Working Capital Release,USD,Working Capital,Value Creation
-working_capital_delta_usd,Working Capital Delta,USD,Working Capital,Value Creation
-free_cash_flow_usd,Free Cash Flow,USD,Cash Flow,Value Creation
-discounted_fcf_usd,Discounted FCF,USD,Valuation,Executive View
+base_processed_tonnes,Base Processed Tonnes,tonnes,Operations,Throughput and Production
+expanded_tonnes,Expanded Processed Tonnes,tonnes,Operations,Throughput and Production
+scenario_price_usd_per_lb,Copper Price,USD/lb,Market,Scenario Planning and Price Exposure
+scenario_grade,Head Grade,decimal,Geology,Grade and Recovery
+scenario_recovery,Recovery,decimal,Metallurgy,Grade and Recovery
+scenario_net_price_usd_per_lb,Net Realized Price,USD/lb,Commercial,Scenario Planning and Price Exposure
+copper_fine_lb,Copper Fine Production,lb,Production,Throughput and Production
+gross_revenue_usd,Gross Revenue,USD,Economics,"Cost, Revenue and Cash Generation"
+payable_revenue_usd,Payable Revenue,USD,Economics,"Cost, Revenue and Cash Generation"
+tcrc_usd,Treatment and Refining Charges,USD,Commercial,"Cost, Revenue and Cash Generation"
+revenue_usd,Revenue,USD,Economics,"Cost, Revenue and Cash Generation"
+unit_opex_usd_per_tonne,Unit Opex,USD/t,Economics,"Cost, Revenue and Cash Generation"
+opex_usd,Operating Cost,USD,Economics,"Cost, Revenue and Cash Generation"
+ebitda_usd,EBITDA,USD,Economics,"Cost, Revenue and Cash Generation"
+cash_tax_proxy_usd,Cash Tax Proxy,USD,Economics,"Cost, Revenue and Cash Generation"
+operating_cash_flow_usd,Operating Cash Flow,USD,Cash Flow,"Cost, Revenue and Cash Generation"
+initial_capex_usd,Initial Capex,USD,Investment,Advanced Valuation and Downside Risk
+sustaining_capex_usd,Sustaining Capex,USD,Investment,"Cost, Revenue and Cash Generation"
+capex_usd,Capex,USD,Investment,"Cost, Revenue and Cash Generation"
+working_capital_investment_usd,Working Capital Investment,USD,Working Capital,"Cost, Revenue and Cash Generation"
+working_capital_release_usd,Working Capital Release,USD,Working Capital,"Cost, Revenue and Cash Generation"
+working_capital_delta_usd,Working Capital Delta,USD,Working Capital,"Cost, Revenue and Cash Generation"
+free_cash_flow_usd,Free Cash Flow,USD,Cash Flow,"Cost, Revenue and Cash Generation"
+discounted_fcf_usd,Discounted FCF,USD,Valuation,Advanced Valuation and Downside Risk

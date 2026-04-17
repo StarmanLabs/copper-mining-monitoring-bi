@@ -35,4 +35,4 @@ def test_build_bi_outputs_smoke():
     assert dashboard_outputs["dashboard_data"].exists()
 
     html = dashboard_outputs["dashboard_html"].read_text(encoding="utf-8")
-    assert "Copper Mining Risk Command Center" in html
+    assert "Copper Mining Planning and Performance Command Center" in html

@@ -104,6 +104,10 @@ def test_scenario_directionality_and_sensitivity_shapes():
     assert scenario_values.loc["capex_overrun", "scenario_npv_usd"] < scenario_values.loc["base", "scenario_npv_usd"]
     assert scenario_values.loc["committee_downside", "scenario_npv_usd"] < scenario_values.loc["bear_market", "scenario_npv_usd"]
     assert scenario_values.loc["base", "scenario_irr"] > 0
+    assert scenario_values.loc["operational_stress", "average_processed_tonnes"] < scenario_values.loc["base", "average_processed_tonnes"]
+    assert scenario_values.loc["operational_stress", "average_unit_opex_usd_per_tonne"] > scenario_values.loc["base", "average_unit_opex_usd_per_tonne"]
+    assert scenario_values.loc["bull_market", "average_net_price_usd_per_lb"] > scenario_values.loc["base", "average_net_price_usd_per_lb"]
+    assert scenario_values.loc["committee_downside", "ebitda_margin_proxy"] < scenario_values.loc["base", "ebitda_margin_proxy"]
     assert {"base", "committee_downside"}.issubset(set(scenario_dim["scenario_id"]))
 
     tornado = build_tornado_table(
@@ -192,9 +196,17 @@ def test_bi_output_schema_integrity():
 
     annual = pd.read_csv(outputs["fact_annual_metrics"])
     metrics = pd.read_csv(outputs["dim_metric"])
+    scenario_kpis = pd.read_csv(outputs["fact_scenario_kpis"])
     simulation_distribution = pd.read_csv(outputs["fact_simulation_distribution"])
     assert annual["category"].notna().all()
     assert {"gross_revenue_usd", "cash_tax_proxy_usd", "working_capital_release_usd"}.issubset(set(metrics["metric"]))
+    assert {
+        "average_processed_tonnes",
+        "average_copper_fine_lb",
+        "average_unit_opex_usd_per_tonne",
+        "ebitda_margin_proxy",
+        "total_operating_cash_flow_usd",
+    }.issubset(set(scenario_kpis["metric"]))
     assert {
         "average_price_usd_per_lb",
         "terminal_price_usd_per_lb",

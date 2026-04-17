@@ -1,27 +1,34 @@
 page_name,visual_order,visual_title,visual_type,source_table,fields_or_measures,purpose
-Executive Summary,1,Selected Scenario NPV,KPI Card,fact_scenario_kpis,Selected Scenario NPV,Headline deterministic value creation
-Executive Summary,2,Base Case NPV,KPI Card,fact_scenario_kpis,Base Case NPV,Reference scenario anchor
-Executive Summary,3,Committee Downside NPV,KPI Card,fact_scenario_kpis,Committee Downside NPV,Hard downside framing
-Executive Summary,4,Probability of Loss,KPI Card,simulation_summary,Probability of Loss,Headline Monte Carlo downside risk
-Executive Summary,5,VaR 5%,KPI Card,simulation_summary,VaR 5%,Tail risk threshold
-Executive Summary,6,CVaR 5%,KPI Card,simulation_summary,CVaR 5%,Average extreme downside
-Executive Summary,7,Scenario NPV Comparison,Clustered Bar Chart,"dim_scenario + fact_scenario_kpis","Axis: scenario_name | Value: Selected Scenario NPV",Compare deterministic cases
-Executive Summary,8,Scenario Economics,Matrix,"dim_scenario + fact_scenario_kpis","Rows: scenario_name | Values: Scenario Revenue; Scenario EBITDA; Scenario Free Cash Flow; Scenario Capex",Summarize economics across scenarios
-Scenario Comparison,1,Capex vs NPV,Scatter Chart,"dim_scenario + fact_scenario_kpis","X: Scenario Capex | Y: Selected Scenario NPV | Size: Scenario Revenue | Legend: scenario_category",Show trade-off between capital burden and value
-Scenario Comparison,2,NPV Delta vs Base,Bar Chart,"dim_scenario + fact_scenario_kpis","Axis: scenario_name | Value: NPV Delta vs Base",Rank scenarios versus the base case
-Scenario Comparison,3,Scenario Detail Table,Table,"dim_scenario + fact_scenario_kpis","scenario_name; Selected Scenario NPV; Scenario EBITDA; Scenario Free Cash Flow; Scenario Payback Year",Allow exact comparison
-Annual Economics,1,Revenue vs EBITDA,Line and Clustered Column Chart,"dim_year + fact_annual_metrics","X: year | Columns: Annual Revenue | Line: Annual EBITDA",Show operating scale and margin evolution
-Annual Economics,2,Free Cash Flow by Year,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Free Cash Flow",Track cash generation path
-Annual Economics,3,Capex by Year,Column Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Capex",Show investment timing
-Annual Economics,4,Processed Tonnes,Area Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Processed Tonnes",Show throughput trajectory
-Market and Operating Drivers,1,Net Price,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Net Price",Track commercial driver
-Market and Operating Drivers,2,Head Grade %,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Head Grade %",Track geology driver
-Market and Operating Drivers,3,Recovery %,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Recovery %",Track metallurgy driver
-Monte Carlo Risk,1,Expected NPV,KPI Card,simulation_summary,Expected NPV,Headline expected value
-Monte Carlo Risk,2,Median NPV,KPI Card,simulation_summary,Median NPV,Robust central tendency
-Monte Carlo Risk,3,Distribution Histogram,Histogram,fact_simulation_distribution,"Bins: npv_usd | Values: row count",Show spread and left tail
-Monte Carlo Risk,4,Percentile Table,Table,simulation_percentiles,percentile; npv_usd,Show key percentile cutoffs
-Sensitivity and Stress,1,Tornado,Diverging Bar Chart,fact_tornado_sensitivity,"Axis: driver_label | Value: impact_vs_base_usd | Legend: direction",Rank drivers by value impact
-Sensitivity and Stress,2,Price Grade Heatmap,Matrix Heatmap,fact_heatmap_price_grade,"Rows: price_factor | Columns: grade_factor | Values: npv_usd",Show the boundary between value creation and destruction
-Sensitivity and Stress,3,Committee Downside NPV,KPI Card,fact_scenario_kpis,Committee Downside NPV,Keep the downside case visible
-Reconciliation and Credibility,1,Excel vs Python Benchmark,Table,benchmark_comparison,"metric; benchmark_value; python_value; reconciliation_status; gap; pct_gap",Document remaining divergence honestly
+Executive Planning Overview,1,Scenario Revenue,KPI Card,fact_scenario_kpis,Scenario Revenue,Show top-line revenue exposure
+Executive Planning Overview,2,Scenario EBITDA,KPI Card,fact_scenario_kpis,Scenario EBITDA,Show operating earnings proxy
+Executive Planning Overview,3,Scenario Operating Cash Flow,KPI Card,fact_scenario_kpis,Scenario Operating Cash Flow,Show business cash-generation proxy
+Executive Planning Overview,4,Scenario Avg Throughput,KPI Card,fact_scenario_kpis,Scenario Avg Throughput,Keep plant scale visible
+Executive Planning Overview,5,Scenario Avg Unit Opex,KPI Card,fact_scenario_kpis,Scenario Avg Unit Opex,Show cost pressure
+Executive Planning Overview,6,Scenario EBITDA Margin Proxy,KPI Card,fact_scenario_kpis,Scenario EBITDA Margin Proxy,Show margin-style KPI
+Executive Planning Overview,7,Scenario Summary Matrix,Matrix,"dim_scenario + fact_scenario_kpis","Rows: scenario_name | Values: Scenario Revenue; Scenario EBITDA; Scenario Avg Throughput; Scenario Avg Unit Opex",Summarize planning cases side by side
+Executive Planning Overview,8,Revenue by Scenario,Clustered Bar Chart,"dim_scenario + fact_scenario_kpis","Axis: scenario_name | Value: Scenario Revenue",Compare commercial scale across cases
+Throughput and Production,1,Processed Tonnes,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Processed Tonnes",Show throughput trajectory
+Throughput and Production,2,Copper Fine Production,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Copper Fine Production",Show production trajectory
+Throughput and Production,3,Throughput by Phase,Column Chart,"dim_year + fact_annual_metrics","X: phase | Y: Annual Processed Tonnes",Summarize project phases
+Grade and Recovery,1,Head Grade %,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Head Grade %",Track ore quality
+Grade and Recovery,2,Recovery %,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Recovery %",Track metallurgical performance
+Grade and Recovery,3,Grade and Recovery Table,Table,"dim_year + fact_annual_metrics","year; Annual Head Grade %; Annual Recovery %",Allow year-level reading
+Cost, Revenue and Cash Generation,1,Revenue vs EBITDA,Line and Clustered Column Chart,"dim_year + fact_annual_metrics","X: year | Columns: Annual Revenue | Line: Annual EBITDA",Show revenue and operating earnings together
+Cost, Revenue and Cash Generation,2,Unit Opex,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Unit Opex",Track unit cost pressure
+Cost, Revenue and Cash Generation,3,Operating Cash Flow,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Operating Cash Flow",Track operating cash generation
+Cost, Revenue and Cash Generation,4,Free Cash Flow,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Free Cash Flow",Track full cash generation
+Cost, Revenue and Cash Generation,5,Capex,Column Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Capex",Show capital burden timing
+Scenario Planning and Price Exposure,1,Capex vs NPV,Scatter Chart,"dim_scenario + fact_scenario_kpis","X: Scenario Capex | Y: Selected Scenario NPV | Size: Scenario Revenue | Legend: scenario_category",Show planning trade-offs
+Scenario Planning and Price Exposure,2,NPV Delta vs Base,Bar Chart,"dim_scenario + fact_scenario_kpis","Axis: scenario_name | Value: NPV Delta vs Base",Rank scenarios versus the reference case
+Scenario Planning and Price Exposure,3,Scenario Planning Table,Table,"dim_scenario + fact_scenario_kpis","scenario_name; Scenario Revenue; Scenario EBITDA; Scenario Avg Throughput; Scenario Avg Unit Opex; Selected Scenario NPV",Support planning discussion
+Scenario Planning and Price Exposure,4,Net Price,Line Chart,"dim_year + fact_annual_metrics","X: year | Y: Annual Net Price",Track commodity-price exposure
+Advanced Valuation and Downside Risk,1,Selected Scenario NPV,KPI Card,fact_scenario_kpis,Selected Scenario NPV,Headline valuation output
+Advanced Valuation and Downside Risk,2,Selected Scenario IRR,KPI Card,fact_scenario_kpis,Selected Scenario IRR,Secondary valuation metric
+Advanced Valuation and Downside Risk,3,Probability of Loss,KPI Card,simulation_summary,Probability of Loss,Headline downside signal
+Advanced Valuation and Downside Risk,4,VaR 5%,KPI Card,simulation_summary,VaR 5%,Tail risk threshold
+Advanced Valuation and Downside Risk,5,CVaR 5%,KPI Card,simulation_summary,CVaR 5%,Average extreme downside
+Advanced Valuation and Downside Risk,6,Distribution Histogram,Histogram,fact_simulation_distribution,"Bins: npv_usd | Values: row count",Show spread and left tail
+Advanced Valuation and Downside Risk,7,Percentile Table,Table,simulation_percentiles,percentile; npv_usd,Show key percentile cutoffs
+Advanced Valuation and Downside Risk,8,Tornado,Diverging Bar Chart,fact_tornado_sensitivity,"Axis: driver_label | Value: impact_vs_base_usd | Legend: direction",Rank value drivers
+Advanced Valuation and Downside Risk,9,Price Grade Heatmap,Matrix Heatmap,fact_heatmap_price_grade,"Rows: price_factor | Columns: grade_factor | Values: npv_usd",Show valuation boundary under stress
+Benchmark and Method Transparency,1,Workbook vs Python Benchmark,Table,benchmark_comparison,"metric; benchmark_value; python_value; reconciliation_status; gap; pct_gap",Document remaining divergence honestly
