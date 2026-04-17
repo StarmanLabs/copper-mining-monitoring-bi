@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 KPI_SPECS = [
-    ("base_npv_usd", "Base NPV", "currency"),
+    ("scenario_npv_usd", "Scenario NPV", "currency"),
     ("total_revenue_usd", "Total Revenue", "currency"),
     ("total_ebitda_usd", "Total EBITDA", "currency"),
     ("total_free_cash_flow_usd", "Total Free Cash Flow", "currency"),
@@ -26,7 +26,7 @@ CASH_FLOW_SERIES = [
 ]
 
 DRIVER_SERIES = [
-    ("scenario_price_usd_per_lb", "Net Copper Price", "#E07A3F", "usd_per_lb", 1.0),
+    ("scenario_net_price_usd_per_lb", "Net Realized Price", "#E07A3F", "usd_per_lb", 1.0),
     ("scenario_grade", "Head Grade", "#D4A373", "percent", 100.0),
     ("scenario_recovery", "Recovery", "#4F7C82", "percent", 100.0),
 ]
@@ -608,15 +608,6 @@ HTML_TEMPLATE = """<!doctype html>
           maximumFractionDigits: 0
         }).format(value);
       },
-      currencyPen(value) {
-        if (value === null || value === undefined) return "n/a";
-        return new Intl.NumberFormat("es-PE", {
-          style: "currency",
-          currency: "PEN",
-          notation: "compact",
-          maximumFractionDigits: 1
-        }).format(value);
-      },
       percent(value) {
         if (value === null || value === undefined) return "n/a";
         return `${value.toFixed(2)}%`;
@@ -684,6 +675,12 @@ HTML_TEMPLATE = """<!doctype html>
         return `${sign}${(row.gap * 100).toFixed(1)} pp`;
       }
       return formatters.gap(row.gap);
+    }
+
+    function formatBenchmarkStatus(row) {
+      if (row.reconciliation_status === "close_match") return "Comparable";
+      if (row.reconciliation_status === "material_gap") return "Comparable, material gap";
+      return "Reference only";
     }
 
     function renderHeroMetrics() {
@@ -814,7 +811,7 @@ HTML_TEMPLATE = """<!doctype html>
       const width = 720;
       const height = 310;
       const margin = { top: 16, right: 10, bottom: 74, left: 84 };
-      const values = data.map((item) => item.base_npv_usd);
+      const values = data.map((item) => item.scenario_npv_usd);
       const yMin = Math.min(0, ...values);
       const yMax = Math.max(0, ...values);
       const span = yMax === yMin ? 1 : yMax - yMin;
@@ -826,14 +823,14 @@ HTML_TEMPLATE = """<!doctype html>
 
       const bars = data.map((item, index) => {
         const x = margin.left + index * barWidth + 12;
-        const barHeight = Math.abs(yScale(item.base_npv_usd) - zero);
-        const y = item.base_npv_usd >= 0 ? yScale(item.base_npv_usd) : zero;
-        const color = item.scenario_id === activeScenarioId ? "#E07A3F" : item.base_npv_usd >= 0 ? "#4F7C82" : "#C75746";
+        const barHeight = Math.abs(yScale(item.scenario_npv_usd) - zero);
+        const y = item.scenario_npv_usd >= 0 ? yScale(item.scenario_npv_usd) : zero;
+        const color = item.scenario_id === activeScenarioId ? "#E07A3F" : item.scenario_npv_usd >= 0 ? "#4F7C82" : "#C75746";
         const opacity = item.scenario_id === activeScenarioId ? 1 : 0.74;
         return `
           <g>
             <rect x="${x}" y="${y}" width="${barWidth - 24}" height="${Math.max(4, barHeight)}" rx="10" fill="${color}" opacity="${opacity}"></rect>
-            <text x="${x + (barWidth - 24) / 2}" y="${item.base_npv_usd >= 0 ? y - 10 : y + barHeight + 18}" text-anchor="middle" fill="rgba(245,237,226,0.92)" font-size="11">${formatters.currency(item.base_npv_usd)}</text>
+            <text x="${x + (barWidth - 24) / 2}" y="${item.scenario_npv_usd >= 0 ? y - 10 : y + barHeight + 18}" text-anchor="middle" fill="rgba(245,237,226,0.92)" font-size="11">${formatters.currency(item.scenario_npv_usd)}</text>
             <text x="${x + (barWidth - 24) / 2}" y="${height - 38}" text-anchor="middle" fill="rgba(201,184,165,0.92)" font-size="11">${item.short_name}</text>
           </g>
         `;
@@ -956,7 +953,7 @@ HTML_TEMPLATE = """<!doctype html>
           <th>${row.label}</th>
           <td>${formatBenchmarkValue(row.benchmark_value, row.benchmark_unit, row.benchmark_currency)}</td>
           <td>${formatBenchmarkValue(row.python_value, row.python_unit, row.python_currency)}</td>
-          <td>${row.comparable_flag ? "Comparable" : "Reference only"}</td>
+          <td>${formatBenchmarkStatus(row)}</td>
           <td>${formatBenchmarkGap(row)}</td>
           <td>${row.reconciliation_note}</td>
         </tr>
@@ -1073,8 +1070,8 @@ def _build_insights(snapshot: dict[str, Any]) -> list[dict[str, str]]:
     probability_of_loss = snapshot["simulation"]["summary"]["probability_of_loss"]
     var_usd = snapshot["simulation"]["summary"]["var_usd"]
     cvar_usd = snapshot["simulation"]["summary"]["cvar_usd"]
-    best_case = max(snapshot["scenario_comparison"], key=lambda row: row["base_npv_usd"])
-    worst_case = min(snapshot["scenario_comparison"], key=lambda row: row["base_npv_usd"])
+    best_case = max(snapshot["scenario_comparison"], key=lambda row: row["scenario_npv_usd"])
+    worst_case = min(snapshot["scenario_comparison"], key=lambda row: row["scenario_npv_usd"])
 
     payback_text = "does not pay back" if base["payback_year"] is None else f"pays back in year {int(base['payback_year'])}"
 
@@ -1083,7 +1080,7 @@ def _build_insights(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "label": "Value Creation",
             "title": "The base case is positive, but not bulletproof.",
             "body": (
-                f"Base NPV is {base['base_npv_usd'] / 1e9:.2f}B USD and the project {payback_text}. "
+                f"Scenario NPV is {base['scenario_npv_usd'] / 1e9:.2f}B USD and the project {payback_text}. "
                 "That is enough to justify attention, but not enough to skip downside framing."
             ),
         },
@@ -1099,9 +1096,9 @@ def _build_insights(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "label": "Decision Signal",
             "title": "Scenario spread reveals investment fragility.",
             "body": (
-                f"The strongest deterministic case is {best_case['name']} at {best_case['base_npv_usd'] / 1e9:.2f}B USD, "
-                f"while {worst_case['name']} falls to {worst_case['base_npv_usd'] / 1e9:.2f}B USD. "
-                f"The committee-downside case alone reaches {committee['base_npv_usd'] / 1e9:.2f}B USD."
+                f"The strongest deterministic case is {best_case['name']} at {best_case['scenario_npv_usd'] / 1e9:.2f}B USD, "
+                f"while {worst_case['name']} falls to {worst_case['scenario_npv_usd'] / 1e9:.2f}B USD. "
+                f"The committee-downside case alone reaches {committee['scenario_npv_usd'] / 1e9:.2f}B USD."
             ),
         },
     ]
@@ -1168,7 +1165,7 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
             ],
         }
 
-    base_npv = scenarios["base"]["kpis"]["base_npv_usd"]
+    base_npv = scenarios["base"]["kpis"]["scenario_npv_usd"]
     scenario_comparison = []
     for scenario_id in scenario_order:
         scenario = scenarios[scenario_id]
@@ -1178,8 +1175,8 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
                 "name": scenario["name"],
                 "short_name": scenario["short_name"],
                 "category": scenario["category"],
-                "base_npv_usd": scenario["kpis"]["base_npv_usd"],
-                "npv_vs_base_usd": None if scenario["kpis"]["base_npv_usd"] is None else scenario["kpis"]["base_npv_usd"] - base_npv,
+                "scenario_npv_usd": scenario["kpis"]["scenario_npv_usd"],
+                "npv_vs_base_usd": None if scenario["kpis"]["scenario_npv_usd"] is None else scenario["kpis"]["scenario_npv_usd"] - base_npv,
             }
         )
 
@@ -1247,7 +1244,7 @@ def _build_snapshot(data_dir: str | Path) -> dict[str, Any]:
             },
             {
                 "label": "Committee Downside",
-                "value": scenarios["committee_downside"]["kpis"]["base_npv_usd"],
+                "value": scenarios["committee_downside"]["kpis"]["scenario_npv_usd"],
                 "format": "currency",
                 "subtext": "Deterministic downside case aligned with a tougher investment committee lens.",
             },

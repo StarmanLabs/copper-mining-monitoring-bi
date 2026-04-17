@@ -16,10 +16,10 @@ class SimulationConfig:
     iterations: int
     random_seed: int
     var_alpha: float
-    mu_price_returns: float
     sigma_price_returns: float
     grade_cv: float
     recovery_cv: float
+    price_path_autocorrelation: float = 0.55
     grade_lower_bound: float = 0.85
     grade_upper_bound: float = 1.15
     recovery_lower_bound: float = 0.92
@@ -46,20 +46,29 @@ def simulate_price_paths(
     config: SimulationConfig,
     rng: np.random.Generator,
 ) -> np.ndarray:
-    """Generate annual copper price paths with deck-centered lognormal shocks.
+    """Generate annual copper price paths with autocorrelated deck-centered lognormal shocks.
 
     The workbook already contains an explicit annual price deck, so the stochastic
     engine perturbs each project year around that deck instead of extrapolating a
-    long-run directional commodity trend. This preserves yearly variation without
-    overstating long-horizon drift.
+    long-run directional commodity trend. A simple AR(1)-style dependence in log
+    deviations makes the paths temporally coherent without pretending to estimate
+    a structural commodity regime model.
     """
 
     year_count = base_prices.size
-    log_shocks = rng.normal(
-        loc=-0.5 * config.sigma_price_returns**2,
-        scale=config.sigma_price_returns,
-        size=(config.iterations, year_count),
-    )
+    sigma = max(float(config.sigma_price_returns), 0.0)
+    if sigma == 0.0:
+        return np.repeat(base_prices[None, :], config.iterations, axis=0)
+
+    rho = float(np.clip(config.price_path_autocorrelation, 0.0, 0.95))
+    long_run_mean = -0.5 * sigma**2
+    innovation_sd = sigma * np.sqrt(1.0 - rho**2)
+
+    log_shocks = np.empty((config.iterations, year_count), dtype=float)
+    log_shocks[:, 0] = rng.normal(loc=long_run_mean, scale=sigma, size=config.iterations)
+    for year_index in range(1, year_count):
+        innovations = rng.normal(loc=0.0, scale=innovation_sd, size=config.iterations)
+        log_shocks[:, year_index] = long_run_mean + rho * (log_shocks[:, year_index - 1] - long_run_mean) + innovations
     path_factors = np.exp(log_shocks)
     return base_prices[None, :] * path_factors
 

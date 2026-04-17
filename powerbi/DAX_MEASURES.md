@@ -8,25 +8,31 @@ These measures are designed for the current semantic layer in `outputs/bi/`.
 Selected Scenario NPV =
 CALCULATE(
     MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "base_npv_usd"
+    fact_scenario_kpis[metric] = "scenario_npv_usd"
 )
 
 Base Case NPV =
 CALCULATE(
     MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "base_npv_usd",
+    fact_scenario_kpis[metric] = "scenario_npv_usd",
     dim_scenario[scenario_id] = "base"
 )
 
 Committee Downside NPV =
 CALCULATE(
     MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "base_npv_usd",
+    fact_scenario_kpis[metric] = "scenario_npv_usd",
     dim_scenario[scenario_id] = "committee_downside"
 )
 
 NPV Delta vs Base =
 [Selected Scenario NPV] - [Base Case NPV]
+
+Selected Scenario IRR =
+CALCULATE(
+    MAX(fact_scenario_kpis[value]),
+    fact_scenario_kpis[metric] = "scenario_irr"
+)
 
 Scenario Revenue =
 CALCULATE(

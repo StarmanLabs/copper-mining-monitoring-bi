@@ -39,7 +39,7 @@ The BI-ready layer lives in `outputs/bi/`.
 - `simulation_percentiles.csv`
   Percentile cutoffs for the NPV distribution.
 - `benchmark_comparison.csv`
-  Audit-style benchmark reconciliation table with explicit comparability flags, basis metadata, and notes.
+  Audit-style benchmark reconciliation table with explicit comparability flags, basis metadata, notes, and status labels such as `reference_only`, `close_match`, or `material_gap`.
 - `powerbi_measure_catalog.csv`
   Suggested measure definitions for Power BI.
 

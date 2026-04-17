@@ -1,6 +1,6 @@
 scenario_id,scenario_name,scenario_category,metric,value
-base,Base Case,Reference,base_npv_usd,1735098665.2674618
-base,Base Case,Reference,base_irr,0.4518466901568161
+base,Base Case,Reference,scenario_npv_usd,1735098665.2674618
+base,Base Case,Reference,scenario_irr,0.4518466901568161
 base,Base Case,Reference,total_revenue_usd,59493906977.87725
 base,Base Case,Reference,total_ebitda_usd,7253670608.111523
 base,Base Case,Reference,total_capex_usd,590000000.0
@@ -11,8 +11,8 @@ base,Base Case,Reference,average_recovery,0.8420000000000003
 base,Base Case,Reference,peak_revenue_year,4.0
 base,Base Case,Reference,peak_fcf_year,15.0
 base,Base Case,Reference,payback_year,4.0
-bull_market,Bull Market,Market,base_npv_usd,5217620272.908168
-bull_market,Bull Market,Market,base_irr,1.3368436216570116
+bull_market,Bull Market,Market,scenario_npv_usd,5217620272.908168
+bull_market,Bull Market,Market,scenario_irr,1.3368436216570116
 bull_market,Bull Market,Market,total_revenue_usd,69899677217.58002
 bull_market,Bull Market,Market,total_ebitda_usd,16614636120.418983
 bull_market,Bull Market,Market,total_capex_usd,590000000.0
@@ -23,8 +23,8 @@ bull_market,Bull Market,Market,average_recovery,0.8420000000000003
 bull_market,Bull Market,Market,peak_revenue_year,4.0
 bull_market,Bull Market,Market,peak_fcf_year,15.0
 bull_market,Bull Market,Market,payback_year,2.0
-bear_market,Bear Market,Market,base_npv_usd,-2468305062.6464996
-bear_market,Bear Market,Market,base_irr,-0.504023747841817
+bear_market,Bear Market,Market,scenario_npv_usd,-2468305062.6464996
+bear_market,Bear Market,Market,scenario_irr,-0.504023747841817
 bear_market,Bear Market,Market,total_revenue_usd,49449544271.513504
 bear_market,Bear Market,Market,total_ebitda_usd,-3281750320.128028
 bear_market,Bear Market,Market,total_capex_usd,590000000.0
@@ -35,8 +35,8 @@ bear_market,Bear Market,Market,average_recovery,0.8420000000000003
 bear_market,Bear Market,Market,peak_revenue_year,4.0
 bear_market,Bear Market,Market,peak_fcf_year,15.0
 bear_market,Bear Market,Market,payback_year,
-operational_stress,Operational Stress,Operations,base_npv_usd,-1397032313.6882606
-operational_stress,Operational Stress,Operations,base_irr,-0.15062819361736904
+operational_stress,Operational Stress,Operations,scenario_npv_usd,-1397032313.6882606
+operational_stress,Operational Stress,Operations,scenario_irr,-0.15062819361736904
 operational_stress,Operational Stress,Operations,total_revenue_usd,52076682607.13134
 operational_stress,Operational Stress,Operations,total_ebitda_usd,-957605355.4548349
 operational_stress,Operational Stress,Operations,total_capex_usd,590000000.0
@@ -47,8 +47,8 @@ operational_stress,Operational Stress,Operations,average_recovery,0.80832
 operational_stress,Operational Stress,Operations,peak_revenue_year,4.0
 operational_stress,Operational Stress,Operations,peak_fcf_year,15.0
 operational_stress,Operational Stress,Operations,payback_year,
-capex_overrun,Capex Overrun,Investment,base_npv_usd,1559670856.6151035
-capex_overrun,Capex Overrun,Investment,base_irr,0.3929561372565332
+capex_overrun,Capex Overrun,Investment,scenario_npv_usd,1559670856.6151035
+capex_overrun,Capex Overrun,Investment,scenario_irr,0.3929561372565332
 capex_overrun,Capex Overrun,Investment,total_revenue_usd,59493906977.87725
 capex_overrun,Capex Overrun,Investment,total_ebitda_usd,7253670608.111523
 capex_overrun,Capex Overrun,Investment,total_capex_usd,708000000.0
@@ -59,8 +59,8 @@ capex_overrun,Capex Overrun,Investment,average_recovery,0.8420000000000003
 capex_overrun,Capex Overrun,Investment,peak_revenue_year,4.0
 capex_overrun,Capex Overrun,Investment,peak_fcf_year,15.0
 capex_overrun,Capex Overrun,Investment,payback_year,4.0
-committee_downside,Investment Committee Downside,Stress,base_npv_usd,-7208009593.098987
-committee_downside,Investment Committee Downside,Stress,base_irr,
+committee_downside,Investment Committee Downside,Stress,scenario_npv_usd,-7208009593.098987
+committee_downside,Investment Committee Downside,Stress,scenario_irr,
 committee_downside,Investment Committee Downside,Stress,total_revenue_usd,39395235132.68496
 committee_downside,Investment Committee Downside,Stress,total_ebitda_usd,-13471884073.517967
 committee_downside,Investment Committee Downside,Stress,total_capex_usd,678500000.0

@@ -24,4 +24,4 @@ Monte Carlo Risk,4,Percentile Table,Table,simulation_percentiles,percentile; npv
 Sensitivity and Stress,1,Tornado,Diverging Bar Chart,fact_tornado_sensitivity,"Axis: driver_label | Value: impact_vs_base_usd | Legend: direction",Rank drivers by value impact
 Sensitivity and Stress,2,Price Grade Heatmap,Matrix Heatmap,fact_heatmap_price_grade,"Rows: price_factor | Columns: grade_factor | Values: npv_usd",Show the boundary between value creation and destruction
 Sensitivity and Stress,3,Committee Downside NPV,KPI Card,fact_scenario_kpis,Committee Downside NPV,Keep the downside case visible
-Reconciliation and Credibility,1,Excel vs Python Benchmark,Table,benchmark_comparison,"metric; excel_value; python_value; gap; pct_gap_vs_excel",Document remaining divergence honestly
+Reconciliation and Credibility,1,Excel vs Python Benchmark,Table,benchmark_comparison,"metric; benchmark_value; python_value; reconciliation_status; gap; pct_gap",Document remaining divergence honestly

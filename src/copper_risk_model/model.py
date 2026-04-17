@@ -109,8 +109,8 @@ def _build_operating_profile(
     df["unit_opex_usd_per_tonne"] = unit_cost_usd_per_tonne * opex_vector
     df["opex_usd"] = df["tonnes_processed"] * df["unit_opex_usd_per_tonne"]
     df["ebitda_usd"] = df["revenue_usd"] - df["opex_usd"]
-    df["taxes_usd"] = np.where(df["ebitda_usd"] > 0, df["ebitda_usd"] * params.cash_tax_proxy_rate, 0.0)
-    df["operating_cash_flow_usd"] = df["ebitda_usd"] - df["taxes_usd"]
+    df["cash_tax_proxy_usd"] = np.where(df["ebitda_usd"] > 0, df["ebitda_usd"] * params.cash_tax_proxy_rate, 0.0)
+    df["operating_cash_flow_usd"] = df["ebitda_usd"] - df["cash_tax_proxy_usd"]
     return df
 
 
@@ -239,7 +239,9 @@ def build_incremental_expansion_profile(
     incremental["revenue_usd"] = expanded["revenue_usd"].to_numpy(dtype=float) - base["revenue_usd"].to_numpy(dtype=float)
     incremental["opex_usd"] = expanded["opex_usd"].to_numpy(dtype=float) - base["opex_usd"].to_numpy(dtype=float)
     incremental["ebitda_usd"] = expanded["ebitda_usd"].to_numpy(dtype=float) - base["ebitda_usd"].to_numpy(dtype=float)
-    incremental["taxes_usd"] = expanded["taxes_usd"].to_numpy(dtype=float) - base["taxes_usd"].to_numpy(dtype=float)
+    incremental["cash_tax_proxy_usd"] = (
+        expanded["cash_tax_proxy_usd"].to_numpy(dtype=float) - base["cash_tax_proxy_usd"].to_numpy(dtype=float)
+    )
     incremental["operating_cash_flow_usd"] = (
         expanded["operating_cash_flow_usd"].to_numpy(dtype=float) - base["operating_cash_flow_usd"].to_numpy(dtype=float)
     )

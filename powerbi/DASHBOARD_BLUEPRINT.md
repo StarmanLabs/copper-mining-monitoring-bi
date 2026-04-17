@@ -159,9 +159,9 @@ Goal: show that the migration is honest and still under active refinement.
 
 1. Table
    Source: `benchmark_comparison`
-   Columns: `metric`, `excel_value`, `python_value`, `gap`, `pct_gap_vs_excel`
+   Columns: `metric`, `benchmark_value`, `python_value`, `reconciliation_status`, `gap`, `pct_gap`
 2. Text box
-   Explain that workbook benchmarks are still legacy PEN values while the rebuild is reported in USD.
+   Explain that only directly comparable metrics should be gap-read, and that deterministic comparable rows can still carry a material residual gap.
 
 This page is important for credibility in a portfolio or interview setting. It shows transparency rather than pretending a perfect replication.
 

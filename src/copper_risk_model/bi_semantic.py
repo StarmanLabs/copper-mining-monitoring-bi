@@ -20,7 +20,7 @@ METRIC_CATEGORY_MAP = {
     "unit_opex_usd_per_tonne": "Economics",
     "opex_usd": "Economics",
     "ebitda_usd": "Economics",
-    "taxes_usd": "Economics",
+    "cash_tax_proxy_usd": "Economics",
     "operating_cash_flow_usd": "Cash Flow",
     "initial_capex_usd": "Investment",
     "sustaining_capex_usd": "Investment",
@@ -50,7 +50,7 @@ def build_metric_catalog() -> pd.DataFrame:
             {"metric": "unit_opex_usd_per_tonne", "display_name": "Unit Opex", "unit": "USD/t", "category": "Economics", "dashboard_page": "Value Creation"},
             {"metric": "opex_usd", "display_name": "Operating Cost", "unit": "USD", "category": "Economics", "dashboard_page": "Value Creation"},
             {"metric": "ebitda_usd", "display_name": "EBITDA", "unit": "USD", "category": "Economics", "dashboard_page": "Value Creation"},
-            {"metric": "taxes_usd", "display_name": "Taxes", "unit": "USD", "category": "Economics", "dashboard_page": "Value Creation"},
+            {"metric": "cash_tax_proxy_usd", "display_name": "Cash Tax Proxy", "unit": "USD", "category": "Economics", "dashboard_page": "Value Creation"},
             {"metric": "operating_cash_flow_usd", "display_name": "Operating Cash Flow", "unit": "USD", "category": "Cash Flow", "dashboard_page": "Value Creation"},
             {"metric": "initial_capex_usd", "display_name": "Initial Capex", "unit": "USD", "category": "Investment", "dashboard_page": "Value Creation"},
             {"metric": "sustaining_capex_usd", "display_name": "Sustaining Capex", "unit": "USD", "category": "Investment", "dashboard_page": "Value Creation"},
@@ -67,14 +67,8 @@ def build_metric_catalog() -> pd.DataFrame:
 def build_kpi_catalog() -> pd.DataFrame:
     return pd.DataFrame(
         [
-            {"metric": "python_base_npv_usd", "display_name": "Python Base NPV", "unit": "USD", "dashboard_page": "Executive View"},
-            {"metric": "excel_benchmark_npv_pen", "display_name": "Excel Benchmark NPV", "unit": "PEN", "dashboard_page": "Benchmark"},
-            {"metric": "python_expected_npv_usd", "display_name": "Expected NPV", "unit": "USD", "dashboard_page": "Executive View"},
-            {"metric": "python_probability_of_loss", "display_name": "Probability of Loss", "unit": "ratio", "dashboard_page": "Executive View"},
-            {"metric": "python_var_usd", "display_name": "VaR 5%", "unit": "USD", "dashboard_page": "Risk Distribution"},
-            {"metric": "python_cvar_usd", "display_name": "CVaR 5%", "unit": "USD", "dashboard_page": "Risk Distribution"},
-            {"metric": "base_npv_usd", "display_name": "Scenario NPV", "unit": "USD", "dashboard_page": "Scenario Comparison"},
-            {"metric": "base_irr", "display_name": "Scenario IRR", "unit": "decimal", "dashboard_page": "Scenario Comparison"},
+            {"metric": "scenario_npv_usd", "display_name": "Scenario NPV", "unit": "USD", "dashboard_page": "Scenario Comparison"},
+            {"metric": "scenario_irr", "display_name": "Scenario IRR", "unit": "decimal", "dashboard_page": "Scenario Comparison"},
             {"metric": "total_revenue_usd", "display_name": "Total Revenue", "unit": "USD", "dashboard_page": "Scenario Comparison"},
             {"metric": "total_ebitda_usd", "display_name": "Total EBITDA", "unit": "USD", "dashboard_page": "Scenario Comparison"},
             {"metric": "total_capex_usd", "display_name": "Total Capex", "unit": "USD", "dashboard_page": "Scenario Comparison"},
@@ -92,11 +86,11 @@ def build_kpi_catalog() -> pd.DataFrame:
 def build_dashboard_pages() -> pd.DataFrame:
     return pd.DataFrame(
         [
-            {"page_name": "Executive View", "goal": "Show value creation and headline downside risk.", "primary_dataset": "dashboard_kpis.csv"},
+            {"page_name": "Executive View", "goal": "Show value creation and headline downside risk.", "primary_dataset": "fact_scenario_kpis.csv"},
             {"page_name": "Scenario Comparison", "goal": "Compare base, upside, downside, and stress scenarios.", "primary_dataset": "fact_scenario_kpis.csv"},
             {"page_name": "Value Creation", "goal": "Track revenue, EBITDA, capex, and free cash flow by year.", "primary_dataset": "fact_annual_metrics.csv"},
             {"page_name": "Risk Distribution", "goal": "Show histogram, CDF, and tail metrics of NPV.", "primary_dataset": "fact_simulation_distribution.csv"},
-            {"page_name": "Drivers", "goal": "Explain how price, grade, recovery, and throughput evolve.", "primary_dataset": "annual_inputs.csv"},
+            {"page_name": "Drivers", "goal": "Explain how price, grade, recovery, and throughput evolve.", "primary_dataset": "fact_annual_metrics.csv"},
             {"page_name": "Sensitivity", "goal": "Show tornado and price-grade stress matrix.", "primary_dataset": "fact_tornado_sensitivity.csv"},
             {"page_name": "Benchmark", "goal": "Compare Python outputs against the Excel workbook.", "primary_dataset": "benchmark_comparison.csv"},
         ]
@@ -109,7 +103,7 @@ def build_powerbi_measure_catalog() -> pd.DataFrame:
             {
                 "measure_name": "Selected Scenario NPV",
                 "table_name": "fact_scenario_kpis",
-                "dax_template": 'Selected Scenario NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "base_npv_usd")',
+                "dax_template": 'Selected Scenario NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd")',
                 "format_hint": "Currency",
                 "dashboard_page": "Executive Summary",
                 "description": "Headline NPV for the selected deterministic scenario.",
@@ -117,7 +111,7 @@ def build_powerbi_measure_catalog() -> pd.DataFrame:
             {
                 "measure_name": "Base Case NPV",
                 "table_name": "fact_scenario_kpis",
-                "dax_template": 'Base Case NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "base_npv_usd", dim_scenario[scenario_id] = "base")',
+                "dax_template": 'Base Case NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "base")',
                 "format_hint": "Currency",
                 "dashboard_page": "Executive Summary",
                 "description": "Reference NPV used for deltas and variance versus the selected scenario.",
@@ -125,7 +119,7 @@ def build_powerbi_measure_catalog() -> pd.DataFrame:
             {
                 "measure_name": "Committee Downside NPV",
                 "table_name": "fact_scenario_kpis",
-                "dax_template": 'Committee Downside NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "base_npv_usd", dim_scenario[scenario_id] = "committee_downside")',
+                "dax_template": 'Committee Downside NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "committee_downside")',
                 "format_hint": "Currency",
                 "dashboard_page": "Executive Summary",
                 "description": "Hard downside deterministic case for investment committee framing.",
@@ -141,7 +135,7 @@ def build_powerbi_measure_catalog() -> pd.DataFrame:
             {
                 "measure_name": "Selected Scenario IRR",
                 "table_name": "fact_scenario_kpis",
-                "dax_template": 'Selected Scenario IRR = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "base_irr")',
+                "dax_template": 'Selected Scenario IRR = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_irr")',
                 "format_hint": "Percentage",
                 "dashboard_page": "Executive Summary",
                 "description": "IRR for the selected deterministic scenario using explicit year-0 cash flows.",

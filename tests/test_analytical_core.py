@@ -59,7 +59,6 @@ def _load_context() -> tuple[dict, object, ScenarioParameters, SimulationConfig]
         iterations=256,
         random_seed=int(config["simulation"]["random_seed"]),
         var_alpha=float(config["simulation"]["var_alpha"]),
-        mu_price_returns=float(assumptions["mu_price_returns"]),
         sigma_price_returns=float(assumptions["sigma_price_returns"]),
         grade_cv=float(
             workbook_data.operational_history["head_grade"].std(ddof=1)
@@ -69,6 +68,7 @@ def _load_context() -> tuple[dict, object, ScenarioParameters, SimulationConfig]
             workbook_data.operational_history["recovery"].std(ddof=1)
             / workbook_data.operational_history["recovery"].mean()
         ),
+        price_path_autocorrelation=float(config["simulation"]["price_path_autocorrelation"]),
     )
     return config, workbook_data, params, sim_config
 
@@ -99,11 +99,11 @@ def test_scenario_directionality_and_sensitivity_shapes():
     )
     scenario_values = scenario_kpis.pivot_table(index="scenario_id", columns="metric", values="value", aggfunc="first")
 
-    assert scenario_values.loc["bull_market", "base_npv_usd"] > scenario_values.loc["base", "base_npv_usd"]
-    assert scenario_values.loc["bear_market", "base_npv_usd"] < scenario_values.loc["base", "base_npv_usd"]
-    assert scenario_values.loc["capex_overrun", "base_npv_usd"] < scenario_values.loc["base", "base_npv_usd"]
-    assert scenario_values.loc["committee_downside", "base_npv_usd"] < scenario_values.loc["bear_market", "base_npv_usd"]
-    assert scenario_values.loc["base", "base_irr"] > 0
+    assert scenario_values.loc["bull_market", "scenario_npv_usd"] > scenario_values.loc["base", "scenario_npv_usd"]
+    assert scenario_values.loc["bear_market", "scenario_npv_usd"] < scenario_values.loc["base", "scenario_npv_usd"]
+    assert scenario_values.loc["capex_overrun", "scenario_npv_usd"] < scenario_values.loc["base", "scenario_npv_usd"]
+    assert scenario_values.loc["committee_downside", "scenario_npv_usd"] < scenario_values.loc["bear_market", "scenario_npv_usd"]
+    assert scenario_values.loc["base", "scenario_irr"] > 0
     assert {"base", "committee_downside"}.issubset(set(scenario_dim["scenario_id"]))
 
     tornado = build_tornado_table(
@@ -151,6 +151,9 @@ def test_simulation_reproducibility_and_path_variation():
 
     assert price_paths.shape == (sim_config.iterations, len(base_prices))
     assert (price_paths.std(axis=1) > 0).all()
+    log_deviations = np.log(price_paths / base_prices[None, :])
+    lagged_correlation = np.corrcoef(log_deviations[:, :-1].ravel(), log_deviations[:, 1:].ravel())[0, 1]
+    assert lagged_correlation > 0.2
     assert recovery_paths.shape == (sim_config.iterations, len(base_prices))
     assert ((recovery_paths >= 0.0) & (recovery_paths <= 1.0)).all()
     assert grade_factors.shape == (sim_config.iterations,)
@@ -184,13 +187,14 @@ def test_bi_output_schema_integrity():
     assert set(comparable["metric"]) == {"incremental_npv", "incremental_irr"}
     assert {"expected_npv", "var_5pct", "cvar_5pct"}.issubset(set(reference_only["metric"]))
     assert comparable["gap"].notna().all()
+    assert set(comparable["reconciliation_status"]).issubset({"close_match", "material_gap"})
     assert reference_only["gap"].isna().all()
 
     annual = pd.read_csv(outputs["fact_annual_metrics"])
     metrics = pd.read_csv(outputs["dim_metric"])
     simulation_distribution = pd.read_csv(outputs["fact_simulation_distribution"])
     assert annual["category"].notna().all()
-    assert {"gross_revenue_usd", "initial_capex_usd", "working_capital_release_usd"}.issubset(set(metrics["metric"]))
+    assert {"gross_revenue_usd", "cash_tax_proxy_usd", "working_capital_release_usd"}.issubset(set(metrics["metric"]))
     assert {
         "average_price_usd_per_lb",
         "terminal_price_usd_per_lb",

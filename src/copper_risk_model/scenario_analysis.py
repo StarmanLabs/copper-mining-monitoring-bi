@@ -42,7 +42,7 @@ def profile_to_long(profile: pd.DataFrame, scenario_id: str, scenario_name: str,
         "unit_opex_usd_per_tonne",
         "opex_usd",
         "ebitda_usd",
-        "taxes_usd",
+        "cash_tax_proxy_usd",
         "operating_cash_flow_usd",
         "initial_capex_usd",
         "sustaining_capex_usd",
@@ -67,8 +67,8 @@ def summarize_profile(profile: pd.DataFrame, scenario_id: str, scenario_name: st
     peak_revenue_year = int(profile.loc[profile["revenue_usd"].idxmax(), "year"])
     peak_fcf_year = int(profile.loc[profile["free_cash_flow_usd"].idxmax(), "year"])
     kpis = [
-        ("base_npv_usd", npv_from_profile(profile)),
-        ("base_irr", irr_from_profile(profile)),
+        ("scenario_npv_usd", npv_from_profile(profile)),
+        ("scenario_irr", irr_from_profile(profile)),
         ("total_revenue_usd", float(profile["revenue_usd"].sum())),
         ("total_ebitda_usd", float(profile["ebitda_usd"].sum())),
         ("total_capex_usd", float(profile.attrs.get("initial_capex_year0_usd", 0.0) + profile["capex_usd"].sum())),

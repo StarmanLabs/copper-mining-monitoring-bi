@@ -97,13 +97,14 @@ The Monte Carlo engine has been upgraded relative to the earlier one-factor impl
 
 ### Price
 
-Annual price realizations are now simulated year by year around the workbook price deck using deck-centered lognormal shocks.
+Annual price realizations are now simulated year by year around the workbook price deck using autocorrelated deck-centered lognormal shocks.
 
 This is a deliberate modeling choice:
 
 - the workbook already provides a year-by-year base price deck
 - historical volatility is informative for dispersion
 - historical drift is not treated as a reliable 15-year structural forecast
+- a modest AR(1)-style dependence is used so adjacent years are not unrealistically independent
 
 That keeps the simulation dynamic without embedding an unjustified long-run bull case.
 
@@ -131,7 +132,7 @@ It now distinguishes:
 
 At the current stage:
 
-- deterministic incremental NPV and IRR are treated as comparable
+- deterministic incremental NPV and IRR are treated as directly comparable, but still flagged when the residual gap remains material
 - Monte Carlo expected NPV, VaR, and CVaR are reference-only because the upgraded stochastic engine is not formula-identical to the workbook Monte Carlo and the valuation basis also differs
 
 ## 8. Remaining limitations
@@ -143,5 +144,6 @@ The model remains simplified in several important ways:
 - it does not estimate a structural commodity-price process
 - it does not claim workbook formula parity outside the explicitly reconciled benchmark scope
 - scenario definitions remain stylized managerial stresses, not estimated probability-weighted forecasts
+- the deterministic benchmark still shows a material residual gap, which indicates workbook logic not yet fully replicated
 
 Those limitations are deliberate and should be stated plainly in any portfolio presentation.

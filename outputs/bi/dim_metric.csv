@@ -13,7 +13,7 @@ revenue_usd,Revenue,USD,Economics,Value Creation
 unit_opex_usd_per_tonne,Unit Opex,USD/t,Economics,Value Creation
 opex_usd,Operating Cost,USD,Economics,Value Creation
 ebitda_usd,EBITDA,USD,Economics,Value Creation
-taxes_usd,Taxes,USD,Economics,Value Creation
+cash_tax_proxy_usd,Cash Tax Proxy,USD,Economics,Value Creation
 operating_cash_flow_usd,Operating Cash Flow,USD,Cash Flow,Value Creation
 initial_capex_usd,Initial Capex,USD,Investment,Value Creation
 sustaining_capex_usd,Sustaining Capex,USD,Investment,Value Creation

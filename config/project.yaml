@@ -21,6 +21,7 @@ simulation:
   iterations: 10000
   random_seed: 42
   var_alpha: 0.05
+  price_path_autocorrelation: 0.55
 
 portfolio_bi:
   deterministic_scenarios:

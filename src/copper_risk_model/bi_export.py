@@ -76,10 +76,20 @@ def _reconciliation_row(
     comparable = len(issues) == 0
     gap = python_value - benchmark_value if comparable and benchmark_value is not None else pd.NA
     pct_gap = gap / benchmark_value if comparable and benchmark_value not in (None, 0) else pd.NA
+    status = "reference_only"
+    if comparable:
+        material_gap = False
+        if python_unit == "decimal" and gap is not pd.NA:
+            material_gap = abs(float(gap)) > 0.01
+        elif pct_gap is not pd.NA:
+            material_gap = abs(float(pct_gap)) > 0.05
+        status = "material_gap" if material_gap else "close_match"
 
     note_parts = []
     if benchmark_note:
         note_parts.append(benchmark_note)
+    if comparable and status == "material_gap":
+        note_parts.append("Direct comparison is valid, but the residual gap remains material.")
     if issues:
         note_parts.append("Comparison blocked by: " + ", ".join(issues) + ".")
 
@@ -96,7 +106,7 @@ def _reconciliation_row(
         "benchmark_basis": benchmark_basis,
         "benchmark_timing_basis": benchmark_timing,
         "comparable_flag": comparable,
-        "reconciliation_status": "comparable" if comparable else "reference_only",
+        "reconciliation_status": status,
         "reconciliation_note": " ".join(note_parts).strip(),
         "gap": gap,
         "pct_gap": pct_gap,
@@ -236,10 +246,10 @@ def build_bi_outputs(config_path: str | Path = "config/project.yaml", output_dir
         iterations=int(config["simulation"]["iterations"]),
         random_seed=int(config["simulation"]["random_seed"]),
         var_alpha=float(config["simulation"]["var_alpha"]),
-        mu_price_returns=float(assumptions["mu_price_returns"]),
         sigma_price_returns=float(assumptions["sigma_price_returns"]),
         grade_cv=float(workbook_data.operational_history["head_grade"].std(ddof=1) / workbook_data.operational_history["head_grade"].mean()),
         recovery_cv=float(workbook_data.operational_history["recovery"].std(ddof=1) / workbook_data.operational_history["recovery"].mean()),
+        price_path_autocorrelation=float(config["simulation"]["price_path_autocorrelation"]),
     )
 
     base_profile = build_expansion_profile(workbook_data.annual_inputs, params)

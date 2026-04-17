@@ -209,21 +209,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,564068100.1674781,base,Base Case,Reference,Economics
 14,ebitda_usd,575635386.5780563,base,Base Case,Reference,Economics
 15,ebitda_usd,586658257.2151947,base,Base Case,Reference,Economics
-1,taxes_usd,92830504.77699403,base,Base Case,Reference,Economics
-2,taxes_usd,102739350.65908325,base,Base Case,Reference,Economics
-3,taxes_usd,118123792.81647277,base,Base Case,Reference,Economics
-4,taxes_usd,127613238.46474442,base,Base Case,Reference,Economics
-5,taxes_usd,133293390.30821383,base,Base Case,Reference,Economics
-6,taxes_usd,138081898.95159265,base,Base Case,Reference,Economics
-7,taxes_usd,142607970.10725087,base,Base Case,Reference,Economics
-8,taxes_usd,146964975.87163225,base,Base Case,Reference,Economics
-9,taxes_usd,151165286.10391292,base,Base Case,Reference,Economics
-10,taxes_usd,155209785.91785222,base,Base Case,Reference,Economics
-11,taxes_usd,159097740.8648044,base,Base Case,Reference,Economics
-12,taxes_usd,162828180.08193013,base,Base Case,Reference,Economics
-13,taxes_usd,166400089.54940602,base,Base Case,Reference,Economics
-14,taxes_usd,169812439.0405266,base,Base Case,Reference,Economics
-15,taxes_usd,173064185.87848243,base,Base Case,Reference,Economics
+1,cash_tax_proxy_usd,92830504.77699403,base,Base Case,Reference,Economics
+2,cash_tax_proxy_usd,102739350.65908325,base,Base Case,Reference,Economics
+3,cash_tax_proxy_usd,118123792.81647277,base,Base Case,Reference,Economics
+4,cash_tax_proxy_usd,127613238.46474442,base,Base Case,Reference,Economics
+5,cash_tax_proxy_usd,133293390.30821383,base,Base Case,Reference,Economics
+6,cash_tax_proxy_usd,138081898.95159265,base,Base Case,Reference,Economics
+7,cash_tax_proxy_usd,142607970.10725087,base,Base Case,Reference,Economics
+8,cash_tax_proxy_usd,146964975.87163225,base,Base Case,Reference,Economics
+9,cash_tax_proxy_usd,151165286.10391292,base,Base Case,Reference,Economics
+10,cash_tax_proxy_usd,155209785.91785222,base,Base Case,Reference,Economics
+11,cash_tax_proxy_usd,159097740.8648044,base,Base Case,Reference,Economics
+12,cash_tax_proxy_usd,162828180.08193013,base,Base Case,Reference,Economics
+13,cash_tax_proxy_usd,166400089.54940602,base,Base Case,Reference,Economics
+14,cash_tax_proxy_usd,169812439.0405266,base,Base Case,Reference,Economics
+15,cash_tax_proxy_usd,173064185.87848243,base,Base Case,Reference,Economics
 1,operating_cash_flow_usd,221849172.43315524,base,Base Case,Reference,Cash Flow
 2,operating_cash_flow_usd,245529634.62594473,base,Base Case,Reference,Cash Flow
 3,operating_cash_flow_usd,282295843.84953666,base,Base Case,Reference,Cash Flow
@@ -569,21 +569,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,1176699931.5993128,bull_market,Bull Market,Market,Economics
 14,ebitda_usd,1182246184.5487366,bull_market,Bull Market,Market,Economics
 15,ebitda_usd,1187158363.747723,bull_market,Bull Market,Market,Economics
-1,taxes_usd,256750482.1751306,bull_market,Bull Market,Market,Economics
-2,taxes_usd,274826881.763882,bull_market,Bull Market,Market,Economics
-3,taxes_usd,306368692.09027344,bull_market,Bull Market,Market,Economics
-4,taxes_usd,321623288.98247594,bull_market,Bull Market,Market,Economics
-5,taxes_usd,327085438.2610415,bull_market,Bull Market,Market,Economics
-6,taxes_usd,330489178.9400759,bull_market,Bull Market,Market,Economics
-7,taxes_usd,333443755.2182398,bull_market,Bull Market,Market,Economics
-8,taxes_usd,336182341.54930836,bull_market,Bull Market,Market,Economics
-9,taxes_usd,338736064.2786694,bull_market,Bull Market,Market,Economics
-10,taxes_usd,341108155.61794215,bull_market,Bull Market,Market,Economics
-11,taxes_usd,343298021.42926383,bull_market,Bull Market,Market,Economics
-12,taxes_usd,345304533.64804506,bull_market,Bull Market,Market,Economics
-13,taxes_usd,347126479.82179725,bull_market,Bull Market,Market,Economics
-14,taxes_usd,348762624.44187725,bull_market,Bull Market,Market,Economics
-15,taxes_usd,350211717.3055783,bull_market,Bull Market,Market,Economics
+1,cash_tax_proxy_usd,256750482.1751306,bull_market,Bull Market,Market,Economics
+2,cash_tax_proxy_usd,274826881.763882,bull_market,Bull Market,Market,Economics
+3,cash_tax_proxy_usd,306368692.09027344,bull_market,Bull Market,Market,Economics
+4,cash_tax_proxy_usd,321623288.98247594,bull_market,Bull Market,Market,Economics
+5,cash_tax_proxy_usd,327085438.2610415,bull_market,Bull Market,Market,Economics
+6,cash_tax_proxy_usd,330489178.9400759,bull_market,Bull Market,Market,Economics
+7,cash_tax_proxy_usd,333443755.2182398,bull_market,Bull Market,Market,Economics
+8,cash_tax_proxy_usd,336182341.54930836,bull_market,Bull Market,Market,Economics
+9,cash_tax_proxy_usd,338736064.2786694,bull_market,Bull Market,Market,Economics
+10,cash_tax_proxy_usd,341108155.61794215,bull_market,Bull Market,Market,Economics
+11,cash_tax_proxy_usd,343298021.42926383,bull_market,Bull Market,Market,Economics
+12,cash_tax_proxy_usd,345304533.64804506,bull_market,Bull Market,Market,Economics
+13,cash_tax_proxy_usd,347126479.82179725,bull_market,Bull Market,Market,Economics
+14,cash_tax_proxy_usd,348762624.44187725,bull_market,Bull Market,Market,Economics
+15,cash_tax_proxy_usd,350211717.3055783,bull_market,Bull Market,Market,Economics
 1,operating_cash_flow_usd,613590135.3676851,bull_market,Bull Market,Market,Cash Flow
 2,operating_cash_flow_usd,656789666.5882604,bull_market,Bull Market,Market,Cash Flow
 3,operating_cash_flow_usd,732169247.1987891,bull_market,Bull Market,Market,Cash Flow
@@ -929,21 +929,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,-122671679.90187407,bear_market,Bear Market,Market,Economics
 14,ebitda_usd,-103825623.38160038,bear_market,Bear Market,Market,Economics
 15,ebitda_usd,-85437413.65483141,bear_market,Bear Market,Market,Economics
-1,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-2,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-3,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-4,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-5,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-6,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-7,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-8,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-9,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-10,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-11,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-12,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-13,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-14,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
-15,taxes_usd,0.0,bear_market,Bear Market,Market,Economics
+1,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+2,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+3,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+4,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+5,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+6,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+7,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+8,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+9,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+10,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+11,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+12,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+13,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+14,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
+15,cash_tax_proxy_usd,0.0,bear_market,Bear Market,Market,Economics
 1,operating_cash_flow_usd,-314261416.51043797,bear_market,Bear Market,Market,Cash Flow
 2,operating_cash_flow_usd,-311460849.8118787,bear_market,Bear Market,Market,Cash Flow
 3,operating_cash_flow_usd,-320655578.5056386,bear_market,Bear Market,Market,Cash Flow
@@ -1289,21 +1289,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,28977920.442133427,operational_stress,Operational Stress,Operations,Economics
 14,ebitda_usd,46253346.71042395,operational_stress,Operational Stress,Operations,Economics
 15,ebitda_usd,63052230.65270424,operational_stress,Operational Stress,Operations,Economics
-1,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-2,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-3,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-4,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-5,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-6,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-7,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-8,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-9,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-10,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-11,taxes_usd,0.0,operational_stress,Operational Stress,Operations,Economics
-12,taxes_usd,3312568.5639551184,operational_stress,Operational Stress,Operations,Economics
-13,taxes_usd,8548486.53042936,operational_stress,Operational Stress,Operations,Economics
-14,taxes_usd,13644737.279575063,operational_stress,Operational Stress,Operations,Economics
-15,taxes_usd,18600408.04254775,operational_stress,Operational Stress,Operations,Economics
+1,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+2,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+3,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+4,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+5,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+6,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+7,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+8,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+9,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+10,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+11,cash_tax_proxy_usd,0.0,operational_stress,Operational Stress,Operations,Economics
+12,cash_tax_proxy_usd,3312568.5639551184,operational_stress,Operational Stress,Operations,Economics
+13,cash_tax_proxy_usd,8548486.53042936,operational_stress,Operational Stress,Operations,Economics
+14,cash_tax_proxy_usd,13644737.279575063,operational_stress,Operational Stress,Operations,Economics
+15,cash_tax_proxy_usd,18600408.04254775,operational_stress,Operational Stress,Operations,Economics
 1,operating_cash_flow_usd,-175681947.06444073,operational_stress,Operational Stress,Operations,Cash Flow
 2,operating_cash_flow_usd,-166078947.9474511,operational_stress,Operational Stress,Operations,Cash Flow
 3,operating_cash_flow_usd,-161733225.97739267,operational_stress,Operational Stress,Operations,Cash Flow
@@ -1649,21 +1649,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,564068100.1674781,capex_overrun,Capex Overrun,Investment,Economics
 14,ebitda_usd,575635386.5780563,capex_overrun,Capex Overrun,Investment,Economics
 15,ebitda_usd,586658257.2151947,capex_overrun,Capex Overrun,Investment,Economics
-1,taxes_usd,92830504.77699403,capex_overrun,Capex Overrun,Investment,Economics
-2,taxes_usd,102739350.65908325,capex_overrun,Capex Overrun,Investment,Economics
-3,taxes_usd,118123792.81647277,capex_overrun,Capex Overrun,Investment,Economics
-4,taxes_usd,127613238.46474442,capex_overrun,Capex Overrun,Investment,Economics
-5,taxes_usd,133293390.30821383,capex_overrun,Capex Overrun,Investment,Economics
-6,taxes_usd,138081898.95159265,capex_overrun,Capex Overrun,Investment,Economics
-7,taxes_usd,142607970.10725087,capex_overrun,Capex Overrun,Investment,Economics
-8,taxes_usd,146964975.87163225,capex_overrun,Capex Overrun,Investment,Economics
-9,taxes_usd,151165286.10391292,capex_overrun,Capex Overrun,Investment,Economics
-10,taxes_usd,155209785.91785222,capex_overrun,Capex Overrun,Investment,Economics
-11,taxes_usd,159097740.8648044,capex_overrun,Capex Overrun,Investment,Economics
-12,taxes_usd,162828180.08193013,capex_overrun,Capex Overrun,Investment,Economics
-13,taxes_usd,166400089.54940602,capex_overrun,Capex Overrun,Investment,Economics
-14,taxes_usd,169812439.0405266,capex_overrun,Capex Overrun,Investment,Economics
-15,taxes_usd,173064185.87848243,capex_overrun,Capex Overrun,Investment,Economics
+1,cash_tax_proxy_usd,92830504.77699403,capex_overrun,Capex Overrun,Investment,Economics
+2,cash_tax_proxy_usd,102739350.65908325,capex_overrun,Capex Overrun,Investment,Economics
+3,cash_tax_proxy_usd,118123792.81647277,capex_overrun,Capex Overrun,Investment,Economics
+4,cash_tax_proxy_usd,127613238.46474442,capex_overrun,Capex Overrun,Investment,Economics
+5,cash_tax_proxy_usd,133293390.30821383,capex_overrun,Capex Overrun,Investment,Economics
+6,cash_tax_proxy_usd,138081898.95159265,capex_overrun,Capex Overrun,Investment,Economics
+7,cash_tax_proxy_usd,142607970.10725087,capex_overrun,Capex Overrun,Investment,Economics
+8,cash_tax_proxy_usd,146964975.87163225,capex_overrun,Capex Overrun,Investment,Economics
+9,cash_tax_proxy_usd,151165286.10391292,capex_overrun,Capex Overrun,Investment,Economics
+10,cash_tax_proxy_usd,155209785.91785222,capex_overrun,Capex Overrun,Investment,Economics
+11,cash_tax_proxy_usd,159097740.8648044,capex_overrun,Capex Overrun,Investment,Economics
+12,cash_tax_proxy_usd,162828180.08193013,capex_overrun,Capex Overrun,Investment,Economics
+13,cash_tax_proxy_usd,166400089.54940602,capex_overrun,Capex Overrun,Investment,Economics
+14,cash_tax_proxy_usd,169812439.0405266,capex_overrun,Capex Overrun,Investment,Economics
+15,cash_tax_proxy_usd,173064185.87848243,capex_overrun,Capex Overrun,Investment,Economics
 1,operating_cash_flow_usd,221849172.43315524,capex_overrun,Capex Overrun,Investment,Cash Flow
 2,operating_cash_flow_usd,245529634.62594473,capex_overrun,Capex Overrun,Investment,Cash Flow
 3,operating_cash_flow_usd,282295843.84953666,capex_overrun,Capex Overrun,Investment,Cash Flow
@@ -2009,21 +2009,21 @@ year,metric,value,scenario_id,scenario_name,scenario_category,category
 13,ebitda_usd,-788088447.421926,committee_downside,Investment Committee Downside,Stress,Economics
 14,ebitda_usd,-762409546.5736027,committee_downside,Investment Committee Downside,Stress,Economics
 15,ebitda_usd,-737097180.685998,committee_downside,Investment Committee Downside,Stress,Economics
-1,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-2,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-3,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-4,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-5,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-6,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-7,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-8,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-9,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-10,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-11,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-12,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-13,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-14,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
-15,taxes_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+1,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+2,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+3,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+4,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+5,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+6,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+7,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+8,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+9,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+10,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+11,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+12,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+13,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+14,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
+15,cash_tax_proxy_usd,0.0,committee_downside,Investment Committee Downside,Stress,Economics
 1,operating_cash_flow_usd,-921020462.9307556,committee_downside,Investment Committee Downside,Stress,Cash Flow
 2,operating_cash_flow_usd,-948171420.0266914,committee_downside,Investment Committee Downside,Stress,Cash Flow
 3,operating_cash_flow_usd,-1016839344.6528883,committee_downside,Investment Committee Downside,Stress,Cash Flow
