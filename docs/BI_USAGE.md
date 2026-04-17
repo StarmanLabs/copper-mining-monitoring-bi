@@ -4,6 +4,46 @@
 
 The BI-ready layer lives in `outputs/bi/`.
 
+## If you are building the dashboard now
+
+### Power BI import order
+
+1. `dim_year.csv`
+2. `dim_metric.csv`
+3. `dim_scenario.csv`
+4. `fact_annual_metrics.csv`
+5. `fact_scenario_kpis.csv`
+6. `fact_simulation_distribution.csv`
+7. `fact_tornado_sensitivity.csv`
+8. `fact_heatmap_price_grade.csv`
+9. `simulation_summary.csv`
+10. `simulation_percentiles.csv`
+11. `benchmark_comparison.csv`
+
+Then use these repository assets:
+
+- `powerbi/copper_risk_theme.json`
+- `powerbi/DAX_MEASURES.md`
+- `powerbi/DASHBOARD_BLUEPRINT.md`
+- `powerbi/dashboard_visual_map.csv`
+
+### Tableau source split
+
+Use separate Tableau sources instead of one merged extract:
+
+- Executive and scenario comparison:
+  `fact_scenario_kpis.csv` + `dim_scenario.csv`
+- Annual operating profile:
+  `fact_annual_metrics.csv` + `dim_year.csv` + `dim_metric.csv` + `dim_scenario.csv`
+- Monte Carlo risk:
+  `fact_simulation_distribution.csv` + `simulation_summary.csv` + `simulation_percentiles.csv`
+- Sensitivity:
+  `fact_tornado_sensitivity.csv`
+- Heatmap:
+  `fact_heatmap_price_grade.csv`
+- Benchmark page:
+  `benchmark_comparison.csv`
+
 ### Dimensions
 
 - `dim_year.csv`

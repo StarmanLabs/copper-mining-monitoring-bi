@@ -22,6 +22,19 @@
 - `.github/workflows/`
   CI pipeline for GitHub Actions.
 
+## Best entry points on GitHub
+
+- `README.md`
+  Public-facing overview of the portfolio project.
+- `docs/MODEL_NOTES.md`
+  Technical note for model scope, benchmark basis, and limitations.
+- `docs/BI_USAGE.md`
+  Exact guidance on which files to import into Power BI or Tableau.
+- `outputs/dashboard/index.html`
+  Ready-to-show dashboard artifact.
+- `outputs/bi/`
+  Portfolio-ready CSV outputs for BI consumption.
+
 ## Python package files
 
 - `excel_loader.py`

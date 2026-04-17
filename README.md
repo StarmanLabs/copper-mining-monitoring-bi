@@ -2,6 +2,14 @@
 
 Rebuilding a spreadsheet-based copper mining valuation into a reproducible Python analytics engine with deterministic scenario analysis, structured benchmark reconciliation, upgraded stochastic risk modeling, and BI-ready outputs for Power BI or Tableau.
 
+## Portfolio snapshot
+
+- Domain: mining economics, project valuation, and downside risk analysis
+- Starting point: spreadsheet-based copper expansion model
+- Rebuild target: auditable Python valuation and risk engine
+- Delivery layer: BI-ready CSV tables plus a self-contained HTML dashboard
+- Main value: scenario comparison, benchmark transparency, and dashboard-ready decision support
+
 ## Project objective
 
 This repository converts an Excel mining valuation workflow into a Python-first analytical pipeline that is easier to audit, test, extend, and present as a portfolio-grade decision-support project.
@@ -21,6 +29,21 @@ The project currently produces four analytical layers:
 2. Incremental-expansion benchmark reconciliation against the workbook
 3. Stochastic downside analysis with annual price shocks and bounded operating uncertainty
 4. BI-ready fact and dimension tables plus a self-contained HTML dashboard showcase
+
+## What To Open First
+
+If you are reviewing the repository on GitHub, start here:
+
+1. `README.md`
+   High-level project framing, scope, outputs, and limitations.
+2. `docs/MODEL_NOTES.md`
+   Technical note on valuation basis, benchmark logic, and model limits.
+3. `outputs/dashboard/index.html`
+   Portfolio-facing dashboard showcase generated from the BI exports.
+4. `outputs/bi/benchmark_comparison.csv`
+   Audit-style reconciliation table showing what is directly comparable and what is not.
+5. `powerbi/DASHBOARD_BLUEPRINT.md`
+   Page-by-page guide to rebuild the dashboard in Power BI.
 
 ## Analytical design
 
@@ -88,6 +111,19 @@ Excel workbook
 
 Use the files in `outputs/bi/`.
 
+### Minimum file set by dashboard page
+
+- Executive scenario dashboard:
+  `fact_scenario_kpis.csv`, `dim_scenario.csv`
+- Annual operating and cash flow trends:
+  `fact_annual_metrics.csv`, `dim_year.csv`, `dim_metric.csv`, `dim_scenario.csv`
+- Monte Carlo risk page:
+  `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`
+- Sensitivity and stress page:
+  `fact_tornado_sensitivity.csv`, `fact_heatmap_price_grade.csv`
+- Benchmark credibility page:
+  `benchmark_comparison.csv`
+
 ### Core model tables
 
 - `dim_year.csv`
@@ -109,6 +145,46 @@ Use the files in `outputs/bi/`.
 For Power BI, keep each fact table attached only to the dimensions it actually uses.
 
 For Tableau, it is usually cleaner to work with separate subject-area sources rather than forcing all facts into one denormalized extract.
+
+### Exact recommendation for Power BI
+
+Import these first:
+
+- `outputs/bi/dim_year.csv`
+- `outputs/bi/dim_metric.csv`
+- `outputs/bi/dim_scenario.csv`
+- `outputs/bi/fact_annual_metrics.csv`
+- `outputs/bi/fact_scenario_kpis.csv`
+- `outputs/bi/fact_simulation_distribution.csv`
+- `outputs/bi/fact_tornado_sensitivity.csv`
+- `outputs/bi/fact_heatmap_price_grade.csv`
+- `outputs/bi/simulation_summary.csv`
+- `outputs/bi/simulation_percentiles.csv`
+- `outputs/bi/benchmark_comparison.csv`
+
+Then use:
+
+- `powerbi/DAX_MEASURES.md`
+- `powerbi/DASHBOARD_BLUEPRINT.md`
+- `powerbi/dashboard_visual_map.csv`
+- `powerbi/copper_risk_theme.json`
+
+### Exact recommendation for Tableau
+
+Use separate data sources instead of one big model:
+
+- Scenario source:
+  `fact_scenario_kpis.csv`, `dim_scenario.csv`
+- Annual profile source:
+  `fact_annual_metrics.csv`, `dim_year.csv`, `dim_metric.csv`, `dim_scenario.csv`
+- Monte Carlo source:
+  `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`
+- Sensitivity source:
+  `fact_tornado_sensitivity.csv`
+- Heatmap source:
+  `fact_heatmap_price_grade.csv`
+- Benchmark source:
+  `benchmark_comparison.csv`
 
 ## Repository structure
 
@@ -156,6 +232,8 @@ python -m pytest -q
 - Model scope and conventions: `docs/MODEL_NOTES.md`
 - BI usage guidance: `docs/BI_USAGE.md`
 - Folder guide: `docs/PROJECT_STRUCTURE.md`
+- Power BI page design: `powerbi/DASHBOARD_BLUEPRINT.md`
+- Power BI measure set: `powerbi/DAX_MEASURES.md`
 
 ## Main limitations
 
