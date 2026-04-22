@@ -17,6 +17,7 @@ from .annual_appendix_work_adaptation import (
     build_annual_appendix_work_outputs,
     load_annual_appendix_mapping_config,
 )
+from .file_outputs import write_json_output
 from .monthly_monitoring import MONTHLY_SOURCE_DATASETS, build_monthly_monitoring_outputs
 from .source_mapping import load_mapping_config
 
@@ -642,8 +643,7 @@ def _skipped_result(
 
 
 def _write_summary(path: Path, summary: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    write_json_output(path, summary)
 
 
 def _planned_package_names(requested: dict[str, bool]) -> list[str]:

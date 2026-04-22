@@ -107,6 +107,15 @@ def test_monthly_monitoring_outputs_smoke():
         assert {"process_driver_monthly", "cost_center_monthly", "dim_site", "dim_month"}.issubset(
             set(data_quality_report["dataset_name"])
         )
+        month_field_checks = data_quality_report.loc[
+            data_quality_report["check_name"] == "month_fields_consistent", ["dataset_name", "affected_columns"]
+        ]
+        assert month_field_checks.loc[month_field_checks["dataset_name"] == "dim_month", "affected_columns"].iloc[0] == (
+            "period; month_start_date; calendar_year; calendar_month"
+        )
+        assert month_field_checks.loc[
+            month_field_checks["dataset_name"] == "kpi_monthly_summary", "affected_columns"
+        ].iloc[0] == "period; month_start_date; calendar_year; calendar_month"
         assert {"exception_code", "exception_title", "severity", "management_question"}.issubset(kpi_exceptions.columns)
         assert "major_production_shortfall" in set(kpi_exceptions["exception_code"])
         assert set(kpi_exceptions["exception_code"]).issubset(

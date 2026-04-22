@@ -17,6 +17,7 @@ from .annual_appendix_inputs import (
 from .benchmark_reconciliation import build_benchmark_comparison, build_benchmark_scope_catalog
 from .bi_semantic import build_kpi_catalog, build_metric_catalog
 from .excel_loader import WorkbookData
+from .file_outputs import write_csv_output
 from .scenario_analysis import (
     build_multi_scenario_outputs,
     build_price_grade_heatmap,
@@ -707,21 +708,21 @@ def build_advanced_appendix_outputs(
         "fact_heatmap_price_grade": output_dir / "fact_heatmap_price_grade.csv",
     }
 
-    annual_appendix_dataset_catalog.to_csv(outputs["annual_appendix_dataset_catalog"], index=False)
-    annual_appendix_field_catalog.to_csv(outputs["annual_appendix_field_catalog"], index=False)
-    simulation_summary.to_csv(outputs["simulation_summary"], index=False)
-    simulation_percentiles.to_csv(outputs["simulation_percentiles"], index=False)
-    benchmark_comparison.to_csv(outputs["benchmark_comparison"], index=False)
-    benchmark_scope_catalog.to_csv(outputs["benchmark_scope_catalog"], index=False)
-    appendix_assumption_catalog.to_csv(outputs["advanced_appendix_assumption_catalog"], index=False)
-    appendix_output_catalog.to_csv(outputs["advanced_appendix_output_catalog"], index=False)
-    dim_year.to_csv(outputs["dim_year"], index=False)
-    metric_catalog.to_csv(outputs["dim_metric"], index=False)
-    scenario_dim.to_csv(outputs["dim_scenario"], index=False)
-    scenario_kpi_catalog.to_csv(outputs["appendix_kpi_catalog"], index=False)
-    fact_annual_metrics.to_csv(outputs["fact_annual_metrics"], index=False)
-    fact_scenario_kpis.to_csv(outputs["fact_scenario_kpis"], index=False)
-    simulation_distribution.to_csv(outputs["fact_simulation_distribution"], index=False)
-    fact_tornado_sensitivity.to_csv(outputs["fact_tornado_sensitivity"], index=False)
-    fact_heatmap_price_grade.to_csv(outputs["fact_heatmap_price_grade"], index=False)
+    write_csv_output(annual_appendix_dataset_catalog, outputs["annual_appendix_dataset_catalog"])
+    write_csv_output(annual_appendix_field_catalog, outputs["annual_appendix_field_catalog"])
+    write_csv_output(simulation_summary, outputs["simulation_summary"])
+    write_csv_output(simulation_percentiles, outputs["simulation_percentiles"])
+    write_csv_output(benchmark_comparison, outputs["benchmark_comparison"])
+    write_csv_output(benchmark_scope_catalog, outputs["benchmark_scope_catalog"])
+    write_csv_output(appendix_assumption_catalog, outputs["advanced_appendix_assumption_catalog"])
+    write_csv_output(appendix_output_catalog, outputs["advanced_appendix_output_catalog"])
+    write_csv_output(dim_year, outputs["dim_year"])
+    write_csv_output(metric_catalog, outputs["dim_metric"])
+    write_csv_output(scenario_dim, outputs["dim_scenario"])
+    write_csv_output(scenario_kpi_catalog, outputs["appendix_kpi_catalog"])
+    write_csv_output(fact_annual_metrics, outputs["fact_annual_metrics"])
+    write_csv_output(fact_scenario_kpis, outputs["fact_scenario_kpis"])
+    write_csv_output(simulation_distribution, outputs["fact_simulation_distribution"])
+    write_csv_output(fact_tornado_sensitivity, outputs["fact_tornado_sensitivity"])
+    write_csv_output(fact_heatmap_price_grade, outputs["fact_heatmap_price_grade"])
     return outputs

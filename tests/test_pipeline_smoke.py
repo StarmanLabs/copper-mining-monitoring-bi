@@ -115,6 +115,17 @@ def test_build_bi_outputs_smoke():
         annual_appendix_refresh_summary = pd.read_json(outputs["annual_appendix_refresh_summary"], typ="series")
         assert annual_appendix_refresh_summary["refresh_status"] == "success"
         assert annual_appendix_refresh_summary["work_core_scope"] == "annual_appendix"
+        assert pd.isna(annual_appendix_refresh_summary["refresh_timestamp_utc"])
+        assert "omitted" in annual_appendix_refresh_summary["reproducibility_note"].lower()
+
+        refresh_summary = pd.read_json(outputs["refresh_summary"], typ="series")
+        assert refresh_summary["refresh_status"] == "success"
+        assert refresh_summary["work_core_scope"] == "monthly_monitoring"
+        assert pd.isna(refresh_summary["refresh_timestamp_utc"])
+        assert "reproducible" in refresh_summary["reproducibility_note"].lower()
+
+        for output_path in outputs.values():
+            assert b"\r\n" not in output_path.read_bytes(), f"{output_path.name} should use LF newlines"
 
         fact_heatmap = pd.read_csv(outputs["fact_heatmap_price_grade"])
         assert len(fact_heatmap) == 35

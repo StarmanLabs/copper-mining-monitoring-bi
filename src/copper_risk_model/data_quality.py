@@ -241,8 +241,8 @@ def _check_period_sequence(frame: pd.DataFrame, schema: DatasetSchema) -> dict[s
 
 
 def _check_month_fields(frame: pd.DataFrame, schema: DatasetSchema) -> dict[str, object]:
-    required_columns = {"period", "month_start_date", "calendar_year", "calendar_month"}
-    if not required_columns.issubset(frame.columns):
+    required_columns = ("period", "month_start_date", "calendar_year", "calendar_month")
+    if not set(required_columns).issubset(frame.columns):
         return _result_row(
             dataset_name=schema.name,
             schema=schema,

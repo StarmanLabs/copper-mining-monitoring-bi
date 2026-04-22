@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 from pathlib import Path
 
 import pandas as pd
@@ -40,6 +39,7 @@ from .powerbi_template import (
     _safe_slug,
     resolve_powerbi_handoff_context,
 )
+from .file_outputs import write_csv_output, write_json_output, write_text_output
 
 DEFAULT_NATIVE_SCAFFOLD_DIR = REPO_ROOT / "powerbi" / "pbip_tmdl_scaffold"
 PBIP_PROJECT_NAME = "CopperMiningMonitoring"
@@ -605,89 +605,74 @@ def build_powerbi_native_scaffold(
     ]:
         path.mkdir(parents=True, exist_ok=True)
 
-    (scaffold_dir / ".gitignore").write_text(_render_gitignore(), encoding="utf-8")
-    (scaffold_dir / "README.md").write_text(_render_root_readme(handoff_context, page_catalog), encoding="utf-8")
-    (scaffold_dir / "DESKTOP_FINALIZATION.md").write_text(
-        _render_desktop_finalization_readme(handoff_context),
-        encoding="utf-8",
-    )
-    (semantic_model_dir / "README.md").write_text(_render_semantic_model_readme(handoff_context), encoding="utf-8")
-    (report_dir / "README.md").write_text(_render_report_readme(handoff_context), encoding="utf-8")
+    write_text_output(scaffold_dir / ".gitignore", _render_gitignore())
+    write_text_output(scaffold_dir / "README.md", _render_root_readme(handoff_context, page_catalog))
+    write_text_output(scaffold_dir / "DESKTOP_FINALIZATION.md", _render_desktop_finalization_readme(handoff_context))
+    write_text_output(semantic_model_dir / "README.md", _render_semantic_model_readme(handoff_context))
+    write_text_output(report_dir / "README.md", _render_report_readme(handoff_context))
 
-    (parameters_dir / f"{PROJECT_ROOT_PARAMETER}.pq").write_text(_render_parameter_query(), encoding="utf-8")
+    write_text_output(parameters_dir / f"{PROJECT_ROOT_PARAMETER}.pq", _render_parameter_query())
     for parameter_spec in _output_root_parameter_specs(handoff_context):
-        (parameters_dir / f"{parameter_spec['parameter_name']}.pq").write_text(
+        write_text_output(
+            parameters_dir / f"{parameter_spec['parameter_name']}.pq",
             _render_output_root_query(
                 str(parameter_spec["parameter_name"]),
                 str(parameter_spec["default_output_dir"]),
             ),
-            encoding="utf-8",
         )
-    (parameters_dir / "parameter_manifest.json").write_text(json.dumps(parameter_manifest, indent=2), encoding="utf-8")
+    write_json_output(parameters_dir / "parameter_manifest.json", parameter_manifest)
     for query in query_catalog.sort_values("query_order").itertuples(index=False):
         source_df = pd.read_csv(bi_output_dir / query.source_file)
         query_path = queries_dir / query.power_query_relative_file
         query_path.parent.mkdir(parents=True, exist_ok=True)
-        query_path.write_text(
+        write_text_output(
+            query_path,
             _render_csv_query(
                 source_parameter_name=query.parameter_name,
                 source_file=query.source_file,
                 source_df=source_df,
             ),
-            encoding="utf-8",
         )
-    query_catalog.to_csv(powerquery_dir / "powerbi_query_catalog.csv", index=False)
+    write_csv_output(query_catalog, powerquery_dir / "powerbi_query_catalog.csv")
 
-    (tmdl_scripts_dir / "00_model_ordering.tmdl").write_text(
-        _render_model_ordering_tmdl(table_catalog),
-        encoding="utf-8",
-    )
-    (tmdl_scripts_dir / "01_sort_and_visibility.tmdl").write_text(
+    write_text_output(tmdl_scripts_dir / "00_model_ordering.tmdl", _render_model_ordering_tmdl(table_catalog))
+    write_text_output(
+        tmdl_scripts_dir / "01_sort_and_visibility.tmdl",
         _render_sort_and_visibility_tmdl(sort_by_catalog, field_visibility_catalog),
-        encoding="utf-8",
     )
-    (tmdl_scripts_dir / "02_core_monthly_measures.tmdl").write_text(
+    write_text_output(
+        tmdl_scripts_dir / "02_core_monthly_measures.tmdl",
         _render_measure_tmdl(measure_catalog.loc[measure_catalog["starter_kit_scope"] == "Core Monthly Story"]),
-        encoding="utf-8",
     )
-    (tmdl_scripts_dir / "03_advanced_appendix_measures.tmdl").write_text(
+    write_text_output(
+        tmdl_scripts_dir / "03_advanced_appendix_measures.tmdl",
         _render_measure_tmdl(measure_catalog.loc[measure_catalog["starter_kit_scope"] == "Advanced Appendix"]),
-        encoding="utf-8",
     )
-    (tmdl_scripts_dir / "04_relationships.tmdl").write_text(
-        _render_relationships_tmdl(relationship_catalog),
-        encoding="utf-8",
-    )
+    write_text_output(tmdl_scripts_dir / "04_relationships.tmdl", _render_relationships_tmdl(relationship_catalog))
 
-    table_catalog.to_csv(semantic_catalogs_dir / "powerbi_table_catalog.csv", index=False)
-    relationship_catalog.to_csv(semantic_catalogs_dir / "powerbi_relationship_catalog.csv", index=False)
-    measure_catalog.to_csv(semantic_catalogs_dir / "powerbi_measure_catalog.csv", index=False)
-    sort_by_catalog.to_csv(semantic_catalogs_dir / "powerbi_sort_by_catalog.csv", index=False)
-    field_visibility_catalog.to_csv(semantic_catalogs_dir / "powerbi_field_visibility_catalog.csv", index=False)
-    monthly_dictionary.to_csv(semantic_catalogs_dir / "monthly_kpi_dictionary.csv", index=False)
-    monthly_dataset_catalog.to_csv(semantic_catalogs_dir / "monthly_dataset_catalog.csv", index=False)
-    monthly_field_catalog.to_csv(semantic_catalogs_dir / "monthly_field_catalog.csv", index=False)
+    write_csv_output(table_catalog, semantic_catalogs_dir / "powerbi_table_catalog.csv")
+    write_csv_output(relationship_catalog, semantic_catalogs_dir / "powerbi_relationship_catalog.csv")
+    write_csv_output(measure_catalog, semantic_catalogs_dir / "powerbi_measure_catalog.csv")
+    write_csv_output(sort_by_catalog, semantic_catalogs_dir / "powerbi_sort_by_catalog.csv")
+    write_csv_output(field_visibility_catalog, semantic_catalogs_dir / "powerbi_field_visibility_catalog.csv")
+    write_csv_output(monthly_dictionary, semantic_catalogs_dir / "monthly_kpi_dictionary.csv")
+    write_csv_output(monthly_dataset_catalog, semantic_catalogs_dir / "monthly_dataset_catalog.csv")
+    write_csv_output(monthly_field_catalog, semantic_catalogs_dir / "monthly_field_catalog.csv")
 
     report_manifest = _build_report_shell_manifest(
         page_catalog=page_catalog,
         visual_catalog=visual_catalog,
         handoff_context=handoff_context,
     )
-    (report_dir / "report_shell_manifest.json").write_text(
-        json.dumps(report_manifest, indent=2),
-        encoding="utf-8",
-    )
-    page_catalog.to_csv(report_dir / "dashboard_page_catalog.csv", index=False)
-    visual_catalog.to_csv(report_dir / "powerbi_visual_binding_catalog.csv", index=False)
+    write_json_output(report_dir / "report_shell_manifest.json", report_manifest)
+    write_csv_output(page_catalog, report_dir / "dashboard_page_catalog.csv")
+    write_csv_output(visual_catalog, report_dir / "powerbi_visual_binding_catalog.csv")
     for page in page_catalog.sort_values("page_order").to_dict(orient="records"):
         page_shell_path = page_shells_dir / f"{int(page['page_order']):02d}_{_safe_slug(str(page['page_name']))}.json"
-        page_shell_path.write_text(
-            json.dumps(_build_page_shell(pd.Series(page), visual_catalog), indent=2),
-            encoding="utf-8",
-        )
+        write_json_output(page_shell_path, _build_page_shell(pd.Series(page), visual_catalog))
 
     theme_source = REPO_ROOT / "powerbi" / "copper_risk_theme.json"
-    shutil.copy2(theme_source, report_assets_dir / "copper_risk_theme.json")
+    write_text_output(report_assets_dir / "copper_risk_theme.json", theme_source.read_text(encoding="utf-8"))
 
     scaffold_manifest = _build_native_scaffold_manifest(
         query_catalog=query_catalog,
@@ -699,14 +684,8 @@ def build_powerbi_native_scaffold(
         page_catalog=page_catalog,
         handoff_context=handoff_context,
     )
-    (scaffold_dir / "scaffold_manifest.json").write_text(
-        json.dumps(scaffold_manifest, indent=2),
-        encoding="utf-8",
-    )
-    (scaffold_dir / "desktop_finalization_manifest.json").write_text(
-        json.dumps(desktop_finalization_manifest, indent=2),
-        encoding="utf-8",
-    )
+    write_json_output(scaffold_dir / "scaffold_manifest.json", scaffold_manifest)
+    write_json_output(scaffold_dir / "desktop_finalization_manifest.json", desktop_finalization_manifest)
 
     current_inventory = {
         _inventory_entry(scaffold_dir, scaffold_dir / ".gitignore"),

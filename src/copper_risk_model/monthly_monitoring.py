@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -10,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from .data_quality import build_data_quality_report, summarize_data_quality_report
+from .file_outputs import write_csv_output, write_json_output
 from .monthly_validation import ColumnRule, DatasetSchema, validate_dataframe
 from .refresh_reporting import build_kpi_exceptions, build_refresh_summary, summarize_kpi_exceptions
 from .source_mapping import map_source_directory
@@ -1881,24 +1881,24 @@ def build_monthly_monitoring_outputs(
         data_dir=_public_safe_path(data_dir) or "",
     )
 
-    monthly_dataset_catalog.to_csv(outputs["monthly_dataset_catalog"], index=False)
-    monthly_field_catalog.to_csv(outputs["monthly_field_catalog"], index=False)
-    dim_site.to_csv(outputs["dim_site"], index=False)
-    dim_month.to_csv(outputs["dim_month"], index=False)
-    dim_monthly_metric.to_csv(outputs["dim_monthly_metric"], index=False)
-    dim_process_area.to_csv(outputs["dim_process_area"], index=False)
-    dim_cost_center.to_csv(outputs["dim_cost_center"], index=False)
-    monthly_kpi_dictionary.to_csv(outputs["monthly_kpi_dictionary"], index=False)
-    kpi_monthly_summary.to_csv(outputs["kpi_monthly_summary"], index=False)
-    fact_monthly_actual_vs_plan.to_csv(outputs["fact_monthly_actual_vs_plan"], index=False)
-    mart_monthly_process_performance.to_csv(outputs["mart_monthly_process_performance"], index=False)
-    mart_monthly_cost_margin.to_csv(outputs["mart_monthly_cost_margin"], index=False)
-    mart_monthly_executive_overview.to_csv(outputs["mart_monthly_executive_overview"], index=False)
-    mart_monthly_by_site.to_csv(outputs["mart_monthly_by_site"], index=False)
-    mart_process_driver_summary.to_csv(outputs["mart_process_driver_summary"], index=False)
-    mart_cost_center_summary.to_csv(outputs["mart_cost_center_summary"], index=False)
-    data_quality_report.to_csv(outputs["data_quality_report"], index=False)
-    kpi_exceptions.to_csv(outputs["kpi_exceptions"], index=False)
-    source_mapping_audit.to_csv(outputs["source_mapping_audit"], index=False)
-    outputs["refresh_summary"].write_text(json.dumps(refresh_summary, indent=2), encoding="utf-8")
+    write_csv_output(monthly_dataset_catalog, outputs["monthly_dataset_catalog"])
+    write_csv_output(monthly_field_catalog, outputs["monthly_field_catalog"])
+    write_csv_output(dim_site, outputs["dim_site"])
+    write_csv_output(dim_month, outputs["dim_month"])
+    write_csv_output(dim_monthly_metric, outputs["dim_monthly_metric"])
+    write_csv_output(dim_process_area, outputs["dim_process_area"])
+    write_csv_output(dim_cost_center, outputs["dim_cost_center"])
+    write_csv_output(monthly_kpi_dictionary, outputs["monthly_kpi_dictionary"])
+    write_csv_output(kpi_monthly_summary, outputs["kpi_monthly_summary"])
+    write_csv_output(fact_monthly_actual_vs_plan, outputs["fact_monthly_actual_vs_plan"])
+    write_csv_output(mart_monthly_process_performance, outputs["mart_monthly_process_performance"])
+    write_csv_output(mart_monthly_cost_margin, outputs["mart_monthly_cost_margin"])
+    write_csv_output(mart_monthly_executive_overview, outputs["mart_monthly_executive_overview"])
+    write_csv_output(mart_monthly_by_site, outputs["mart_monthly_by_site"])
+    write_csv_output(mart_process_driver_summary, outputs["mart_process_driver_summary"])
+    write_csv_output(mart_cost_center_summary, outputs["mart_cost_center_summary"])
+    write_csv_output(data_quality_report, outputs["data_quality_report"])
+    write_csv_output(kpi_exceptions, outputs["kpi_exceptions"])
+    write_csv_output(source_mapping_audit, outputs["source_mapping_audit"])
+    write_json_output(outputs["refresh_summary"], refresh_summary)
     return outputs

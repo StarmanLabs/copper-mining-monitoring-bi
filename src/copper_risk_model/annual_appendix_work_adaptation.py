@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-import json
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
@@ -19,6 +17,8 @@ from .annual_appendix_inputs import (
     validate_appendix_parameter_table,
     validate_appendix_scenarios,
 )
+from .file_outputs import write_csv_output, write_json_output
+from .refresh_reporting import reproducible_refresh_metadata
 
 
 @dataclass(frozen=True)
@@ -646,7 +646,7 @@ def build_annual_appendix_refresh_summary(
     """Build a concise JSON-friendly refresh summary for the annual appendix adaptation layer."""
 
     return {
-        "refresh_timestamp_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **reproducible_refresh_metadata(),
         "refresh_status": "success",
         "public_safe": True,
         "work_core_scope": "annual_appendix",
@@ -673,7 +673,7 @@ def build_failed_annual_appendix_refresh_summary(
     """Build a failure summary when the annual appendix work package does not complete."""
 
     return {
-        "refresh_timestamp_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **reproducible_refresh_metadata(),
         "refresh_status": "failed",
         "public_safe": True,
         "work_core_scope": "annual_appendix",
@@ -726,14 +726,14 @@ def build_annual_appendix_work_outputs(
         "annual_appendix_refresh_summary": output_dir / "annual_appendix_refresh_summary.json",
     }
 
-    dataset_catalog.to_csv(outputs["annual_appendix_dataset_catalog"], index=False)
-    field_catalog.to_csv(outputs["annual_appendix_field_catalog"], index=False)
-    validated_inputs["annual_appendix_inputs"].to_csv(outputs["annual_appendix_inputs"], index=False)
-    validated_inputs["appendix_parameters"].to_csv(outputs["appendix_parameters"], index=False)
-    validated_inputs["appendix_scenarios"].to_csv(outputs["appendix_scenarios"], index=False)
-    validated_inputs["appendix_benchmark_metrics"].to_csv(outputs["appendix_benchmark_metrics"], index=False)
-    source_mapping_audit.to_csv(outputs["annual_appendix_source_mapping_audit"], index=False)
-    data_quality_report.to_csv(outputs["annual_appendix_data_quality_report"], index=False)
+    write_csv_output(dataset_catalog, outputs["annual_appendix_dataset_catalog"])
+    write_csv_output(field_catalog, outputs["annual_appendix_field_catalog"])
+    write_csv_output(validated_inputs["annual_appendix_inputs"], outputs["annual_appendix_inputs"])
+    write_csv_output(validated_inputs["appendix_parameters"], outputs["appendix_parameters"])
+    write_csv_output(validated_inputs["appendix_scenarios"], outputs["appendix_scenarios"])
+    write_csv_output(validated_inputs["appendix_benchmark_metrics"], outputs["appendix_benchmark_metrics"])
+    write_csv_output(source_mapping_audit, outputs["annual_appendix_source_mapping_audit"])
+    write_csv_output(data_quality_report, outputs["annual_appendix_data_quality_report"])
 
     refresh_summary = build_annual_appendix_refresh_summary(
         source_mapping_audit=source_mapping_audit,
@@ -742,8 +742,5 @@ def build_annual_appendix_work_outputs(
         mapping_config_path=mapping_config_str,
         data_dir=_public_safe_path(data_dir) or str(data_dir),
     )
-    outputs["annual_appendix_refresh_summary"].write_text(
-        json.dumps(refresh_summary, indent=2),
-        encoding="utf-8",
-    )
+    write_json_output(outputs["annual_appendix_refresh_summary"], refresh_summary)
     return outputs

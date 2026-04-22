@@ -116,6 +116,9 @@ def test_build_powerbi_template_layer_scaffold():
             expected_query_count = len(pd.read_csv(outputs["query_catalog"]))
             assert len(regenerated_queries) == expected_query_count
             assert (template_dir / "queries" / "core_monthly_story" / "07_fact_monthly_actual_vs_plan.pq").exists()
+            for generated_file in outputs["template_root"].rglob("*"):
+                if generated_file.is_file():
+                    assert b"\r\n" not in generated_file.read_bytes(), f"{generated_file.name} should use LF newlines"
 
 
 def test_build_powerbi_template_layer_can_follow_profile_output_roots():

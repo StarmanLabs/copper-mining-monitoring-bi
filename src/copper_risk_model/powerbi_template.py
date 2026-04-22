@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 from .bi_semantic import build_powerbi_table_catalog
+from .file_outputs import write_csv_output, write_json_output, write_text_output
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_TEMPLATE_DIR = REPO_ROOT / "powerbi" / "template_scaffold"
@@ -221,7 +222,7 @@ def _neutralize_obsolete_files(root_dir: Path, current_inventory: set[str]) -> l
     for relative_path in obsolete_files:
         candidate = root_dir / relative_path
         if candidate.exists() and candidate.is_file():
-            candidate.write_text(_obsolete_placeholder_contents(candidate), encoding="utf-8")
+            write_text_output(candidate, _obsolete_placeholder_contents(candidate))
     return obsolete_files
 
 
@@ -231,7 +232,7 @@ def _write_build_inventory(root_dir: Path, current_inventory: set[str], obsolete
         "generated_files": sorted(current_inventory),
         "obsolete_files": obsolete_files,
     }
-    inventory_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    write_json_output(inventory_path, payload)
     return inventory_path
 
 
@@ -691,57 +692,51 @@ def build_powerbi_template_layer(
     for path in [parameters_dir, queries_dir, measures_dir, model_dir, report_dir, theme_dir]:
         path.mkdir(parents=True, exist_ok=True)
 
-    (parameters_dir / f"{PROJECT_ROOT_PARAMETER}.pq").write_text(_render_parameter_query(), encoding="utf-8")
+    write_text_output(parameters_dir / f"{PROJECT_ROOT_PARAMETER}.pq", _render_parameter_query())
     for parameter_spec in _output_root_parameter_specs(handoff_context):
-        (parameters_dir / f"{parameter_spec['parameter_name']}.pq").write_text(
+        write_text_output(
+            parameters_dir / f"{parameter_spec['parameter_name']}.pq",
             _render_output_root_query(
                 str(parameter_spec["parameter_name"]),
                 str(parameter_spec["default_output_dir"]),
             ),
-            encoding="utf-8",
         )
-    (parameters_dir / "parameter_manifest.json").write_text(json.dumps(parameter_manifest, indent=2), encoding="utf-8")
+    write_json_output(parameters_dir / "parameter_manifest.json", parameter_manifest)
 
     for query in query_catalog.sort_values("query_order").itertuples(index=False):
         source_df = pd.read_csv(bi_output_dir / query.source_file)
         query_path = queries_dir / query.power_query_relative_file
         query_path.parent.mkdir(parents=True, exist_ok=True)
-        query_path.write_text(
+        write_text_output(
+            query_path,
             _render_csv_query(
                 source_parameter_name=query.parameter_name,
                 source_file=query.source_file,
                 source_df=source_df,
             ),
-            encoding="utf-8",
         )
 
     all_measure_path = measures_dir / "00_all_measures.dax"
-    all_measure_path.write_text(_render_measure_bundle("All Recommended Measures", measure_catalog), encoding="utf-8")
+    write_text_output(all_measure_path, _render_measure_bundle("All Recommended Measures", measure_catalog))
 
     for page in page_catalog.sort_values("page_order").itertuples(index=False):
         page_measures = measure_catalog.loc[measure_catalog["dashboard_page"] == page.page_name]
         page_bundle_path = measures_dir / f"{int(page.page_order):02d}_{_safe_slug(page.page_name)}.dax"
-        page_bundle_path.write_text(
-            _render_measure_bundle(f"{page.page_name} Measures", page_measures),
-            encoding="utf-8",
-        )
+        write_text_output(page_bundle_path, _render_measure_bundle(f"{page.page_name} Measures", page_measures))
 
-    query_catalog.to_csv(model_dir / "powerbi_query_catalog.csv", index=False)
-    table_catalog.to_csv(model_dir / "powerbi_table_catalog.csv", index=False)
-    relationship_catalog.to_csv(model_dir / "powerbi_relationship_catalog.csv", index=False)
-    measure_catalog.to_csv(model_dir / "powerbi_measure_catalog.csv", index=False)
-    sort_by_catalog.to_csv(model_dir / "powerbi_sort_by_catalog.csv", index=False)
-    field_visibility_catalog.to_csv(model_dir / "powerbi_field_visibility_catalog.csv", index=False)
-    monthly_dictionary.to_csv(model_dir / "monthly_kpi_dictionary.csv", index=False)
+    write_csv_output(query_catalog, model_dir / "powerbi_query_catalog.csv")
+    write_csv_output(table_catalog, model_dir / "powerbi_table_catalog.csv")
+    write_csv_output(relationship_catalog, model_dir / "powerbi_relationship_catalog.csv")
+    write_csv_output(measure_catalog, model_dir / "powerbi_measure_catalog.csv")
+    write_csv_output(sort_by_catalog, model_dir / "powerbi_sort_by_catalog.csv")
+    write_csv_output(field_visibility_catalog, model_dir / "powerbi_field_visibility_catalog.csv")
+    write_csv_output(monthly_dictionary, model_dir / "monthly_kpi_dictionary.csv")
 
-    page_catalog.to_csv(report_dir / "dashboard_page_catalog.csv", index=False)
-    visual_catalog.to_csv(report_dir / "powerbi_visual_binding_catalog.csv", index=False)
+    write_csv_output(page_catalog, report_dir / "dashboard_page_catalog.csv")
+    write_csv_output(visual_catalog, report_dir / "powerbi_visual_binding_catalog.csv")
 
     report_manifest = _build_report_manifest(page_catalog=page_catalog, visual_catalog=visual_catalog)
-    (report_dir / "report_manifest.json").write_text(
-        json.dumps(report_manifest, indent=2),
-        encoding="utf-8",
-    )
+    write_json_output(report_dir / "report_manifest.json", report_manifest)
 
     template_manifest = _build_template_manifest(
         query_catalog=query_catalog,
@@ -749,17 +744,11 @@ def build_powerbi_template_layer(
         measure_catalog=measure_catalog,
         handoff_context=handoff_context,
     )
-    (template_dir / "template_manifest.json").write_text(
-        json.dumps(template_manifest, indent=2),
-        encoding="utf-8",
-    )
-    (template_dir / "README.md").write_text(
-        _render_template_readme(handoff_context, page_catalog),
-        encoding="utf-8",
-    )
+    write_json_output(template_dir / "template_manifest.json", template_manifest)
+    write_text_output(template_dir / "README.md", _render_template_readme(handoff_context, page_catalog))
 
     theme_source = REPO_ROOT / "powerbi" / "copper_risk_theme.json"
-    shutil.copy2(theme_source, theme_dir / "copper_risk_theme.json")
+    write_text_output(theme_dir / "copper_risk_theme.json", theme_source.read_text(encoding="utf-8"))
 
     current_inventory = {
         _inventory_entry(template_dir, template_dir / "README.md"),

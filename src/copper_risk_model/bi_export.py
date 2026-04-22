@@ -15,6 +15,7 @@ from .bi_semantic import (
     build_powerbi_table_catalog,
     build_powerbi_visual_binding_catalog,
 )
+from .file_outputs import write_csv_output
 from .monthly_monitoring import build_monthly_monitoring_outputs
 from .powerbi_template import build_powerbi_query_catalog
 
@@ -48,14 +49,14 @@ def build_bi_outputs(
         "powerbi_field_visibility_catalog": output_dir / "powerbi_field_visibility_catalog.csv",
     }
 
-    dashboard_page_catalog.to_csv(outputs["dashboard_page_catalog"], index=False)
-    powerbi_table_catalog.to_csv(outputs["powerbi_table_catalog"], index=False)
-    powerbi_query_catalog.to_csv(outputs["powerbi_query_catalog"], index=False)
-    powerbi_relationship_catalog.to_csv(outputs["powerbi_relationship_catalog"], index=False)
-    powerbi_visual_binding_catalog.to_csv(outputs["powerbi_visual_binding_catalog"], index=False)
-    powerbi_measure_catalog.to_csv(outputs["powerbi_measure_catalog"], index=False)
-    powerbi_sort_by_catalog.to_csv(outputs["powerbi_sort_by_catalog"], index=False)
-    powerbi_field_visibility_catalog.to_csv(outputs["powerbi_field_visibility_catalog"], index=False)
+    write_csv_output(dashboard_page_catalog, outputs["dashboard_page_catalog"])
+    write_csv_output(powerbi_table_catalog, outputs["powerbi_table_catalog"])
+    write_csv_output(powerbi_query_catalog, outputs["powerbi_query_catalog"])
+    write_csv_output(powerbi_relationship_catalog, outputs["powerbi_relationship_catalog"])
+    write_csv_output(powerbi_visual_binding_catalog, outputs["powerbi_visual_binding_catalog"])
+    write_csv_output(powerbi_measure_catalog, outputs["powerbi_measure_catalog"])
+    write_csv_output(powerbi_sort_by_catalog, outputs["powerbi_sort_by_catalog"])
+    write_csv_output(powerbi_field_visibility_catalog, outputs["powerbi_field_visibility_catalog"])
 
     outputs.update(build_annual_appendix_work_outputs(output_dir=output_dir))
     outputs.update(build_advanced_appendix_outputs(config_path=config_path, output_dir=output_dir))

@@ -130,6 +130,9 @@ def test_build_powerbi_native_scaffold():
             assert {"measure_order", "display_folder", "format_string"}.issubset(measure_catalog.columns)
             assert (semantic_catalogs_dir / "powerbi_sort_by_catalog.csv").exists()
             assert (semantic_catalogs_dir / "powerbi_field_visibility_catalog.csv").exists()
+            for generated_file in outputs["scaffold_root"].rglob("*"):
+                if generated_file.is_file():
+                    assert b"\r\n" not in generated_file.read_bytes(), f"{generated_file.name} should use LF newlines"
 
 
 def test_build_powerbi_native_scaffold_can_follow_profile_output_roots():

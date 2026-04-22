@@ -1,0 +1,3 @@
+outputs/bi/** text eol=lf
+powerbi/template_scaffold/** text eol=lf
+powerbi/pbip_tmdl_scaffold/** text eol=lf

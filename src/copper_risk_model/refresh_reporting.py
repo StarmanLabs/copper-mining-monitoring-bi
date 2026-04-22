@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 from typing import Any
 
 import pandas as pd
@@ -34,6 +33,20 @@ EXCEPTION_RULES = {
         "management_question": "Is cost pressure temporary, structural, or volume-related?",
     },
 }
+
+REFRESH_REPRODUCIBILITY_NOTE = (
+    "Run timestamps are intentionally omitted from committed public-safe refresh summaries "
+    "so local and CI builds remain reproducible."
+)
+
+
+def reproducible_refresh_metadata() -> dict[str, Any]:
+    """Return metadata fields that keep refresh summaries deterministic."""
+
+    return {
+        "refresh_timestamp_utc": None,
+        "reproducibility_note": REFRESH_REPRODUCIBILITY_NOTE,
+    }
 
 
 def build_kpi_exceptions(fact_monthly_actual_vs_plan: pd.DataFrame) -> pd.DataFrame:
@@ -123,7 +136,7 @@ def build_refresh_summary(
     """Build a concise JSON-friendly refresh summary."""
 
     return {
-        "refresh_timestamp_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **reproducible_refresh_metadata(),
         "refresh_status": "success",
         "public_safe": True,
         "work_core_scope": "monthly_monitoring",
@@ -151,7 +164,7 @@ def build_failed_refresh_summary(
     """Build a failure summary when a refresh does not complete."""
 
     return {
-        "refresh_timestamp_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **reproducible_refresh_metadata(),
         "refresh_status": "failed",
         "public_safe": True,
         "work_core_scope": "monthly_monitoring",
