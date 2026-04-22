@@ -1,3 +1,6 @@
+.codex/
+**/AGENTS.md
+
 __pycache__/
 *.py[cod]
 *.pyo
@@ -18,8 +21,22 @@ build/
 *.egg-info/
 
 outputs/bi_smoke/
+outputs/bi/*_local_run_summary.json
 outputs/test-*/
 outputs/pytest-smoke-*/
+outputs/private/
+outputs/_debug_annual_work/
+
+data/private/
+
+config/source_profiles/local/
+config/mappings/local/
+
+powerbi/local/
+*.pbix
+*.pbit
+*.twb
+*.twbx
 
 .DS_Store
 Thumbs.db

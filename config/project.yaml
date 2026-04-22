@@ -5,6 +5,11 @@ project:
   years: 15
   project_start_calendar_year: 2026
 
+appendix:
+  data_dir: "data/sample_data/annual_appendix"
+  default_input_mode: "canonical"
+  default_benchmark_mode: "canonical"
+
 scenario:
   expansion:
     uplift_pct: 0.20

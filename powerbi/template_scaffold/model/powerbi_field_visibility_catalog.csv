@@ -1,0 +1,85 @@
+visibility_order,table_name,column_name,recommended_visibility,starter_kit_scope,reason
+1,dim_site,site_id,hide,Core Monthly Story,Use site_name as the default slicer label and hide the technical key.
+2,dim_site,site_sort_order,hide,Core Monthly Story,Hide helper column used only for sort-by configuration.
+3,dim_month,period,hide,Core Monthly Story,Use month_label for business-facing slicers and keep the period key hidden.
+4,dim_month,month_start_date,hide,Core Monthly Story,Keep the model field list focused on business-facing labels instead of raw date anchors.
+5,dim_month,month_sort_order,hide,Core Monthly Story,Hide helper column used only for sort-by configuration.
+6,dim_monthly_metric,metric,hide,Core Monthly Story,Use display_name as the KPI selector label and hide the canonical metric key.
+7,dim_monthly_metric,display_order,hide,Core Monthly Story,Hide helper column used only for sort-by configuration.
+8,dim_monthly_metric,warning_threshold_pct,hide,Core Monthly Story,Threshold metadata should not clutter the business-facing field list.
+9,dim_monthly_metric,critical_threshold_pct,hide,Core Monthly Story,Threshold metadata should not clutter the business-facing field list.
+10,dim_monthly_metric,plan_column,hide,Core Monthly Story,"Column-mapping metadata is technical model support, not report-facing content."
+11,dim_monthly_metric,actual_column,hide,Core Monthly Story,"Column-mapping metadata is technical model support, not report-facing content."
+12,dim_monthly_metric,variance_column,hide,Core Monthly Story,"Column-mapping metadata is technical model support, not report-facing content."
+13,dim_monthly_metric,variance_pct_column,hide,Core Monthly Story,"Column-mapping metadata is technical model support, not report-facing content."
+14,dim_process_area,process_area_sort_order,hide,Core Monthly Story,Hide helper column used only for sort-by configuration.
+15,dim_cost_center,cost_center_sort_order,hide,Core Monthly Story,Hide helper column used only for sort-by configuration.
+16,kpi_monthly_summary,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+17,kpi_monthly_summary,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+18,kpi_monthly_summary,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+19,kpi_monthly_summary,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+20,kpi_monthly_summary,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+21,kpi_monthly_summary,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+22,kpi_monthly_summary,plan_version,hide,Core Monthly Story,Plan version is technical refresh context rather than a default report field.
+23,kpi_monthly_summary,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+24,kpi_monthly_summary,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+25,fact_monthly_actual_vs_plan,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated fact keys."
+26,fact_monthly_actual_vs_plan,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated fact keys."
+27,fact_monthly_actual_vs_plan,metric,hide,Core Monthly Story,Use dim_monthly_metric for KPI selection instead of the raw key column.
+28,fact_monthly_actual_vs_plan,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+29,fact_monthly_actual_vs_plan,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+30,fact_monthly_actual_vs_plan,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+31,fact_monthly_actual_vs_plan,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+32,fact_monthly_actual_vs_plan,dashboard_page,hide,Core Monthly Story,Starter-kit metadata should stay available but hidden by default.
+33,fact_monthly_actual_vs_plan,display_order,hide,Core Monthly Story,Starter-kit metadata should stay available but hidden by default.
+34,fact_monthly_actual_vs_plan,plan_version,hide,Core Monthly Story,Plan version is technical refresh context rather than a default report field.
+35,fact_monthly_actual_vs_plan,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+36,fact_monthly_actual_vs_plan,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+37,mart_monthly_executive_overview,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+38,mart_monthly_executive_overview,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+39,mart_monthly_executive_overview,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+40,mart_monthly_executive_overview,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+41,mart_monthly_executive_overview,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+42,mart_monthly_executive_overview,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+43,mart_monthly_executive_overview,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+44,mart_monthly_executive_overview,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+45,mart_monthly_process_performance,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+46,mart_monthly_process_performance,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+47,mart_monthly_process_performance,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+48,mart_monthly_process_performance,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+49,mart_monthly_process_performance,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+50,mart_monthly_process_performance,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+51,mart_monthly_process_performance,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+52,mart_monthly_process_performance,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+53,mart_monthly_cost_margin,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+54,mart_monthly_cost_margin,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+55,mart_monthly_cost_margin,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+56,mart_monthly_cost_margin,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+57,mart_monthly_cost_margin,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+58,mart_monthly_cost_margin,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+59,mart_monthly_cost_margin,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+60,mart_monthly_cost_margin,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+61,mart_monthly_by_site,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+62,mart_monthly_by_site,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+63,mart_monthly_by_site,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+64,mart_monthly_by_site,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+65,mart_monthly_by_site,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+66,mart_monthly_by_site,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+67,mart_monthly_by_site,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+68,mart_monthly_by_site,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+69,mart_process_driver_summary,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+70,mart_process_driver_summary,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+71,mart_process_driver_summary,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+72,mart_process_driver_summary,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+73,mart_process_driver_summary,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+74,mart_process_driver_summary,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+75,mart_process_driver_summary,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+76,mart_process_driver_summary,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+77,mart_cost_center_summary,site_id,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+78,mart_cost_center_summary,period,hide,Core Monthly Story,"Shared filters should come from dimensions, not repeated mart keys."
+79,mart_cost_center_summary,month_start_date,hide,Core Monthly Story,Hide repeated calendar anchor to keep the field list concise.
+80,mart_cost_center_summary,calendar_year,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+81,mart_cost_center_summary,calendar_month,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+82,mart_cost_center_summary,calendar_quarter,hide,Core Monthly Story,Use dim_month for shared calendar filtering.
+83,mart_cost_center_summary,data_classification,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.
+84,mart_cost_center_summary,sample_data_flag,hide,Core Monthly Story,Public-safe metadata should stay available but hidden by default.

@@ -1,0 +1,42 @@
+{
+  "artifact_name": "Copper Mining Monitoring Power BI Scaffold",
+  "artifact_type": "Power BI Desktop finalization package with executable Power Query imports and reusable DAX bundles",
+  "artifact_strategy": "PBIP finalization package",
+  "public_safe": true,
+  "main_story": "Monthly actual-vs-plan monitoring remains the first-class report narrative.",
+  "secondary_appendix": "Valuation, scenario, benchmark, Monte Carlo, tornado, and heatmap outputs remain in the appendix only.",
+  "profile_name": null,
+  "profile_path": null,
+  "appendix_enabled": true,
+  "project_root_parameter_name": "ProjectRoot",
+  "output_root_parameters": {
+    "starter_kit": "StarterKitOutputRoot",
+    "monthly": "MonthlyOutputRoot",
+    "advanced_appendix": "AdvancedAppendixOutputRoot"
+  },
+  "default_output_roots": {
+    "starter_kit": "outputs/bi",
+    "monthly": "outputs/bi",
+    "advanced_appendix": "outputs/bi"
+  },
+  "query_count": 27,
+  "page_count": 5,
+  "measure_count": 77,
+  "core_pages": [
+    "Executive Overview",
+    "Monthly Actual vs Plan",
+    "Process Performance",
+    "Cost and Margin"
+  ],
+  "appendix_page": [
+    "Advanced Scenario / Risk Appendix"
+  ],
+  "desktop_required_steps": [
+    "Set ProjectRoot and the output-root queries in parameters/.",
+    "Import the Power Query files in query order.",
+    "Disable load for reference queries when they are only used as build aids.",
+    "Create relationships from the relationship catalog with dim_site and dim_month as the monthly semantic center.",
+    "Paste the DAX measure bundles and complete sort-by plus hidden-field cleanup.",
+    "Lay out pages in the monthly-first order from the report manifest."
+  ]
+}

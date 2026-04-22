@@ -1,0 +1,7 @@
+scenario_id,scenario_name,category,description,price_factor,grade_factor,recovery_factor,throughput_factor,opex_factor,capex_factor,wacc_shift_bps
+base,Base Case,Reference,Reference planning case for the advanced appendix.,1.0,1.0,1.0,1.0,1.0,1.0,0
+bull_market,Bull Market,Market,Planning case with stronger copper prices and stable operations.,1.15,1.0,1.0,1.02,1.0,1.0,-50
+bear_market,Bear Market,Market,Planning case with lower copper prices and tighter financial conditions.,0.85,1.0,1.0,0.98,1.03,1.0,100
+operational_stress,Operational Stress,Operations,Planning case with lower throughput lower recovery and higher operating costs.,1.0,0.97,0.96,0.94,1.08,1.0,0
+capex_overrun,Capex Overrun,Investment,Planning case with materially higher capital burden.,1.0,1.0,1.0,1.0,1.0,1.2,50
+committee_downside,Investment Committee Downside,Stress,Combined market and operational downside used for management and investment stress testing.,0.8,0.95,0.95,0.92,1.1,1.15,150

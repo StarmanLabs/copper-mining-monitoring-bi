@@ -1,0 +1,94 @@
+{
+  "page_order": 2,
+  "page_name": "Monthly Actual vs Plan",
+  "page_group": "Monthly Monitoring",
+  "story_role": "Core Monthly Story",
+  "goal": "Compare plan and actual throughput, grade, recovery, copper production, and unit cost with explicit variance logic.",
+  "primary_dataset": "fact_monthly_actual_vs_plan.csv",
+  "shared_slicers": [
+    "dim_site[site_name]",
+    "dim_month[month_label]"
+  ],
+  "page_specific_slicers": [],
+  "required_tables": [
+    "fact_monthly_actual_vs_plan"
+  ],
+  "required_dimensions": [
+    "dim_month[month_label]",
+    "dim_monthly_metric[display_name]"
+  ],
+  "required_measures": [
+    "Monthly Copper Production Variance %",
+    "Monthly Head Grade Variance %",
+    "Monthly Recovery Variance %",
+    "Monthly Throughput Variance %",
+    "Monthly Unit Cost Variance %",
+    "actual_value",
+    "alert_level",
+    "plan_value",
+    "variance_pct",
+    "variance_value"
+  ],
+  "desktop_completion_checks": [
+    "Confirm page title and narrative match the intended business question.",
+    "Confirm dim_site and dim_month slicers are present where the monthly core requires them.",
+    "Confirm visuals use the recommended marts, dimensions, and measures from the shell.",
+    "Confirm the page still reads as management control rather than exploratory appendix analysis."
+  ],
+  "visuals": [
+    {
+      "visual_order": 1,
+      "visual_title": "Plan vs Actual Matrix",
+      "visual_type": "Matrix",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_monthly_metric[display_name]",
+      "key_measures": "plan_value; actual_value; variance_value; variance_pct; alert_level",
+      "business_question": "Where are the largest plan-versus-actual deviations by KPI?"
+    },
+    {
+      "visual_order": 2,
+      "visual_title": "Throughput Variance",
+      "visual_type": "Column Chart",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "Monthly Throughput Variance %",
+      "business_question": "When is throughput under plan and by how much?"
+    },
+    {
+      "visual_order": 3,
+      "visual_title": "Head Grade Variance",
+      "visual_type": "Column Chart",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "Monthly Head Grade Variance %",
+      "business_question": "How much is grade contributing to the production gap?"
+    },
+    {
+      "visual_order": 4,
+      "visual_title": "Recovery Variance",
+      "visual_type": "Column Chart",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "Monthly Recovery Variance %",
+      "business_question": "How much is recovery contributing to the production gap?"
+    },
+    {
+      "visual_order": 5,
+      "visual_title": "Copper Production Variance",
+      "visual_type": "Column Chart",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "Monthly Copper Production Variance %",
+      "business_question": "What is the monthly production shortfall or outperformance versus plan?"
+    },
+    {
+      "visual_order": 6,
+      "visual_title": "Unit Cost Variance",
+      "visual_type": "Column Chart",
+      "source_table": "fact_monthly_actual_vs_plan",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "Monthly Unit Cost Variance %",
+      "business_question": "When are unit costs drifting above plan and by how much?"
+    }
+  ]
+}

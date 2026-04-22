@@ -1,4 +1,4 @@
-"""Deterministic scenarios, sensitivity, and BI-oriented analytical outputs."""
+"""Scenario and sensitivity helpers for the advanced appendix."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from typing import Iterable
 
 import pandas as pd
 
-from .model import (
+from .valuation_model import (
     ScenarioParameters,
     build_expansion_profile,
     cash_flows_from_profile,
@@ -27,6 +27,8 @@ DEFAULT_SCENARIO_VALUES = {
 
 
 def profile_to_long(profile: pd.DataFrame, scenario_id: str, scenario_name: str, scenario_category: str) -> pd.DataFrame:
+    """Reshape annual valuation outputs into an appendix-ready long fact table."""
+
     metric_columns = [
         "base_processed_tonnes",
         "expanded_tonnes",
@@ -61,6 +63,8 @@ def profile_to_long(profile: pd.DataFrame, scenario_id: str, scenario_name: str,
 
 
 def summarize_profile(profile: pd.DataFrame, scenario_id: str, scenario_name: str, scenario_category: str) -> pd.DataFrame:
+    """Return scenario KPI summaries for the advanced appendix page."""
+
     cumulative_fcf = cash_flows_from_profile(profile).cumsum()
     payback_years = profile.loc[cumulative_fcf[1:] >= 0, "year"]
     payback_year = int(payback_years.iloc[0]) if not payback_years.empty else None
@@ -104,6 +108,8 @@ def build_multi_scenario_outputs(
     params: ScenarioParameters,
     scenario_registry: Iterable[dict],
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Build the deterministic scenario appendix tables from a registry."""
+
     scenario_dim_records = []
     annual_frames = []
     kpi_frames = []
@@ -158,6 +164,8 @@ def build_tornado_table(
     params: ScenarioParameters,
     tornado_specs: Iterable[dict],
 ) -> pd.DataFrame:
+    """Build one-factor-at-a-time valuation sensitivity results."""
+
     base_profile = build_expansion_profile(annual_inputs=annual_inputs, params=params)
     base_npv = npv_from_profile(base_profile)
     records = []
@@ -212,6 +220,8 @@ def build_price_grade_heatmap(
     capex_factor: float,
     wacc_shift_bps: float,
 ) -> pd.DataFrame:
+    """Build a price-grade stress grid for appendix-level downside discussion."""
+
     records = []
     wacc_override = params.wacc + wacc_shift_bps / 10000
 
@@ -247,6 +257,8 @@ def build_price_grade_heatmap(
 
 
 def build_year_dimension(project_years: Iterable[int], start_calendar_year: int) -> pd.DataFrame:
+    """Return a simple public-safe year dimension for appendix visuals."""
+
     records = []
     for year in project_years:
         calendar_year = start_calendar_year + int(year) - 1

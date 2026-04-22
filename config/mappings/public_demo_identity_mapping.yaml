@@ -1,0 +1,106 @@
+version: 1
+mapping_name: "public_demo_identity"
+description: "Identity mapping for the repository's public sample monthly monitoring CSVs."
+
+datasets:
+  plan_monthly:
+    source_file: "plan_monthly.csv"
+    source_dataset_label: "public_demo_plan_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample plan file."
+    column_map:
+      site_id: site_id
+      period: period
+      throughput_tonnes_plan: throughput_tonnes_plan
+      head_grade_pct_plan: head_grade_pct_plan
+      recovery_pct_plan: recovery_pct_plan
+      unit_cost_usd_per_tonne_plan: unit_cost_usd_per_tonne_plan
+      copper_price_usd_per_lb_plan: copper_price_usd_per_lb_plan
+      tc_rc_usd_per_lb_plan: tc_rc_usd_per_lb_plan
+      payable_percent_plan: payable_percent_plan
+      sustaining_capex_usd_plan: sustaining_capex_usd_plan
+      working_capital_change_usd_plan: working_capital_change_usd_plan
+      plan_version: plan_version
+
+  actual_production_monthly:
+    source_file: "actual_production_monthly.csv"
+    source_dataset_label: "public_demo_actual_production_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample production file."
+    column_map:
+      site_id: site_id
+      period: period
+      throughput_tonnes_actual: throughput_tonnes_actual
+      copper_production_tonnes_actual: copper_production_tonnes_actual
+
+  plant_performance_monthly:
+    source_file: "plant_performance_monthly.csv"
+    source_dataset_label: "public_demo_plant_performance_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample process file."
+    column_map:
+      site_id: site_id
+      period: period
+      head_grade_pct_actual: head_grade_pct_actual
+      recovery_pct_actual: recovery_pct_actual
+      availability_pct_actual: availability_pct_actual
+      utilization_pct_actual: utilization_pct_actual
+      downtime_hours_actual: downtime_hours_actual
+
+  cost_actuals_monthly:
+    source_file: "cost_actuals_monthly.csv"
+    source_dataset_label: "public_demo_cost_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample cost file."
+    column_map:
+      site_id: site_id
+      period: period
+      mining_cost_usd_actual: mining_cost_usd_actual
+      processing_cost_usd_actual: processing_cost_usd_actual
+      ga_cost_usd_actual: ga_cost_usd_actual
+      sustaining_capex_usd_actual: sustaining_capex_usd_actual
+      working_capital_change_usd_actual: working_capital_change_usd_actual
+
+  market_prices_monthly:
+    source_file: "market_prices_monthly.csv"
+    source_dataset_label: "public_demo_market_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample market file."
+    column_map:
+      site_id: site_id
+      period: period
+      copper_price_usd_per_lb_actual: copper_price_usd_per_lb_actual
+      tc_rc_usd_per_lb_actual: tc_rc_usd_per_lb_actual
+      payable_percent_actual: payable_percent_actual
+      benchmark_price_name: benchmark_price_name
+
+  process_driver_monthly:
+    source_file: "process_driver_monthly.csv"
+    source_dataset_label: "public_demo_process_driver_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample process-area driver file."
+    column_map:
+      site_id: site_id
+      period: period
+      process_area: process_area
+      ore_source: ore_source
+      stockpile_flag: stockpile_flag
+      ore_mix_pct: ore_mix_pct
+      throughput_tonnes_plan: throughput_tonnes_plan
+      throughput_tonnes_actual: throughput_tonnes_actual
+      copper_production_tonnes_plan: copper_production_tonnes_plan
+      copper_production_tonnes_actual: copper_production_tonnes_actual
+      availability_pct: availability_pct
+      downtime_hours: downtime_hours
+
+  cost_center_monthly:
+    source_file: "cost_center_monthly.csv"
+    source_dataset_label: "public_demo_cost_center_export"
+    normalize_period: true
+    mapping_note: "Identity mapping for the public sample cost-center detail file."
+    column_map:
+      site_id: site_id
+      period: period
+      cost_center: cost_center
+      cost_usd_plan: cost_usd_plan
+      cost_usd_actual: cost_usd_actual

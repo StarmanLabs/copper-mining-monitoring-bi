@@ -1,0 +1,6 @@
+sort_order,table_name,display_column,sort_by_column,starter_kit_scope,business_use
+1,dim_site,site_name,site_sort_order,Core Monthly Story,Shared site slicers and site contribution visuals.
+2,dim_month,month_label,month_sort_order,Core Monthly Story,Shared month slicers and monthly trend axes.
+3,dim_monthly_metric,display_name,display_order,Core Monthly Story,KPI order for Monthly Actual vs Plan matrices and selector visuals.
+4,dim_process_area,process_area,process_area_sort_order,Core Monthly Story,Process-area drill visuals on the Process Performance page.
+5,dim_cost_center,cost_center,cost_center_sort_order,Core Monthly Story,Cost-center drill visuals on the Cost and Margin page.

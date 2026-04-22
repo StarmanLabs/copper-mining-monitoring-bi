@@ -1,0 +1,41 @@
+version: 2
+profile_name: "public_demo_profile"
+description: "Public-safe demo profile for the unified local runner using sample monthly and annual appendix inputs."
+
+public_repo_boundary:
+  do_not_commit:
+    - "data/private/"
+    - "config/source_profiles/local/"
+    - "config/mappings/local/"
+    - "outputs/private/"
+    - "powerbi/local/"
+    - "*.pbix"
+    - "*.pbit"
+    - "*.twb"
+    - "*.twbx"
+  public_safe_outputs:
+    - "outputs/bi/"
+    - "powerbi/pbip_tmdl_scaffold/"
+    - "powerbi/template_scaffold/"
+
+runner:
+  default_scope: "all"
+  summary_output_dir: "outputs/bi"
+
+monthly_monitoring:
+  enabled: true
+  raw_source_dir: "data/sample_data/monthly_monitoring"
+  mapping_config: "config/mappings/public_demo_identity_mapping.yaml"
+  output_dir: "outputs/bi"
+
+annual_appendix:
+  enabled: true
+  raw_source_dir: "data/sample_data/annual_appendix"
+  mapping_config: "config/mappings/public_demo_annual_appendix_identity_mapping.yaml"
+  canonical_output_dir: "outputs/bi"
+  advanced_appendix:
+    enabled: true
+    config_path: "config/project.yaml"
+    input_mode: "canonical"
+    benchmark_mode: "canonical"
+    output_dir: "outputs/bi"

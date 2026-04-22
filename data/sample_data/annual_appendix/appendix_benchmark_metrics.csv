@@ -1,0 +1,6 @@
+metric,value,unit,currency,valuation_basis,timing_basis,benchmark_source,note
+incremental_npv,179410192.28525418,USD,USD,incremental_expansion,year0_initial_outlay_plus_discounted_year1_to_year15,Canonical appendix benchmark table,Legacy workbook deterministic NPV carried into the canonical appendix benchmark table.
+incremental_irr,0.15974365542912494,decimal,,incremental_expansion,year0_initial_outlay_plus_discounted_year1_to_year15,Canonical appendix benchmark table,Legacy workbook deterministic IRR carried into the canonical appendix benchmark table.
+expected_npv,351269556.270483,USD,USD,incremental_expansion,year0_initial_outlay_plus_discounted_year1_to_year15,Canonical appendix benchmark table,Legacy workbook Monte Carlo expected NPV carried into the canonical appendix benchmark table.
+var_5pct,-1311282054.4859998,USD,USD,incremental_expansion,year0_initial_outlay_plus_discounted_year1_to_year15,Canonical appendix benchmark table,Legacy workbook 5th percentile NPV carried into the canonical appendix benchmark table.
+cvar_5pct,-1599912510.4894392,USD,USD,incremental_expansion,year0_initial_outlay_plus_discounted_year1_to_year15,Canonical appendix benchmark table,Legacy workbook conditional tail mean carried into the canonical appendix benchmark table.

@@ -1,0 +1,49 @@
+{
+  "artifact_strategy": "PBIP finalization package",
+  "honest_limit": "This package is not a Power BI Desktop-saved PBIP. It is the strongest public-safe finalization package that can be produced here.",
+  "profile_name": null,
+  "profile_path": null,
+  "appendix_enabled": true,
+  "default_output_roots": {
+    "starter_kit": "outputs/bi",
+    "monthly": "outputs/bi",
+    "advanced_appendix": "outputs/bi"
+  },
+  "desktop_required_steps": [
+    "Create or open a blank PBIX or PBIP in Power BI Desktop.",
+    "Import ProjectRoot plus the output-root parameter queries that ship with the scaffold.",
+    "Import the grouped Power Query files and disable load for reference queries where appropriate.",
+    "Apply the TMDL scripts in order to restore model ordering, visibility, measures, and relationships.",
+    "Build report pages from the page-shell JSON files and keep the monthly pages first.",
+    "Save the final local result as PBIP if source control continuity is needed."
+  ],
+  "verification_checks": [
+    {
+      "check_name": "monthly_semantic_center",
+      "detail": "dim_site and dim_month should remain the shared filters across the monthly model."
+    },
+    {
+      "check_name": "core_relationship_count",
+      "detail": "Confirm 19 monthly-core relationships are active."
+    },
+    {
+      "check_name": "appendix_relationship_count",
+      "detail": "Confirm 4 appendix relationships stay secondary."
+    },
+    {
+      "check_name": "page_order",
+      "detail": "Report pages should remain ordered as Executive Overview, Monthly Actual vs Plan, Process Performance, Cost and Margin, Advanced Scenario / Risk Appendix."
+    },
+    {
+      "check_name": "query_grouping",
+      "detail": "Desktop import should preserve 3 grouped query families with separate output roots."
+    }
+  ],
+  "page_sequence": [
+    "Executive Overview",
+    "Monthly Actual vs Plan",
+    "Process Performance",
+    "Cost and Margin",
+    "Advanced Scenario / Risk Appendix"
+  ]
+}

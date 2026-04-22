@@ -1,108 +1,108 @@
 scenario_id,scenario_name,scenario_category,metric,value
-base,Base Case,Reference,total_revenue_usd,59493906977.87725
-base,Base Case,Reference,total_ebitda_usd,7253670608.111523
+base,Base Case,Reference,total_revenue_usd,59493906977.8763
+base,Base Case,Reference,total_ebitda_usd,7253670608.11056
 base,Base Case,Reference,total_opex_usd,52240236369.76573
-base,Base Case,Reference,total_operating_cash_flow_usd,5113837778.718622
+base,Base Case,Reference,total_operating_cash_flow_usd,5113837778.717945
 base,Base Case,Reference,total_capex_usd,590000000.0
-base,Base Case,Reference,total_free_cash_flow_usd,4803837778.718622
+base,Base Case,Reference,total_free_cash_flow_usd,4803837778.717946
 base,Base Case,Reference,average_processed_tonnes,163506217.11976758
-base,Base Case,Reference,average_copper_fine_lb,931675360.9571033
+base,Base Case,Reference,average_copper_fine_lb,931675360.9570893
 base,Base Case,Reference,average_net_price_usd_per_lb,4.290191661374608
-base,Base Case,Reference,average_head_grade,0.0030651943893074064
-base,Base Case,Reference,average_recovery,0.8420000000000003
+base,Base Case,Reference,average_head_grade,0.00306519438930736
+base,Base Case,Reference,average_recovery,0.8420000000000002
 base,Base Case,Reference,average_unit_opex_usd_per_tonne,21.300000000000004
-base,Base Case,Reference,ebitda_margin_proxy,0.12192291575015897
-base,Base Case,Reference,scenario_npv_usd,1735098665.2674618
-base,Base Case,Reference,scenario_irr,0.4518466901568161
+base,Base Case,Reference,ebitda_margin_proxy,0.12192291575014474
+base,Base Case,Reference,scenario_npv_usd,1735098665.2672224
+base,Base Case,Reference,scenario_irr,0.4518466901568013
 base,Base Case,Reference,peak_revenue_year,4.0
 base,Base Case,Reference,peak_fcf_year,15.0
 base,Base Case,Reference,payback_year,4.0
-bull_market,Bull Market,Market,total_revenue_usd,69899677217.58002
-bull_market,Bull Market,Market,total_ebitda_usd,16614636120.418983
-bull_market,Bull Market,Market,total_opex_usd,53285041097.16103
-bull_market,Bull Market,Market,total_operating_cash_flow_usd,11713318464.895386
+bull_market,Bull Market,Market,total_revenue_usd,69899677217.57892
+bull_market,Bull Market,Market,total_ebitda_usd,16614636120.417862
+bull_market,Bull Market,Market,total_opex_usd,53285041097.16105
+bull_market,Bull Market,Market,total_operating_cash_flow_usd,11713318464.894594
 bull_market,Bull Market,Market,total_capex_usd,590000000.0
-bull_market,Bull Market,Market,total_free_cash_flow_usd,11403318464.895386
+bull_market,Bull Market,Market,total_free_cash_flow_usd,11403318464.894594
 bull_market,Bull Market,Market,average_processed_tonnes,166776341.46216288
-bull_market,Bull Market,Market,average_copper_fine_lb,950308868.1762452
-bull_market,Bull Market,Market,average_net_price_usd_per_lb,4.941670410580798
-bull_market,Bull Market,Market,average_head_grade,0.0030651943893074064
-bull_market,Bull Market,Market,average_recovery,0.8420000000000003
+bull_market,Bull Market,Market,average_copper_fine_lb,950308868.1762313
+bull_market,Bull Market,Market,average_net_price_usd_per_lb,4.941670410580799
+bull_market,Bull Market,Market,average_head_grade,0.00306519438930736
+bull_market,Bull Market,Market,average_recovery,0.8420000000000002
 bull_market,Bull Market,Market,average_unit_opex_usd_per_tonne,21.300000000000004
-bull_market,Bull Market,Market,ebitda_margin_proxy,0.2376926014794292
-bull_market,Bull Market,Market,scenario_npv_usd,5217620272.908168
-bull_market,Bull Market,Market,scenario_irr,1.3368436216570116
+bull_market,Bull Market,Market,ebitda_margin_proxy,0.2376926014794169
+bull_market,Bull Market,Market,scenario_npv_usd,5217620272.907874
+bull_market,Bull Market,Market,scenario_irr,1.3368436216570079
 bull_market,Bull Market,Market,peak_revenue_year,4.0
 bull_market,Bull Market,Market,peak_fcf_year,15.0
 bull_market,Bull Market,Market,payback_year,2.0
-bear_market,Bear Market,Market,total_revenue_usd,49449544271.513504
-bear_market,Bear Market,Market,total_ebitda_usd,-3281750320.128028
-bear_market,Bear Market,Market,total_opex_usd,52731294591.64152
-bear_market,Bear Market,Market,total_operating_cash_flow_usd,-3281750320.128028
+bear_market,Bear Market,Market,total_revenue_usd,49449544271.51271
+bear_market,Bear Market,Market,total_ebitda_usd,-3281750320.12883
+bear_market,Bear Market,Market,total_opex_usd,52731294591.64154
+bear_market,Bear Market,Market,total_operating_cash_flow_usd,-3281750320.12883
 bear_market,Bear Market,Market,total_capex_usd,590000000.0
-bear_market,Bear Market,Market,total_free_cash_flow_usd,-3591750320.128028
+bear_market,Bear Market,Market,total_free_cash_flow_usd,-3591750320.1288304
 bear_market,Bear Market,Market,average_processed_tonnes,160236092.7773722
-bear_market,Bear Market,Market,average_copper_fine_lb,913041853.7379614
+bear_market,Bear Market,Market,average_copper_fine_lb,913041853.7379476
 bear_market,Bear Market,Market,average_net_price_usd_per_lb,3.6387129121684167
-bear_market,Bear Market,Market,average_head_grade,0.0030651943893074064
-bear_market,Bear Market,Market,average_recovery,0.8420000000000003
+bear_market,Bear Market,Market,average_head_grade,0.00306519438930736
+bear_market,Bear Market,Market,average_recovery,0.8420000000000002
 bear_market,Bear Market,Market,average_unit_opex_usd_per_tonne,21.939000000000004
-bear_market,Bear Market,Market,ebitda_margin_proxy,-0.06636563326264167
-bear_market,Bear Market,Market,scenario_npv_usd,-2468305062.6464996
-bear_market,Bear Market,Market,scenario_irr,-0.504023747841817
+bear_market,Bear Market,Market,ebitda_margin_proxy,-0.06636563326265894
+bear_market,Bear Market,Market,scenario_npv_usd,-2468305062.6467576
+bear_market,Bear Market,Market,scenario_irr,-0.5040237478421776
 bear_market,Bear Market,Market,peak_revenue_year,4.0
 bear_market,Bear Market,Market,peak_fcf_year,15.0
 bear_market,Bear Market,Market,payback_year,
-operational_stress,Operational Stress,Operations,total_revenue_usd,52076682607.13134
-operational_stress,Operational Stress,Operations,total_ebitda_usd,-957605355.4548349
-operational_stress,Operational Stress,Operations,total_opex_usd,53034287962.58617
-operational_stress,Operational Stress,Operations,total_operating_cash_flow_usd,-1001711555.8713422
+operational_stress,Operational Stress,Operations,total_revenue_usd,52076682607.130516
+operational_stress,Operational Stress,Operations,total_ebitda_usd,-957605355.455677
+operational_stress,Operational Stress,Operations,total_opex_usd,53034287962.586174
+operational_stress,Operational Stress,Operations,total_operating_cash_flow_usd,-1001711555.8720623
 operational_stress,Operational Stress,Operations,total_capex_usd,590000000.0
-operational_stress,Operational Stress,Operations,total_free_cash_flow_usd,-1311711555.8713417
+operational_stress,Operational Stress,Operations,total_free_cash_flow_usd,-1311711555.8720622
 operational_stress,Operational Stress,Operations,average_processed_tonnes,153695844.09258148
-operational_stress,Operational Stress,Operations,average_copper_fine_lb,815521530.3558594
+operational_stress,Operational Stress,Operations,average_copper_fine_lb,815521530.355847
 operational_stress,Operational Stress,Operations,average_net_price_usd_per_lb,4.290191661374608
-operational_stress,Operational Stress,Operations,average_head_grade,0.002973238557628185
+operational_stress,Operational Stress,Operations,average_head_grade,0.002973238557628139
 operational_stress,Operational Stress,Operations,average_recovery,0.80832
-operational_stress,Operational Stress,Operations,average_unit_opex_usd_per_tonne,23.004
-operational_stress,Operational Stress,Operations,ebitda_margin_proxy,-0.0183883709083209
-operational_stress,Operational Stress,Operations,scenario_npv_usd,-1397032313.6882606
-operational_stress,Operational Stress,Operations,scenario_irr,-0.15062819361736904
+operational_stress,Operational Stress,Operations,average_unit_opex_usd_per_tonne,23.004000000000005
+operational_stress,Operational Stress,Operations,ebitda_margin_proxy,-0.01838837090833736
+operational_stress,Operational Stress,Operations,scenario_npv_usd,-1397032313.688526
+operational_stress,Operational Stress,Operations,scenario_irr,-0.15062819361747937
 operational_stress,Operational Stress,Operations,peak_revenue_year,4.0
 operational_stress,Operational Stress,Operations,peak_fcf_year,15.0
 operational_stress,Operational Stress,Operations,payback_year,
-capex_overrun,Capex Overrun,Investment,total_revenue_usd,59493906977.87725
-capex_overrun,Capex Overrun,Investment,total_ebitda_usd,7253670608.111523
+capex_overrun,Capex Overrun,Investment,total_revenue_usd,59493906977.8763
+capex_overrun,Capex Overrun,Investment,total_ebitda_usd,7253670608.11056
 capex_overrun,Capex Overrun,Investment,total_opex_usd,52240236369.76573
-capex_overrun,Capex Overrun,Investment,total_operating_cash_flow_usd,5113837778.718622
+capex_overrun,Capex Overrun,Investment,total_operating_cash_flow_usd,5113837778.717945
 capex_overrun,Capex Overrun,Investment,total_capex_usd,708000000.0
-capex_overrun,Capex Overrun,Investment,total_free_cash_flow_usd,4741837778.718622
+capex_overrun,Capex Overrun,Investment,total_free_cash_flow_usd,4741837778.717946
 capex_overrun,Capex Overrun,Investment,average_processed_tonnes,163506217.11976758
-capex_overrun,Capex Overrun,Investment,average_copper_fine_lb,931675360.9571033
+capex_overrun,Capex Overrun,Investment,average_copper_fine_lb,931675360.9570893
 capex_overrun,Capex Overrun,Investment,average_net_price_usd_per_lb,4.290191661374608
-capex_overrun,Capex Overrun,Investment,average_head_grade,0.0030651943893074064
-capex_overrun,Capex Overrun,Investment,average_recovery,0.8420000000000003
+capex_overrun,Capex Overrun,Investment,average_head_grade,0.00306519438930736
+capex_overrun,Capex Overrun,Investment,average_recovery,0.8420000000000002
 capex_overrun,Capex Overrun,Investment,average_unit_opex_usd_per_tonne,21.300000000000004
-capex_overrun,Capex Overrun,Investment,ebitda_margin_proxy,0.12192291575015897
-capex_overrun,Capex Overrun,Investment,scenario_npv_usd,1559670856.6151035
-capex_overrun,Capex Overrun,Investment,scenario_irr,0.3929561372565332
+capex_overrun,Capex Overrun,Investment,ebitda_margin_proxy,0.12192291575014474
+capex_overrun,Capex Overrun,Investment,scenario_npv_usd,1559670856.6148753
+capex_overrun,Capex Overrun,Investment,scenario_irr,0.39295613725651773
 capex_overrun,Capex Overrun,Investment,peak_revenue_year,4.0
 capex_overrun,Capex Overrun,Investment,peak_fcf_year,15.0
 capex_overrun,Capex Overrun,Investment,payback_year,4.0
-committee_downside,Investment Committee Downside,Stress,total_revenue_usd,39395235132.68496
-committee_downside,Investment Committee Downside,Stress,total_ebitda_usd,-13471884073.517967
-committee_downside,Investment Committee Downside,Stress,total_opex_usd,52867119206.20292
-committee_downside,Investment Committee Downside,Stress,total_operating_cash_flow_usd,-13471884073.517967
+committee_downside,Investment Committee Downside,Stress,total_revenue_usd,39395235132.684326
+committee_downside,Investment Committee Downside,Stress,total_ebitda_usd,-13471884073.518604
+committee_downside,Investment Committee Downside,Stress,total_opex_usd,52867119206.20294
+committee_downside,Investment Committee Downside,Stress,total_operating_cash_flow_usd,-13471884073.518604
 committee_downside,Investment Committee Downside,Stress,total_capex_usd,678500000.0
-committee_downside,Investment Committee Downside,Stress,total_free_cash_flow_usd,-13828384073.517965
+committee_downside,Investment Committee Downside,Stress,total_free_cash_flow_usd,-13828384073.518602
 committee_downside,Investment Committee Downside,Stress,average_processed_tonnes,150425719.75018615
-committee_downside,Investment Committee Downside,Stress,average_copper_fine_lb,773570052.2026827
+committee_downside,Investment Committee Downside,Stress,average_copper_fine_lb,773570052.2026712
 committee_downside,Investment Committee Downside,Stress,average_net_price_usd_per_lb,3.421553329099686
-committee_downside,Investment Committee Downside,Stress,average_head_grade,0.0029119346698420357
-committee_downside,Investment Committee Downside,Stress,average_recovery,0.7999000000000003
+committee_downside,Investment Committee Downside,Stress,average_head_grade,0.0029119346698419923
+committee_downside,Investment Committee Downside,Stress,average_recovery,0.7998999999999997
 committee_downside,Investment Committee Downside,Stress,average_unit_opex_usd_per_tonne,23.430000000000003
-committee_downside,Investment Committee Downside,Stress,ebitda_margin_proxy,-0.34196734778061466
-committee_downside,Investment Committee Downside,Stress,scenario_npv_usd,-7208009593.098987
+committee_downside,Investment Committee Downside,Stress,ebitda_margin_proxy,-0.34196734778063637
+committee_downside,Investment Committee Downside,Stress,scenario_npv_usd,-7208009593.099183
 committee_downside,Investment Committee Downside,Stress,scenario_irr,
 committee_downside,Investment Committee Downside,Stress,peak_revenue_year,4.0
 committee_downside,Investment Committee Downside,Stress,peak_fcf_year,15.0

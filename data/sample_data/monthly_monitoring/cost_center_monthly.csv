@@ -1,0 +1,73 @@
+site_id,period,cost_center,cost_usd_plan,cost_usd_actual
+demo_north_concentrator,2025-01,Mine Operations,1878144,2112250
+demo_north_concentrator,2025-01,Process Plant,1707404,1624500
+demo_north_concentrator,2025-01,Site Services & G&A,682962,604200
+demo_north_concentrator,2025-02,Mine Operations,1834569,2034900
+demo_north_concentrator,2025-02,Process Plant,1667790,1607400
+demo_north_concentrator,2025-02,Site Services & G&A,667116,583000
+demo_north_concentrator,2025-03,Mine Operations,1890732,2093300
+demo_north_concentrator,2025-03,Process Plant,1718847,1635600
+demo_north_concentrator,2025-03,Site Services & G&A,687539,598900
+demo_north_concentrator,2025-04,Mine Operations,1902608,2123550
+demo_north_concentrator,2025-04,Process Plant,1729644,1658800
+demo_north_concentrator,2025-04,Site Services & G&A,691858,614800
+demo_north_concentrator,2025-05,Mine Operations,1960411,2146350
+demo_north_concentrator,2025-05,Process Plant,1782192,1693300
+demo_north_concentrator,2025-05,Site Services & G&A,712877,609500
+demo_north_concentrator,2025-06,Mine Operations,1967328,2183250
+demo_north_concentrator,2025-06,Process Plant,1788480,1705100
+demo_north_concentrator,2025-06,Site Services & G&A,715392,620100
+demo_north_concentrator,2025-07,Mine Operations,1983089,2238600
+demo_north_concentrator,2025-07,Process Plant,1802808,1734600
+demo_north_concentrator,2025-07,Site Services & G&A,721123,630700
+demo_north_concentrator,2025-08,Mine Operations,1980528,2214000
+demo_north_concentrator,2025-08,Process Plant,1800480,1728700
+demo_north_concentrator,2025-08,Site Services & G&A,720192,625400
+demo_north_concentrator,2025-09,Mine Operations,1976750,2220350
+demo_north_concentrator,2025-09,Process Plant,1797046,1693600
+demo_north_concentrator,2025-09,Site Services & G&A,718818,630700
+demo_north_concentrator,2025-10,Mine Operations,2006189,2238500
+demo_north_concentrator,2025-10,Process Plant,1823808,1722600
+demo_north_concentrator,2025-10,Site Services & G&A,729523,630700
+demo_north_concentrator,2025-11,Mine Operations,2001329,2237200
+demo_north_concentrator,2025-11,Process Plant,1819390,1715700
+demo_north_concentrator,2025-11,Site Services & G&A,727757,646600
+demo_north_concentrator,2025-12,Mine Operations,2026224,2296700
+demo_north_concentrator,2025-12,Process Plant,1842022,1767000
+demo_north_concentrator,2025-12,Site Services & G&A,736809,651900
+demo_south_concentrator,2025-01,Mine Operations,1441183,1437750
+demo_south_concentrator,2025-01,Process Plant,1310166,1225500
+demo_south_concentrator,2025-01,Site Services & G&A,524067,535800
+demo_south_concentrator,2025-02,Mine Operations,1408639,1385100
+demo_south_concentrator,2025-02,Process Plant,1280581,1212600
+demo_south_concentrator,2025-02,Site Services & G&A,512232,517000
+demo_south_concentrator,2025-03,Mine Operations,1396101,1366700
+demo_south_concentrator,2025-03,Process Plant,1269183,1184400
+demo_south_concentrator,2025-03,Site Services & G&A,507673,531100
+demo_south_concentrator,2025-04,Mine Operations,1405345,1386450
+demo_south_concentrator,2025-04,Process Plant,1277586,1201200
+demo_south_concentrator,2025-04,Site Services & G&A,511035,545200
+demo_south_concentrator,2025-05,Mine Operations,1391685,1343650
+demo_south_concentrator,2025-05,Process Plant,1265168,1176700
+demo_south_concentrator,2025-05,Site Services & G&A,506067,540500
+demo_south_concentrator,2025-06,Mine Operations,1397088,1366750
+demo_south_concentrator,2025-06,Process Plant,1270080,1184900
+demo_south_concentrator,2025-06,Site Services & G&A,508032,549900
+demo_south_concentrator,2025-07,Mine Operations,1408783,1401400
+demo_south_concentrator,2025-07,Process Plant,1280712,1205400
+demo_south_concentrator,2025-07,Site Services & G&A,512285,559300
+demo_south_concentrator,2025-08,Mine Operations,1407472,1386000
+demo_south_concentrator,2025-08,Process Plant,1279520,1201300
+demo_south_concentrator,2025-08,Site Services & G&A,511808,554600
+demo_south_concentrator,2025-09,Mine Operations,1461621,1449650
+demo_south_concentrator,2025-09,Process Plant,1328746,1226400
+demo_south_concentrator,2025-09,Site Services & G&A,531499,559300
+demo_south_concentrator,2025-10,Mine Operations,1482871,1461500
+demo_south_concentrator,2025-10,Process Plant,1348064,1247400
+demo_south_concentrator,2025-10,Site Services & G&A,539226,559300
+demo_south_concentrator,2025-11,Mine Operations,1538699,1522800
+demo_south_concentrator,2025-11,Process Plant,1398817,1294300
+demo_south_concentrator,2025-11,Site Services & G&A,559527,573400
+demo_south_concentrator,2025-12,Mine Operations,1557320,1563300
+demo_south_concentrator,2025-12,Process Plant,1415745,1333000
+demo_south_concentrator,2025-12,Site Services & G&A,566298,578100

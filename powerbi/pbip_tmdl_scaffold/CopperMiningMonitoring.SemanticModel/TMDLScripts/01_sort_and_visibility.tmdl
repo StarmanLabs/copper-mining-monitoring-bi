@@ -1,0 +1,294 @@
+createOrReplace
+
+ref table dim_site
+    column site_name
+        sortByColumn: site_sort_order
+        summarizeBy: none
+    column site_id
+        isHidden
+        summarizeBy: none
+    column site_sort_order
+        isHidden
+        summarizeBy: none
+
+ref table dim_month
+    column month_label
+        sortByColumn: month_sort_order
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column month_sort_order
+        isHidden
+        summarizeBy: none
+
+ref table dim_monthly_metric
+    column display_name
+        sortByColumn: display_order
+        summarizeBy: none
+    column metric
+        isHidden
+        summarizeBy: none
+    column display_order
+        isHidden
+        summarizeBy: none
+    column warning_threshold_pct
+        isHidden
+        summarizeBy: none
+    column critical_threshold_pct
+        isHidden
+        summarizeBy: none
+    column plan_column
+        isHidden
+        summarizeBy: none
+    column actual_column
+        isHidden
+        summarizeBy: none
+    column variance_column
+        isHidden
+        summarizeBy: none
+    column variance_pct_column
+        isHidden
+        summarizeBy: none
+
+ref table dim_process_area
+    column process_area
+        sortByColumn: process_area_sort_order
+        summarizeBy: none
+    column process_area_sort_order
+        isHidden
+        summarizeBy: none
+
+ref table dim_cost_center
+    column cost_center
+        sortByColumn: cost_center_sort_order
+        summarizeBy: none
+    column cost_center_sort_order
+        isHidden
+        summarizeBy: none
+
+ref table kpi_monthly_summary
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column plan_version
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table fact_monthly_actual_vs_plan
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column metric
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column dashboard_page
+        isHidden
+        summarizeBy: none
+    column display_order
+        isHidden
+        summarizeBy: none
+    column plan_version
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_monthly_executive_overview
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_monthly_process_performance
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_monthly_cost_margin
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_monthly_by_site
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_process_driver_summary
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none
+
+ref table mart_cost_center_summary
+    column site_id
+        isHidden
+        summarizeBy: none
+    column period
+        isHidden
+        summarizeBy: none
+    column month_start_date
+        isHidden
+        summarizeBy: none
+    column calendar_year
+        isHidden
+        summarizeBy: none
+    column calendar_month
+        isHidden
+        summarizeBy: none
+    column calendar_quarter
+        isHidden
+        summarizeBy: none
+    column data_classification
+        isHidden
+        summarizeBy: none
+    column sample_data_flag
+        isHidden
+        summarizeBy: none

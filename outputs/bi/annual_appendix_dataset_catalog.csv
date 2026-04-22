@@ -1,0 +1,5 @@
+dataset_name,source_file,grain,purpose,primary_use,limitation_note
+annual_appendix_inputs,annual_appendix_inputs.csv,One row per project year.,"Canonical annual operating and capex inputs used by valuation, scenario, and simulation logic.",Default appendix driver table.,"Planning-style annual inputs, not a mine-plan or corporate-finance system."
+appendix_parameters,appendix_parameters.csv,One row per scalar parameter.,"Canonical scalar parameter table for commercial, fiscal-proxy, ramp, and simulation settings.",Default appendix parameter contract.,Public-safe planning parameters remain simplified and explicit.
+appendix_scenarios,appendix_scenarios.csv,One row per deterministic scenario.,Scenario registry for the appendix page.,Deterministic scenario comparison.,"Scenario shocks are illustrative planning cases, not asset-grade committees or budgets."
+appendix_benchmark_metrics,appendix_benchmark_metrics.csv,One row per benchmark metric.,Canonical benchmark reference table used for transparency outputs.,Benchmark comparison without direct workbook dependency.,The current canonical benchmark table remains legacy-derived reference content.

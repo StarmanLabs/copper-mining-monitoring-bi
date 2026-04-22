@@ -1,0 +1,105 @@
+{
+  "page_order": 4,
+  "page_name": "Cost and Margin",
+  "page_group": "Monthly Monitoring",
+  "story_role": "Core Monthly Story",
+  "goal": "Track unit cost, operating cost, revenue proxy, EBITDA proxy, and cash-burden movements.",
+  "primary_dataset": "mart_monthly_cost_margin.csv",
+  "shared_slicers": [
+    "dim_site[site_name]",
+    "dim_month[month_label]"
+  ],
+  "page_specific_slicers": [
+    "dim_cost_center[cost_center]"
+  ],
+  "required_tables": [
+    "mart_cost_center_summary",
+    "mart_monthly_cost_margin"
+  ],
+  "required_dimensions": [
+    "dim_cost_center[cost_center]",
+    "dim_month[month_label]"
+  ],
+  "required_measures": [
+    "cost_center_margin_pressure_share_pct",
+    "cost_variance_usd",
+    "ebitda_proxy_usd_actual",
+    "free_cash_flow_proxy_usd_actual",
+    "operating_cash_flow_proxy_usd_actual",
+    "operating_cost_usd_actual",
+    "revenue_proxy_usd_actual",
+    "unit_cost_usd_per_tonne_actual"
+  ],
+  "desktop_completion_checks": [
+    "Confirm page title and narrative match the intended business question.",
+    "Confirm dim_site and dim_month slicers are present where the monthly core requires them.",
+    "Confirm visuals use the recommended marts, dimensions, and measures from the shell.",
+    "Confirm the page still reads as management control rather than exploratory appendix analysis.",
+    "Confirm cost-center drill visuals use dim_cost_center consistently."
+  ],
+  "visuals": [
+    {
+      "visual_order": 1,
+      "visual_title": "Operating Cost vs Unit Cost",
+      "visual_type": "Line and Clustered Column Chart",
+      "source_table": "mart_monthly_cost_margin",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "operating_cost_usd_actual; unit_cost_usd_per_tonne_actual",
+      "business_question": "How are total cost pressure and cost intensity moving together?"
+    },
+    {
+      "visual_order": 2,
+      "visual_title": "Revenue Proxy Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_cost_margin",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "revenue_proxy_usd_actual",
+      "business_question": "Is the top-line proxy strengthening or deteriorating month over month?"
+    },
+    {
+      "visual_order": 3,
+      "visual_title": "EBITDA Proxy Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_cost_margin",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "ebitda_proxy_usd_actual",
+      "business_question": "What is happening to the monthly margin proxy after cost pressure?"
+    },
+    {
+      "visual_order": 4,
+      "visual_title": "Operating Cash Flow Proxy Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_cost_margin",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "operating_cash_flow_proxy_usd_actual",
+      "business_question": "How is the monthly operating cash proxy evolving?"
+    },
+    {
+      "visual_order": 5,
+      "visual_title": "Free Cash Flow Proxy Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_cost_margin",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "free_cash_flow_proxy_usd_actual",
+      "business_question": "How much cash support or pressure is visible after capex and working capital effects?"
+    },
+    {
+      "visual_order": 6,
+      "visual_title": "Cost Variance By Cost Center",
+      "visual_type": "Bar Chart",
+      "source_table": "mart_cost_center_summary",
+      "key_dimensions": "dim_cost_center[cost_center]",
+      "key_measures": "cost_variance_usd",
+      "business_question": "Which cost centers are creating the largest monthly cost variance?"
+    },
+    {
+      "visual_order": 7,
+      "visual_title": "Margin Pressure Share By Cost Center",
+      "visual_type": "Bar Chart",
+      "source_table": "mart_cost_center_summary",
+      "key_dimensions": "dim_cost_center[cost_center]",
+      "key_measures": "cost_center_margin_pressure_share_pct",
+      "business_question": "Which cost centers are driving margin pressure most materially?"
+    }
+  ]
+}

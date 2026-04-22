@@ -1,0 +1,174 @@
+-- All Recommended Measures
+
+-- Table: fact_annual_metrics
+Annual Capex = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "capex_usd")
+
+Annual Copper Fine Production = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "copper_fine_lb")
+
+Annual EBITDA = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "ebitda_usd")
+
+Annual Free Cash Flow = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "free_cash_flow_usd")
+
+Annual Head Grade % = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_grade") * 100
+
+Annual Net Price = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_net_price_usd_per_lb")
+
+Annual Operating Cash Flow = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "operating_cash_flow_usd")
+
+Annual Processed Tonnes = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "expanded_tonnes")
+
+Annual Recovery % = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_recovery") * 100
+
+Annual Revenue = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "revenue_usd")
+
+Annual Unit Opex = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "unit_opex_usd_per_tonne")
+
+
+-- Table: fact_monthly_actual_vs_plan
+Monthly Actual Copper Production = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Actual Throughput = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+Monthly Copper Production Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Head Grade Actual = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Head Grade Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Plan Copper Production = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Plan Head Grade = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Plan Recovery = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+Monthly Plan Throughput = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+Monthly Plan Unit Cost = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+
+Monthly Recovery Actual = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+Monthly Recovery Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+Monthly Throughput Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+Monthly Unit Cost Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+
+
+-- Table: fact_scenario_kpis
+Base Case NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "base")
+
+Committee Downside NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "committee_downside")
+
+NPV Delta vs Base = [Selected Scenario NPV] - [Base Case NPV]
+
+Scenario Avg Copper Production = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_copper_fine_lb")
+
+Scenario Avg Throughput = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_processed_tonnes")
+
+Scenario Avg Unit Opex = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_unit_opex_usd_per_tonne")
+
+Scenario Capex = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_capex_usd")
+
+Scenario EBITDA = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_ebitda_usd")
+
+Scenario EBITDA Margin Proxy = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "ebitda_margin_proxy")
+
+Scenario Free Cash Flow = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_free_cash_flow_usd")
+
+Scenario Operating Cash Flow = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_operating_cash_flow_usd")
+
+Scenario Payback Year = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "payback_year")
+
+Scenario Revenue = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_revenue_usd")
+
+Selected Scenario IRR = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_irr")
+
+Selected Scenario NPV = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd")
+
+
+-- Table: fact_tornado_sensitivity
+Tornado Impact = MAX(fact_tornado_sensitivity[impact_vs_base_usd])
+
+
+-- Table: kpi_monthly_summary
+Monthly Copper Production Actual = SUM(kpi_monthly_summary[copper_production_tonnes_actual])
+
+Monthly Copper Production Variance % = MAX(kpi_monthly_summary[copper_production_tonnes_variance_pct])
+
+Monthly Critical Alerts = SUM(kpi_monthly_summary[critical_alert_count])
+
+Monthly Downtime Hours = SUM(kpi_monthly_summary[downtime_hours_actual])
+
+Monthly EBITDA Proxy = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+
+Monthly EBITDA Proxy Actual = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+
+Monthly EBITDA Proxy Variance % = MAX(kpi_monthly_summary[ebitda_proxy_usd_variance_pct])
+
+Monthly Free Cash Flow Proxy = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+
+Monthly Free Cash Flow Proxy Actual = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+
+Monthly Head Grade Variance % = MAX(kpi_monthly_summary[head_grade_pct_variance_pct])
+
+Monthly Operating Cash Flow Proxy = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+
+Monthly Operating Cash Flow Proxy Actual = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+
+Monthly Operating Cost Actual = SUM(kpi_monthly_summary[operating_cost_usd_actual])
+
+Monthly Overall Alert Level = VAR CriticalAlerts = SUM(kpi_monthly_summary[critical_alert_count]) VAR WarningAlerts = SUM(kpi_monthly_summary[warning_alert_count]) RETURN IF(CriticalAlerts > 0, "critical", IF(WarningAlerts > 0, "warning", "on_track"))
+
+Monthly Primary Alert Count = SUMX(kpi_monthly_summary, IF(kpi_monthly_summary[overall_alert_level] <> "on_track", 1, 0))
+
+Monthly Primary Alert Metric = SELECTEDVALUE(kpi_monthly_summary[primary_alert_metric], "Multiple Sites Selected")
+
+Monthly Recovery Variance % = MAX(kpi_monthly_summary[recovery_pct_variance_pct])
+
+Monthly Revenue Proxy = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+
+Monthly Revenue Proxy Actual = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+
+Monthly Revenue Proxy Variance % = MAX(kpi_monthly_summary[revenue_proxy_usd_variance_pct])
+
+Monthly Throughput Actual = SUM(kpi_monthly_summary[throughput_tonnes_actual])
+
+Monthly Throughput Variance % = MAX(kpi_monthly_summary[throughput_tonnes_variance_pct])
+
+Monthly Unit Cost Actual = DIVIDE(SUM(kpi_monthly_summary[operating_cost_usd_actual]), SUM(kpi_monthly_summary[throughput_tonnes_actual]))
+
+Monthly Unit Cost Variance % = MAX(kpi_monthly_summary[unit_cost_usd_per_tonne_variance_pct])
+
+Monthly Warning Alerts = SUM(kpi_monthly_summary[warning_alert_count])
+
+
+-- Table: mart_cost_center_summary
+Cost Center Margin Pressure Share % = MAX(mart_cost_center_summary[cost_center_margin_pressure_share_pct])
+
+Cost Center Variance = SUM(mart_cost_center_summary[cost_variance_usd])
+
+
+-- Table: mart_monthly_by_site
+Site Production Gap Contribution % = MAX(mart_monthly_by_site[site_production_gap_share_pct])
+
+
+-- Table: mart_monthly_process_performance
+Monthly Availability Actual = MAX(mart_monthly_process_performance[availability_pct_actual])
+
+Monthly Utilization Actual = MAX(mart_monthly_process_performance[utilization_pct_actual])
+
+
+-- Table: mart_process_driver_summary
+Process Area Production Gap Share % = MAX(mart_process_driver_summary[process_area_production_gap_share_pct])
+
+
+-- Table: simulation_summary
+CVaR 5% = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "cvar_usd")
+
+Expected NPV = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "expected_npv_usd")
+
+Median NPV = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "median_npv_usd")
+
+Probability of Loss = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "probability_of_loss")
+
+VaR 5% = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "var_usd")

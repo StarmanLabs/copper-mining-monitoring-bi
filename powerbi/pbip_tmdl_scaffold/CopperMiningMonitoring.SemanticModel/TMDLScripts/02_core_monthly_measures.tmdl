@@ -1,0 +1,237 @@
+createOrReplace
+
+ref table fact_monthly_actual_vs_plan
+    /// Planned throughput for the selected month.
+    measure 'Monthly Plan Throughput' = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Actual throughput for the selected month.
+    measure 'Monthly Actual Throughput' = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Absolute throughput variance for the selected month.
+    measure 'Monthly Throughput Variance' = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Planned head grade for the selected month.
+    measure 'Monthly Plan Head Grade' = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Actual head grade for the selected month.
+    measure 'Monthly Head Grade Actual' = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+        formatString: #,##0.00
+        displayFolder: "03 Process Performance"
+
+    /// Absolute head grade variance for the selected month.
+    measure 'Monthly Head Grade Variance' = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+        formatString: #,##0.00
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Planned recovery for the selected month.
+    measure 'Monthly Plan Recovery' = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Actual recovery for the selected month.
+    measure 'Monthly Recovery Actual' = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+        formatString: #,##0.00
+        displayFolder: "03 Process Performance"
+
+    /// Absolute recovery variance for the selected month.
+    measure 'Monthly Recovery Variance' = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+        formatString: #,##0.00
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Planned copper production for the selected month.
+    measure 'Monthly Plan Copper Production' = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Actual copper production for the selected month.
+    measure 'Monthly Actual Copper Production' = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Absolute copper production variance for the selected month.
+    measure 'Monthly Copper Production Variance' = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+        formatString: #,##0
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Planned unit cost for the selected month.
+    measure 'Monthly Plan Unit Cost' = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Absolute unit cost variance for the selected month.
+    measure 'Monthly Unit Cost Variance' = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+
+ref table kpi_monthly_summary
+    /// Headline actual throughput for the selected month or filter context.
+    measure 'Monthly Throughput Actual' = SUM(kpi_monthly_summary[throughput_tonnes_actual])
+        formatString: #,##0
+        displayFolder: "01 Executive Overview"
+
+    /// Headline actual copper production for the selected month or filter context.
+    measure 'Monthly Copper Production Actual' = SUM(kpi_monthly_summary[copper_production_tonnes_actual])
+        formatString: #,##0
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly revenue proxy used for management control and margin review.
+    measure 'Monthly Revenue Proxy Actual' = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly EBITDA proxy used for executive review.
+    measure 'Monthly EBITDA Proxy Actual' = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly operating cash flow proxy used for liquidity review.
+    measure 'Monthly Operating Cash Flow Proxy Actual' = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly free cash flow proxy used for liquidity review.
+    measure 'Monthly Free Cash Flow Proxy Actual' = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Overall alert state for the selected month or filter context.
+    measure 'Monthly Overall Alert Level' = VAR CriticalAlerts = SUM(kpi_monthly_summary[critical_alert_count]) VAR WarningAlerts = SUM(kpi_monthly_summary[warning_alert_count]) RETURN IF(CriticalAlerts > 0, "critical", IF(WarningAlerts > 0, "warning", "on_track"))
+        formatString: nan
+        displayFolder: "01 Executive Overview"
+
+    /// Primary KPI driving the alert state for the selected month or filter context.
+    measure 'Monthly Primary Alert Metric' = SELECTEDVALUE(kpi_monthly_summary[primary_alert_metric], "Multiple Sites Selected")
+        formatString: nan
+        displayFolder: "01 Executive Overview"
+
+    /// Throughput deviation versus plan for the selected month.
+    measure 'Monthly Throughput Variance %' = MAX(kpi_monthly_summary[throughput_tonnes_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Head grade deviation versus plan for the selected month.
+    measure 'Monthly Head Grade Variance %' = MAX(kpi_monthly_summary[head_grade_pct_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Recovery deviation versus plan for the selected month.
+    measure 'Monthly Recovery Variance %' = MAX(kpi_monthly_summary[recovery_pct_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Copper production deviation versus plan for the selected month.
+    measure 'Monthly Copper Production Variance %' = MAX(kpi_monthly_summary[copper_production_tonnes_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Unit cost deviation versus plan for the selected month.
+    measure 'Monthly Unit Cost Variance %' = MAX(kpi_monthly_summary[unit_cost_usd_per_tonne_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "02 Monthly Actual vs Plan"
+
+    /// Monthly revenue proxy used for management control and margin review.
+    measure 'Monthly Revenue Proxy' = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly EBITDA proxy for cost-and-margin monitoring.
+    measure 'Monthly EBITDA Proxy' = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Monthly operating cash flow proxy for headline liquidity monitoring.
+    measure 'Monthly Operating Cash Flow Proxy' = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly free cash flow proxy for margin and cash review.
+    measure 'Monthly Free Cash Flow Proxy' = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Count of critical KPI deviations in the selected context.
+    measure 'Monthly Critical Alerts' = SUM(kpi_monthly_summary[critical_alert_count])
+        formatString: #,##0
+        displayFolder: "01 Executive Overview"
+
+    /// Count of warning KPI deviations in the selected context.
+    measure 'Monthly Warning Alerts' = SUM(kpi_monthly_summary[warning_alert_count])
+        formatString: #,##0
+        displayFolder: "01 Executive Overview"
+
+    /// Number of monthly rows with at least one material deviation.
+    measure 'Monthly Primary Alert Count' = SUMX(kpi_monthly_summary, IF(kpi_monthly_summary[overall_alert_level] <> "on_track", 1, 0))
+        formatString: #,##0
+        displayFolder: "01 Executive Overview"
+
+    /// Monthly downtime hours used as management-control context.
+    measure 'Monthly Downtime Hours' = SUM(kpi_monthly_summary[downtime_hours_actual])
+        formatString: #,##0
+        displayFolder: "03 Process Performance"
+
+    /// Monthly unit cost for management control.
+    measure 'Monthly Unit Cost Actual' = DIVIDE(SUM(kpi_monthly_summary[operating_cost_usd_actual]), SUM(kpi_monthly_summary[throughput_tonnes_actual]))
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Monthly operating cost for margin review.
+    measure 'Monthly Operating Cost Actual' = SUM(kpi_monthly_summary[operating_cost_usd_actual])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Revenue proxy deviation versus plan.
+    measure 'Monthly Revenue Proxy Variance %' = MAX(kpi_monthly_summary[revenue_proxy_usd_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "04 Cost and Margin"
+
+    /// EBITDA proxy deviation versus plan.
+    measure 'Monthly EBITDA Proxy Variance %' = MAX(kpi_monthly_summary[ebitda_proxy_usd_variance_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "04 Cost and Margin"
+
+
+ref table mart_cost_center_summary
+    /// Cost variance for the selected cost center or cost-center grouping.
+    measure 'Cost Center Variance' = SUM(mart_cost_center_summary[cost_variance_usd])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "04 Cost and Margin"
+
+    /// Share of site-level positive cost variance attributable to the selected cost center.
+    measure 'Cost Center Margin Pressure Share %' = MAX(mart_cost_center_summary[cost_center_margin_pressure_share_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "04 Cost and Margin"
+
+
+ref table mart_monthly_by_site
+    /// Share of the monthly production shortfall attributable to the selected site.
+    measure 'Site Production Gap Contribution %' = MAX(mart_monthly_by_site[site_production_gap_share_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "01 Executive Overview"
+
+
+ref table mart_monthly_process_performance
+    /// Plant availability used to explain operating slippage.
+    measure 'Monthly Availability Actual' = MAX(mart_monthly_process_performance[availability_pct_actual])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "03 Process Performance"
+
+    /// Plant utilization used to explain operating slippage.
+    measure 'Monthly Utilization Actual' = MAX(mart_monthly_process_performance[utilization_pct_actual])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "03 Process Performance"
+
+
+ref table mart_process_driver_summary
+    /// Share of the site-level production gap attributable to the selected process area.
+    measure 'Process Area Production Gap Share %' = MAX(mart_process_driver_summary[process_area_production_gap_share_pct])
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "03 Process Performance"

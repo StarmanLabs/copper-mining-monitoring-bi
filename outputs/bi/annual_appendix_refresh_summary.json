@@ -1,0 +1,55 @@
+{
+  "refresh_timestamp_utc": "2026-04-22T05:17:08+00:00",
+  "refresh_status": "success",
+  "public_safe": true,
+  "work_core_scope": "annual_appendix",
+  "data_dir": "data/sample_data/annual_appendix",
+  "mapping_config_path": "config/mappings/public_demo_annual_appendix_identity_mapping.yaml",
+  "sources_used": [
+    {
+      "dataset_name": "annual_appendix_inputs",
+      "source_dataset_label": "public_demo_annual_driver_export",
+      "source_file": "annual_appendix_inputs.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "appendix_benchmark_metrics",
+      "source_dataset_label": "public_demo_appendix_benchmark_export",
+      "source_file": "appendix_benchmark_metrics.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "appendix_parameters",
+      "source_dataset_label": "public_demo_appendix_parameter_export",
+      "source_file": "appendix_parameters.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "appendix_scenarios",
+      "source_dataset_label": "public_demo_appendix_scenario_export",
+      "source_file": "appendix_scenarios.csv",
+      "status": "ready_for_validation"
+    }
+  ],
+  "mapping_summary": {
+    "datasets_mapped": 4,
+    "mapping_rows_ready_for_validation": 4,
+    "mapping_rows_with_issues": 0
+  },
+  "validation_summary": {
+    "checks_passed": 21,
+    "checks_failed": 0,
+    "datasets_with_failures": [],
+    "failed_check_examples": []
+  },
+  "output_files": {
+    "annual_appendix_dataset_catalog": "outputs/bi/annual_appendix_dataset_catalog.csv",
+    "annual_appendix_field_catalog": "outputs/bi/annual_appendix_field_catalog.csv",
+    "annual_appendix_inputs": "outputs/bi/annual_appendix_inputs.csv",
+    "appendix_parameters": "outputs/bi/appendix_parameters.csv",
+    "appendix_scenarios": "outputs/bi/appendix_scenarios.csv",
+    "appendix_benchmark_metrics": "outputs/bi/appendix_benchmark_metrics.csv",
+    "annual_appendix_source_mapping_audit": "outputs/bi/annual_appendix_source_mapping_audit.csv",
+    "annual_appendix_data_quality_report": "outputs/bi/annual_appendix_data_quality_report.csv"
+  }
+}

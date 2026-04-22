@@ -1,19 +1,155 @@
 # Power BI DAX Measures
 
-These measures are designed for the current semantic layer in `outputs/bi/`.
+This file is a curated starting set for the Power BI Starter Kit.
 
-The recommended report order is:
+The full generated inventory lives in:
 
-1. planning and performance
-2. throughput and production
-3. grade and recovery
-4. cost, revenue, and cash generation
-5. scenario planning and price exposure
-6. advanced valuation and downside
+- `outputs/bi/powerbi_measure_catalog.csv`
 
-## Executive planning measures
+The executable measure bundles live in:
+
+- `powerbi/template_scaffold/measures/`
+- `powerbi/pbip_tmdl_scaffold/CopperMiningMonitoring.SemanticModel/TMDLScripts/02_core_monthly_measures.tmdl`
+- `powerbi/pbip_tmdl_scaffold/CopperMiningMonitoring.SemanticModel/TMDLScripts/03_advanced_appendix_measures.tmdl`
+
+Use these measures first.
+
+## Executive Overview
 
 ```dax
+Monthly Throughput Actual =
+SUM(kpi_monthly_summary[throughput_tonnes_actual])
+
+Monthly Revenue Proxy Actual =
+SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+
+Monthly EBITDA Proxy Actual =
+SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+
+Monthly Operating Cash Flow Proxy Actual =
+SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+
+Monthly Free Cash Flow Proxy Actual =
+SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+
+Monthly Critical Alerts =
+SUM(kpi_monthly_summary[critical_alert_count])
+
+Monthly Warning Alerts =
+SUM(kpi_monthly_summary[warning_alert_count])
+
+Monthly Overall Alert Level =
+VAR CriticalAlerts = SUM(kpi_monthly_summary[critical_alert_count])
+VAR WarningAlerts = SUM(kpi_monthly_summary[warning_alert_count])
+RETURN
+    IF(CriticalAlerts > 0, "critical", IF(WarningAlerts > 0, "warning", "on_track"))
+
+Site Production Gap Contribution % =
+MAX(mart_monthly_by_site[site_production_gap_share_pct])
+```
+
+## Monthly Actual vs Plan
+
+```dax
+Monthly Plan Throughput =
+CALCULATE(
+    MAX(fact_monthly_actual_vs_plan[plan_value]),
+    fact_monthly_actual_vs_plan[metric] = "throughput_tonnes"
+)
+
+Monthly Actual Throughput =
+CALCULATE(
+    MAX(fact_monthly_actual_vs_plan[actual_value]),
+    fact_monthly_actual_vs_plan[metric] = "throughput_tonnes"
+)
+
+Monthly Throughput Variance =
+CALCULATE(
+    MAX(fact_monthly_actual_vs_plan[variance_value]),
+    fact_monthly_actual_vs_plan[metric] = "throughput_tonnes"
+)
+
+Monthly Head Grade Variance % =
+MAX(kpi_monthly_summary[head_grade_pct_variance_pct])
+
+Monthly Recovery Variance % =
+MAX(kpi_monthly_summary[recovery_pct_variance_pct])
+
+Monthly Copper Production Variance % =
+MAX(kpi_monthly_summary[copper_production_tonnes_variance_pct])
+
+Monthly Unit Cost Variance % =
+MAX(kpi_monthly_summary[unit_cost_usd_per_tonne_variance_pct])
+```
+
+## Process Performance
+
+```dax
+Monthly Head Grade Actual =
+CALCULATE(
+    MAX(fact_monthly_actual_vs_plan[actual_value]),
+    fact_monthly_actual_vs_plan[metric] = "head_grade_pct"
+)
+
+Monthly Recovery Actual =
+CALCULATE(
+    MAX(fact_monthly_actual_vs_plan[actual_value]),
+    fact_monthly_actual_vs_plan[metric] = "recovery_pct"
+)
+
+Monthly Availability Actual =
+MAX(mart_monthly_process_performance[availability_pct_actual])
+
+Monthly Utilization Actual =
+MAX(mart_monthly_process_performance[utilization_pct_actual])
+
+Monthly Downtime Hours =
+SUM(kpi_monthly_summary[downtime_hours_actual])
+
+Process Area Production Gap Share % =
+MAX(mart_process_driver_summary[process_area_production_gap_share_pct])
+```
+
+## Cost And Margin
+
+```dax
+Monthly Unit Cost Actual =
+DIVIDE(
+    SUM(kpi_monthly_summary[operating_cost_usd_actual]),
+    SUM(kpi_monthly_summary[throughput_tonnes_actual])
+)
+
+Monthly Operating Cost Actual =
+SUM(kpi_monthly_summary[operating_cost_usd_actual])
+
+Monthly Revenue Proxy Variance % =
+MAX(kpi_monthly_summary[revenue_proxy_usd_variance_pct])
+
+Monthly EBITDA Proxy Variance % =
+MAX(kpi_monthly_summary[ebitda_proxy_usd_variance_pct])
+
+Cost Center Variance =
+SUM(mart_cost_center_summary[cost_variance_usd])
+
+Cost Center Margin Pressure Share % =
+MAX(mart_cost_center_summary[cost_center_margin_pressure_share_pct])
+```
+
+## Advanced Scenario / Risk Appendix
+
+```dax
+Selected Scenario NPV =
+CALCULATE(
+    MAX(fact_scenario_kpis[value]),
+    fact_scenario_kpis[metric] = "scenario_npv_usd"
+)
+
+Selected Scenario IRR =
+CALCULATE(
+    MAX(fact_scenario_kpis[value]),
+    fact_scenario_kpis[metric] = "scenario_irr"
+)
+
 Scenario Revenue =
 CALCULATE(
     MAX(fact_scenario_kpis[value]),
@@ -24,173 +160,6 @@ Scenario EBITDA =
 CALCULATE(
     MAX(fact_scenario_kpis[value]),
     fact_scenario_kpis[metric] = "total_ebitda_usd"
-)
-
-Scenario Operating Cash Flow =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "total_operating_cash_flow_usd"
-)
-
-Scenario Free Cash Flow =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "total_free_cash_flow_usd"
-)
-
-Scenario Capex =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "total_capex_usd"
-)
-
-Scenario Avg Throughput =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "average_processed_tonnes"
-)
-
-Scenario Avg Copper Production =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "average_copper_fine_lb"
-)
-
-Scenario Avg Unit Opex =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "average_unit_opex_usd_per_tonne"
-)
-
-Scenario EBITDA Margin Proxy =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "ebitda_margin_proxy"
-)
-```
-
-## Annual KPI measures
-
-```dax
-Annual Processed Tonnes =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "expanded_tonnes"
-)
-
-Annual Copper Fine Production =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "copper_fine_lb"
-)
-
-Annual Head Grade % =
-CALCULATE(
-    AVERAGE(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "scenario_grade"
-) * 100
-
-Annual Recovery % =
-CALCULATE(
-    AVERAGE(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "scenario_recovery"
-) * 100
-
-Annual Net Price =
-CALCULATE(
-    AVERAGE(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "scenario_net_price_usd_per_lb"
-)
-
-Annual Unit Opex =
-CALCULATE(
-    AVERAGE(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "unit_opex_usd_per_tonne"
-)
-
-Annual Revenue =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "revenue_usd"
-)
-
-Annual EBITDA =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "ebitda_usd"
-)
-
-Annual Operating Cash Flow =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "operating_cash_flow_usd"
-)
-
-Annual Free Cash Flow =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "free_cash_flow_usd"
-)
-
-Annual Capex =
-CALCULATE(
-    SUM(fact_annual_metrics[value]),
-    fact_annual_metrics[metric] = "capex_usd"
-)
-```
-
-## Scenario planning and advanced valuation measures
-
-```dax
-Selected Scenario NPV =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "scenario_npv_usd"
-)
-
-Base Case NPV =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "scenario_npv_usd",
-    dim_scenario[scenario_id] = "base"
-)
-
-Committee Downside NPV =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "scenario_npv_usd",
-    dim_scenario[scenario_id] = "committee_downside"
-)
-
-NPV Delta vs Base =
-[Selected Scenario NPV] - [Base Case NPV]
-
-Selected Scenario IRR =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "scenario_irr"
-)
-
-Scenario Payback Year =
-CALCULATE(
-    MAX(fact_scenario_kpis[value]),
-    fact_scenario_kpis[metric] = "payback_year"
-)
-```
-
-## Monte Carlo and downside measures
-
-```dax
-Expected NPV =
-CALCULATE(
-    MAX(simulation_summary[value]),
-    simulation_summary[metric] = "expected_npv_usd"
-)
-
-Median NPV =
-CALCULATE(
-    MAX(simulation_summary[value]),
-    simulation_summary[metric] = "median_npv_usd"
 )
 
 Probability of Loss =
@@ -212,17 +181,21 @@ CALCULATE(
 )
 ```
 
-## Sensitivity measure
+## Formatting Guidance
 
-```dax
-Tornado Impact =
-MAX(fact_tornado_sensitivity[impact_vs_base_usd])
-```
+- Revenue, EBITDA, cash flow, capex, NPV, VaR, and CVaR:
+  Currency with millions or billions display units
+- Throughput and copper production:
+  Whole number with compact display units
+- Unit cost and net price:
+  Decimal with two decimals
+- Grade, recovery, and margin metrics:
+  Percentage with one or two decimals
 
-## Suggested formatting
+## Usage Note
 
-- Revenue, EBITDA, operating cash flow, free cash flow, capex, NPV, VaR, CVaR: Currency with millions or billions display units.
-- Throughput and copper production: Whole number with compact display units.
-- Unit opex and net price: Decimal with 2 decimals.
-- Head grade, recovery, and EBITDA margin proxy: Percentage with 1-2 decimals.
-- Payback year: Whole number.
+The monthly card measures assume a single selected month or a clearly constrained monthly page context.
+
+Because the public demo now includes multiple synthetic sites, prefer a single selected `dim_site[site_name]` and `dim_month[month_label]` on KPI-card pages unless the measure is explicitly additive.
+
+That is the intended operating mode of the starter kit.

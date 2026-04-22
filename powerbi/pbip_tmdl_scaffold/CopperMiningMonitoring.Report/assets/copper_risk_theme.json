@@ -1,0 +1,69 @@
+{
+  "name": "Copper Risk Portfolio",
+  "dataColors": [
+    "#E07A3F",
+    "#4F7C82",
+    "#7A9E46",
+    "#D4A373",
+    "#C75746",
+    "#8F6F5A",
+    "#3E5C76",
+    "#B08968"
+  ],
+  "background": "#F4EEE6",
+  "foreground": "#1F1A17",
+  "tableAccent": "#E07A3F",
+  "good": "#4F7C82",
+  "neutral": "#D4A373",
+  "bad": "#C75746",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontSize": 14,
+            "fontFamily": "Georgia",
+            "color": {
+              "solid": {
+                "color": "#1F1A17"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#4B4039"
+              }
+            },
+            "fontSize": 11
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFF9F3"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E3D8CC"
+              }
+            },
+            "radius": 10
+          }
+        ]
+      }
+    }
+  }
+}

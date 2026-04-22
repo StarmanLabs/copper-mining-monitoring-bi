@@ -1,0 +1,32 @@
+{
+  "artifact_strategy": "PBIP finalization package",
+  "profile_name": null,
+  "profile_path": null,
+  "appendix_enabled": true,
+  "parameters": [
+    {
+      "parameter_name": "ProjectRoot",
+      "purpose": "Absolute local path to the repository root.",
+      "default_value": "REPLACE_WITH_ABSOLUTE_REPO_PATH",
+      "change_when": "Always replace the placeholder before importing CSV queries in Desktop."
+    },
+    {
+      "parameter_name": "StarterKitOutputRoot",
+      "purpose": "Folder containing public-safe starter catalogs such as page and measure references.",
+      "default_output_dir": "outputs/bi",
+      "change_when": "Usually leave this on outputs/bi unless you intentionally relocate the public-safe starter assets."
+    },
+    {
+      "parameter_name": "MonthlyOutputRoot",
+      "purpose": "Folder containing monthly monitoring marts and shared monthly dimensions.",
+      "default_output_dir": "outputs/bi",
+      "change_when": "Change this after running a unified local profile if monthly outputs land outside outputs/bi."
+    },
+    {
+      "parameter_name": "AdvancedAppendixOutputRoot",
+      "purpose": "Folder containing secondary appendix tables for scenario, benchmark, and risk visuals.",
+      "default_output_dir": "outputs/bi",
+      "change_when": "Change this only if you want the secondary appendix page to point to local runner outputs."
+    }
+  ]
+}

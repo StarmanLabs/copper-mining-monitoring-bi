@@ -1,0 +1,136 @@
+{
+  "page_order": 1,
+  "page_name": "Executive Overview",
+  "page_group": "Monthly Monitoring",
+  "story_role": "Core Monthly Story",
+  "goal": "Highlight the monthly management story with headline KPIs, alert counts, and the largest adverse deviations.",
+  "primary_dataset": "kpi_monthly_summary.csv",
+  "shared_slicers": [
+    "dim_site[site_name]",
+    "dim_month[month_label]"
+  ],
+  "page_specific_slicers": [],
+  "required_tables": [
+    "kpi_monthly_summary",
+    "mart_monthly_by_site"
+  ],
+  "required_dimensions": [
+    "dim_month[month_label]",
+    "dim_site[site_name]"
+  ],
+  "required_measures": [
+    "Monthly Critical Alerts",
+    "Monthly EBITDA Proxy Actual",
+    "Monthly Free Cash Flow Proxy Actual",
+    "Monthly Operating Cash Flow Proxy Actual",
+    "Monthly Overall Alert Level",
+    "Monthly Revenue Proxy Actual",
+    "Monthly Throughput Actual",
+    "Monthly Warning Alerts",
+    "ebitda_proxy_usd_actual",
+    "overall_alert_level",
+    "primary_alert_metric",
+    "revenue_proxy_usd_actual",
+    "site_production_gap_share_pct",
+    "site_production_gap_tonnes",
+    "throughput_tonnes_actual"
+  ],
+  "desktop_completion_checks": [
+    "Confirm page title and narrative match the intended business question.",
+    "Confirm dim_site and dim_month slicers are present where the monthly core requires them.",
+    "Confirm visuals use the recommended marts, dimensions, and measures from the shell.",
+    "Confirm the page still reads as management control rather than exploratory appendix analysis."
+  ],
+  "visuals": [
+    {
+      "visual_order": 1,
+      "visual_title": "Monthly Throughput Actual",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Throughput Actual",
+      "business_question": "How much material did the plant process this month?"
+    },
+    {
+      "visual_order": 2,
+      "visual_title": "Monthly Revenue Proxy Actual",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Revenue Proxy Actual",
+      "business_question": "What is the current commercial scale implied by the monthly monitoring layer?"
+    },
+    {
+      "visual_order": 3,
+      "visual_title": "Monthly EBITDA Proxy Actual",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly EBITDA Proxy Actual",
+      "business_question": "What operating earnings proxy is management seeing this month?"
+    },
+    {
+      "visual_order": 4,
+      "visual_title": "Monthly Operating Cash Flow Proxy Actual",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Operating Cash Flow Proxy Actual",
+      "business_question": "What monthly liquidity proxy does the monitoring layer show?"
+    },
+    {
+      "visual_order": 5,
+      "visual_title": "Monthly Free Cash Flow Proxy Actual",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Free Cash Flow Proxy Actual",
+      "business_question": "How much cash is being retained after sustaining burden and working capital movement?"
+    },
+    {
+      "visual_order": 6,
+      "visual_title": "Monthly Critical Alerts",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Critical Alerts",
+      "business_question": "How many severe deviations require immediate management attention?"
+    },
+    {
+      "visual_order": 7,
+      "visual_title": "Monthly Warning Alerts",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Warning Alerts",
+      "business_question": "How many moderate deviations need follow-up this month?"
+    },
+    {
+      "visual_order": 8,
+      "visual_title": "Monthly Overall Alert Level",
+      "visual_type": "KPI Card",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+      "key_measures": "Monthly Overall Alert Level",
+      "business_question": "What concise status should management take away from the month?"
+    },
+    {
+      "visual_order": 9,
+      "visual_title": "Management Attention Matrix",
+      "visual_type": "Matrix",
+      "source_table": "kpi_monthly_summary",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "throughput_tonnes_actual; revenue_proxy_usd_actual; ebitda_proxy_usd_actual; primary_alert_metric; overall_alert_level",
+      "business_question": "Which monthly outcomes and alerts should management review first?"
+    },
+    {
+      "visual_order": 10,
+      "visual_title": "Site Contribution To Production Gap",
+      "visual_type": "Bar Chart",
+      "source_table": "mart_monthly_by_site",
+      "key_dimensions": "dim_site[site_name]",
+      "key_measures": "site_production_gap_tonnes; site_production_gap_share_pct",
+      "business_question": "Which site is driving the monthly production shortfall most heavily?"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Local Power BI state that should not be committed if this scaffold is converted into a live PBIP
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/unappliedChanges.json

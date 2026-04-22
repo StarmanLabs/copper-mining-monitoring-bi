@@ -24,8 +24,22 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -e .[dev]
 
-      - name: Build portfolio dashboard package
-        run: python scripts/build_portfolio_dashboard.py
+      - name: Build BI exports
+        run: python scripts/build_bi_dataset.py
+
+      - name: Build monthly monitoring dataset
+        run: python scripts/build_monthly_monitoring_dataset.py
+
+      - name: Run unified public demo profile
+        run: python scripts/run_local_profile.py --profile config/source_profiles/public_demo_profile.yaml --scope all
+
+      - name: Regenerate PBIP finalization scaffold
+        run: python scripts/build_powerbi_native_scaffold.py
+
+      - name: Verify generated artifacts are committed
+        run: |
+          git diff --exit-code -- outputs/bi powerbi/template_scaffold powerbi/pbip_tmdl_scaffold
+          test -z "$(git ls-files --others --exclude-standard -- outputs/bi powerbi/template_scaffold powerbi/pbip_tmdl_scaffold)"
 
       - name: Run tests
         run: python -m pytest -q

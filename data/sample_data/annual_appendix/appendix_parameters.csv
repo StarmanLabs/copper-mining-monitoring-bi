@@ -1,0 +1,22 @@
+parameter_name,value,unit,parameter_group,used_by,source_type,source_reference,note
+payable_rate,0.96,decimal,Commercial,valuation_model,canonical_parameter_table,appendix_parameters.csv,Simplified payable copper assumption for the public appendix.
+tc_rc_usd_per_lb,0.053,USD/lb,Commercial,valuation_model,canonical_parameter_table,appendix_parameters.csv,Simplified treatment and refining charge for the public appendix.
+mine_cost_usd_per_tonne,9.5,USD/t,Cost,valuation_model,canonical_parameter_table,appendix_parameters.csv,Mine-cost component kept for business-readable cost logic.
+plant_cost_usd_per_tonne,8.5,USD/t,Cost,valuation_model,canonical_parameter_table,appendix_parameters.csv,Plant-cost component kept for business-readable cost logic.
+g_and_a_cost_usd_per_tonne,4.0,USD/t,Cost,valuation_model,canonical_parameter_table,appendix_parameters.csv,G&A cost component kept for business-readable cost logic.
+income_tax_rate,0.295,decimal,Fiscal Proxy,valuation_model,canonical_parameter_table,appendix_parameters.csv,Used as a simplified cash-tax proxy.
+royalty_rate,0.03,decimal,Fiscal Proxy,valuation_model,canonical_parameter_table,appendix_parameters.csv,Tracked for transparency but not applied in the public cash-flow chain.
+special_levy_rate,0.01,decimal,Fiscal Proxy,valuation_model,canonical_parameter_table,appendix_parameters.csv,Tracked for transparency but not applied in the public cash-flow chain.
+wacc,0.1,decimal,Finance,valuation_model,canonical_parameter_table,appendix_parameters.csv,Planning discount-rate anchor for the public appendix.
+working_capital_ratio,0.07,decimal,Finance,valuation_model,canonical_parameter_table,appendix_parameters.csv,Revenue-linked working-capital proxy.
+uplift_pct,0.2,decimal,Ramp,valuation_model,canonical_parameter_table,appendix_parameters.csv,Stylized throughput uplift for the expansion case.
+logistic_midpoint,2.5,project_year,Ramp,valuation_model,canonical_parameter_table,appendix_parameters.csv,Timing midpoint for the stylized expansion ramp.
+logistic_steepness,2.0,decimal,Ramp,valuation_model,canonical_parameter_table,appendix_parameters.csv,Steepness for the stylized expansion ramp.
+initial_capex_year0_usd,280000000.0,USD,Capex,valuation_model,canonical_parameter_table,appendix_parameters.csv,Year-0 capex kept as a scalar because it sits before the annual series starts.
+iterations,10000,count,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Monte Carlo iteration count for the public appendix.
+random_seed,42,seed,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Seed used for reproducible public-safe builds.
+var_alpha,0.05,decimal,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Downside percentile used for VaR and CVaR.
+sigma_price_returns,0.21966815278260027,decimal,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Stylized price volatility input for the appendix simulation.
+grade_cv,0.18709655557296198,ratio,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Public-safe grade dispersion used by the appendix simulation.
+recovery_cv,0.02763931250886244,ratio,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Public-safe recovery dispersion used by the appendix simulation.
+price_path_autocorrelation,0.55,decimal,Simulation,simulation,canonical_parameter_table,appendix_parameters.csv,Stylized price-path persistence for the appendix simulation.

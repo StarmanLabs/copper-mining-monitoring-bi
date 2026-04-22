@@ -1,0 +1,106 @@
+{
+  "page_order": 3,
+  "page_name": "Process Performance",
+  "page_group": "Monthly Monitoring",
+  "story_role": "Core Monthly Story",
+  "goal": "Explain deviations using metallurgical and operating drivers such as grade, recovery, availability, and utilization.",
+  "primary_dataset": "mart_monthly_process_performance.csv",
+  "shared_slicers": [
+    "dim_site[site_name]",
+    "dim_month[month_label]"
+  ],
+  "page_specific_slicers": [
+    "dim_process_area[process_area]"
+  ],
+  "required_tables": [
+    "mart_monthly_process_performance",
+    "mart_process_driver_summary"
+  ],
+  "required_dimensions": [
+    "dim_month[month_label]",
+    "dim_process_area[process_area]"
+  ],
+  "required_measures": [
+    "availability_pct_actual",
+    "downtime_hours",
+    "downtime_share_pct",
+    "head_grade_pct_actual",
+    "negative_production_gap_tonnes",
+    "process_area_production_gap_share_pct",
+    "recovery_pct_actual",
+    "throughput_tonnes_actual",
+    "utilization_pct_actual"
+  ],
+  "desktop_completion_checks": [
+    "Confirm page title and narrative match the intended business question.",
+    "Confirm dim_site and dim_month slicers are present where the monthly core requires them.",
+    "Confirm visuals use the recommended marts, dimensions, and measures from the shell.",
+    "Confirm the page still reads as management control rather than exploratory appendix analysis.",
+    "Confirm process-area drill visuals use dim_process_area consistently."
+  ],
+  "visuals": [
+    {
+      "visual_order": 1,
+      "visual_title": "Head Grade Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_process_performance",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "head_grade_pct_actual",
+      "business_question": "What head grade trend is the plant receiving over the monitoring window?"
+    },
+    {
+      "visual_order": 2,
+      "visual_title": "Recovery Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_process_performance",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "recovery_pct_actual",
+      "business_question": "What recovery trend explains the monthly performance story?"
+    },
+    {
+      "visual_order": 3,
+      "visual_title": "Availability Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_process_performance",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "availability_pct_actual",
+      "business_question": "Is equipment availability constraining plant performance?"
+    },
+    {
+      "visual_order": 4,
+      "visual_title": "Utilization Trend",
+      "visual_type": "Line Chart",
+      "source_table": "mart_monthly_process_performance",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "utilization_pct_actual",
+      "business_question": "Is plant loading consistent with the expected monthly operating tempo?"
+    },
+    {
+      "visual_order": 5,
+      "visual_title": "Process Driver Table",
+      "visual_type": "Table",
+      "source_table": "mart_monthly_process_performance",
+      "key_dimensions": "dim_month[month_label]",
+      "key_measures": "throughput_tonnes_actual; head_grade_pct_actual; recovery_pct_actual; availability_pct_actual; utilization_pct_actual",
+      "business_question": "Which process drivers help explain the production result each month?"
+    },
+    {
+      "visual_order": 6,
+      "visual_title": "Downtime By Process Area",
+      "visual_type": "Stacked Column Chart",
+      "source_table": "mart_process_driver_summary",
+      "key_dimensions": "dim_process_area[process_area]; dim_month[month_label]",
+      "key_measures": "downtime_hours; downtime_share_pct",
+      "business_question": "Which process areas are concentrating monthly downtime?"
+    },
+    {
+      "visual_order": 7,
+      "visual_title": "Process Area Production Gap Share",
+      "visual_type": "Bar Chart",
+      "source_table": "mart_process_driver_summary",
+      "key_dimensions": "dim_process_area[process_area]",
+      "key_measures": "negative_production_gap_tonnes; process_area_production_gap_share_pct",
+      "business_question": "Which process areas explain the largest share of the production gap?"
+    }
+  ]
+}

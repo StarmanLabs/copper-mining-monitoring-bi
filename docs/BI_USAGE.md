@@ -1,157 +1,167 @@
 # BI Usage
 
-## Which files to import
+The repository's main BI handoff path is now the Power BI Starter Kit under `powerbi/`.
 
-The BI-ready layer lives in `outputs/bi/`.
+Use Tableau only as a secondary consumption path after the Power BI handoff is understood.
 
-This repository is now best read as a mining planning and performance analytics project, so the first BI pages should emphasize KPI monitoring and scenario planning. Valuation and Monte Carlo should appear later as advanced modules.
+## Start Here
 
-## Current interpretation rule
+Open these files in this order:
 
-The current exports are workbook-seeded planning outputs.
+1. `powerbi/START_HERE.md`
+2. `powerbi/TEMPLATE_LAYER.md`
+3. `powerbi/pbip_tmdl_scaffold/README.md`
+4. `powerbi/template_scaffold/README.md`
+5. `powerbi/RELATIONSHIP_BLUEPRINT.md`
+6. `powerbi/REPORT_BUILD_CHECKLIST.md`
+7. `powerbi/PAGE_BUILD_GUIDE.md`
+8. `powerbi/SLICER_AND_FILTER_GUIDE.md`
+9. `powerbi/VISUAL_BINDING_CATALOG.csv`
 
-That means:
+Then use these generated support files from `outputs/bi/`:
 
-- they are valid for planning-style dashboards, scenario comparison, and KPI storytelling
-- they are **not** live operating actuals
-- they should **not** be labeled as true `actual vs plan` until actual operating data is added
-
-Use labels such as:
-
-- reference case
-- planning case
-- operating stress case
-- market case
-- downside case
-
-## Power BI import order
-
-1. `dim_year.csv`
-2. `dim_metric.csv`
-3. `dim_scenario.csv`
-4. `fact_annual_metrics.csv`
-5. `fact_scenario_kpis.csv`
-6. `fact_simulation_distribution.csv`
-7. `fact_tornado_sensitivity.csv`
-8. `fact_heatmap_price_grade.csv`
-9. `simulation_summary.csv`
-10. `simulation_percentiles.csv`
-11. `benchmark_comparison.csv`
-
-Then use these repository assets:
-
-- `powerbi/copper_risk_theme.json`
-- `powerbi/DAX_MEASURES.md`
-- `powerbi/DASHBOARD_BLUEPRINT.md`
-- `powerbi/dashboard_visual_map.csv`
-
-## Tableau source split
-
-Use separate Tableau sources instead of one merged extract:
-
-- Executive planning source:
-  `fact_scenario_kpis.csv` + `dim_scenario.csv`
-- Annual KPI source:
-  `fact_annual_metrics.csv` + `dim_year.csv` + `dim_metric.csv` + `dim_scenario.csv`
-- Advanced downside source:
-  `fact_simulation_distribution.csv` + `simulation_summary.csv` + `simulation_percentiles.csv`
-- Sensitivity source:
-  `fact_tornado_sensitivity.csv`
-- Heatmap source:
-  `fact_heatmap_price_grade.csv`
-- Benchmark source:
-  `benchmark_comparison.csv`
-
-## What each table is for
-
-### Dimensions
-
-- `dim_year.csv`
-  Project year dimension with calendar year and project phase.
-- `dim_metric.csv`
-  Metric dictionary used by the annual KPI mart.
-- `dim_scenario.csv`
-  Scenario dictionary with names, categories, and stress multipliers.
-
-### Main marts
-
-- `fact_annual_metrics.csv`
-  Main annual mining KPI mart by `year`, `scenario_id`, and `metric`.
-  Use it for throughput, production, grade, recovery, unit cost, revenue, EBITDA, operating cash flow, capex, and free cash flow trends.
-- `fact_scenario_kpis.csv`
-  Executive scenario mart.
-  Use it for KPI cards and comparison views covering revenue, EBITDA, opex, operating cash flow, free cash flow, throughput, copper production, unit opex, margin proxy, and selected valuation outputs.
-
-### Advanced analytical marts
-
-- `fact_simulation_distribution.csv`
-  Monte Carlo NPV distribution with path summary fields.
-  Use it only on advanced valuation and downside pages.
-- `fact_tornado_sensitivity.csv`
-  Tornado sensitivity impacts versus the base case.
-- `fact_heatmap_price_grade.csv`
-  Price-grade stress grid.
-
-### Support tables
-
-- `simulation_summary.csv`
-  Summary statistics from the Monte Carlo engine.
-- `simulation_percentiles.csv`
-  Percentile cutoffs for the NPV distribution.
-- `benchmark_comparison.csv`
-  Audit-style benchmark table with explicit comparability flags, basis metadata, and reconciliation notes.
+- `dashboard_page_catalog.csv`
+- `powerbi_table_catalog.csv`
+- `powerbi_query_catalog.csv`
+- `powerbi_relationship_catalog.csv`
+- `powerbi_visual_binding_catalog.csv`
 - `powerbi_measure_catalog.csv`
-  Suggested Power BI measure inventory generated from the Python semantic layer.
+- `powerbi_sort_by_catalog.csv`
+- `powerbi_field_visibility_catalog.csv`
+- `monthly_kpi_dictionary.csv`
 
-## Recommended dashboard sequence
+The scaffold package under `powerbi/template_scaffold/` is still the fastest public-safe route from repository marts to a first working Power BI file.
 
-1. Executive Planning Overview
-   Use `fact_scenario_kpis.csv` and `dim_scenario.csv`.
-2. Throughput and Production
-   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
-3. Grade and Recovery
-   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
-4. Cost, Revenue and Cash Generation
-   Use `fact_annual_metrics.csv`, `dim_year.csv`, and `dim_metric.csv`.
-5. Scenario Planning and Price Exposure
-   Use `fact_scenario_kpis.csv`, `dim_scenario.csv`, and selected annual pricing metrics.
-6. Advanced Valuation and Downside Risk
-   Use `fact_simulation_distribution.csv`, `simulation_summary.csv`, `simulation_percentiles.csv`, `fact_tornado_sensitivity.csv`, and `fact_heatmap_price_grade.csv`.
-7. Benchmark and Method Transparency
-   Use `benchmark_comparison.csv`.
+The PBIP/TMDL-oriented scaffold under `powerbi/pbip_tmdl_scaffold/` is now the closer-to-native route when the user wants a more source-control-friendly continuation path.
 
-## Power BI recommendation
+The monthly semantic model now uses shared dimensions so the first four pages can be filtered through one site slicer and one month slicer instead of page-local fields.
 
-Use a star-style model:
+For local/private adaptation, keep Power BI connected to canonical monthly or canonical annual appendix outputs only.
 
-- `dim_year` -> `fact_annual_metrics`
-- `dim_metric` -> `fact_annual_metrics`
-- `dim_scenario` -> `fact_annual_metrics`
-- `dim_scenario` -> `fact_scenario_kpis`
+Do not point Power BI directly at private raw exports.
 
-Keep the simulation, tornado, heatmap, and benchmark tables disconnected unless you have a specific modeling reason to connect them. Do not force everything into one denormalized table.
+## Interpretation Boundary
 
-## Tableau recommendation
+The repository contains two BI-facing families:
 
-Use separate data sources by page or visual family:
+- a core monthly actual-vs-plan monitoring layer
+- a secondary appendix with scenario, valuation, benchmark, and downside outputs
 
-- Planning and KPI trends: `fact_annual_metrics.csv`
-- Executive scenario comparison: `fact_scenario_kpis.csv`
-- Advanced downside pages: `fact_simulation_distribution.csv`
-- Sensitivity pages: `fact_tornado_sensitivity.csv`
-- Heatmap pages: `fact_heatmap_price_grade.csv`
-- Benchmark page: `benchmark_comparison.csv`
+The appendix now runs from canonical annual appendix tables by default, while the workbook remains only a legacy adapter or benchmark source.
 
-This is simpler and safer than trying to stitch all facts together into one giant source.
+The correct public claim is:
 
-## Next extension for a fuller mining BI platform
+- sample monthly actual-vs-plan monitoring: yes
+- BI-ready handoff package: yes
+- live mine-system reporting: no
 
-If you later add true operating actuals, the clean next step is:
+## Power BI Consumption Rule
 
-- keep the current planning/scenario marts intact
-- add actual period tables separately
-- build explicit variance views on top of plan and actuals
+If you are starting from zero, use:
 
-Do not overwrite the current reference-case outputs and call them actuals.
+- `powerbi/template_scaffold/parameters/ProjectRoot.pq`
+- `powerbi/template_scaffold/queries/`
+- `powerbi/template_scaffold/measures/`
+- `powerbi/template_scaffold/report/report_manifest.json`
 
-For the detailed Power BI build sequence, use `powerbi/DASHBOARD_BLUEPRINT.md`.
+If you want the more native-feeling path, use:
+
+- `powerbi/pbip_tmdl_scaffold/CopperMiningMonitoring.SemanticModel/PowerQuery/`
+- `powerbi/pbip_tmdl_scaffold/CopperMiningMonitoring.SemanticModel/TMDLScripts/`
+- `powerbi/pbip_tmdl_scaffold/CopperMiningMonitoring.Report/report_shell_manifest.json`
+
+Build the report around the monthly pages first:
+
+1. Executive Overview
+2. Monthly Actual vs Plan
+3. Process Performance
+4. Cost and Margin
+
+Only then add:
+
+5. Advanced Scenario / Risk Appendix
+
+That is the intended business-facing narrative.
+
+## Core Monthly Table Roles
+
+- `dim_site.csv`
+  Shared site dimension for the monthly monitoring model.
+- `dim_month.csv`
+  Shared month dimension for consistent monthly filtering and sort behavior.
+- `dim_process_area.csv`
+  Optional shared dimension for process-driver drill visuals.
+- `dim_cost_center.csv`
+  Optional shared dimension for cost-pressure drill visuals.
+- `kpi_monthly_summary.csv`
+  Wide monthly monitoring table for cards, alerts, and concise management tables.
+- `fact_monthly_actual_vs_plan.csv`
+  Long fact table for explicit KPI variance review.
+- `mart_monthly_executive_overview.csv`
+  Narrow executive mart for headline monthly review.
+- `mart_monthly_process_performance.csv`
+  Site-level process mart for grade, recovery, availability, utilization, downtime, and ore-source context.
+- `mart_monthly_cost_margin.csv`
+  Cost, revenue proxy, EBITDA proxy, cash proxy, and top cost-center context mart.
+- `mart_monthly_by_site.csv`
+  Site contribution mart for production-gap concentration and cost-pressure concentration.
+- `mart_process_driver_summary.csv`
+  Process-area drill mart for downtime, ore mix, stockpile context, and production-gap share.
+- `mart_cost_center_summary.csv`
+  Cost-center drill mart for cost variance and margin-pressure share.
+- `dim_monthly_metric.csv`
+  KPI dimension for the monthly variance fact table.
+- `monthly_kpi_dictionary.csv`
+  Business dictionary for monthly KPI meaning, units, proxy status, and page usage.
+
+Use `dim_site` and `dim_month` as the default slicer layer for the monthly model.
+
+## Appendix Table Roles
+
+- `annual_appendix_dataset_catalog.csv`
+  Read-only dataset contract for the canonical annual appendix path.
+- `annual_appendix_field_catalog.csv`
+  Read-only field dictionary for the canonical annual appendix path.
+- `fact_scenario_kpis.csv`
+  Deterministic scenario KPI summary.
+- `appendix_kpi_catalog.csv`
+  Read-only KPI dictionary for the deterministic appendix metrics.
+- `fact_annual_metrics.csv`
+  Annual trend context for the appendix.
+- `simulation_summary.csv`
+  Summary risk metrics such as Probability of Loss, VaR, and CVaR.
+- `fact_simulation_distribution.csv`
+  Monte Carlo distribution rows for the histogram.
+- `fact_tornado_sensitivity.csv`
+  Sensitivity ranking table.
+- `fact_heatmap_price_grade.csv`
+  Joint stress-test grid.
+- `benchmark_comparison.csv`
+  Benchmark transparency table.
+- `benchmark_scope_catalog.csv`
+  Read-only explanation of which benchmark comparisons are direct and which are reference-only.
+- `advanced_appendix_assumption_catalog.csv`
+  Read-only appendix assumption register.
+- `advanced_appendix_output_catalog.csv`
+  Read-only guide to when each appendix output should be used.
+
+## Tableau Note
+
+Tableau remains viable, but it should consume the same subject-area marts rather than one merged extract.
+
+If you adapt the repo for Tableau:
+
+- keep the monthly subject marts separate
+- keep the appendix tables separate
+- preserve the same report narrative order as the Power BI starter kit
+
+## Private Adaptation Path
+
+For real work adaptation later:
+
+1. replace the sample monthly inputs with governed private sources
+2. preserve the canonical monthly schemas
+3. preserve the page structure, KPI semantics, and detail-grain drill marts where private data supports them
+4. map annual private appendix sources into canonical annual appendix tables before rebuilding the appendix
+5. keep `.pbix`, `.pbit`, `.twb`, and `.twbx` files in ignored local folders only
+6. tighten refresh controls and validation around the real source systems

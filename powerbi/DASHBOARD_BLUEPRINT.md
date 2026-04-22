@@ -1,176 +1,60 @@
 # Power BI Dashboard Blueprint
 
-## Model setup
+This file is the high-level blueprint for the Power BI Starter Kit.
 
-Use these relationships:
+Use it as the short narrative overview.
 
-- `dim_year[year]` -> `fact_annual_metrics[year]`
-- `dim_metric[metric]` -> `fact_annual_metrics[metric]`
-- `dim_scenario[scenario_id]` -> `fact_annual_metrics[scenario_id]`
-- `dim_scenario[scenario_id]` -> `fact_scenario_kpis[scenario_id]`
+For the practical build sequence, use:
 
-Keep these tables disconnected unless you need custom modeling:
+- `powerbi/START_HERE.md`
+- `powerbi/RELATIONSHIP_BLUEPRINT.md`
+- `powerbi/REPORT_BUILD_CHECKLIST.md`
+- `powerbi/PAGE_BUILD_GUIDE.md`
+- `powerbi/SLICER_AND_FILTER_GUIDE.md`
+- `powerbi/VISUAL_BINDING_CATALOG.csv`
 
-- `fact_simulation_distribution`
-- `fact_tornado_sensitivity`
-- `fact_heatmap_price_grade`
-- `simulation_summary`
-- `simulation_percentiles`
-- `benchmark_comparison`
+## Report Story
 
-## Global slicers
+The report should read in this order:
 
-Use these slicers consistently:
+1. Executive Overview
+2. Monthly Actual vs Plan
+3. Process Performance
+4. Cost and Margin
+5. Advanced Scenario / Risk Appendix
 
-- `dim_scenario[scenario_name]`
-- `dim_scenario[scenario_category]`
+Pages 1 to 4 are the core product story.
 
-Use a default page filter that excludes `committee_downside` only when you want cleaner executive pages. Keep it visible on the advanced-risk page.
+Page 5 is valuable, but it remains clearly secondary.
 
-## Page 1: Executive Planning Overview
+## Modeling Rule
 
-Goal: show the planning case in business-facing mining language before introducing advanced valuation outputs.
+Keep the monthly story simple:
 
-### Visuals
+- connect `dim_site` and `dim_month` to the monthly marts and the monthly fact
+- connect `dim_monthly_metric` to `fact_monthly_actual_vs_plan`
+- connect `dim_process_area` and `dim_cost_center` only to their detail marts when those pages need reusable drill filters
+- avoid mart-to-mart joins
+- keep the appendix tables disconnected unless a specific appendix visual needs a dimension relationship
 
-1. KPI card: `Scenario Revenue`
-2. KPI card: `Scenario EBITDA`
-3. KPI card: `Scenario Operating Cash Flow`
-4. KPI card: `Scenario Avg Throughput`
-5. KPI card: `Scenario Avg Unit Opex`
-6. KPI card: `Scenario EBITDA Margin Proxy`
-7. Matrix
-   Rows: `dim_scenario[scenario_name]`
-   Values: `Scenario Revenue`, `Scenario EBITDA`, `Scenario Avg Throughput`, `Scenario Avg Unit Opex`
-8. Bar chart
-   Axis: `dim_scenario[scenario_name]`
-   Value: `Scenario Revenue`
+## Consumption Rule
 
-## Page 2: Throughput and Production
+Use the exports as a handoff package, not as raw ingredients that require users to reverse-engineer the intended report.
 
-Goal: give the dashboard a strong mining-performance core.
+That means the starter kit should make these decisions explicit:
 
-### Visuals
+- which tables to import first
+- which relationships to create
+- which measures to create first
+- which pages to build in order
+- which visuals belong to which marts
 
-1. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Processed Tonnes`
-2. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Copper Fine Production`
-3. Column chart
-   X: `dim_year[phase]`
-   Y: `Annual Processed Tonnes`
-4. Small KPI cards
-   `Scenario Avg Throughput`
-   `Scenario Avg Copper Production`
+## Appendix Rule
 
-## Page 3: Grade and Recovery
+Scenario, valuation, Monte Carlo, tornado, heatmap, and benchmark materials belong in the appendix.
 
-Goal: show ore quality and metallurgical performance in a clean operating view.
+They should:
 
-### Visuals
-
-1. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Head Grade %`
-2. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Recovery %`
-3. Combined table or small matrix
-   Columns: `year`, `Annual Head Grade %`, `Annual Recovery %`
-4. KPI card
-   `Scenario EBITDA Margin Proxy`
-
-## Page 4: Cost, Revenue and Cash Generation
-
-Goal: connect operations to management control, cost review, and business performance.
-
-### Visuals
-
-1. Line and clustered column chart
-   X: `dim_year[year]`
-   Columns: `Annual Revenue`
-   Line: `Annual EBITDA`
-2. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Unit Opex`
-3. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Operating Cash Flow`
-4. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Free Cash Flow`
-5. Column chart
-   X: `dim_year[year]`
-   Y: `Annual Capex`
-
-## Page 5: Scenario Planning and Price Exposure
-
-Goal: compare planning cases, price exposure, and operating trade-offs.
-
-### Visuals
-
-1. Scatter chart
-   X: `Scenario Capex`
-   Y: `Selected Scenario NPV`
-   Size: `Scenario Revenue`
-   Legend: `dim_scenario[scenario_category]`
-   Details: `dim_scenario[scenario_name]`
-2. Bar chart
-   Axis: `dim_scenario[scenario_name]`
-   Value: `NPV Delta vs Base`
-3. Table
-   Columns: `dim_scenario[scenario_name]`, `Scenario Revenue`, `Scenario EBITDA`, `Scenario Avg Throughput`, `Scenario Avg Unit Opex`, `Selected Scenario NPV`
-4. Line chart
-   X: `dim_year[year]`
-   Y: `Annual Net Price`
-
-## Page 6: Advanced Valuation and Downside Risk
-
-Goal: keep the technical upside of the repository, but as a later analytical layer.
-
-### Visuals
-
-1. KPI card: `Selected Scenario NPV`
-2. KPI card: `Selected Scenario IRR`
-3. KPI card: `Probability of Loss`
-4. KPI card: `VaR 5%`
-5. KPI card: `CVaR 5%`
-6. Histogram
-   Source: `fact_simulation_distribution[npv_usd]`
-   Use Power BI bins on `npv_usd`
-7. Table
-   Source: `simulation_percentiles`
-   Show P1, P5, P50, P95, P99
-8. Diverging bar chart
-   Source: `fact_tornado_sensitivity`
-   Axis: `driver_label`
-   Value: `impact_vs_base_usd`
-9. Matrix heatmap
-   Source: `fact_heatmap_price_grade`
-   Rows: `price_factor`
-   Columns: `grade_factor`
-   Values: `npv_usd`
-
-## Page 7: Benchmark and Method Transparency
-
-Goal: show technical honesty and comparability discipline.
-
-### Visuals
-
-1. Table
-   Source: `benchmark_comparison`
-   Columns: `metric`, `benchmark_value`, `python_value`, `reconciliation_status`, `gap`, `pct_gap`
-2. Text box
-   Explain that only directly comparable metrics should be gap-read, and that deterministic comparable rows can still carry a material residual gap.
-
-This page matters for credibility. It shows the project is serious enough to separate dashboard storytelling from audit logic.
-
-## Layout principles
-
-- Page 1 should feel executive and business-facing.
-- Pages 2 to 5 should feel operational and planning-oriented.
-- Page 6 should feel clearly advanced, not like the whole repo depends on it.
-- Use the same scenario slicer behavior across pages.
-- Keep the benchmark page last.
+- enrich the report
+- not lead the report
+- not displace the monthly monitoring story

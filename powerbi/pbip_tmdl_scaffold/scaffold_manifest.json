@@ -1,0 +1,35 @@
+{
+  "artifact_name": "Copper Mining Monitoring PBIP Finalization Package",
+  "artifact_type": "PBIP finalization package",
+  "artifact_strategy": "PBIP finalization package",
+  "public_safe": true,
+  "profile_name": null,
+  "profile_path": null,
+  "appendix_enabled": true,
+  "main_story": "Monthly actual-vs-plan monitoring remains the semantic center of the model.",
+  "secondary_appendix": "Scenario, valuation, benchmark, and risk outputs remain a secondary appendix.",
+  "native_like_components": [
+    "PBIP-style SemanticModel and Report folders",
+    "Power Query parameter roots aligned to starter-kit, monthly, and advanced-appendix output families",
+    "TMDL apply scripts for model ordering, measures, relationships, sort-by, and hidden technical fields",
+    "Source-control-friendly manifests and page shells"
+  ],
+  "manual_components": [
+    "A real Desktop-saved PBIP still needs to be created or saved from Power BI Desktop",
+    "Power Query assets still need to be pasted or imported in Desktop",
+    "TMDL scripts still need to be applied from TMDL view",
+    "Report canvas visuals still need to be laid out manually from the page shells"
+  ],
+  "default_output_roots": {
+    "starter_kit": "outputs/bi",
+    "monthly": "outputs/bi",
+    "advanced_appendix": "outputs/bi"
+  },
+  "query_count": 27,
+  "table_count": 27,
+  "relationship_count": 23,
+  "measure_count": 77,
+  "sort_by_rule_count": 5,
+  "hidden_field_rule_count": 84,
+  "page_count": 5
+}

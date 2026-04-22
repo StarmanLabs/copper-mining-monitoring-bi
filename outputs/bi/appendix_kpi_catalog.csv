@@ -1,0 +1,19 @@
+metric,display_name,unit,dashboard_page,appendix_submodule,secondary_role_note
+total_revenue_usd,Total Revenue,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+total_ebitda_usd,Total EBITDA,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+total_opex_usd,Total Opex,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+total_operating_cash_flow_usd,Total Operating Cash Flow,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+total_capex_usd,Total Capex,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+total_free_cash_flow_usd,Total Free Cash Flow,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_processed_tonnes,Average Throughput,tonnes,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_copper_fine_lb,Average Copper Fine Production,lb,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_unit_opex_usd_per_tonne,Average Unit Opex,USD/t,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_net_price_usd_per_lb,Average Net Price,USD/lb,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_head_grade,Average Head Grade,decimal,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+average_recovery,Average Recovery,decimal,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+ebitda_margin_proxy,EBITDA Margin Proxy,decimal,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+scenario_npv_usd,Scenario NPV,USD,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+scenario_irr,Scenario IRR,decimal,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+peak_revenue_year,Peak Revenue Year,year,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+peak_fcf_year,Peak FCF Year,year,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.
+payback_year,Payback Year,year,Advanced Scenario / Risk Appendix,Deterministic Scenario Comparison,Scenario KPI definitions support the appendix and should not be mistaken for monthly operating KPIs.

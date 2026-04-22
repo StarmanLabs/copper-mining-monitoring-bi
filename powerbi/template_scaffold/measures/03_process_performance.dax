@@ -1,0 +1,20 @@
+-- Process Performance Measures
+
+-- Table: fact_monthly_actual_vs_plan
+Monthly Head Grade Actual = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Recovery Actual = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+
+-- Table: kpi_monthly_summary
+Monthly Downtime Hours = SUM(kpi_monthly_summary[downtime_hours_actual])
+
+
+-- Table: mart_monthly_process_performance
+Monthly Availability Actual = MAX(mart_monthly_process_performance[availability_pct_actual])
+
+Monthly Utilization Actual = MAX(mart_monthly_process_performance[utilization_pct_actual])
+
+
+-- Table: mart_process_driver_summary
+Process Area Production Gap Share % = MAX(mart_process_driver_summary[process_area_production_gap_share_pct])

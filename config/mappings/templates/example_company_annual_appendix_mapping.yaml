@@ -1,0 +1,71 @@
+version: 1
+mapping_name: "example_company_annual_appendix_mapping"
+description: "Public-safe example showing how private annual planning, budget, and market exports can be mapped into the repository's canonical appendix schemas."
+
+datasets:
+  annual_appendix_inputs:
+    source_file: "annual_plan_driver_export.csv"
+    source_dataset_label: "annual_plan_driver_export"
+    normalize_year: true
+    mapping_note: "Example mapping from annual planning and commercial deck rows into the canonical appendix driver table."
+    column_map:
+      project_year: year
+      calendar_year_label: calendar_year
+      copper_price_budget_usdlb: copper_price_usd_per_lb
+      processed_tonnes_base: base_processed_tonnes
+      head_grade_decimal: base_head_grade
+      recovery_decimal: base_recovery
+      base_unit_cost_usdpt: base_unit_cost_usd_per_tonne
+      expansion_unit_cost_usdpt: expansion_unit_cost_usd_per_tonne
+      initial_capex_year_usd: initial_capex_usd
+      sustaining_capex_year_usd: sustaining_capex_usd
+
+  appendix_parameters:
+    source_file: "annual_appendix_parameters_export.csv"
+    source_dataset_label: "annual_appendix_parameters_export"
+    normalize_year: false
+    mapping_note: "Example mapping from a parameter register that already carries business-readable appendix assumptions."
+    column_map:
+      parameter_code: parameter_name
+      parameter_value: value
+      parameter_unit: unit
+      parameter_family: parameter_group
+      used_by_module: used_by
+      source_type_label: source_type
+      source_reference_label: source_reference
+      assumption_note: note
+
+  appendix_scenarios:
+    source_file: "annual_appendix_scenarios_export.csv"
+    source_dataset_label: "annual_appendix_scenario_export"
+    normalize_year: false
+    mapping_note: "Example mapping from an annual scenario register used for deterministic strategy cases."
+    column_map:
+      scenario_code: scenario_id
+      scenario_label: scenario_name
+      scenario_bucket: category
+      scenario_description: description
+      price_multiplier: price_factor
+      grade_multiplier: grade_factor
+      recovery_multiplier: recovery_factor
+      throughput_multiplier: throughput_factor
+      opex_multiplier: opex_factor
+      capex_multiplier: capex_factor
+      wacc_shift_basis_points: wacc_shift_bps
+
+  appendix_benchmark_metrics:
+    source_file: "annual_appendix_benchmark_export.csv"
+    source_dataset_label: "annual_appendix_benchmark_export"
+    normalize_year: false
+    mapping_note: "Example mapping from a benchmark or reconciliation table used only for appendix transparency."
+    column_map:
+      metric_code: metric
+      benchmark_value: value
+      benchmark_unit: unit
+      benchmark_currency: currency
+      valuation_basis_label: valuation_basis
+      timing_basis_label: timing_basis
+      benchmark_source_label: benchmark_source
+      benchmark_note: note
+    defaults:
+      benchmark_source: "private_local_benchmark_reference"

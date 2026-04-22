@@ -1,0 +1,157 @@
+{
+  "page_order": 5,
+  "page_name": "Advanced Scenario / Risk Appendix",
+  "page_group": "Advanced Appendix",
+  "story_role": "Secondary Appendix",
+  "goal": "Keep scenario comparison, benchmark transparency, Monte Carlo, tornado, and heatmap analysis as a clearly secondary appendix.",
+  "primary_dataset": "fact_scenario_kpis.csv; simulation_summary.csv",
+  "shared_slicers": [],
+  "page_specific_slicers": [],
+  "required_tables": [
+    "benchmark_comparison",
+    "dim_scenario + fact_scenario_kpis",
+    "fact_heatmap_price_grade",
+    "fact_scenario_kpis",
+    "fact_simulation_distribution",
+    "fact_tornado_sensitivity",
+    "simulation_percentiles",
+    "simulation_summary"
+  ],
+  "required_dimensions": [
+    "dim_monthly_metric[metric]",
+    "dim_scenario[scenario_name]",
+    "direction",
+    "driver_label",
+    "grade_factor",
+    "none",
+    "npv_usd bin",
+    "percentile",
+    "price_factor"
+  ],
+  "required_measures": [
+    "CVaR 5%",
+    "Probability of Loss",
+    "Scenario Avg Throughput",
+    "Scenario Avg Unit Opex",
+    "Scenario EBITDA",
+    "Scenario Revenue",
+    "Selected Scenario IRR",
+    "Selected Scenario NPV",
+    "VaR 5%",
+    "benchmark_value",
+    "gap",
+    "impact_vs_base_usd",
+    "npv_usd",
+    "pct_gap",
+    "python_value",
+    "reconciliation_status",
+    "row count"
+  ],
+  "desktop_completion_checks": [
+    "Confirm page title and narrative match the intended business question.",
+    "Confirm dim_site and dim_month slicers are present where the monthly core requires them.",
+    "Confirm visuals use the recommended marts, dimensions, and measures from the shell.",
+    "Keep the appendix page secondary and do not move it ahead of the monthly pages."
+  ],
+  "visuals": [
+    {
+      "visual_order": 1,
+      "visual_title": "Selected Scenario NPV",
+      "visual_type": "KPI Card",
+      "source_table": "fact_scenario_kpis",
+      "key_dimensions": "dim_scenario[scenario_name]",
+      "key_measures": "Selected Scenario NPV",
+      "business_question": "What valuation is implied by the selected deterministic scenario?"
+    },
+    {
+      "visual_order": 2,
+      "visual_title": "Selected Scenario IRR",
+      "visual_type": "KPI Card",
+      "source_table": "fact_scenario_kpis",
+      "key_dimensions": "dim_scenario[scenario_name]",
+      "key_measures": "Selected Scenario IRR",
+      "business_question": "What return metric accompanies that scenario valuation?"
+    },
+    {
+      "visual_order": 3,
+      "visual_title": "Scenario Summary Matrix",
+      "visual_type": "Matrix",
+      "source_table": "dim_scenario + fact_scenario_kpis",
+      "key_dimensions": "dim_scenario[scenario_name]",
+      "key_measures": "Scenario Revenue; Scenario EBITDA; Scenario Avg Throughput; Scenario Avg Unit Opex",
+      "business_question": "How do the main deterministic scenarios compare side by side?"
+    },
+    {
+      "visual_order": 4,
+      "visual_title": "Probability of Loss",
+      "visual_type": "KPI Card",
+      "source_table": "simulation_summary",
+      "key_dimensions": "none",
+      "key_measures": "Probability of Loss",
+      "business_question": "How much downside probability does the simulation imply?"
+    },
+    {
+      "visual_order": 5,
+      "visual_title": "VaR 5%",
+      "visual_type": "KPI Card",
+      "source_table": "simulation_summary",
+      "key_dimensions": "none",
+      "key_measures": "VaR 5%",
+      "business_question": "Where is the left-tail threshold under downside stress?"
+    },
+    {
+      "visual_order": 6,
+      "visual_title": "CVaR 5%",
+      "visual_type": "KPI Card",
+      "source_table": "simulation_summary",
+      "key_dimensions": "none",
+      "key_measures": "CVaR 5%",
+      "business_question": "How severe are the average bad-tail outcomes beyond VaR?"
+    },
+    {
+      "visual_order": 7,
+      "visual_title": "Distribution Histogram",
+      "visual_type": "Histogram",
+      "source_table": "fact_simulation_distribution",
+      "key_dimensions": "npv_usd bin",
+      "key_measures": "row count",
+      "business_question": "How wide is the NPV distribution and how heavy is the left tail?"
+    },
+    {
+      "visual_order": 8,
+      "visual_title": "Percentile Table",
+      "visual_type": "Table",
+      "source_table": "simulation_percentiles",
+      "key_dimensions": "percentile",
+      "key_measures": "npv_usd",
+      "business_question": "Which percentile cutoffs frame the downside and upside range?"
+    },
+    {
+      "visual_order": 9,
+      "visual_title": "Tornado Chart",
+      "visual_type": "Diverging Bar Chart",
+      "source_table": "fact_tornado_sensitivity",
+      "key_dimensions": "driver_label; direction",
+      "key_measures": "impact_vs_base_usd",
+      "business_question": "Which drivers matter most for valuation sensitivity?"
+    },
+    {
+      "visual_order": 10,
+      "visual_title": "Price Grade Heatmap",
+      "visual_type": "Matrix Heatmap",
+      "source_table": "fact_heatmap_price_grade",
+      "key_dimensions": "price_factor; grade_factor",
+      "key_measures": "npv_usd",
+      "business_question": "Where does valuation break under joint price and grade stress?"
+    },
+    {
+      "visual_order": 11,
+      "visual_title": "Workbook vs Python Benchmark",
+      "visual_type": "Table",
+      "source_table": "benchmark_comparison",
+      "key_dimensions": "dim_monthly_metric[metric]",
+      "key_measures": "benchmark_value; python_value; reconciliation_status; gap; pct_gap",
+      "business_question": "How close is the Python layer to the benchmark workbook where comparison is valid?"
+    }
+  ]
+}

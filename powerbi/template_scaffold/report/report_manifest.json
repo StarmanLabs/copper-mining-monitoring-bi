@@ -1,0 +1,428 @@
+{
+  "pages": [
+    {
+      "page_order": 1,
+      "page_name": "Executive Overview",
+      "page_group": "Monthly Monitoring",
+      "goal": "Highlight the monthly management story with headline KPIs, alert counts, and the largest adverse deviations.",
+      "primary_dataset": "kpi_monthly_summary.csv",
+      "story_role": "Core Monthly Story",
+      "visual_count": 10,
+      "visuals": [
+        {
+          "visual_order": 1,
+          "visual_title": "Monthly Throughput Actual",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Throughput Actual",
+          "business_question": "How much material did the plant process this month?"
+        },
+        {
+          "visual_order": 2,
+          "visual_title": "Monthly Revenue Proxy Actual",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Revenue Proxy Actual",
+          "business_question": "What is the current commercial scale implied by the monthly monitoring layer?"
+        },
+        {
+          "visual_order": 3,
+          "visual_title": "Monthly EBITDA Proxy Actual",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly EBITDA Proxy Actual",
+          "business_question": "What operating earnings proxy is management seeing this month?"
+        },
+        {
+          "visual_order": 4,
+          "visual_title": "Monthly Operating Cash Flow Proxy Actual",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Operating Cash Flow Proxy Actual",
+          "business_question": "What monthly liquidity proxy does the monitoring layer show?"
+        },
+        {
+          "visual_order": 5,
+          "visual_title": "Monthly Free Cash Flow Proxy Actual",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Free Cash Flow Proxy Actual",
+          "business_question": "How much cash is being retained after sustaining burden and working capital movement?"
+        },
+        {
+          "visual_order": 6,
+          "visual_title": "Monthly Critical Alerts",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Critical Alerts",
+          "business_question": "How many severe deviations require immediate management attention?"
+        },
+        {
+          "visual_order": 7,
+          "visual_title": "Monthly Warning Alerts",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Warning Alerts",
+          "business_question": "How many moderate deviations need follow-up this month?"
+        },
+        {
+          "visual_order": 8,
+          "visual_title": "Monthly Overall Alert Level",
+          "visual_type": "KPI Card",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_site[site_name]; dim_month[month_label]",
+          "key_measures": "Monthly Overall Alert Level",
+          "business_question": "What concise status should management take away from the month?"
+        },
+        {
+          "visual_order": 9,
+          "visual_title": "Management Attention Matrix",
+          "visual_type": "Matrix",
+          "source_table": "kpi_monthly_summary",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "throughput_tonnes_actual; revenue_proxy_usd_actual; ebitda_proxy_usd_actual; primary_alert_metric; overall_alert_level",
+          "business_question": "Which monthly outcomes and alerts should management review first?"
+        },
+        {
+          "visual_order": 10,
+          "visual_title": "Site Contribution To Production Gap",
+          "visual_type": "Bar Chart",
+          "source_table": "mart_monthly_by_site",
+          "key_dimensions": "dim_site[site_name]",
+          "key_measures": "site_production_gap_tonnes; site_production_gap_share_pct",
+          "business_question": "Which site is driving the monthly production shortfall most heavily?"
+        }
+      ]
+    },
+    {
+      "page_order": 2,
+      "page_name": "Monthly Actual vs Plan",
+      "page_group": "Monthly Monitoring",
+      "goal": "Compare plan and actual throughput, grade, recovery, copper production, and unit cost with explicit variance logic.",
+      "primary_dataset": "fact_monthly_actual_vs_plan.csv",
+      "story_role": "Core Monthly Story",
+      "visual_count": 6,
+      "visuals": [
+        {
+          "visual_order": 1,
+          "visual_title": "Plan vs Actual Matrix",
+          "visual_type": "Matrix",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_monthly_metric[display_name]",
+          "key_measures": "plan_value; actual_value; variance_value; variance_pct; alert_level",
+          "business_question": "Where are the largest plan-versus-actual deviations by KPI?"
+        },
+        {
+          "visual_order": 2,
+          "visual_title": "Throughput Variance",
+          "visual_type": "Column Chart",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "Monthly Throughput Variance %",
+          "business_question": "When is throughput under plan and by how much?"
+        },
+        {
+          "visual_order": 3,
+          "visual_title": "Head Grade Variance",
+          "visual_type": "Column Chart",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "Monthly Head Grade Variance %",
+          "business_question": "How much is grade contributing to the production gap?"
+        },
+        {
+          "visual_order": 4,
+          "visual_title": "Recovery Variance",
+          "visual_type": "Column Chart",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "Monthly Recovery Variance %",
+          "business_question": "How much is recovery contributing to the production gap?"
+        },
+        {
+          "visual_order": 5,
+          "visual_title": "Copper Production Variance",
+          "visual_type": "Column Chart",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "Monthly Copper Production Variance %",
+          "business_question": "What is the monthly production shortfall or outperformance versus plan?"
+        },
+        {
+          "visual_order": 6,
+          "visual_title": "Unit Cost Variance",
+          "visual_type": "Column Chart",
+          "source_table": "fact_monthly_actual_vs_plan",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "Monthly Unit Cost Variance %",
+          "business_question": "When are unit costs drifting above plan and by how much?"
+        }
+      ]
+    },
+    {
+      "page_order": 3,
+      "page_name": "Process Performance",
+      "page_group": "Monthly Monitoring",
+      "goal": "Explain deviations using metallurgical and operating drivers such as grade, recovery, availability, and utilization.",
+      "primary_dataset": "mart_monthly_process_performance.csv",
+      "story_role": "Core Monthly Story",
+      "visual_count": 7,
+      "visuals": [
+        {
+          "visual_order": 1,
+          "visual_title": "Head Grade Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_process_performance",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "head_grade_pct_actual",
+          "business_question": "What head grade trend is the plant receiving over the monitoring window?"
+        },
+        {
+          "visual_order": 2,
+          "visual_title": "Recovery Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_process_performance",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "recovery_pct_actual",
+          "business_question": "What recovery trend explains the monthly performance story?"
+        },
+        {
+          "visual_order": 3,
+          "visual_title": "Availability Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_process_performance",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "availability_pct_actual",
+          "business_question": "Is equipment availability constraining plant performance?"
+        },
+        {
+          "visual_order": 4,
+          "visual_title": "Utilization Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_process_performance",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "utilization_pct_actual",
+          "business_question": "Is plant loading consistent with the expected monthly operating tempo?"
+        },
+        {
+          "visual_order": 5,
+          "visual_title": "Process Driver Table",
+          "visual_type": "Table",
+          "source_table": "mart_monthly_process_performance",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "throughput_tonnes_actual; head_grade_pct_actual; recovery_pct_actual; availability_pct_actual; utilization_pct_actual",
+          "business_question": "Which process drivers help explain the production result each month?"
+        },
+        {
+          "visual_order": 6,
+          "visual_title": "Downtime By Process Area",
+          "visual_type": "Stacked Column Chart",
+          "source_table": "mart_process_driver_summary",
+          "key_dimensions": "dim_process_area[process_area]; dim_month[month_label]",
+          "key_measures": "downtime_hours; downtime_share_pct",
+          "business_question": "Which process areas are concentrating monthly downtime?"
+        },
+        {
+          "visual_order": 7,
+          "visual_title": "Process Area Production Gap Share",
+          "visual_type": "Bar Chart",
+          "source_table": "mart_process_driver_summary",
+          "key_dimensions": "dim_process_area[process_area]",
+          "key_measures": "negative_production_gap_tonnes; process_area_production_gap_share_pct",
+          "business_question": "Which process areas explain the largest share of the production gap?"
+        }
+      ]
+    },
+    {
+      "page_order": 4,
+      "page_name": "Cost and Margin",
+      "page_group": "Monthly Monitoring",
+      "goal": "Track unit cost, operating cost, revenue proxy, EBITDA proxy, and cash-burden movements.",
+      "primary_dataset": "mart_monthly_cost_margin.csv",
+      "story_role": "Core Monthly Story",
+      "visual_count": 7,
+      "visuals": [
+        {
+          "visual_order": 1,
+          "visual_title": "Operating Cost vs Unit Cost",
+          "visual_type": "Line and Clustered Column Chart",
+          "source_table": "mart_monthly_cost_margin",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "operating_cost_usd_actual; unit_cost_usd_per_tonne_actual",
+          "business_question": "How are total cost pressure and cost intensity moving together?"
+        },
+        {
+          "visual_order": 2,
+          "visual_title": "Revenue Proxy Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_cost_margin",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "revenue_proxy_usd_actual",
+          "business_question": "Is the top-line proxy strengthening or deteriorating month over month?"
+        },
+        {
+          "visual_order": 3,
+          "visual_title": "EBITDA Proxy Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_cost_margin",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "ebitda_proxy_usd_actual",
+          "business_question": "What is happening to the monthly margin proxy after cost pressure?"
+        },
+        {
+          "visual_order": 4,
+          "visual_title": "Operating Cash Flow Proxy Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_cost_margin",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "operating_cash_flow_proxy_usd_actual",
+          "business_question": "How is the monthly operating cash proxy evolving?"
+        },
+        {
+          "visual_order": 5,
+          "visual_title": "Free Cash Flow Proxy Trend",
+          "visual_type": "Line Chart",
+          "source_table": "mart_monthly_cost_margin",
+          "key_dimensions": "dim_month[month_label]",
+          "key_measures": "free_cash_flow_proxy_usd_actual",
+          "business_question": "How much cash support or pressure is visible after capex and working capital effects?"
+        },
+        {
+          "visual_order": 6,
+          "visual_title": "Cost Variance By Cost Center",
+          "visual_type": "Bar Chart",
+          "source_table": "mart_cost_center_summary",
+          "key_dimensions": "dim_cost_center[cost_center]",
+          "key_measures": "cost_variance_usd",
+          "business_question": "Which cost centers are creating the largest monthly cost variance?"
+        },
+        {
+          "visual_order": 7,
+          "visual_title": "Margin Pressure Share By Cost Center",
+          "visual_type": "Bar Chart",
+          "source_table": "mart_cost_center_summary",
+          "key_dimensions": "dim_cost_center[cost_center]",
+          "key_measures": "cost_center_margin_pressure_share_pct",
+          "business_question": "Which cost centers are driving margin pressure most materially?"
+        }
+      ]
+    },
+    {
+      "page_order": 5,
+      "page_name": "Advanced Scenario / Risk Appendix",
+      "page_group": "Advanced Appendix",
+      "goal": "Keep scenario comparison, benchmark transparency, Monte Carlo, tornado, and heatmap analysis as a clearly secondary appendix.",
+      "primary_dataset": "fact_scenario_kpis.csv; simulation_summary.csv",
+      "story_role": "Secondary Appendix",
+      "visual_count": 11,
+      "visuals": [
+        {
+          "visual_order": 1,
+          "visual_title": "Selected Scenario NPV",
+          "visual_type": "KPI Card",
+          "source_table": "fact_scenario_kpis",
+          "key_dimensions": "dim_scenario[scenario_name]",
+          "key_measures": "Selected Scenario NPV",
+          "business_question": "What valuation is implied by the selected deterministic scenario?"
+        },
+        {
+          "visual_order": 2,
+          "visual_title": "Selected Scenario IRR",
+          "visual_type": "KPI Card",
+          "source_table": "fact_scenario_kpis",
+          "key_dimensions": "dim_scenario[scenario_name]",
+          "key_measures": "Selected Scenario IRR",
+          "business_question": "What return metric accompanies that scenario valuation?"
+        },
+        {
+          "visual_order": 3,
+          "visual_title": "Scenario Summary Matrix",
+          "visual_type": "Matrix",
+          "source_table": "dim_scenario + fact_scenario_kpis",
+          "key_dimensions": "dim_scenario[scenario_name]",
+          "key_measures": "Scenario Revenue; Scenario EBITDA; Scenario Avg Throughput; Scenario Avg Unit Opex",
+          "business_question": "How do the main deterministic scenarios compare side by side?"
+        },
+        {
+          "visual_order": 4,
+          "visual_title": "Probability of Loss",
+          "visual_type": "KPI Card",
+          "source_table": "simulation_summary",
+          "key_dimensions": "none",
+          "key_measures": "Probability of Loss",
+          "business_question": "How much downside probability does the simulation imply?"
+        },
+        {
+          "visual_order": 5,
+          "visual_title": "VaR 5%",
+          "visual_type": "KPI Card",
+          "source_table": "simulation_summary",
+          "key_dimensions": "none",
+          "key_measures": "VaR 5%",
+          "business_question": "Where is the left-tail threshold under downside stress?"
+        },
+        {
+          "visual_order": 6,
+          "visual_title": "CVaR 5%",
+          "visual_type": "KPI Card",
+          "source_table": "simulation_summary",
+          "key_dimensions": "none",
+          "key_measures": "CVaR 5%",
+          "business_question": "How severe are the average bad-tail outcomes beyond VaR?"
+        },
+        {
+          "visual_order": 7,
+          "visual_title": "Distribution Histogram",
+          "visual_type": "Histogram",
+          "source_table": "fact_simulation_distribution",
+          "key_dimensions": "npv_usd bin",
+          "key_measures": "row count",
+          "business_question": "How wide is the NPV distribution and how heavy is the left tail?"
+        },
+        {
+          "visual_order": 8,
+          "visual_title": "Percentile Table",
+          "visual_type": "Table",
+          "source_table": "simulation_percentiles",
+          "key_dimensions": "percentile",
+          "key_measures": "npv_usd",
+          "business_question": "Which percentile cutoffs frame the downside and upside range?"
+        },
+        {
+          "visual_order": 9,
+          "visual_title": "Tornado Chart",
+          "visual_type": "Diverging Bar Chart",
+          "source_table": "fact_tornado_sensitivity",
+          "key_dimensions": "driver_label; direction",
+          "key_measures": "impact_vs_base_usd",
+          "business_question": "Which drivers matter most for valuation sensitivity?"
+        },
+        {
+          "visual_order": 10,
+          "visual_title": "Price Grade Heatmap",
+          "visual_type": "Matrix Heatmap",
+          "source_table": "fact_heatmap_price_grade",
+          "key_dimensions": "price_factor; grade_factor",
+          "key_measures": "npv_usd",
+          "business_question": "Where does valuation break under joint price and grade stress?"
+        },
+        {
+          "visual_order": 11,
+          "visual_title": "Workbook vs Python Benchmark",
+          "visual_type": "Table",
+          "source_table": "benchmark_comparison",
+          "key_dimensions": "dim_monthly_metric[metric]",
+          "key_measures": "benchmark_value; python_value; reconciliation_status; gap; pct_gap",
+          "business_question": "How close is the Python layer to the benchmark workbook where comparison is valid?"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+createOrReplace
+
+model Model
+    ref table dim_site
+    ref table dim_month
+    ref table dim_monthly_metric
+    ref table dim_process_area
+    ref table dim_cost_center
+    ref table kpi_monthly_summary
+    ref table fact_monthly_actual_vs_plan
+    ref table mart_monthly_executive_overview
+    ref table mart_monthly_process_performance
+    ref table mart_monthly_cost_margin
+    ref table mart_monthly_by_site
+    ref table mart_process_driver_summary
+    ref table mart_cost_center_summary
+    ref table dashboard_page_catalog
+    ref table powerbi_measure_catalog
+    ref table monthly_kpi_dictionary
+    ref table dim_year
+    ref table dim_metric
+    ref table dim_scenario
+    ref table fact_annual_metrics
+    ref table fact_scenario_kpis
+    ref table simulation_summary
+    ref table simulation_percentiles
+    ref table fact_simulation_distribution
+    ref table fact_tornado_sensitivity
+    ref table fact_heatmap_price_grade
+    ref table benchmark_comparison

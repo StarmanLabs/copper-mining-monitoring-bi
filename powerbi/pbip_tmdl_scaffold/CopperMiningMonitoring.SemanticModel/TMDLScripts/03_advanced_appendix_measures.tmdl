@@ -1,0 +1,168 @@
+createOrReplace
+
+ref table fact_annual_metrics
+    /// Yearly revenue profile.
+    measure 'Annual Revenue' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "revenue_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Yearly EBITDA profile.
+    measure 'Annual EBITDA' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "ebitda_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Yearly operating cash flow profile.
+    measure 'Annual Operating Cash Flow' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "operating_cash_flow_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Yearly free cash flow profile.
+    measure 'Annual Free Cash Flow' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "free_cash_flow_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Yearly capex profile.
+    measure 'Annual Capex' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "capex_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Expanded throughput by project year.
+    measure 'Annual Processed Tonnes' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "expanded_tonnes")
+        formatString: #,##0
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Annual copper production in pounds.
+    measure 'Annual Copper Fine Production' = CALCULATE(SUM(fact_annual_metrics[value]), fact_annual_metrics[metric] = "copper_fine_lb")
+        formatString: #,##0
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Average unit operating cost by year.
+    measure 'Annual Unit Opex' = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "unit_opex_usd_per_tonne")
+        formatString: #,##0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Net realized copper price per pound by year.
+    measure 'Annual Net Price' = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_net_price_usd_per_lb")
+        formatString: #,##0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Head grade expressed as a percentage for charting.
+    measure 'Annual Head Grade %' = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_grade") * 100
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Metallurgical recovery expressed as a percentage for charting.
+    measure 'Annual Recovery %' = CALCULATE(AVERAGE(fact_annual_metrics[value]), fact_annual_metrics[metric] = "scenario_recovery") * 100
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+
+ref table fact_scenario_kpis
+    /// Advanced valuation output for the selected deterministic scenario.
+    measure 'Selected Scenario NPV' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Reference NPV used when the dashboard needs a valuation anchor.
+    measure 'Base Case NPV' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "base")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Hard downside deterministic case for management and investment review.
+    measure 'Committee Downside NPV' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_npv_usd", dim_scenario[scenario_id] = "committee_downside")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Change in scenario NPV relative to the reference planning case.
+    measure 'NPV Delta vs Base' = [Selected Scenario NPV] - [Base Case NPV]
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// IRR for the selected deterministic scenario using explicit year-0 cash flows.
+    measure 'Selected Scenario IRR' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "scenario_irr")
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Total revenue exposure over the project horizon for the selected scenario.
+    measure 'Scenario Revenue' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_revenue_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Total EBITDA over the project horizon for the selected scenario.
+    measure 'Scenario EBITDA' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_ebitda_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Total operating cash flow over the project horizon for the selected scenario.
+    measure 'Scenario Operating Cash Flow' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_operating_cash_flow_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Total free cash flow over the project horizon for the selected scenario.
+    measure 'Scenario Free Cash Flow' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_free_cash_flow_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Total capex burden for the selected scenario.
+    measure 'Scenario Capex' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "total_capex_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Payback timing for the selected scenario, when available.
+    measure 'Scenario Payback Year' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "payback_year")
+        formatString: #,##0
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Average processed tonnes in the selected scenario.
+    measure 'Scenario Avg Throughput' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_processed_tonnes")
+        formatString: #,##0
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Average annual copper production in pounds for the selected scenario.
+    measure 'Scenario Avg Copper Production' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_copper_fine_lb")
+        formatString: #,##0
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Average unit operating cost for the selected scenario.
+    measure 'Scenario Avg Unit Opex' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "average_unit_opex_usd_per_tonne")
+        formatString: #,##0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// EBITDA-to-revenue proxy used as a margin-style planning KPI.
+    measure 'Scenario EBITDA Margin Proxy' = CALCULATE(MAX(fact_scenario_kpis[value]), fact_scenario_kpis[metric] = "ebitda_margin_proxy")
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+
+ref table fact_tornado_sensitivity
+    /// Directional impact versus the base case for a selected tornado bar.
+    measure 'Tornado Impact' = MAX(fact_tornado_sensitivity[impact_vs_base_usd])
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+
+ref table simulation_summary
+    /// Expected NPV from the Monte Carlo simulation.
+    measure 'Expected NPV' = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "expected_npv_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Median NPV from the Monte Carlo simulation.
+    measure 'Median NPV' = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "median_npv_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Probability that simulated NPV is below zero.
+    measure 'Probability of Loss' = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "probability_of_loss")
+        formatString: 0.0%;-0.0%;0.0%
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// 5th percentile Value at Risk from the simulation.
+    measure 'VaR 5%' = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "var_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"
+
+    /// Average outcome beyond the 5th percentile threshold.
+    measure 'CVaR 5%' = CALCULATE(MAX(simulation_summary[value]), simulation_summary[metric] = "cvar_usd")
+        formatString: $#,##0.00;($#,##0.00);$0.00
+        displayFolder: "05 Advanced Scenario / Risk Appendix"

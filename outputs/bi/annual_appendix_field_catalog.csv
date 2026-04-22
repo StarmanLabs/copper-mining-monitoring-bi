@@ -1,0 +1,38 @@
+dataset_name,column_name,description,unit,required_flag
+annual_appendix_inputs,year,Project year starting at 1.,year,True
+annual_appendix_inputs,calendar_year,Calendar year label for reporting.,year,True
+annual_appendix_inputs,copper_price_usd_per_lb,Base copper price deck.,USD/lb,True
+annual_appendix_inputs,base_processed_tonnes,Base processed tonnes before expansion uplift.,tonnes,True
+annual_appendix_inputs,base_head_grade,Base head grade in decimal form.,grade_decimal,True
+annual_appendix_inputs,base_recovery,Base recovery in decimal form.,recovery_decimal,True
+annual_appendix_inputs,base_unit_cost_usd_per_tonne,Base-operation unit cost.,USD/t,True
+annual_appendix_inputs,expansion_unit_cost_usd_per_tonne,Expanded-operation unit cost.,USD/t,True
+annual_appendix_inputs,initial_capex_usd,Initial capex allocated to the project year.,USD,True
+annual_appendix_inputs,sustaining_capex_usd,Sustaining capex allocated to the project year.,USD,True
+appendix_parameters,parameter_name,Scalar parameter identifier.,,True
+appendix_parameters,value,Scalar parameter numeric value.,,True
+appendix_parameters,unit,Parameter unit or semantic type.,,True
+appendix_parameters,parameter_group,Business-readable grouping for the parameter.,,True
+appendix_parameters,used_by,Appendix module family that consumes the parameter.,,True
+appendix_parameters,source_type,Whether the parameter came from canonical tables or the legacy adapter.,,True
+appendix_parameters,source_reference,Public-safe source reference.,,True
+appendix_parameters,note,Limitation or interpretation note.,,True
+appendix_scenarios,scenario_id,Stable scenario identifier.,,True
+appendix_scenarios,scenario_name,Human-readable scenario name.,,True
+appendix_scenarios,category,Scenario grouping for review.,,True
+appendix_scenarios,description,Plain-language scenario description.,,True
+appendix_scenarios,price_factor,Scenario price multiplier.,ratio,True
+appendix_scenarios,grade_factor,Scenario grade multiplier.,ratio,True
+appendix_scenarios,recovery_factor,Scenario recovery multiplier.,ratio,True
+appendix_scenarios,throughput_factor,Scenario throughput multiplier.,ratio,True
+appendix_scenarios,opex_factor,Scenario unit-opex multiplier.,ratio,True
+appendix_scenarios,capex_factor,Scenario capex multiplier.,ratio,True
+appendix_scenarios,wacc_shift_bps,Discount-rate shift in basis points.,bps,True
+appendix_benchmark_metrics,metric,Benchmarked output name.,,True
+appendix_benchmark_metrics,value,Benchmark value.,,True
+appendix_benchmark_metrics,unit,Benchmark unit.,,True
+appendix_benchmark_metrics,currency,Benchmark currency where relevant.,,True
+appendix_benchmark_metrics,valuation_basis,Valuation basis used by the benchmark.,,True
+appendix_benchmark_metrics,timing_basis,Timing basis used by the benchmark.,,True
+appendix_benchmark_metrics,benchmark_source,Source label for benchmark traceability.,,True
+appendix_benchmark_metrics,note,Benchmark interpretation note.,,True

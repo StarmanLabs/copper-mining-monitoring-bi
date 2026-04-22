@@ -1,0 +1,66 @@
+{
+  "artifact_strategy": "PBIP finalization package",
+  "artifact_type": "Report page shell manifest",
+  "page_count": 5,
+  "main_story": "Keep the first four pages focused on monthly monitoring, management control, and KPI review.",
+  "secondary_appendix": "Treat the appendix page as a continuation layer, not the lead report story.",
+  "pages": [
+    {
+      "page_order": 1,
+      "page_name": "Executive Overview",
+      "page_group": "Monthly Monitoring",
+      "goal": "Highlight the monthly management story with headline KPIs, alert counts, and the largest adverse deviations.",
+      "page_shell_file": "page_shells/01_executive_overview.json",
+      "visual_count": 10,
+      "shared_slicers": [
+        "dim_site[site_name]",
+        "dim_month[month_label]"
+      ]
+    },
+    {
+      "page_order": 2,
+      "page_name": "Monthly Actual vs Plan",
+      "page_group": "Monthly Monitoring",
+      "goal": "Compare plan and actual throughput, grade, recovery, copper production, and unit cost with explicit variance logic.",
+      "page_shell_file": "page_shells/02_monthly_actual_vs_plan.json",
+      "visual_count": 6,
+      "shared_slicers": [
+        "dim_site[site_name]",
+        "dim_month[month_label]"
+      ]
+    },
+    {
+      "page_order": 3,
+      "page_name": "Process Performance",
+      "page_group": "Monthly Monitoring",
+      "goal": "Explain deviations using metallurgical and operating drivers such as grade, recovery, availability, and utilization.",
+      "page_shell_file": "page_shells/03_process_performance.json",
+      "visual_count": 7,
+      "shared_slicers": [
+        "dim_site[site_name]",
+        "dim_month[month_label]"
+      ]
+    },
+    {
+      "page_order": 4,
+      "page_name": "Cost and Margin",
+      "page_group": "Monthly Monitoring",
+      "goal": "Track unit cost, operating cost, revenue proxy, EBITDA proxy, and cash-burden movements.",
+      "page_shell_file": "page_shells/04_cost_and_margin.json",
+      "visual_count": 7,
+      "shared_slicers": [
+        "dim_site[site_name]",
+        "dim_month[month_label]"
+      ]
+    },
+    {
+      "page_order": 5,
+      "page_name": "Advanced Scenario / Risk Appendix",
+      "page_group": "Advanced Appendix",
+      "goal": "Keep scenario comparison, benchmark transparency, Monte Carlo, tornado, and heatmap analysis as a clearly secondary appendix.",
+      "page_shell_file": "page_shells/05_advanced_scenario_risk_appendix.json",
+      "visual_count": 11,
+      "shared_slicers": []
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+version: 2
+profile_name: "example_private_company_profile"
+description: "Public-safe local-only source profile template for monthly monitoring first and annual appendix continuation second."
+
+public_repo_boundary:
+  do_not_commit:
+    - "data/private/"
+    - "config/source_profiles/local/"
+    - "config/mappings/local/"
+    - "outputs/private/"
+    - "powerbi/local/"
+    - "*.pbix"
+    - "*.pbit"
+    - "*.twb"
+    - "*.twbx"
+  public_safe_outputs:
+    - "outputs/bi/"
+    - "powerbi/pbip_tmdl_scaffold/"
+    - "powerbi/template_scaffold/"
+
+runner:
+  default_scope: "all"
+  summary_output_dir: "outputs/private/run_summaries"
+
+monthly_monitoring:
+  enabled: true
+  raw_source_dir: "data/private/monthly_exports"
+  mapping_config: "config/mappings/local/monthly_private_mapping.yaml"
+  output_dir: "outputs/private/monthly_work_core"
+
+annual_appendix:
+  enabled: true
+  raw_source_dir: "data/private/annual_appendix_exports"
+  mapping_config: "config/mappings/local/annual_appendix_private_mapping.yaml"
+  canonical_output_dir: "outputs/private/annual_appendix_canonical"
+  advanced_appendix:
+    enabled: true
+    config_path: "config/project.yaml"
+    input_mode: "canonical"
+    benchmark_mode: "canonical"
+    output_dir: "outputs/private/annual_appendix_report"
+
+powerbi_local:
+  local_dashboard_dir: "powerbi/local"
+  private_report_root_parameter: "Set ProjectRoot to your local repo path in Power BI Desktop."
+  intended_use: "Point Power BI to canonical local outputs, not to private raw exports."
+
+local_run_examples:
+  monthly: "python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --scope monthly"
+  annual_appendix: "python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --scope annual_appendix"
+  all: "python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --scope all"
+  validate_only: "python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --validate-only"
+
+notes:
+  - "Copy this profile into config/source_profiles/local/ and edit it locally."
+  - "Keep raw company exports outside Git or inside ignored local folders only."
+  - "Keep the monthly layer as the main operating story and treat the appendix as secondary."
+  - "Switch benchmark_mode to legacy_workbook only when a benchmark reconciliation really needs the legacy reference path."

@@ -1,0 +1,168 @@
+{
+  "refresh_timestamp_utc": "2026-04-22T05:17:19+00:00",
+  "refresh_status": "success",
+  "public_safe": true,
+  "work_core_scope": "monthly_monitoring",
+  "data_dir": "data/sample_data/monthly_monitoring",
+  "mapping_config_path": "config/mappings/public_demo_identity_mapping.yaml",
+  "sources_used": [
+    {
+      "dataset_name": "actual_production_monthly",
+      "source_dataset_label": "public_demo_actual_production_export",
+      "source_file": "actual_production_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "cost_actuals_monthly",
+      "source_dataset_label": "public_demo_cost_export",
+      "source_file": "cost_actuals_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "cost_center_monthly",
+      "source_dataset_label": "public_demo_cost_center_export",
+      "source_file": "cost_center_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "market_prices_monthly",
+      "source_dataset_label": "public_demo_market_export",
+      "source_file": "market_prices_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "plan_monthly",
+      "source_dataset_label": "public_demo_plan_export",
+      "source_file": "plan_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "plant_performance_monthly",
+      "source_dataset_label": "public_demo_plant_performance_export",
+      "source_file": "plant_performance_monthly.csv",
+      "status": "ready_for_validation"
+    },
+    {
+      "dataset_name": "process_driver_monthly",
+      "source_dataset_label": "public_demo_process_driver_export",
+      "source_file": "process_driver_monthly.csv",
+      "status": "ready_for_validation"
+    }
+  ],
+  "mapping_summary": {
+    "datasets_mapped": 7,
+    "mapping_rows_ready_for_validation": 7,
+    "mapping_rows_with_issues": 0
+  },
+  "validation_summary": {
+    "checks_passed": 68,
+    "checks_failed": 0,
+    "datasets_with_failures": [],
+    "failed_check_examples": []
+  },
+  "kpi_exception_summary": {
+    "monthly_exception_logic": [
+      "major throughput shortfall",
+      "major recovery underperformance",
+      "major production shortfall",
+      "unit cost deterioration"
+    ],
+    "total_exceptions": 32,
+    "critical_exceptions": 13,
+    "warning_exceptions": 19,
+    "top_exceptions": [
+      {
+        "period": "2025-09",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 10.4% below plan."
+      },
+      {
+        "period": "2025-01",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 10.4% below plan."
+      },
+      {
+        "period": "2025-03",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 7.3% below plan."
+      },
+      {
+        "period": "2025-12",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 7.2% below plan."
+      },
+      {
+        "period": "2025-11",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.9% below plan."
+      },
+      {
+        "period": "2025-02",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.7% below plan."
+      },
+      {
+        "period": "2025-01",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.4% below plan."
+      },
+      {
+        "period": "2025-09",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.3% below plan."
+      },
+      {
+        "period": "2025-07",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.3% below plan."
+      },
+      {
+        "period": "2025-06",
+        "exception_title": "Major Production Shortfall",
+        "severity": "critical",
+        "metric_display_name": "Copper Production",
+        "exception_message": "Copper Production is 6.1% below plan."
+      }
+    ]
+  },
+  "output_files": {
+    "monthly_dataset_catalog": "outputs/bi/monthly_dataset_catalog.csv",
+    "monthly_field_catalog": "outputs/bi/monthly_field_catalog.csv",
+    "dim_site": "outputs/bi/dim_site.csv",
+    "dim_month": "outputs/bi/dim_month.csv",
+    "dim_monthly_metric": "outputs/bi/dim_monthly_metric.csv",
+    "dim_process_area": "outputs/bi/dim_process_area.csv",
+    "dim_cost_center": "outputs/bi/dim_cost_center.csv",
+    "monthly_kpi_dictionary": "outputs/bi/monthly_kpi_dictionary.csv",
+    "kpi_monthly_summary": "outputs/bi/kpi_monthly_summary.csv",
+    "fact_monthly_actual_vs_plan": "outputs/bi/fact_monthly_actual_vs_plan.csv",
+    "mart_monthly_process_performance": "outputs/bi/mart_monthly_process_performance.csv",
+    "mart_monthly_cost_margin": "outputs/bi/mart_monthly_cost_margin.csv",
+    "mart_monthly_executive_overview": "outputs/bi/mart_monthly_executive_overview.csv",
+    "mart_monthly_by_site": "outputs/bi/mart_monthly_by_site.csv",
+    "mart_process_driver_summary": "outputs/bi/mart_process_driver_summary.csv",
+    "mart_cost_center_summary": "outputs/bi/mart_cost_center_summary.csv",
+    "data_quality_report": "outputs/bi/data_quality_report.csv",
+    "kpi_exceptions": "outputs/bi/kpi_exceptions.csv",
+    "source_mapping_audit": "outputs/bi/source_mapping_audit.csv",
+    "refresh_summary": "outputs/bi/refresh_summary.json"
+  }
+}

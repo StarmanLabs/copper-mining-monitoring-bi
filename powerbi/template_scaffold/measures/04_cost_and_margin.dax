@@ -1,0 +1,26 @@
+-- Cost and Margin Measures
+
+-- Table: fact_monthly_actual_vs_plan
+Monthly Plan Unit Cost = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+
+Monthly Unit Cost Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "unit_cost_usd_per_tonne")
+
+
+-- Table: kpi_monthly_summary
+Monthly EBITDA Proxy = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+
+Monthly EBITDA Proxy Variance % = MAX(kpi_monthly_summary[ebitda_proxy_usd_variance_pct])
+
+Monthly Free Cash Flow Proxy = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+
+Monthly Operating Cost Actual = SUM(kpi_monthly_summary[operating_cost_usd_actual])
+
+Monthly Revenue Proxy Variance % = MAX(kpi_monthly_summary[revenue_proxy_usd_variance_pct])
+
+Monthly Unit Cost Actual = DIVIDE(SUM(kpi_monthly_summary[operating_cost_usd_actual]), SUM(kpi_monthly_summary[throughput_tonnes_actual]))
+
+
+-- Table: mart_cost_center_summary
+Cost Center Margin Pressure Share % = MAX(mart_cost_center_summary[cost_center_margin_pressure_share_pct])
+
+Cost Center Variance = SUM(mart_cost_center_summary[cost_variance_usd])

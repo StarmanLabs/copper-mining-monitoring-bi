@@ -1,0 +1,208 @@
+createOrReplace
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_01_dim_site_site_id_kpi_monthly_summary_site_id
+    fromColumn: kpi_monthly_summary.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_02_dim_site_site_id_fact_monthly_actual_vs_plan_site_id
+    fromColumn: fact_monthly_actual_vs_plan.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_03_dim_site_site_id_mart_monthly_executive_overview_site_id
+    fromColumn: mart_monthly_executive_overview.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_04_dim_site_site_id_mart_monthly_process_performance_site_id
+    fromColumn: mart_monthly_process_performance.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_05_dim_site_site_id_mart_monthly_cost_margin_site_id
+    fromColumn: mart_monthly_cost_margin.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_06_dim_site_site_id_mart_monthly_by_site_site_id
+    fromColumn: mart_monthly_by_site.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_07_dim_site_site_id_mart_process_driver_summary_site_id
+    fromColumn: mart_process_driver_summary.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared site filter for the monthly monitoring model.
+relationship rel_08_dim_site_site_id_mart_cost_center_summary_site_id
+    fromColumn: mart_cost_center_summary.site_id
+    toColumn: dim_site.site_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_09_dim_month_period_kpi_monthly_summary_period
+    fromColumn: kpi_monthly_summary.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_10_dim_month_period_fact_monthly_actual_vs_plan_period
+    fromColumn: fact_monthly_actual_vs_plan.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_11_dim_month_period_mart_monthly_executive_overview_period
+    fromColumn: mart_monthly_executive_overview.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_12_dim_month_period_mart_monthly_process_performance_period
+    fromColumn: mart_monthly_process_performance.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_13_dim_month_period_mart_monthly_cost_margin_period
+    fromColumn: mart_monthly_cost_margin.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_14_dim_month_period_mart_monthly_by_site_period
+    fromColumn: mart_monthly_by_site.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_15_dim_month_period_mart_process_driver_summary_period
+    fromColumn: mart_process_driver_summary.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared month filter for the monthly monitoring model.
+relationship rel_16_dim_month_period_mart_cost_center_summary_period
+    fromColumn: mart_cost_center_summary.period
+    toColumn: dim_month.period
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Shared KPI selector for Monthly Actual vs Plan visuals.
+relationship rel_17_dim_monthly_metric_metric_fact_monthly_actual_vs_plan_metric
+    fromColumn: fact_monthly_actual_vs_plan.metric
+    toColumn: dim_monthly_metric.metric
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Optional shared process-area filter for the Process Performance page.
+relationship rel_18_dim_process_area_process_area_mart_process_driver_summary_process_area
+    fromColumn: mart_process_driver_summary.process_area
+    toColumn: dim_process_area.process_area
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Optional shared cost-center filter for the Cost and Margin page.
+relationship rel_19_dim_cost_center_cost_center_mart_cost_center_summary_cost_center
+    fromColumn: mart_cost_center_summary.cost_center
+    toColumn: dim_cost_center.cost_center
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Use only if annual scenario context is added to the appendix.
+relationship rel_20_dim_year_year_fact_annual_metrics_year
+    fromColumn: fact_annual_metrics.year
+    toColumn: dim_year.year
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Use only if annual scenario context is added to the appendix.
+relationship rel_21_dim_metric_metric_fact_annual_metrics_metric
+    fromColumn: fact_annual_metrics.metric
+    toColumn: dim_metric.metric
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Use only if annual scenario context is added to the appendix.
+relationship rel_22_dim_scenario_scenario_id_fact_annual_metrics_scenario_id
+    fromColumn: fact_annual_metrics.scenario_id
+    toColumn: dim_scenario.scenario_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive
+
+/// Required for appendix scenario selectors and scenario KPI cards.
+relationship rel_23_dim_scenario_scenario_id_fact_scenario_kpis_scenario_id
+    fromColumn: fact_scenario_kpis.scenario_id
+    toColumn: dim_scenario.scenario_id
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+    isActive

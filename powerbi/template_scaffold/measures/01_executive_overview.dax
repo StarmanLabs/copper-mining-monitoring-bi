@@ -1,0 +1,32 @@
+-- Executive Overview Measures
+
+-- Table: kpi_monthly_summary
+Monthly Copper Production Actual = SUM(kpi_monthly_summary[copper_production_tonnes_actual])
+
+Monthly Critical Alerts = SUM(kpi_monthly_summary[critical_alert_count])
+
+Monthly EBITDA Proxy Actual = SUM(kpi_monthly_summary[ebitda_proxy_usd_actual])
+
+Monthly Free Cash Flow Proxy Actual = SUM(kpi_monthly_summary[free_cash_flow_proxy_usd_actual])
+
+Monthly Operating Cash Flow Proxy = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+
+Monthly Operating Cash Flow Proxy Actual = SUM(kpi_monthly_summary[operating_cash_flow_proxy_usd_actual])
+
+Monthly Overall Alert Level = VAR CriticalAlerts = SUM(kpi_monthly_summary[critical_alert_count]) VAR WarningAlerts = SUM(kpi_monthly_summary[warning_alert_count]) RETURN IF(CriticalAlerts > 0, "critical", IF(WarningAlerts > 0, "warning", "on_track"))
+
+Monthly Primary Alert Count = SUMX(kpi_monthly_summary, IF(kpi_monthly_summary[overall_alert_level] <> "on_track", 1, 0))
+
+Monthly Primary Alert Metric = SELECTEDVALUE(kpi_monthly_summary[primary_alert_metric], "Multiple Sites Selected")
+
+Monthly Revenue Proxy = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+
+Monthly Revenue Proxy Actual = SUM(kpi_monthly_summary[revenue_proxy_usd_actual])
+
+Monthly Throughput Actual = SUM(kpi_monthly_summary[throughput_tonnes_actual])
+
+Monthly Warning Alerts = SUM(kpi_monthly_summary[warning_alert_count])
+
+
+-- Table: mart_monthly_by_site
+Site Production Gap Contribution % = MAX(mart_monthly_by_site[site_production_gap_share_pct])

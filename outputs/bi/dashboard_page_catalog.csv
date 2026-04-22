@@ -1,0 +1,6 @@
+page_order,page_name,page_group,goal,primary_dataset
+1,Executive Overview,Monthly Monitoring,"Highlight the monthly management story with headline KPIs, alert counts, and the largest adverse deviations.",kpi_monthly_summary.csv
+2,Monthly Actual vs Plan,Monthly Monitoring,"Compare plan and actual throughput, grade, recovery, copper production, and unit cost with explicit variance logic.",fact_monthly_actual_vs_plan.csv
+3,Process Performance,Monthly Monitoring,"Explain deviations using metallurgical and operating drivers such as grade, recovery, availability, and utilization.",mart_monthly_process_performance.csv
+4,Cost and Margin,Monthly Monitoring,"Track unit cost, operating cost, revenue proxy, EBITDA proxy, and cash-burden movements.",mart_monthly_cost_margin.csv
+5,Advanced Scenario / Risk Appendix,Advanced Appendix,"Keep scenario comparison, benchmark transparency, Monte Carlo, tornado, and heatmap analysis as a clearly secondary appendix.",fact_scenario_kpis.csv; simulation_summary.csv

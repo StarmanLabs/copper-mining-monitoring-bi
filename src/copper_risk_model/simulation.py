@@ -1,4 +1,4 @@
-"""Monte Carlo simulation and risk metrics."""
+"""Monte Carlo downside helpers for the advanced appendix."""
 
 from __future__ import annotations
 
@@ -8,11 +8,13 @@ import numpy as np
 import pandas as pd
 from scipy.stats import truncnorm
 
-from .model import ScenarioParameters, build_expansion_profile
+from .valuation_model import LB_PER_TONNE, ScenarioParameters, build_expansion_profile
 
 
 @dataclass(frozen=True)
 class SimulationConfig:
+    """Configuration for the public-safe downside appendix simulation."""
+
     iterations: int
     random_seed: int
     var_alpha: float
@@ -34,6 +36,8 @@ def _truncated_normal_samples(
     upper: float,
     size: int | tuple[int, ...],
 ) -> np.ndarray:
+    """Return bounded random draws for appendix-level uncertainty factors."""
+
     if sd <= 0:
         return np.full(size, mean, dtype=float)
     a = (lower - mean) / sd
@@ -118,11 +122,19 @@ def run_monte_carlo(
     params: ScenarioParameters,
     config: SimulationConfig,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Run the public-safe downside simulation for the appendix.
+
+    The stochastic engine is explicitly a secondary decision-support layer. It
+    is useful for downside framing and scenario discussion, but it should not be
+    described as a structural commodity model or as full workbook parity.
+    """
+
     rng = np.random.default_rng(config.random_seed)
     base_profile = build_expansion_profile(annual_inputs=annual_inputs, params=params)
     base_prices = annual_inputs["copper_price_usd_per_lb"].to_numpy(dtype=float)
     base_grade = annual_inputs["base_head_grade"].to_numpy(dtype=float)
     tonnes = base_profile["expanded_tonnes"].to_numpy(dtype=float)
+    unit_opex = base_profile["unit_opex_usd_per_tonne"].to_numpy(dtype=float)
     discount_factor = base_profile["discount_factor"].to_numpy(dtype=float)
     capex = base_profile["capex_usd"].to_numpy(dtype=float)
     initial_capex_year0 = float(base_profile.attrs.get("initial_capex_year0_usd", 0.0))
@@ -137,11 +149,11 @@ def run_monte_carlo(
     )
 
     net_price = scenario_prices * params.payable_rate - params.tc_rc_usd_per_lb
-    copper_fine_lb = tonnes[None, :] * scenario_grade * scenario_recovery * 2204.62
+    copper_fine_lb = tonnes[None, :] * scenario_grade * scenario_recovery * LB_PER_TONNE
     payable_revenue = copper_fine_lb * scenario_prices * params.payable_rate
     tcrc = copper_fine_lb * params.tc_rc_usd_per_lb
     revenue = payable_revenue - tcrc
-    opex = tonnes[None, :] * params.expansion_unit_cost_usd_per_tonne
+    opex = tonnes[None, :] * unit_opex[None, :]
     ebitda = revenue - opex
     taxes = np.where(ebitda > 0, ebitda * params.cash_tax_proxy_rate, 0.0)
     operating_cash_flow = ebitda - taxes

@@ -1,0 +1,69 @@
+version: 1
+mapping_name: "public_demo_annual_appendix_identity"
+description: "Identity mapping for the repository's public sample annual appendix CSVs."
+
+datasets:
+  annual_appendix_inputs:
+    source_file: "annual_appendix_inputs.csv"
+    source_dataset_label: "public_demo_annual_driver_export"
+    normalize_year: true
+    mapping_note: "Identity mapping for the public sample annual appendix driver file."
+    column_map:
+      year: year
+      calendar_year: calendar_year
+      copper_price_usd_per_lb: copper_price_usd_per_lb
+      base_processed_tonnes: base_processed_tonnes
+      base_head_grade: base_head_grade
+      base_recovery: base_recovery
+      base_unit_cost_usd_per_tonne: base_unit_cost_usd_per_tonne
+      expansion_unit_cost_usd_per_tonne: expansion_unit_cost_usd_per_tonne
+      initial_capex_usd: initial_capex_usd
+      sustaining_capex_usd: sustaining_capex_usd
+
+  appendix_parameters:
+    source_file: "appendix_parameters.csv"
+    source_dataset_label: "public_demo_appendix_parameter_export"
+    normalize_year: false
+    mapping_note: "Identity mapping for the public sample annual appendix parameter table."
+    column_map:
+      parameter_name: parameter_name
+      value: value
+      unit: unit
+      parameter_group: parameter_group
+      used_by: used_by
+      source_type: source_type
+      source_reference: source_reference
+      note: note
+
+  appendix_scenarios:
+    source_file: "appendix_scenarios.csv"
+    source_dataset_label: "public_demo_appendix_scenario_export"
+    normalize_year: false
+    mapping_note: "Identity mapping for the public sample deterministic appendix scenario table."
+    column_map:
+      scenario_id: scenario_id
+      scenario_name: scenario_name
+      category: category
+      description: description
+      price_factor: price_factor
+      grade_factor: grade_factor
+      recovery_factor: recovery_factor
+      throughput_factor: throughput_factor
+      opex_factor: opex_factor
+      capex_factor: capex_factor
+      wacc_shift_bps: wacc_shift_bps
+
+  appendix_benchmark_metrics:
+    source_file: "appendix_benchmark_metrics.csv"
+    source_dataset_label: "public_demo_appendix_benchmark_export"
+    normalize_year: false
+    mapping_note: "Identity mapping for the public sample appendix benchmark metric table."
+    column_map:
+      metric: metric
+      value: value
+      unit: unit
+      currency: currency
+      valuation_basis: valuation_basis
+      timing_basis: timing_basis
+      benchmark_source: benchmark_source
+      note: note

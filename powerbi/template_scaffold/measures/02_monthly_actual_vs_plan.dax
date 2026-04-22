@@ -1,0 +1,34 @@
+-- Monthly Actual vs Plan Measures
+
+-- Table: fact_monthly_actual_vs_plan
+Monthly Actual Copper Production = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Actual Throughput = CALCULATE(MAX(fact_monthly_actual_vs_plan[actual_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+Monthly Copper Production Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Head Grade Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Plan Copper Production = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "copper_production_tonnes")
+
+Monthly Plan Head Grade = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "head_grade_pct")
+
+Monthly Plan Recovery = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+Monthly Plan Throughput = CALCULATE(MAX(fact_monthly_actual_vs_plan[plan_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+Monthly Recovery Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "recovery_pct")
+
+Monthly Throughput Variance = CALCULATE(MAX(fact_monthly_actual_vs_plan[variance_value]), fact_monthly_actual_vs_plan[metric] = "throughput_tonnes")
+
+
+-- Table: kpi_monthly_summary
+Monthly Copper Production Variance % = MAX(kpi_monthly_summary[copper_production_tonnes_variance_pct])
+
+Monthly Head Grade Variance % = MAX(kpi_monthly_summary[head_grade_pct_variance_pct])
+
+Monthly Recovery Variance % = MAX(kpi_monthly_summary[recovery_pct_variance_pct])
+
+Monthly Throughput Variance % = MAX(kpi_monthly_summary[throughput_tonnes_variance_pct])
+
+Monthly Unit Cost Variance % = MAX(kpi_monthly_summary[unit_cost_usd_per_tonne_variance_pct])
