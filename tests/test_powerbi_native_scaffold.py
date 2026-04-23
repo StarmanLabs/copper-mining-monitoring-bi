@@ -263,8 +263,10 @@ def test_build_powerbi_native_scaffold_omits_appendix_assets_when_profile_disabl
             }
 
             build_inventory = json.loads(outputs["build_inventory"].read_text(encoding="utf-8"))
-            assert "CopperMiningMonitoring.SemanticModel/PowerQuery/parameters/AdvancedAppendixOutputRoot.pq" in build_inventory["obsolete_files"]
-            assert "CopperMiningMonitoring.Report/page_shells/05_advanced_scenario_risk_appendix.json" in build_inventory["obsolete_files"]
+            generated_files = set(build_inventory["generated_files"])
+            assert "CopperMiningMonitoring.SemanticModel/PowerQuery/parameters/AdvancedAppendixOutputRoot.pq" not in generated_files
+            assert "CopperMiningMonitoring.SemanticModel/PowerQuery/queries/advanced_appendix/20_fact_annual_metrics.pq" not in generated_files
+            assert "CopperMiningMonitoring.Report/page_shells/05_advanced_scenario_risk_appendix.json" not in generated_files
             if appendix_parameter.exists():
                 assert "Obsolete scaffold file" in appendix_parameter.read_text(encoding="utf-8")
             if appendix_query.exists():
