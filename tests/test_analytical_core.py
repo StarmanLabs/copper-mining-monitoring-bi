@@ -159,7 +159,6 @@ def test_appendix_monte_carlo_exports_are_rounded_for_cross_platform_stability()
             "grade_factor",
             "average_recovery",
             "recovery_std",
-            "npv_usd",
         ]
         for column_name in distribution_float_columns:
             assert np.allclose(
@@ -168,6 +167,12 @@ def test_appendix_monte_carlo_exports_are_rounded_for_cross_platform_stability()
                 equal_nan=True,
                 atol=1e-12,
             )
+        assert np.allclose(
+            simulation_distribution["npv_usd"].to_numpy(),
+            simulation_distribution["npv_usd"].round(2).to_numpy(),
+            equal_nan=True,
+            atol=1e-12,
+        )
 
         assert np.allclose(
             simulation_summary["value"].to_numpy(),

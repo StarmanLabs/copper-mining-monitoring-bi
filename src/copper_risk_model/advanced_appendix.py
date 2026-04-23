@@ -29,6 +29,7 @@ from .simulation import SimulationConfig, run_monte_carlo
 from .valuation_model import ScenarioParameters, build_incremental_expansion_profile
 
 MONTE_CARLO_EXPORT_DECIMALS = 5
+MONTE_CARLO_DISTRIBUTION_NPV_DECIMALS = 2
 
 
 @dataclass(frozen=True)
@@ -707,6 +708,7 @@ def build_advanced_appendix_outputs(
     )
     simulation_summary = _round_public_export_frame(simulation_summary)
     simulation_distribution = _round_public_export_frame(simulation_distribution)
+    simulation_distribution["npv_usd"] = simulation_distribution["npv_usd"].round(MONTE_CARLO_DISTRIBUTION_NPV_DECIMALS)
     simulation_percentiles = _round_public_export_frame(simulation_percentiles)
     benchmark_comparison = _round_public_export_frame(benchmark_comparison)
     appendix_assumption_catalog = build_advanced_appendix_assumption_catalog(context)
