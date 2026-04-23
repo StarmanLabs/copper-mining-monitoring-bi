@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import yaml
 
@@ -26,6 +27,8 @@ from .scenario_analysis import (
 )
 from .simulation import SimulationConfig, run_monte_carlo
 from .valuation_model import ScenarioParameters, build_incremental_expansion_profile
+
+MONTE_CARLO_EXPORT_DECIMALS = 5
 
 
 @dataclass(frozen=True)
@@ -98,6 +101,25 @@ def _build_simulation_percentiles(distribution: pd.DataFrame, percentiles: list[
     return pd.DataFrame(
         [{"percentile": percentile, "npv_usd": float(distribution["npv_usd"].quantile(percentile))} for percentile in percentiles]
     )
+
+
+def _round_public_export_frame(frame: pd.DataFrame, *, decimals: int = MONTE_CARLO_EXPORT_DECIMALS) -> pd.DataFrame:
+    """Round float-like export fields to avoid cross-platform noise in public artifacts."""
+
+    rounded = frame.copy()
+    for column_name in rounded.columns:
+        series = rounded[column_name]
+        if pd.api.types.is_float_dtype(series):
+            rounded[column_name] = series.round(decimals)
+            continue
+        if series.dtype != "object":
+            continue
+        rounded[column_name] = series.map(
+            lambda value: round(float(value), decimals)
+            if isinstance(value, (float, np.floating)) and not pd.isna(value)
+            else value
+        )
+    return rounded
 
 
 def _annual_input_source_type(context: AdvancedAppendixContext) -> str:
@@ -683,6 +705,10 @@ def build_advanced_appendix_outputs(
         simulation_distribution,
         context.config["portfolio_bi"]["simulation_percentiles"],
     )
+    simulation_summary = _round_public_export_frame(simulation_summary)
+    simulation_distribution = _round_public_export_frame(simulation_distribution)
+    simulation_percentiles = _round_public_export_frame(simulation_percentiles)
+    benchmark_comparison = _round_public_export_frame(benchmark_comparison)
     appendix_assumption_catalog = build_advanced_appendix_assumption_catalog(context)
     appendix_output_catalog = build_advanced_appendix_output_catalog(context)
     annual_appendix_dataset_catalog = build_annual_appendix_dataset_catalog()

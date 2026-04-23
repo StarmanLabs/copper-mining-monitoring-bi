@@ -159,6 +159,7 @@ def test_annual_appendix_work_package_contains_refresh_sections():
     with scratch_output_dir("test-annual-appendix-work") as output_dir:
         outputs = build_annual_appendix_work_outputs(output_dir=output_dir)
         refresh_summary = json.loads(outputs["annual_appendix_refresh_summary"].read_text(encoding="utf-8"))
+        appendix_scenarios = pd.read_csv(outputs["appendix_scenarios"])
 
         assert refresh_summary["refresh_status"] == "success"
         assert refresh_summary["public_safe"] is True
@@ -172,6 +173,14 @@ def test_annual_appendix_work_package_contains_refresh_sections():
             "appendix_scenarios",
             "appendix_benchmark_metrics",
         }.issubset(set(refresh_summary["output_files"]))
+        assert list(appendix_scenarios["scenario_id"]) == [
+            "base",
+            "bull_market",
+            "bear_market",
+            "operational_stress",
+            "capex_overrun",
+            "committee_downside",
+        ]
 
 
 def test_private_source_profile_template_is_parseable():

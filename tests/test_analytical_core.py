@@ -143,6 +143,54 @@ def test_simulation_reproducibility_and_path_variation():
     ].iloc[0]
 
 
+def test_appendix_monte_carlo_exports_are_rounded_for_cross_platform_stability():
+    with scratch_output_dir("test-appendix-rounded-exports") as output_dir:
+        outputs = build_advanced_appendix_outputs(output_dir=output_dir)
+
+        simulation_distribution = pd.read_csv(outputs["fact_simulation_distribution"])
+        simulation_summary = pd.read_csv(outputs["simulation_summary"])
+        simulation_percentiles = pd.read_csv(outputs["simulation_percentiles"])
+        benchmark_comparison = pd.read_csv(outputs["benchmark_comparison"])
+
+        distribution_float_columns = [
+            "average_price_usd_per_lb",
+            "terminal_price_usd_per_lb",
+            "price_path_std_usd_per_lb",
+            "grade_factor",
+            "average_recovery",
+            "recovery_std",
+            "npv_usd",
+        ]
+        for column_name in distribution_float_columns:
+            assert np.allclose(
+                simulation_distribution[column_name].to_numpy(),
+                simulation_distribution[column_name].round(5).to_numpy(),
+                equal_nan=True,
+                atol=1e-12,
+            )
+
+        assert np.allclose(
+            simulation_summary["value"].to_numpy(),
+            simulation_summary["value"].round(5).to_numpy(),
+            equal_nan=True,
+            atol=1e-12,
+        )
+        assert np.allclose(
+            simulation_percentiles["npv_usd"].to_numpy(),
+            simulation_percentiles["npv_usd"].round(5).to_numpy(),
+            equal_nan=True,
+            atol=1e-12,
+        )
+
+        for column_name in ["python_value", "benchmark_value", "gap", "pct_gap"]:
+            comparable_values = benchmark_comparison[column_name].dropna().to_numpy()
+            assert np.allclose(
+                comparable_values,
+                np.round(comparable_values, 5),
+                atol=1e-12,
+            )
+
+
 def test_legacy_appendix_adapter_path_still_runs():
     with scratch_output_dir("test-appendix-legacy") as output_dir:
         outputs = build_advanced_appendix_outputs(

@@ -361,7 +361,9 @@ def validate_annual_appendix_work_inputs(dataset_frames: dict[str, pd.DataFrame]
         validator = CANONICAL_APPENDIX_VALIDATORS[dataset_name]
         frame = validator(dataset_frames[dataset_name]).copy()
         key_columns = [column for column in ANNUAL_APPENDIX_CANONICAL_SCHEMAS[dataset_name].key_columns if column in frame.columns]
-        if key_columns:
+        # Scenario order is intentionally business-defined in the source table and should
+        # remain stable across canonicalization, runner handoff, and Power BI appendix pages.
+        if key_columns and dataset_name != "appendix_scenarios":
             frame = frame.sort_values(key_columns).reset_index(drop=True)
         validated[dataset_name] = frame
     return validated
