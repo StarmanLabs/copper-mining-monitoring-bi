@@ -12,6 +12,12 @@ The intent of v1 is not to introduce more architecture. The intent is to freeze 
 - annual appendix adaptation that builds canonical annual tables before the advanced appendix
 - advanced appendix outputs kept as a secondary analytical layer
 - Power BI starter-kit assets plus a PBIP/TMDL-oriented finalization package
+- a manually finalized local Power BI dashboard story with five pages:
+  - Executive Overview
+  - Monthly Actual vs Plan
+  - Process Performance
+  - Cost & Margin
+  - Scenario / Risk Appendix
 - a unified local runner driven by source profiles
 - public/private adaptation templates and ignored local-only patterns
 
@@ -22,6 +28,32 @@ The intent of v1 is not to introduce more architecture. The intent is to freeze 
 - a Power BI Desktop-saved PBIP or PBIX stored in the public repo
 - cloud orchestration or enterprise deployment infrastructure
 - engineering-grade mine planning realism or full corporate-finance depth
+
+## Dashboard v1 Scope
+
+Dashboard v1 is meant to read as a reproducible mining monitoring product rather than as a standalone `.pbix` artifact.
+
+What is included:
+
+- Python dataset generation
+- BI-ready monthly marts
+- Power BI semantic support catalogs
+- public-safe documentation for the final five-page dashboard story
+- PBIP/TMDL-oriented starter assets for continuation in Desktop
+
+What remains manual in Power BI Desktop:
+
+- final visual layout
+- final formatting choices
+- screenshot capture
+- PBIX save/export
+
+What is intentionally excluded:
+
+- private data
+- private local outputs
+- a versioned public PBIX binary inside the repo
+- any claim that the repo auto-generated the finished report canvas end to end
 
 ## Recommended Review Path
 

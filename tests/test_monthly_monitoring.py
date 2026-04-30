@@ -3,6 +3,7 @@ import pytest
 
 from conftest import scratch_output_dir
 from copper_risk_model.monthly_monitoring import (
+    POUNDS_PER_METRIC_TONNE,
     build_monthly_monitoring_outputs,
     load_monthly_monitoring_inputs,
     validate_monthly_inputs,
@@ -191,3 +192,80 @@ def test_monthly_validation_rejects_impossible_rates():
 
     with pytest.raises(DatasetValidationError, match="numeric_range_high"):
         validate_monthly_inputs(dataset_frames)
+
+
+def test_monthly_financial_proxies_follow_unit_consistent_formula():
+    with scratch_output_dir("test-monthly-monitoring-financial-proxies") as output_dir:
+        outputs = build_monthly_monitoring_outputs(output_dir=output_dir)
+        summary = pd.read_csv(outputs["kpi_monthly_summary"])
+
+        january = summary.loc[
+            (summary["period"] == "2025-01") & (summary["site_id"] == "demo_north_concentrator")
+        ].iloc[0]
+
+        expected_revenue_plan = (
+            january["copper_production_tonnes_plan"]
+            * POUNDS_PER_METRIC_TONNE
+            * (january["payable_percent_plan"] / 100.0)
+            * january["net_realized_price_usd_per_lb_plan"]
+        )
+        expected_revenue_actual = (
+            january["copper_production_tonnes_actual"]
+            * POUNDS_PER_METRIC_TONNE
+            * (january["payable_percent_actual"] / 100.0)
+            * january["net_realized_price_usd_per_lb_actual"]
+        )
+
+        assert january["revenue_proxy_usd_plan"] == pytest.approx(expected_revenue_plan)
+        assert january["revenue_proxy_usd_actual"] == pytest.approx(expected_revenue_actual)
+        assert january["ebitda_proxy_usd_plan"] == pytest.approx(
+            january["revenue_proxy_usd_plan"] - january["operating_cost_usd_plan"]
+        )
+        assert january["ebitda_proxy_usd_actual"] == pytest.approx(
+            january["revenue_proxy_usd_actual"] - january["operating_cost_usd_actual"]
+        )
+        assert january["operating_cash_flow_proxy_usd_plan"] == pytest.approx(
+            january["ebitda_proxy_usd_plan"] - january["working_capital_change_usd_plan"]
+        )
+        assert january["operating_cash_flow_proxy_usd_actual"] == pytest.approx(
+            january["ebitda_proxy_usd_actual"] - january["working_capital_change_usd_actual"]
+        )
+        assert january["free_cash_flow_proxy_usd_plan"] == pytest.approx(
+            january["operating_cash_flow_proxy_usd_plan"] - january["sustaining_capex_usd_plan"]
+        )
+        assert january["free_cash_flow_proxy_usd_actual"] == pytest.approx(
+            january["operating_cash_flow_proxy_usd_actual"] - january["sustaining_capex_usd_actual"]
+        )
+
+
+def test_demo_financial_proxy_guardrails_keep_monthly_scale_plausible():
+    with scratch_output_dir("test-monthly-monitoring-financial-guardrails") as output_dir:
+        outputs = build_monthly_monitoring_outputs(output_dir=output_dir)
+        summary = pd.read_csv(outputs["kpi_monthly_summary"])
+
+        financial_columns = [
+            "revenue_proxy_usd_plan",
+            "revenue_proxy_usd_actual",
+            "ebitda_proxy_usd_plan",
+            "ebitda_proxy_usd_actual",
+            "operating_cash_flow_proxy_usd_plan",
+            "operating_cash_flow_proxy_usd_actual",
+            "free_cash_flow_proxy_usd_plan",
+            "free_cash_flow_proxy_usd_actual",
+        ]
+        assert summary[financial_columns].abs().max().max() < 100_000_000.0
+
+        implied_revenue_per_tonne_plan = summary["revenue_proxy_usd_plan"] / summary["copper_production_tonnes_plan"]
+        implied_revenue_per_tonne_actual = summary["revenue_proxy_usd_actual"] / summary["copper_production_tonnes_actual"]
+        assert implied_revenue_per_tonne_plan.between(500.0, 100_000.0).all()
+        assert implied_revenue_per_tonne_actual.between(500.0, 100_000.0).all()
+
+        variance_pct_columns = [
+            "revenue_proxy_usd_variance_pct",
+            "ebitda_proxy_usd_variance_pct",
+            "operating_cash_flow_proxy_usd_variance_pct",
+            "free_cash_flow_proxy_usd_variance_pct",
+        ]
+        for column in variance_pct_columns:
+            assert summary[column].notna().all()
+            assert summary[column].abs().max() < 5.0

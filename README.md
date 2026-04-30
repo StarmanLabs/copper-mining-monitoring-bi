@@ -1,238 +1,153 @@
-# Copper Mining Planning and Performance Analytics
+# Copper Mining Monitoring BI
 
-This repository turns a copper expansion case plus governed monthly and annual sample tables into reproducible KPI marts for mining planning support, management control, BI, and decision support. Power BI is the first-class handoff path, with Tableau as a secondary consumption option. Valuation, Monte Carlo, and benchmark reconciliation remain in the repository as advanced appendix modules rather than as the main project identity.
+Public-safe mining performance monitoring built as a reproducible Python-to-Power-BI workflow.
 
-This base v1.0 release is scoped as a stable public-safe baseline: monthly monitoring first, Power BI handoff ready, private adaptation practical, and advanced appendix modules kept secondary.
+This repository packages monthly actual-vs-plan control, KPI alerting, operational driver analysis, cost and margin pressure monitoring, and a secondary scenario/risk appendix for a hypothetical copper operation.
 
-## What This Repository Is
+The main deliverable is not just a Power BI file.
 
-- A mining planning and performance analytics portfolio project
-- A reusable analytical core for KPI monitoring and BI consumption
-- A stronger fit for economics + data + mining domain adaptation than for mine engineering or geology depth
-
-## What It Is Not
-
-- Not an Excel reconstruction project
-- Not a valuation-only showcase
-- Not a live plant, ERP, or telemetry integration
-- Not a control-room dashboard platform
-
-## Current Core Story
-
-1. Monthly actual-vs-plan monitoring
-   Sample/demo monthly datasets feed canonical validation, KPI variance logic, and BI-ready monitoring marts with site, process-area, and cost-center drill support.
-2. Work-core reuse layer
-   Config-driven source mapping, data quality reporting, KPI exceptions, source-profile templates, and refresh reporting make the monthly layer easier to adapt to real company exports.
-3. BI-ready semantic layer
-   The main outputs are CSV facts, marts, and dictionaries designed for Power BI or Tableau.
-4. Planning and scenario context
-   Annual KPI and scenario tables provide supporting planning context around the monthly management story.
-5. Advanced appendix
-   Valuation, Monte Carlo, tornado, heatmap, and benchmark reconciliation remain available as secondary analytical layers.
-## Data Reality
-
-- The current workbook source is `data/raw/Copper_mining_risk_model.xlsm`
-- The monthly monitoring layer runs from sample/demo CSV inputs in `data/sample_data/monthly_monitoring/`
-- The advanced appendix now runs by default from canonical annual sample/demo CSV inputs in `data/sample_data/annual_appendix/`
-- The workbook remains available only as a legacy adapter and benchmark reference path for the appendix
-- Monthly outputs are suitable for planning-style monitoring demos and BI prototyping
-- Monthly outputs should not be presented as live operating actuals or ERP-connected reports
-
-The honest claim is:
-
-- planning/control/BI-ready architecture: yes
-- sample/demo monthly actual-vs-plan monitoring: yes
-- live monthly operational monitoring: not yet
-- advanced valuation and downside appendix: yes
-
-## What To Open First
-
-If you are reviewing the project on GitHub, start with these files:
-
-1. `README.md`
-2. `docs/GETTING_STARTED.md`
-3. `RELEASE_V1.md`
-4. `powerbi/START_HERE.md`
-5. `docs/MONTHLY_MONITORING_LAYER.md`
-6. `docs/BI_USAGE.md`
-7. `outputs/bi/kpi_monthly_summary.csv`
-8. `outputs/bi/fact_monthly_actual_vs_plan.csv`
-9. `outputs/bi/monthly_kpi_dictionary.csv`
-
-## Main Output Families
-
-### Monthly monitoring core
-
-- `outputs/bi/dim_site.csv`
-- `outputs/bi/dim_month.csv`
-- `outputs/bi/kpi_monthly_summary.csv`
-- `outputs/bi/fact_monthly_actual_vs_plan.csv`
-- `outputs/bi/mart_monthly_executive_overview.csv`
-- `outputs/bi/mart_monthly_process_performance.csv`
-- `outputs/bi/mart_monthly_cost_margin.csv`
-- `outputs/bi/mart_monthly_by_site.csv`
-- `outputs/bi/mart_process_driver_summary.csv`
-- `outputs/bi/mart_cost_center_summary.csv`
-- `outputs/bi/dim_monthly_metric.csv`
-- `outputs/bi/dim_process_area.csv`
-- `outputs/bi/dim_cost_center.csv`
-- `outputs/bi/monthly_kpi_dictionary.csv`
-- `outputs/bi/monthly_dataset_catalog.csv`
-- `outputs/bi/monthly_field_catalog.csv`
-
-### Monthly work core
-
-- `outputs/bi/source_mapping_audit.csv`
-- `outputs/bi/data_quality_report.csv`
-- `outputs/bi/kpi_exceptions.csv`
-- `outputs/bi/refresh_summary.json`
-
-### Power BI starter kit support
-
-- `outputs/bi/dashboard_page_catalog.csv`
-- `outputs/bi/powerbi_table_catalog.csv`
-- `outputs/bi/powerbi_query_catalog.csv`
-- `outputs/bi/powerbi_relationship_catalog.csv`
-- `outputs/bi/powerbi_visual_binding_catalog.csv`
-- `outputs/bi/powerbi_measure_catalog.csv`
-- `outputs/bi/powerbi_sort_by_catalog.csv`
-- `outputs/bi/powerbi_field_visibility_catalog.csv`
-
-### Appendix context
-
-- `outputs/bi/annual_appendix_dataset_catalog.csv`
-- `outputs/bi/annual_appendix_field_catalog.csv`
-- `outputs/bi/fact_annual_metrics.csv`
-- `outputs/bi/fact_scenario_kpis.csv`
-- `outputs/bi/appendix_kpi_catalog.csv`
-- `outputs/bi/dim_year.csv`
-- `outputs/bi/dim_metric.csv`
-- `outputs/bi/dim_scenario.csv`
-
-### Advanced appendix
-
-- `outputs/bi/fact_simulation_distribution.csv`
-- `outputs/bi/simulation_summary.csv`
-- `outputs/bi/simulation_percentiles.csv`
-- `outputs/bi/fact_tornado_sensitivity.csv`
-- `outputs/bi/fact_heatmap_price_grade.csv`
-- `outputs/bi/benchmark_comparison.csv`
-- `outputs/bi/benchmark_scope_catalog.csv`
-- `outputs/bi/advanced_appendix_assumption_catalog.csv`
-- `outputs/bi/advanced_appendix_output_catalog.csv`
-
-## Repository Flow
+The main deliverable is a reproducible analytical workflow:
 
 ```text
-legacy workbook adapter or future governed source
-  -> validation
-  -> canonical datasets
-  -> monthly monitoring and KPI transforms
-  -> BI-facing marts and dictionaries
-  -> Power BI / Tableau semantic layer
-  -> advanced valuation / risk appendix
+Python pipeline
+  -> validated canonical monthly and annual demo datasets
+  -> BI-ready outputs under outputs/bi
+  -> Power BI starter kit and PBIP/TMDL-oriented handoff
+  -> manually finalized public-safe dashboard in Power BI Desktop
 ```
 
-## Repository Structure
+## Problem Statement
 
-```text
-copper_minning_risk_model/
-  config/                     Scenario and project configuration
-  data/raw/                   Raw workbook input
-  data/sample_data/           Public sample/demo monthly and annual appendix inputs
-  docs/                       Focused project guidance
-  outputs/bi/                 Main BI-ready marts and dictionaries
-  powerbi/                    Power BI starter kit plus template and PBIP finalization scaffolds
-  scripts/                    Build entrypoints and the unified local runner
-  src/copper_risk_model/      Core analytical package
-  tests/                      Analytical and pipeline validation
-```
+Mining dashboards are often shown as isolated BI files with little clarity on:
 
-## Power BI Starter Kit
+- where the data comes from
+- how metrics are defined
+- how monthly actual-vs-plan logic is reproduced
+- how scenario or risk context is separated from the core management story
 
-Use the tables in `outputs/bi/`.
+This project addresses that gap by combining:
 
-Start with:
+- a Python pipeline for reproducible monthly monitoring datasets
+- BI-ready marts and semantic support tables
+- a Power BI handoff structure that is honest about what is automated and what is manually finalized in Desktop
 
-1. `powerbi/START_HERE.md`
-2. `powerbi/TEMPLATE_LAYER.md`
-3. `powerbi/pbip_tmdl_scaffold/README.md`
-4. `powerbi/template_scaffold/README.md`
-5. `powerbi/RELATIONSHIP_BLUEPRINT.md`
-6. `powerbi/REPORT_BUILD_CHECKLIST.md`
-7. `powerbi/PAGE_BUILD_GUIDE.md`
-8. `powerbi/SLICER_AND_FILTER_GUIDE.md`
-9. `powerbi/VISUAL_BINDING_CATALOG.csv`
+## What This Project Demonstrates
 
-Use these supporting assets:
+- monthly actual-vs-plan performance control
+- KPI alerting and economic signal classification
+- process-driver explanation for production and downtime
+- cost-center and margin-pressure monitoring
+- a secondary scenario / risk appendix with tornado sensitivity and simulation percentiles
 
-- `powerbi/DASHBOARD_BLUEPRINT.md`
-- `powerbi/DAX_MEASURES.md`
-- `powerbi/pbip_tmdl_scaffold/`
-- `powerbi/template_scaffold/`
-- `outputs/bi/powerbi_table_catalog.csv`
-- `outputs/bi/powerbi_query_catalog.csv`
-- `outputs/bi/powerbi_relationship_catalog.csv`
-- `outputs/bi/powerbi_visual_binding_catalog.csv`
-- `outputs/bi/powerbi_measure_catalog.csv`
-- `outputs/bi/powerbi_sort_by_catalog.csv`
-- `outputs/bi/powerbi_field_visibility_catalog.csv`
-- `outputs/bi/monthly_kpi_dictionary.csv`
-- `powerbi/copper_risk_theme.json`
+## Dashboard Story
 
-The monthly Power BI model uses shared `site` and `month` dimensions so the first four pages can be filtered coherently from one core slicer layer, and the PBIP/TMDL-oriented scaffold packages sort-by, hidden-field, relationship, and measure metadata in a more native-feeling continuation structure.
-
-The Power BI scaffolds are now profile-aware at the package level: if a local profile disables the advanced appendix path, the current query catalogs, page manifests, and parameter manifests stay monthly-first and omit appendix assets from the active handoff. When a scaffold is regenerated over an older build in a constrained local environment, previously generated scaffold files outside the current package are marked obsolete in place rather than silently reused.
-
-Recommended page order:
+The locally finalized Power BI dashboard contains five pages:
 
 1. Executive Overview
 2. Monthly Actual vs Plan
 3. Process Performance
-4. Cost and Margin
-5. Advanced Scenario / Risk Appendix
+4. Cost & Margin
+5. Scenario / Risk Appendix
 
-For Tableau, keep separate subject-area sources instead of forcing every mart into one merged model. The secondary Tableau split is documented in `docs/BI_USAGE.md`.
+Pages 1 to 4 are the primary product story.
 
-## Public Demo vs Private Adaptation
+Page 5 is intentionally secondary.
 
-Public version:
+## Screenshot Assets
 
-- keeps the raw workbook only as a legacy adapter / benchmark source
-- uses sample/demo monthly CSV inputs
-- uses sample/demo annual appendix CSV inputs
-- includes `config/source_profiles/public_demo_profile.yaml` for the unified local runner
-- avoids private company data and proprietary exports
+Expected screenshot files live under `docs/assets/powerbi/`.
 
-Private adaptation path:
+Place the final public-safe images there with these exact filenames:
 
-- replace sample monthly source tables with governed private plan, actual, plant, cost, and market datasets
-- map private annual planning, parameter, scenario, and benchmark tables into canonical annual appendix inputs
-- preserve canonical monthly schemas so the BI layer does not break
-- preserve canonical annual appendix schemas so the secondary appendix remains source-agnostic
-- keep workbook logic isolated as benchmark or transition logic
-- keep private mappings, source profiles, raw exports, and local dashboard files in ignored local folders only
-- use canonical outputs as the handoff boundary into Power BI
+| Dashboard page | Expected file |
+| --- | --- |
+| Executive Overview | `docs/assets/powerbi/executive_overview.png` |
+| Monthly Actual vs Plan | `docs/assets/powerbi/monthly_actual_vs_plan.png` |
+| Process Performance | `docs/assets/powerbi/process_performance.png` |
+| Cost & Margin | `docs/assets/powerbi/cost_margin.png` |
+| Scenario / Risk Appendix | `docs/assets/powerbi/scenario_risk_appendix.png` |
 
-## Fastest Starting Paths
+If the PNG files are not in the repo yet, see `docs/assets/powerbi/README.md` for exact placement instructions.
 
-For portfolio / public demo review:
+### Executive Overview
 
-1. install dependencies with `python -m pip install -e .[dev]`
-2. build the baseline with `python scripts/build_bi_dataset.py`
-3. review `outputs/bi/` and `powerbi/START_HERE.md`
-4. open `powerbi/pbip_tmdl_scaffold/` for the strongest Power BI continuation path
+![Executive Overview](docs/assets/powerbi/executive_overview.png)
 
-For private local adaptation:
+### Monthly Actual vs Plan
 
-1. copy `config/source_profiles/templates/example_private_company_profile.yaml` into an ignored local path such as `config/source_profiles/local/my_company_profile.yaml`
-2. copy the mapping templates you need into ignored local mapping files
-3. point the profile to your local raw export folders and output folders
-4. prevalidate with `python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --validate-only`
-5. run `--scope monthly` first, then `--scope all` only when the appendix path is really needed
-6. regenerate the Power BI scaffold with the same profile so the output-root queries follow your local folders
+![Monthly Actual vs Plan](docs/assets/powerbi/monthly_actual_vs_plan.png)
 
-## How To Run
+### Process Performance
+
+![Process Performance](docs/assets/powerbi/process_performance.png)
+
+### Cost & Margin
+
+![Cost & Margin](docs/assets/powerbi/cost_margin.png)
+
+### Scenario / Risk Appendix
+
+![Scenario / Risk Appendix](docs/assets/powerbi/scenario_risk_appendix.png)
+
+## Architecture
+
+### Monthly monitoring core
+
+Public-safe demo data from `data/sample_data/monthly_monitoring/` feeds the core monthly monitoring pipeline:
+
+- throughput
+- head grade
+- recovery
+- copper production
+- unit cost
+- revenue proxy
+- EBITDA proxy
+- operating cash flow proxy
+- free cash flow proxy
+
+### BI-ready outputs
+
+The pipeline writes reusable outputs to `outputs/bi/`, including:
+
+- `kpi_monthly_summary.csv`
+- `fact_monthly_actual_vs_plan.csv`
+- `mart_monthly_executive_overview.csv`
+- `mart_monthly_process_performance.csv`
+- `mart_monthly_cost_margin.csv`
+- `mart_monthly_by_site.csv`
+- `mart_process_driver_summary.csv`
+- `mart_cost_center_summary.csv`
+- Power BI relationship, query, measure, sort-by, and field-visibility catalogs
+
+### Power BI handoff
+
+The repo includes:
+
+- `powerbi/template_scaffold/`
+- `powerbi/pbip_tmdl_scaffold/`
+- `powerbi/START_HERE.md`
+
+These assets automate the dataset and semantic handoff.
+
+They do **not** claim to automatically generate the final finished Power BI canvas.
+
+The final PBIX was manually finalized in Power BI Desktop.
+
+## Data Reality
+
+This repository is public-safe and sample-data based.
+
+It does not include:
+
+- private company data
+- ERP-connected actuals
+- historian or telemetry integration
+- private local profiles
+- private mapping files
+
+The monthly financial fields are planning/control proxies, not audited financial statements.
+
+## Reproducibility
 
 Install dependencies:
 
@@ -240,88 +155,16 @@ Install dependencies:
 python -m pip install -e .[dev]
 ```
 
-Build BI outputs:
+Build the main BI-ready outputs:
 
 ```bash
 python scripts/build_bi_dataset.py
 ```
 
-Run the unified public demo flow from one source profile:
+Run the public demo profile end to end:
 
 ```bash
 python scripts/run_local_profile.py --profile config/source_profiles/public_demo_profile.yaml --scope all
-```
-
-Run only the monthly layer from one local/private profile:
-
-```bash
-python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --scope monthly
-```
-
-Run only the annual appendix continuation from one local/private profile:
-
-```bash
-python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --scope annual_appendix
-```
-
-Prevalidate a local/private profile before building outputs:
-
-```bash
-python scripts/run_local_profile.py --profile config/source_profiles/local/my_company_profile.yaml --validate-only
-```
-
-Regenerate only the Power BI template layer:
-
-```bash
-python scripts/build_powerbi_template_layer.py
-```
-
-Regenerate the Power BI template layer with output roots aligned to a local source profile:
-
-```bash
-python scripts/build_powerbi_template_layer.py --profile config/source_profiles/local/my_company_profile.yaml
-```
-
-Regenerate only the PBIP/TMDL-oriented scaffold:
-
-```bash
-python scripts/build_powerbi_native_scaffold.py
-```
-
-Regenerate the PBIP finalization package with output roots aligned to a local source profile:
-
-```bash
-python scripts/build_powerbi_native_scaffold.py --profile config/source_profiles/local/my_company_profile.yaml
-```
-
-Build the monthly monitoring layer only:
-
-```bash
-python scripts/build_monthly_monitoring_dataset.py
-```
-
-Build the monthly refresh support package:
-
-```bash
-python scripts/build_refresh_package.py
-```
-
-Build the annual appendix work-adaptation package:
-
-```bash
-python scripts/build_annual_appendix_work_package.py
-```
-
-Build only the advanced appendix from the canonical annual path:
-
-```bash
-python scripts/build_advanced_appendix_dataset.py
-```
-
-Build the appendix from the legacy workbook adapter and legacy benchmark path:
-
-```bash
-python scripts/build_advanced_appendix_dataset.py --input-mode legacy_workbook --benchmark-mode legacy_workbook
 ```
 
 Run tests:
@@ -330,41 +173,57 @@ Run tests:
 python -m pytest -q
 ```
 
-## Documentation Map
+## Power BI Dashboard Documentation
 
-- `RELEASE_V1.md`: concise v1 scope, included workflows, and intentional out-of-scope boundary
-- `docs/GETTING_STARTED.md`: shortest public-review path and shortest private-adaptation path
-- `docs/MONTHLY_MONITORING_LAYER.md`: monthly canonical schemas, marts, and validation rules
-- `docs/WORK_ADAPTATION.md`: source mapping, private adaptation pattern, and public-safe reuse guidance
-- `docs/PRIVATE_DEPLOYMENT_PATTERN.md`: what belongs in the public repo vs local/private usage only
-- `docs/MONTHLY_REFRESH_RUNBOOK.md`: monthly refresh sequence, validation outputs, and exception interpretation
-- `docs/ANNUAL_APPENDIX_WORK_ADAPTATION.md`: annual appendix mapping, validation, and local canonicalization pattern
-- `docs/BI_USAGE.md`: Power BI-first handoff guidance with Tableau as a secondary path
-- `docs/VALUATION_AND_RISK_APPENDIX.md`: advanced appendix scope, canonical annual inputs, legacy benchmark path, and limits
-- `docs/PROJECT_STRUCTURE.md`: folder guide and archive boundaries
-- `powerbi/START_HERE.md`: fastest Power BI build entrypoint
-- `powerbi/TEMPLATE_LAYER.md`: query-first and PBIP/TMDL-oriented scaffold strategy
-- `powerbi/RELATIONSHIP_BLUEPRINT.md`: recommended Power BI model
-- `powerbi/REPORT_BUILD_CHECKLIST.md`: ordered build and refresh checklist
-- `powerbi/PAGE_BUILD_GUIDE.md`: page-by-page report guidance
+Start here for the dashboard story:
 
-## Main Limitations
+- `docs/dashboard/POWER_BI_DASHBOARD.md`
+- `powerbi/START_HERE.md`
+- `powerbi/TEMPLATE_LAYER.md`
+- `powerbi/pbip_tmdl_scaffold/README.md`
 
-This repository is stronger as a planning, control, and BI project than as an engineering model.
+## Public-Safe / Private Adaptation Pattern
 
-It does not claim:
+Public version:
 
-- live actual-vs-plan reporting from plant, ERP, or dispatch systems
-- engineering-grade mine planning realism
-- full workbook parity outside explicit benchmark outputs
-- a full fiscal or corporate-finance model
-- structural commodity-price forecasting
+- uses sample/demo monthly and annual appendix datasets
+- keeps the monthly monitoring layer as the main story
+- exposes only public-safe outputs and documentation
 
-What it does claim honestly:
+Private adaptation path:
 
-> A reproducible mining planning and performance analytics workflow with a sample/demo monthly actual-vs-plan layer, BI-ready KPI marts, scenario context, benchmark transparency, and advanced valuation / downside appendix outputs.
+- replace demo source tables with governed local company exports
+- preserve canonical schemas
+- keep private source profiles and mappings in ignored local-only folders
+- regenerate the same BI-ready contract without exposing private data
 
-## Disclaimer
+## Limitations
 
-This is a public analytical portfolio project based on a hypothetical copper mining expansion case. It is not investment advice and should not substitute for geological, metallurgical, engineering, fiscal, financial, or operating due diligence.
+- the final dashboard canvas is manually finalized in Power BI Desktop
+- the repository does not store private data or live system integrations
+- financial fields are planning/control proxies, not statutory accounting numbers
+- the scenario/risk appendix is intentionally secondary to the monthly control story
+- the repo is stronger as a planning, control, and BI workflow than as a full mine-engineering or corporate-finance model
 
+## Portfolio Positioning
+
+This project should be read as a serious analytics portfolio artifact for mining planning, management control, and BI handoff.
+
+It is meant to show:
+
+- domain-specific KPI design
+- reproducible Python data preparation
+- public-safe analytical packaging
+- semantic BI handoff discipline
+- honest separation between automated data products and manually finalized dashboard presentation
+
+## Recommended Review Path
+
+1. `README.md`
+2. `docs/dashboard/POWER_BI_DASHBOARD.md`
+3. `powerbi/START_HERE.md`
+4. `docs/MONTHLY_MONITORING_LAYER.md`
+5. `outputs/bi/kpi_monthly_summary.csv`
+6. `outputs/bi/fact_monthly_actual_vs_plan.csv`
+7. `outputs/bi/mart_monthly_cost_margin.csv`
+8. `RELEASE_V1.md`

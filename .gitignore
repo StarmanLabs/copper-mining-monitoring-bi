@@ -33,6 +33,9 @@ config/source_profiles/local/
 config/mappings/local/
 
 powerbi/local/
+# Keep manually finished Desktop binaries local by default.
+# The repo packages the reproducible workflow and handoff artifacts,
+# not the final PBIX canvas binary.
 *.pbix
 *.pbit
 *.twb

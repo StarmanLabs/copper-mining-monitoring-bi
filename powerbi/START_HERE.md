@@ -2,6 +2,28 @@
 
 This starter kit is the fastest way to turn the repository's monthly monitoring marts into a usable mining management report.
 
+The repository now supports a final dashboard story with five manually finalized Power BI pages:
+
+1. Executive Overview
+2. Monthly Actual vs Plan
+3. Process Performance
+4. Cost & Margin
+5. Scenario / Risk Appendix
+
+What the repo automates:
+
+- Python dataset generation
+- BI-ready marts
+- semantic catalogs
+- scaffolded Power BI continuation assets
+
+What still remains manual in Power BI Desktop:
+
+- final canvas layout
+- final visual formatting
+- screenshot capture
+- PBIX save/export
+
 ## Fastest Build Path
 
 If you want the most practical starting point, use the generated scaffold package first:
@@ -100,6 +122,8 @@ This order matters.
 Pages 1 to 4 are the real product story.
 
 Page 5 is a useful appendix, but it is not the lead narrative for the repository or for a management-facing handoff.
+
+If you already have a locally finalized PBIX, treat this starter kit as the reproducible source workflow behind that dashboard rather than as a claim that the repo automatically authored the final Power BI canvas.
 
 ## Shortest Realistic Paths
 

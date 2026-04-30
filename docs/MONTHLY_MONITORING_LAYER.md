@@ -149,6 +149,34 @@ This is still not root-cause analytics.
 
 It is explicit management-control decomposition.
 
+## Financial Proxy Logic And Units
+
+The monthly financial fields are planning/control proxies, not audited financial statements.
+
+They are intentionally simple and unit-explicit:
+
+- `revenue_proxy_usd`
+  `copper_production_tonnes * 2204.62 * net_realized_price_usd_per_lb * payable_fraction`
+- `ebitda_proxy_usd`
+  `revenue_proxy_usd - operating_cost_usd`
+- `operating_cash_flow_proxy_usd`
+  `ebitda_proxy_usd - working_capital_change_usd`
+- `free_cash_flow_proxy_usd`
+  `operating_cash_flow_proxy_usd - sustaining_capex_usd`
+
+Unit interpretation:
+
+- `copper_production_tonnes`
+  recovered copper tonnes for the month
+- `2204.62`
+  pounds per metric tonne
+- `net_realized_price_usd_per_lb`
+  copper price proxy net of TC/RC
+- `payable_fraction`
+  payable percent expressed as `0-1`, derived from source fields stored as `0-100`
+
+The public demo should therefore land in plausible monthly USD magnitudes that can be honestly shown in USD or MUSD in Power BI without artificial display scaling.
+
 ## Validation Rules
 
 The monthly validation and data-quality layer now checks the new detail datasets too.
@@ -158,6 +186,7 @@ Core checks still include:
 - missing required columns
 - missing required values
 - duplicate keys
+- financial proxy unit guardrails to catch absurd scale regressions before BI consumption
 - invalid period format
 - missing monthly periods inside observed key sequences
 - invalid numeric types

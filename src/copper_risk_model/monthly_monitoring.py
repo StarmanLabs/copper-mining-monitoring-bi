@@ -15,6 +15,10 @@ from .refresh_reporting import build_kpi_exceptions, build_refresh_summary, summ
 from .source_mapping import map_source_directory
 
 POUNDS_PER_METRIC_TONNE = 2204.62262185
+MIN_NET_REALIZED_PRICE_USD_PER_LB = 0.10
+MAX_NET_REALIZED_PRICE_USD_PER_LB = 15.0
+MIN_REVENUE_PROXY_USD_PER_COPPER_TONNE = 500.0
+MAX_REVENUE_PROXY_USD_PER_COPPER_TONNE = 100_000.0
 SAMPLE_DATA_CLASSIFICATION = "sample_demo_monthly_monitoring"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PRIMARY_ALERT_PRIORITY = {
@@ -1112,6 +1116,14 @@ def _merge_monitoring_inputs(validated_inputs: dict[str, pd.DataFrame]) -> pd.Da
 
 
 def _add_derived_monitoring_metrics(summary: pd.DataFrame) -> pd.DataFrame:
+    """Add unit-consistent monthly planning/control proxy metrics.
+
+    Revenue stays anchored to recovered copper tonnes, converted to pounds,
+    then multiplied by net realized USD/lb and the payable fraction.
+    EBITDA, operating cash flow, and free cash flow remain simple management-
+    control proxies rather than audited accounting measures.
+    """
+
     operating_cost_components_actual = [
         column
         for column in (
@@ -1135,6 +1147,8 @@ def _add_derived_monitoring_metrics(summary: pd.DataFrame) -> pd.DataFrame:
         * (summary["head_grade_pct_plan"] / 100.0)
         * (summary["recovery_pct_plan"] / 100.0)
     )
+    payable_fraction_plan = summary["payable_percent_plan"] / 100.0
+    payable_fraction_actual = summary["payable_percent_actual"] / 100.0
     summary["net_realized_price_usd_per_lb_plan"] = summary["copper_price_usd_per_lb_plan"] - summary["tc_rc_usd_per_lb_plan"]
     summary["net_realized_price_usd_per_lb_actual"] = (
         summary["copper_price_usd_per_lb_actual"] - summary["tc_rc_usd_per_lb_actual"]
@@ -1143,13 +1157,13 @@ def _add_derived_monitoring_metrics(summary: pd.DataFrame) -> pd.DataFrame:
     summary["revenue_proxy_usd_plan"] = (
         summary["copper_production_tonnes_plan"]
         * POUNDS_PER_METRIC_TONNE
-        * (summary["payable_percent_plan"] / 100.0)
+        * payable_fraction_plan
         * summary["net_realized_price_usd_per_lb_plan"]
     )
     summary["revenue_proxy_usd_actual"] = (
         summary["copper_production_tonnes_actual"]
         * POUNDS_PER_METRIC_TONNE
-        * (summary["payable_percent_actual"] / 100.0)
+        * payable_fraction_actual
         * summary["net_realized_price_usd_per_lb_actual"]
     )
     summary["ebitda_proxy_usd_plan"] = summary["revenue_proxy_usd_plan"] - summary["operating_cost_usd_plan"]
@@ -1164,6 +1178,58 @@ def _add_derived_monitoring_metrics(summary: pd.DataFrame) -> pd.DataFrame:
     summary["free_cash_flow_proxy_usd_actual"] = (
         summary["operating_cash_flow_proxy_usd_actual"] - summary["sustaining_capex_usd_actual"]
     )
+    return summary
+
+
+def _validate_financial_proxy_scales(summary: pd.DataFrame) -> pd.DataFrame:
+    """Fail fast if unit regressions make the monthly financial proxies implausible."""
+
+    violations: list[str] = []
+    price_columns = (
+        "net_realized_price_usd_per_lb_plan",
+        "net_realized_price_usd_per_lb_actual",
+    )
+    for column in price_columns:
+        invalid_price_mask = summary[column].notna() & (
+            (summary[column] < MIN_NET_REALIZED_PRICE_USD_PER_LB)
+            | (summary[column] > MAX_NET_REALIZED_PRICE_USD_PER_LB)
+        )
+        if invalid_price_mask.any():
+            invalid_periods = ", ".join(summary.loc[invalid_price_mask, "period"].astype(str).head(3))
+            violations.append(
+                f"{column} fell outside the plausible copper price range "
+                f"[{MIN_NET_REALIZED_PRICE_USD_PER_LB}, {MAX_NET_REALIZED_PRICE_USD_PER_LB}] USD/lb "
+                f"for periods such as {invalid_periods}."
+            )
+
+    for suffix in ("plan", "actual"):
+        copper_column = f"copper_production_tonnes_{suffix}"
+        revenue_column = f"revenue_proxy_usd_{suffix}"
+        positive_copper_mask = summary[copper_column] > 0.0
+        if not positive_copper_mask.any():
+            continue
+        implied_revenue_per_tonne = summary.loc[positive_copper_mask, revenue_column] / summary.loc[
+            positive_copper_mask, copper_column
+        ]
+        invalid_scale_mask = (
+            (implied_revenue_per_tonne < MIN_REVENUE_PROXY_USD_PER_COPPER_TONNE)
+            | (implied_revenue_per_tonne > MAX_REVENUE_PROXY_USD_PER_COPPER_TONNE)
+            | ~np.isfinite(implied_revenue_per_tonne)
+        )
+        if invalid_scale_mask.any():
+            flagged_rows = summary.loc[positive_copper_mask].loc[invalid_scale_mask, ["site_id", "period"]].head(3)
+            examples = ", ".join(
+                f"{row.site_id}/{row.period}"
+                for row in flagged_rows.itertuples(index=False)
+            )
+            violations.append(
+                f"{revenue_column} implies {suffix} copper values outside the plausible range "
+                f"[{MIN_REVENUE_PROXY_USD_PER_COPPER_TONNE}, {MAX_REVENUE_PROXY_USD_PER_COPPER_TONNE}] USD per copper tonne "
+                f"for rows such as {examples}."
+            )
+
+    if violations:
+        raise ValueError("Monthly financial proxy unit guardrails failed: " + " ".join(violations))
     return summary
 
 
@@ -1206,6 +1272,7 @@ def build_kpi_monthly_summary(dataset_frames: dict[str, pd.DataFrame]) -> pd.Dat
     summary = _merge_monitoring_inputs(validated_inputs)
     summary = _build_month_key_fields(summary)
     summary = _add_derived_monitoring_metrics(summary)
+    summary = _validate_financial_proxy_scales(summary)
     summary = _add_variance_columns(summary)
     summary["site_name"] = summary["site_id"].map(_site_display_name)
     if "plan_version" not in summary.columns:
